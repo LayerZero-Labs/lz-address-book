@@ -1,0 +1,28 @@
+{
+  "name": "@layerzerolabs/lz-address-book",
+  "version": "1.0.0",
+  "description": "An up-to-date registry of all LayerZero V2 protocol addresses for Solidity development",
+  "private": false,
+  "scripts": {
+    "generate": "python3 scripts/lz-generate-addresses.py --include-testnet",
+    "generate:mainnet": "python3 scripts/lz-generate-addresses.py",
+    "test": "forge test",
+    "test:fork": "forge test --match-path 'test/fork/**/*.sol'",
+    "build": "forge build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LayerZero-Labs/lz-address-book.git"
+  },
+  "keywords": [
+    "layerzero",
+    "address-book",
+    "solidity",
+    "foundry",
+    "blockchain",
+    "cross-chain"
+  ],
+  "author": "LayerZero Labs",
+  "license": "MIT"
+}
+

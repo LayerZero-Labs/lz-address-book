@@ -1,0 +1,52 @@
+name: Check Address Updates
+
+on:
+  schedule:
+    # Run weekly on Mondays at 00:00 UTC
+    - cron: '0 0 * * 1'
+  workflow_dispatch: # Allow manual trigger
+
+jobs:
+  check-updates:
+    name: Check for Address Updates
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.9'
+
+      - name: Install Python dependencies
+        run: |
+          pip install -r scripts/requirements.txt
+
+      - name: Regenerate addresses
+        run: |
+          python3 scripts/lz-generate-addresses.py --include-testnet
+
+      - name: Check for changes
+        id: check_changes
+        run: |
+          git diff --exit-code src/generated/ src/helpers/ || echo "changes=true" >> $GITHUB_OUTPUT
+
+      - name: Create Pull Request
+        if: steps.check_changes.outputs.changes == 'true'
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: 'chore: update LayerZero addresses from metadata API'
+          title: 'chore: update LayerZero addresses'
+          body: |
+            This PR updates LayerZero addresses from the official metadata API.
+            
+            **Changes:**
+            - Updated generated address libraries
+            - Updated helper contracts
+            
+            Please review the changes and merge if everything looks correct.
+          branch: update-addresses
+          delete-branch: true
+
