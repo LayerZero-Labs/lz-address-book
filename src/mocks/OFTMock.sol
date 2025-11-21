@@ -2,8 +2,8 @@
 pragma solidity ^0.8.22;
 
 import {Ownable} from "@openzeppelin/contracts/access/Ownable.sol";
-import {OFT} from "@layerzerolabs/oft-evm/contracts/oft/OFT.sol";
-import {SendParam} from "@layerzerolabs/oft-evm/contracts/oft/OFTCore.sol";
+import {OFT} from "@layerzerolabs/oft-evm/contracts/OFT.sol";
+import {SendParam} from "@layerzerolabs/oft-evm/contracts/OFTCore.sol";
 
 /// @title OFTMock
 /// @notice Mock OFT contract for testing purposes

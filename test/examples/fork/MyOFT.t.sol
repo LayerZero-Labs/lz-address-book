@@ -10,9 +10,9 @@ import {console} from "forge-std/console.sol";
 
 // LayerZero imports
 import {Origin, ILayerZeroEndpointV2} from "@layerzerolabs/lz-evm-protocol-v2/contracts/interfaces/ILayerZeroEndpointV2.sol";
-import {SendParam} from "@layerzerolabs/oft-evm/contracts/oft/interfaces/IOFT.sol";
-import {MessagingFee, MessagingReceipt} from "@layerzerolabs/oft-evm/contracts/oft/OFTCore.sol";
-import {OFTMsgCodec} from "@layerzerolabs/oft-evm/contracts/oft/libs/OFTMsgCodec.sol";
+import {SendParam} from "@layerzerolabs/oft-evm/contracts/interfaces/IOFT.sol";
+import {MessagingFee, MessagingReceipt} from "@layerzerolabs/oft-evm/contracts/OFTCore.sol";
+import {OFTMsgCodec} from "@layerzerolabs/oft-evm/contracts/libs/OFTMsgCodec.sol";
 import {OptionsBuilder} from "@layerzerolabs/oapp-evm/contracts/oapp/libs/OptionsBuilder.sol";
 
 /// @title MyOFT Fork Test Example

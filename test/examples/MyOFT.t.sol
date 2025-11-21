@@ -4,11 +4,11 @@ pragma solidity ^0.8.22;
 import {Test} from "forge-std/Test.sol";
 import {console} from "forge-std/console.sol";
 import {OFTMock} from "../../src/mocks/OFTMock.sol";
-import {SendParam, OFTReceipt} from "@layerzerolabs/oft-evm/contracts/oft/interfaces/IOFT.sol";
-import {MessagingFee, MessagingReceipt} from "@layerzerolabs/oft-evm/contracts/oft/OFTCore.sol";
+import {SendParam, OFTReceipt} from "@layerzerolabs/oft-evm/contracts/interfaces/IOFT.sol";
+import {MessagingFee, MessagingReceipt} from "@layerzerolabs/oft-evm/contracts/OFTCore.sol";
 import {OptionsBuilder} from "@layerzerolabs/oapp-evm/contracts/oapp/libs/OptionsBuilder.sol";
 import {Origin} from "@layerzerolabs/lz-evm-protocol-v2/contracts/interfaces/ILayerZeroEndpointV2.sol";
-import {OFTMsgCodec} from "@layerzerolabs/oft-evm/contracts/oft/libs/OFTMsgCodec.sol";
+import {OFTMsgCodec} from "@layerzerolabs/oft-evm/contracts/libs/OFTMsgCodec.sol";
 import {VmSafe} from "forge-std/Vm.sol";
 import {LZUtils} from "../../src/utils/LZUtils.sol";
 
