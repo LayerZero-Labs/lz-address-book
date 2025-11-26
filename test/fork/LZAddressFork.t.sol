@@ -26,6 +26,10 @@ contract LZAddressForkTest is Test {
         // Deploy helper contracts
         protocolProvider = new LZProtocol();
         workersRegistry = new LZWorkers();
+        
+        // Make persistent to survive fork switching
+        vm.makePersistent(address(protocolProvider));
+        vm.makePersistent(address(workersRegistry));
     }
     
     // ============================================
@@ -34,7 +38,8 @@ contract LZAddressForkTest is Test {
     
     /// @notice Test Ethereum mainnet endpoint is valid
     function testFork_ethereumEndpoint() public {
-        vm.createSelectFork(vm.envString("ETHEREUM_MAINNET_RPC_URL"));
+        string memory rpc = _getRpc("ETHEREUM_MAINNET_RPC_URL", "https://eth.llamarpc.com");
+        vm.createSelectFork(rpc);
         
         // Get endpoint address
         address endpoint = address(LayerZeroV2EthereumMainnet.ENDPOINT_V2);
@@ -58,7 +63,8 @@ contract LZAddressForkTest is Test {
     
     /// @notice Test Ethereum mainnet message libraries are valid
     function testFork_ethereumMessageLibs() public {
-        vm.createSelectFork(vm.envString("ETHEREUM_MAINNET_RPC_URL"));
+        string memory rpc = _getRpc("ETHEREUM_MAINNET_RPC_URL", "https://eth.llamarpc.com");
+        vm.createSelectFork(rpc);
         
         address sendLib = address(LayerZeroV2EthereumMainnet.SEND_ULN_302);
         address receiveLib = address(LayerZeroV2EthereumMainnet.RECEIVE_ULN_302);
@@ -88,7 +94,8 @@ contract LZAddressForkTest is Test {
     
     /// @notice Test Ethereum DVNs are valid contracts
     function testFork_ethereumDVNs() public {
-        vm.createSelectFork(vm.envString("ETHEREUM_MAINNET_RPC_URL"));
+        string memory rpc = _getRpc("ETHEREUM_MAINNET_RPC_URL", "https://eth.llamarpc.com");
+        vm.createSelectFork(rpc);
         
         address lzLabsDVN = LayerZeroV2DVNEthereumMainnet.DVN_LAYERZERO_LABS;
         
@@ -108,7 +115,8 @@ contract LZAddressForkTest is Test {
     
     /// @notice Test Arbitrum mainnet addresses using helper contract
     function testFork_arbitrumViaHelper() public {
-        vm.createSelectFork(vm.envString("ARBITRUM_MAINNET_RPC_URL"));
+        string memory rpc = _getRpc("ARBITRUM_MAINNET_RPC_URL", "https://arb1.arbitrum.io/rpc");
+        vm.createSelectFork(rpc);
         
         // Get addresses using helper
         ILZProtocol.ProtocolAddresses memory addresses = protocolProvider.getProtocolAddresses("arbitrum-mainnet");
@@ -128,7 +136,8 @@ contract LZAddressForkTest is Test {
     
     /// @notice Test getting DVN addresses on Arbitrum
     function testFork_arbitrumDVNs() public {
-        vm.createSelectFork(vm.envString("ARBITRUM_MAINNET_RPC_URL"));
+        string memory rpc = _getRpc("ARBITRUM_MAINNET_RPC_URL", "https://arb1.arbitrum.io/rpc");
+        vm.createSelectFork(rpc);
         
         // Get DVN addresses
         string[] memory dvnNames = new string[](2);
@@ -155,7 +164,8 @@ contract LZAddressForkTest is Test {
     
     /// @notice Test Base mainnet addresses
     function testFork_baseMainnet() public {
-        vm.createSelectFork(vm.envString("BASE_MAINNET_RPC_URL"));
+        string memory rpc = _getRpc("BASE_MAINNET_RPC_URL", "https://mainnet.base.org");
+        vm.createSelectFork(rpc);
         
         // Access directly from library
         address endpoint = address(LayerZeroV2BaseMainnet.ENDPOINT_V2);
@@ -178,11 +188,13 @@ contract LZAddressForkTest is Test {
     /// @notice Test that the same DVN has different addresses on different chains
     function testFork_dvnAddressesDifferAcrossChains() public {
         // Get LayerZero Labs DVN address on Ethereum
-        vm.createSelectFork(vm.envString("ETHEREUM_MAINNET_RPC_URL"));
+        string memory ethRpc = _getRpc("ETHEREUM_MAINNET_RPC_URL", "https://eth.llamarpc.com");
+        vm.createSelectFork(ethRpc);
         address ethDVN = workersRegistry.getDVNAddressByChainName("LayerZero Labs", "ethereum-mainnet");
         
         // Get LayerZero Labs DVN address on Arbitrum
-        vm.createSelectFork(vm.envString("ARBITRUM_MAINNET_RPC_URL"));
+        string memory arbRpc = _getRpc("ARBITRUM_MAINNET_RPC_URL", "https://arb1.arbitrum.io/rpc");
+        vm.createSelectFork(arbRpc);
         address arbDVN = workersRegistry.getDVNAddressByChainName("LayerZero Labs", "arbitrum-mainnet");
         
         // They should be different
@@ -192,12 +204,12 @@ contract LZAddressForkTest is Test {
         uint256 ethCodeSize;
         uint256 arbCodeSize;
         
-        vm.createSelectFork(vm.envString("ETHEREUM_MAINNET_RPC_URL"));
+        vm.createSelectFork(ethRpc);
         assembly {
             ethCodeSize := extcodesize(ethDVN)
         }
         
-        vm.createSelectFork(vm.envString("ARBITRUM_MAINNET_RPC_URL"));
+        vm.createSelectFork(arbRpc);
         assembly {
             arbCodeSize := extcodesize(arbDVN)
         }
@@ -217,7 +229,8 @@ contract LZAddressForkTest is Test {
     /// @notice Demonstrate a practical use case: configuring an OApp
     /// @dev This shows how you would use the address book in a real deployment script
     function testFork_practicalUsage_OAppConfiguration() public {
-        vm.createSelectFork(vm.envString("ETHEREUM_MAINNET_RPC_URL"));
+        string memory rpc = _getRpc("ETHEREUM_MAINNET_RPC_URL", "https://eth.llamarpc.com");
+        vm.createSelectFork(rpc);
         
         // Scenario: You're deploying an OApp on Ethereum and need to configure it
         
@@ -245,6 +258,13 @@ contract LZAddressForkTest is Test {
         console.log("Send Library:", ethAddresses.sendUln302);
         console.log("Receive Library:", ethAddresses.receiveUln302);
         console.log("==================================\n");
+    }
+
+    function _getRpc(string memory envKey, string memory fallbackUrl) internal view returns (string memory) {
+        try vm.envString(envKey) returns (string memory url) {
+            if (bytes(url).length > 0) return url;
+        } catch {}
+        return fallbackUrl;
     }
 }
 

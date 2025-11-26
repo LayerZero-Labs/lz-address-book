@@ -1,12 +1,11 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.22;
 
-import {OFTMock} from "../../../src/mocks/OFTMock.sol";
-import {LZTest} from "../../../src/framework/LZTest.sol";
-import {LZUtils} from "../../../src/utils/LZUtils.sol";
-import {ILZProtocol} from "../../../src/helpers/interfaces/ILZProtocol.sol";
-import {VmSafe} from "forge-std/Vm.sol";
+import {Test} from "forge-std/Test.sol";
 import {console} from "forge-std/console.sol";
+
+import {OFTMock} from "../../../src/mocks/OFTMock.sol";
+import {LZAddressContext} from "../../../src/helpers/LZAddressContext.sol";
 
 // LayerZero imports
 import {Origin, ILayerZeroEndpointV2} from "@layerzerolabs/lz-evm-protocol-v2/contracts/interfaces/ILayerZeroEndpointV2.sol";
@@ -14,26 +13,26 @@ import {SendParam} from "@layerzerolabs/oft-evm/contracts/interfaces/IOFT.sol";
 import {MessagingFee, MessagingReceipt} from "@layerzerolabs/oft-evm/contracts/OFTCore.sol";
 import {OFTMsgCodec} from "@layerzerolabs/oft-evm/contracts/libs/OFTMsgCodec.sol";
 import {OptionsBuilder} from "@layerzerolabs/oapp-evm/contracts/oapp/libs/OptionsBuilder.sol";
+import {IOAppCore} from "@layerzerolabs/oapp-evm/contracts/oapp/interfaces/IOAppCore.sol";
+import {VmSafe} from "forge-std/Vm.sol";
 
 /// @title MyOFT Fork Test Example
-/// @notice Example demonstrating cross-chain OFT testing using the LayerZero address book
-/// @dev Shows how to use the address book for real fork-based testing
+/// @notice Demonstrates cross-chain OFT testing using LZAddressContext
 /// @dev This is a REFERENCE IMPLEMENTATION - copy and adapt for your own OApp
-contract MyOFTForkTest is LZTest {
+contract MyOFTForkTest is Test {
     using OptionsBuilder for bytes;
-    using LZUtils for address;
     
     // ============================================
-    // CONSTANTS & STATE VARIABLES
+    // The single entry point for all LZ addresses
     // ============================================
+    LZAddressContext ctx;
     
-    // Chain IDs (mainnet)
-    uint256 constant CHAINID_ARBITRUM = 42161;
-    uint256 constant CHAINID_BASE = 8453;
+    // Chain names
+    string constant ARBITRUM = "arbitrum-mainnet";
+    string constant BASE = "base-mainnet";
     
-    // Chain names for the framework
-    string constant ARBITRUM_MAINNET = "arbitrum-mainnet";
-    string constant BASE_MAINNET = "base-mainnet";
+    // Fork IDs
+    mapping(string => uint256) forks;
     
     // Test actors
     address userA = makeAddr("userA");
@@ -42,77 +41,91 @@ contract MyOFTForkTest is LZTest {
     // OFT contracts
     OFTMock arbOft;
     OFTMock baseOft;
-    
-    // Protocol addresses for cleaner access
-    ILZProtocol.ProtocolAddresses arbProtocol;
-    ILZProtocol.ProtocolAddresses baseProtocol;
 
     // ============================================
-    // SETUP - Using LayerZero Address Book
+    // SETUP
     // ============================================
 
-    /// @dev Deploy and configure OFTs using addresses from the address book
     function setUp() public {
-        // 1. CREATE FORKS FOR BOTH CHAINS
-        // The address book provides chain names that match environment variables
-        createFork(ARBITRUM_MAINNET, vm.envString("ARBITRUM_MAINNET_RPC_URL"));
-        createFork(BASE_MAINNET, vm.envString("BASE_MAINNET_RPC_URL"));
-
-        // 2. GET PROTOCOL ADDRESSES FROM ADDRESS BOOK
-        // This is the KEY BENEFIT - no hardcoding addresses!
-        arbProtocol = LZUtils.getProtocol(protocolAddressProvider, ARBITRUM_MAINNET);
-        baseProtocol = LZUtils.getProtocol(protocolAddressProvider, BASE_MAINNET);
-
-        // 3. DEPLOY ARBITRUM OFT USING ADDRESS BOOK
-        selectFork(ARBITRUM_MAINNET);
-        assertEq(block.chainid, CHAINID_ARBITRUM);
-        // Use endpoint address from address book
-        arbOft = new OFTMock("Arbitrum OFT", "aOFT", arbProtocol.endpointV2, address(this));
+        // 1. CREATE CONTEXT - this is all you need
+        ctx = new LZAddressContext();
+        ctx.makePersistent(vm);  // Single call handles all internal contracts
+        
+        // 2. CREATE FORKS
+        forks[ARBITRUM] = vm.createFork(_getRpc(ARBITRUM));
+        forks[BASE] = vm.createFork(_getRpc(BASE));
+        
+        // 3. DEPLOY ON ARBITRUM
+        vm.selectFork(forks[ARBITRUM]);
+        ctx.setChain(ARBITRUM);
+        arbOft = new OFTMock("Arbitrum OFT", "aOFT", ctx.getEndpoint(), address(this));
         arbOft.mint(userA, 10 ether);
-
-        // 4. DEPLOY BASE OFT USING ADDRESS BOOK
-        selectFork(BASE_MAINNET);
-        assertEq(block.chainid, CHAINID_BASE);
-        // Use endpoint address from address book
-        baseOft = new OFTMock("Base OFT", "bOFT", baseProtocol.endpointV2, address(this));
-
-        // 5. CONFIGURE CROSS-CHAIN COMMUNICATION
-        // The framework handles peer setting using address book
-        wireOAppsBidirectional(
-            ARBITRUM_MAINNET,
-            BASE_MAINNET,
-            address(arbOft),
-            address(baseOft)
-        );
+        
+        // 4. DEPLOY ON BASE
+        vm.selectFork(forks[BASE]);
+        ctx.setChain(BASE);
+        baseOft = new OFTMock("Base OFT", "bOFT", ctx.getEndpoint(), address(this));
+        
+        // 5. WIRE PEERS (using context helpers)
+        _wirePeers();
         
         console.log("\n=== Setup Complete ===");
-        console.log("Arbitrum OFT deployed at:", address(arbOft));
-        console.log("Base OFT deployed at:", address(baseOft));
-        console.log("Using Arbitrum endpoint:", arbProtocol.endpointV2);
-        console.log("Using Base endpoint:", baseProtocol.endpointV2);
+        console.log("Arbitrum OFT:", address(arbOft));
+        console.log("Base OFT:", address(baseOft));
         console.log("====================\n");
+    }
+    
+    /// @dev Get RPC URL: foundry.toml → address book
+    function _getRpc(string memory chainName) internal view returns (string memory) {
+        // 1. Standard Foundry: check foundry.toml [rpc_endpoints]
+        try vm.rpcUrl(chainName) returns (string memory url) {
+            if (bytes(url).length > 0) return url;
+        } catch {}
+        
+        // 2. Use address book metadata
+        string memory rpc = ctx.getProtocolAddressesFor(chainName).rpcUrls.length > 0
+            ? ctx.getProtocolAddressesFor(chainName).rpcUrls[0]
+            : "";
+        require(bytes(rpc).length > 0, string.concat("No RPC for ", chainName));
+        return rpc;
+    }
+    
+    function _wirePeers() internal {
+        uint256 currentFork = vm.activeFork();
+        
+        // Set peer on Arbitrum
+        vm.selectFork(forks[ARBITRUM]);
+        uint32 baseEid = ctx.getEid(BASE);
+        IOAppCore(address(arbOft)).setPeer(baseEid, ctx.addressToBytes32(address(baseOft)));
+        
+        // Set peer on Base
+        vm.selectFork(forks[BASE]);
+        uint32 arbEid = ctx.getEid(ARBITRUM);
+        IOAppCore(address(baseOft)).setPeer(arbEid, ctx.addressToBytes32(address(arbOft)));
+        
+        vm.selectFork(currentFork);
     }
 
     // ============================================
-    // TEST: Basic Send and Receive Flow
+    // TESTS
     // ============================================
     
     /// @notice Test cross-chain OFT transfer from Arbitrum to Base
-    /// @dev This demonstrates the complete flow using real LayerZero infrastructure
     function testFork_sendAndReceive() public {
         uint256 tokensToSend = 1 ether;
         uint128 LZ_RECEIVE_GAS = 80_000;
 
         // ========== SEND SIDE (Arbitrum) ==========
-        selectFork(ARBITRUM_MAINNET);
+        vm.selectFork(forks[ARBITRUM]);
+        ctx.setChain(ARBITRUM);
         
-        // 1. Get destination EID from address book
-        uint32 baseEid = LZUtils.getEid(protocolAddressProvider, BASE_MAINNET);
+        // Get destination EID using context
+        uint32 baseEid = ctx.getEid(BASE);
         
-        // 2. Create send parameters
+        // Create send parameters
         SendParam memory sendParam = SendParam({
             dstEid: baseEid,
-            to: LZUtils.addressToBytes32(userB),
+            to: ctx.addressToBytes32(userB),
             amountLD: tokensToSend,
             minAmountLD: tokensToSend,
             extraOptions: OptionsBuilder.newOptions().addExecutorLzReceiveOption(LZ_RECEIVE_GAS, 0),
@@ -120,15 +133,13 @@ contract MyOFTForkTest is LZTest {
             oftCmd: hex""
         });
 
-        // 3. Get quote from real endpoint (from address book)
+        // Get quote and execute send
         MessagingFee memory fee = arbOft.quoteSend(sendParam, false);
         vm.deal(userA, fee.nativeFee);
 
-        // 4. Check balances before send
         uint256 userABalanceBefore = arbOft.balanceOf(userA);
         assertEq(userABalanceBefore, 10 ether);
 
-        // 5. Execute the send on Arbitrum
         vm.prank(userA);
         (MessagingReceipt memory receipt, ) = arbOft.send{value: fee.nativeFee}(
             sendParam, 
@@ -136,108 +147,126 @@ contract MyOFTForkTest is LZTest {
             payable(userA)
         );
 
-        // 6. Verify tokens were burned on source chain
         assertEq(arbOft.balanceOf(userA), userABalanceBefore - tokensToSend);
 
         // ========== RECEIVE SIDE (Base) ==========
-        selectFork(BASE_MAINNET);
+        vm.selectFork(forks[BASE]);
+        ctx.setChain(BASE);
         
-        // 7. Check balance before receive
         uint256 userBBalanceBefore = baseOft.balanceOf(userB);
         assertEq(userBBalanceBefore, 0);
         
-        // 8. Verify the endpoint is ready to receive
-        uint32 arbEid = LZUtils.getEid(protocolAddressProvider, ARBITRUM_MAINNET);
+        // Verify endpoint is ready
+        uint32 arbEid = ctx.getEid(ARBITRUM);
         Origin memory origin = Origin({
             srcEid: arbEid,
-            sender: LZUtils.addressToBytes32(address(arbOft)),
+            sender: ctx.addressToBytes32(address(arbOft)),
             nonce: 1
         });
         
-        // Check endpoint (from address book) is initializable
-        assertEq(ILayerZeroEndpointV2(baseProtocol.endpointV2).initializable(origin, address(baseOft)), true);
+        assertEq(ILayerZeroEndpointV2(ctx.getEndpoint()).initializable(origin, address(baseOft)), true);
 
-        // 9. Simulate the cross-chain message delivery
+        // Simulate message delivery
         uint64 amountSD = baseOft.toSD(tokensToSend);
-        (bytes memory message,) = OFTMsgCodec.encode(
-            LZUtils.addressToBytes32(userB),
-            amountSD,
-            hex""
-        );
+        (bytes memory message,) = OFTMsgCodec.encode(ctx.addressToBytes32(userB), amountSD, hex"");
 
-        Origin memory deliveryOrigin = Origin({
-            srcEid: arbEid,
-            sender: LZUtils.addressToBytes32(address(arbOft)),
-            nonce: 1
-        });
-
-        // Simulate endpoint (from address book) calling lzReceive
-        vm.prank(baseProtocol.endpointV2);
-        baseOft.lzReceive(deliveryOrigin, receipt.guid, message, address(0), hex"");
+        vm.prank(ctx.getEndpoint());
+        baseOft.lzReceive(origin, receipt.guid, message, address(0), hex"");
         
-        // 10. Check gas usage
         VmSafe.Gas memory gasUsed = vm.lastCallGas();
-        assertLt(gasUsed.gasTotalUsed, LZ_RECEIVE_GAS, "Should use less than LZ_RECEIVE_GAS");
+        assertLt(gasUsed.gasTotalUsed, LZ_RECEIVE_GAS);
 
-        // 11. Verify tokens were minted on destination chain
         assertEq(baseOft.balanceOf(userB), userBBalanceBefore + tokensToSend);
     }
     
-    // ============================================
-    // TEST: Address Book Integration
-    // ============================================
-    
-    /// @notice Test that deployed contracts use correct addresses from address book
+    /// @notice Test address book integration
     function testFork_addressBookIntegration() public {
         // Verify Arbitrum OFT uses correct endpoint
-        selectFork(ARBITRUM_MAINNET);
+        vm.selectFork(forks[ARBITRUM]);
+        ctx.setChain(ARBITRUM);
+        
         address arbEndpoint = address(arbOft.endpoint());
-        assertEq(arbEndpoint, arbProtocol.endpointV2, "Should use endpoint from address book");
+        assertEq(arbEndpoint, ctx.getEndpoint(), "Should use endpoint from context");
         
-        // Verify endpoint is the real contract
         uint256 codeSize;
-        assembly {
-            codeSize := extcodesize(arbEndpoint)
-        }
-        assertGt(codeSize, 0, "Endpoint should be deployed contract");
+        assembly { codeSize := extcodesize(arbEndpoint) }
+        assertGt(codeSize, 0, "Endpoint should be deployed");
         
-        // Verify Base OFT uses correct endpoint
-        selectFork(BASE_MAINNET);
+        // Verify Base OFT
+        vm.selectFork(forks[BASE]);
+        ctx.setChain(BASE);
+        
         address baseEndpoint = address(baseOft.endpoint());
-        assertEq(baseEndpoint, baseProtocol.endpointV2, "Should use endpoint from address book");
+        assertEq(baseEndpoint, ctx.getEndpoint(), "Should use endpoint from context");
         
-        assembly {
-            codeSize := extcodesize(baseEndpoint)
-        }
-        assertGt(codeSize, 0, "Endpoint should be deployed contract");
+        assembly { codeSize := extcodesize(baseEndpoint) }
+        assertGt(codeSize, 0, "Endpoint should be deployed");
         
         console.log("[PASS] Address book integration verified");
     }
     
-    /// @notice Test accessing DVN addresses from address book
+    /// @notice Test DVN access via context
     function testFork_dvnAccess() public {
-        // Get DVN addresses from the address book
-        address arbLzLabsDVN = getDVNAddress("LayerZero Labs", ARBITRUM_MAINNET);
-        address baseLzLabsDVN = getDVNAddress("LayerZero Labs", BASE_MAINNET);
+        // Get DVN addresses using context (no need for separate registry)
+        address arbLzLabsDVN = ctx.getDVNFor("LayerZero Labs", ARBITRUM);
+        address baseLzLabsDVN = ctx.getDVNFor("LayerZero Labs", BASE);
         
-        // Verify DVNs are deployed contracts
-        selectFork(ARBITRUM_MAINNET);
+        // Verify on Arbitrum
+        vm.selectFork(forks[ARBITRUM]);
         uint256 arbCodeSize;
-        assembly {
-            arbCodeSize := extcodesize(arbLzLabsDVN)
-        }
+        assembly { arbCodeSize := extcodesize(arbLzLabsDVN) }
         assertGt(arbCodeSize, 0, "Arbitrum DVN should be deployed");
         
-        selectFork(BASE_MAINNET);
+        // Verify on Base
+        vm.selectFork(forks[BASE]);
         uint256 baseCodeSize;
-        assembly {
-            baseCodeSize := extcodesize(baseLzLabsDVN)
-        }
+        assembly { baseCodeSize := extcodesize(baseLzLabsDVN) }
         assertGt(baseCodeSize, 0, "Base DVN should be deployed");
         
         console.log("Arbitrum LayerZero Labs DVN:", arbLzLabsDVN);
         console.log("Base LayerZero Labs DVN:", baseLzLabsDVN);
-        console.log("[PASS] DVN addresses verified from address book");
+        console.log("[PASS] DVN addresses verified");
+    }
+    
+    /// @notice Demonstrate all three ways to set chain context
+    function testFork_contextSettingMethods() public {
+        // ========== METHOD 1: By Chain Name (most readable) ==========
+        ctx.setChain("arbitrum-mainnet");
+        address endpointByName = ctx.getEndpoint();
+        uint32 eidByName = ctx.getCurrentEID();
+        console.log("By name 'arbitrum-mainnet':");
+        console.log("  Endpoint:", endpointByName);
+        console.log("  EID:", eidByName);
+        
+        // ========== METHOD 2: By Chain ID (useful when you have block.chainid) ==========
+        ctx.setChainByChainId(8453); // Base mainnet chain ID
+        address endpointByChainId = ctx.getEndpoint();
+        string memory chainNameByChainId = ctx.getCurrentChainName();
+        console.log("By chainId 8453:");
+        console.log("  Endpoint:", endpointByChainId);
+        console.log("  Resolved chain name:", chainNameByChainId);
+        
+        // ========== METHOD 3: By EID (useful when working with LZ messages) ==========
+        ctx.setChainByEid(30110); // Arbitrum mainnet EID
+        address endpointByEid = ctx.getEndpoint();
+        string memory chainNameByEid = ctx.getCurrentChainName();
+        console.log("By EID 30110:");
+        console.log("  Endpoint:", endpointByEid);
+        console.log("  Resolved chain name:", chainNameByEid);
+        
+        // All methods should resolve to correct endpoints
+        assertEq(endpointByName, endpointByEid, "Name and EID should resolve to same endpoint");
+        assertEq(eidByName, 30110, "Arbitrum EID should be 30110");
+        assertEq(chainNameByChainId, "base-mainnet", "Chain ID 8453 should resolve to base-mainnet");
+        
+        console.log("[PASS] All context setting methods work correctly");
+    }
+    
+    // ============================================
+    // HELPERS
+    // ============================================
+    
+    function _eq(string memory a, string memory b) internal pure returns (bool) {
+        return keccak256(bytes(a)) == keccak256(bytes(b));
     }
 }
-

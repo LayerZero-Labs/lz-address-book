@@ -17,7 +17,7 @@ from datetime import datetime
 # Constants
 METADATA_URL = "https://metadata.layerzero-api.com/v1/metadata/deployments"
 SOLIDITY_HEADER = """// SPDX-License-Identifier: MIT
-pragma solidity ^0.8.20;
+pragma solidity ^0.8.22;
 
 // Auto-generated from LayerZero metadata - do not edit manually
 // Source: https://metadata.layerzero-api.com/v1/metadata/deployments
@@ -310,6 +310,7 @@ pragma solidity ^0.8.22;
 
 import "../generated/LZAddresses.sol";
 import "./interfaces/ILZProtocol.sol";
+import "./LZWorkers.sol";
 import {Vm} from "forge-std/Vm.sol";
 
 /// @title LayerZero Protocol Address Provider
@@ -318,6 +319,9 @@ import {Vm} from "forge-std/Vm.sol";
 contract LZProtocol is ILZProtocol {
     // Forge VM for string conversion
     Vm private constant vm = Vm(address(uint160(uint256(keccak256("hevm cheat code")))));
+    
+    // LZWorkers instance
+    LZWorkers public workers;
     
     // Storage for chain data
     mapping(uint32 => ProtocolAddresses) private _protocolAddresses;
@@ -333,6 +337,7 @@ contract LZProtocol is ILZProtocol {
     
     constructor() {
         _registerAllChains();
+        workers = new LZWorkers();
     }
     
     /// @notice Register all supported chains from the AddressBook
@@ -387,33 +392,56 @@ contract LZProtocol is ILZProtocol {
             
         chain_name = sanitize_chain_name(chain_key)
         
+        # Extract RPCs
+        rpcs = chain_data.get('rpcs', [])
+        rpc_urls = []
+        if isinstance(rpcs, list):
+            if rpcs and isinstance(rpcs[0], dict):
+                sorted_rpcs = sorted(rpcs, key=lambda x: int(x.get('rank', 999)))
+                rpc_urls = [r.get('url') for r in sorted_rpcs if r.get('url')]
+            else:
+                rpc_urls = [str(r) for r in rpcs]
+        
+        entry = (chain_key, chain_name, rpc_urls)
+        
         if 'sandbox' in chain_key.lower():
-            sandbox_chains.append((chain_key, chain_name))
+            sandbox_chains.append(entry)
         elif 'testnet' in chain_key.lower():
-            testnet_chains.append((chain_key, chain_name))
+            testnet_chains.append(entry)
         else:
-            mainnet_chains.append((chain_key, chain_name))
+            mainnet_chains.append(entry)
     
+    # Helper to format string array
+    def format_string_array(arr):
+        if not arr:
+            return "new string[](0)"
+        # Create Solidity string array literal: ["a", "b"]
+        quoted = [f'"{s}"' for s in arr]
+        return f"[{', '.join(quoted)}]"
+
     # Add mainnet chains
     if mainnet_chains:
         lines.append("        // Mainnets")
-        for chain_key, chain_name in sorted(mainnet_chains):
+        for chain_key, chain_name, rpc_urls in sorted(mainnet_chains):
             lib_name = f"LayerZeroV2{chain_name}"
-            lines.append(f"        _registerChain({lib_name}.EID, address({lib_name}.ENDPOINT_V2), address({lib_name}.SEND_ULN_302), address({lib_name}.RECEIVE_ULN_302), {lib_name}.EXECUTOR, {lib_name}.CHAIN_ID, \"{chain_key}\");")
+            rpc_arg = format_string_array(rpc_urls)
+            lines.append(f"        _registerChain({lib_name}.EID, address({lib_name}.ENDPOINT_V2), address({lib_name}.SEND_ULN_302), address({lib_name}.RECEIVE_ULN_302), {lib_name}.EXECUTOR, {lib_name}.CHAIN_ID, \"{chain_key}\", {rpc_arg});")
     
     # Add testnet chains
     if testnet_chains:
         lines.append("\n        // Testnets")
-        for chain_key, chain_name in sorted(testnet_chains):
+        for chain_key, chain_name, rpc_urls in sorted(testnet_chains):
             lib_name = f"LayerZeroV2{chain_name}"
-            lines.append(f"        _registerChain({lib_name}.EID, address({lib_name}.ENDPOINT_V2), address({lib_name}.SEND_ULN_302), address({lib_name}.RECEIVE_ULN_302), {lib_name}.EXECUTOR, {lib_name}.CHAIN_ID, \"{chain_key}\");")
+            rpc_arg = format_string_array(rpc_urls)
+            lines.append(f"        _registerChain({lib_name}.EID, address({lib_name}.ENDPOINT_V2), address({lib_name}.SEND_ULN_302), address({lib_name}.RECEIVE_ULN_302), {lib_name}.EXECUTOR, {lib_name}.CHAIN_ID, \"{chain_key}\", {rpc_arg});")
     
     # Add sandbox chains
     if sandbox_chains:
         lines.append("\n        // Sandbox environments")
-        for chain_key, chain_name in sorted(sandbox_chains):
+        for chain_key, chain_name, rpc_urls in sorted(sandbox_chains):
             lib_name = f"LayerZeroV2{chain_name}"
-            lines.append(f"        _registerChain({lib_name}.EID, address({lib_name}.ENDPOINT_V2), address({lib_name}.SEND_ULN_302), address({lib_name}.RECEIVE_ULN_302), {lib_name}.EXECUTOR, {lib_name}.CHAIN_ID, \"{chain_key}\");")
+            rpc_arg = format_string_array(rpc_urls)
+            lines.append(f"        _registerChain({lib_name}.EID, address({lib_name}.ENDPOINT_V2), address({lib_name}.SEND_ULN_302), address({lib_name}.RECEIVE_ULN_302), {lib_name}.EXECUTOR, {lib_name}.CHAIN_ID, \"{chain_key}\", {rpc_arg});")
     
     lines.append("""    }
     
@@ -425,7 +453,8 @@ contract LZProtocol is ILZProtocol {
         address receiveUln,
         address executor,
         uint256 chainId,
-        string memory chainName
+        string memory chainName,
+        string[] memory rpcUrls
     ) private {
         _protocolAddresses[eid] = ProtocolAddresses({
             endpointV2: endpoint,
@@ -434,6 +463,7 @@ contract LZProtocol is ILZProtocol {
             executor: executor,
             chainId: chainId,
             chainName: chainName,
+            rpcUrls: rpcUrls,
             exists: true
         });
         _registeredEids.push(eid);
@@ -493,6 +523,38 @@ contract LZProtocol is ILZProtocol {
     /// @notice Get current chain's EID using block.chainid
     function forkingValidChainID() public view override returns (uint32) {
         return getEidFromChainId(block.chainid);
+    }
+
+    function getFullDeploymentInfo(uint32 eid) public view override returns (FullDeploymentInfo memory info) {
+        ProtocolAddresses memory base = getProtocolAddresses(eid);
+        
+        (string[] memory dvnNames, address[] memory dvnAddrs) = workers.getDVNsForChain(eid);
+        
+        info = FullDeploymentInfo({
+            eid: eid,
+            chainId: base.chainId,
+            chainName: base.chainName,
+            rpcUrls: base.rpcUrls,
+            endpointV2: base.endpointV2,
+            sendUln302: base.sendUln302,
+            receiveUln302: base.receiveUln302,
+            executor: base.executor,
+            allDVNs: dvnAddrs,
+            allDVNNames: dvnNames,
+            exists: base.exists
+        });
+    }
+
+    function getFullDeploymentInfo(string memory chainName) public view override returns (FullDeploymentInfo memory info) {
+        uint32 eid = _chainNameToEid[chainName];
+        require(eid != 0 || _protocolAddresses[0].exists, "Chain name not found");
+        return getFullDeploymentInfo(eid);
+    }
+
+    function getPathwayInfo(string memory srcChain, string memory dstChain) public view override returns (PathwayInfo memory info) {
+        info.source = getFullDeploymentInfo(srcChain);
+        info.destination = getFullDeploymentInfo(dstChain);
+        info.connected = info.source.exists && info.destination.exists;
     }
 }""")
     

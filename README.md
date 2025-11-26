@@ -1,396 +1,333 @@
-# LayerZero Address Book :book:
+# LayerZero Address Book
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Foundry](https://img.shields.io/badge/Built%20with-Foundry-FFDB1C.svg)](https://getfoundry.sh/)
 
-An up-to-date registry of all LayerZero V2 protocol addresses for Solidity development. This package provides auto-generated Solidity libraries containing addresses for LayerZero endpoints, message libraries, executors, and DVNs across all supported EVM chains.
+**The complete Foundry-native solution for building LayerZero V2 OApps and OFTs without any JavaScript tooling.**
 
-## Features
+One `forge install` gets you everything you need: LayerZero contracts, protocol addresses, testing utilities, and deployment helpers—all in pure Solidity.
 
-- 🔄 **Auto-generated**: Addresses are fetched directly from LayerZero's metadata API
-- 🌐 **Comprehensive Coverage**: Includes 300+ EVM chains (mainnets and testnets)
-- 🛠️ **Developer Friendly**: Helper contracts for easy address lookup by chain name or EID
-- 🔍 **Provenance Tracking**: DATA_HASH included for verifying data integrity
-- 📦 **Zero Dependencies**: Just Foundry and LayerZero V2 contracts
-- ✅ **Well Tested**: Comprehensive unit and fork tests included
+## Why This Library?
+
+**Building LayerZero OApps with pure Foundry used to require:**
+- Manual address lookups from docs
+- Hardcoding endpoint addresses
+- Complex dependency management
+- JavaScript/npm for deployment and configuration
+
+**With lz-address-book:**
+- **One install**: `forge install LayerZero-Labs/lz-address-book`
+- **Context-Aware**: Set chain context once, fetch all addresses
+- **Fork Testing Ready**: Single-line persistence across fork switches
+- **Zero JavaScript**: Pure Solidity workflows
 
 ## Installation
-
-### With Foundry
 
 ```bash
 forge install LayerZero-Labs/lz-address-book
 ```
 
-### Manual Installation
+### Remappings (remappings.txt)
 
-Clone this repository into your project's `lib` directory:
+```txt
+@layerzerolabs/lz-evm-protocol-v2/=lib/lz-address-book/lib/LayerZero-v2/packages/layerzero-v2/evm/protocol/
+@layerzerolabs/lz-evm-messagelib-v2/=lib/lz-address-book/lib/LayerZero-v2/packages/layerzero-v2/evm/messagelib/
+@layerzerolabs/oft-evm/=lib/lz-address-book/lib/devtools/packages/oft-evm/
+@layerzerolabs/oapp-evm/=lib/lz-address-book/lib/devtools/packages/oapp-evm/
+@openzeppelin/contracts/=lib/lz-address-book/lib/openzeppelin-contracts/contracts/
+solidity-bytes-utils/=lib/lz-address-book/lib/solidity-bytes-utils/
+forge-std/=lib/forge-std/src/
+lz-address-book/=lib/lz-address-book/src/
+```
+
+---
+
+## Quick Start
+
+```solidity
+import {LZAddressContext} from "lz-address-book/helpers/LZAddressContext.sol";
+
+LZAddressContext ctx = new LZAddressContext();
+
+// Set context by chain name, EID, or chain ID
+ctx.setChain("arbitrum-mainnet");
+
+// Fetch addresses
+address endpoint = ctx.getEndpoint();
+address dvn = ctx.getDVN("LayerZero Labs");
+
+// Cross-chain lookups (no context switch needed)
+uint32 baseEid = ctx.getEid("base-mainnet");
+address baseDvn = ctx.getDVNFor("LayerZero Labs", "base-mainnet");
+```
+
+---
+
+## Setting Chain Context
+
+Three ways to set the current chain:
+
+```solidity
+// 1. By chain name (most readable)
+ctx.setChain("arbitrum-mainnet");
+
+// 2. By LayerZero EID (useful when working with LZ messages)
+ctx.setChainByEid(30110);
+
+// 3. By native chain ID (useful with block.chainid)
+ctx.setChainByChainId(42161);
+```
+
+---
+
+## DVN Discovery
+
+Discover available DVNs programmatically:
+
+```solidity
+// Get all DVN names across all chains
+string[] memory allDVNs = ctx.getAvailableDVNs();
+// Returns: ["LayerZero Labs", "Nethermind", "Google Cloud", ...]
+
+// Get DVNs available on current chain with addresses
+ctx.setChain("arbitrum-mainnet");
+(string[] memory names, address[] memory addrs) = ctx.getDVNsForCurrentChain();
+
+// Get DVNs for any chain (no context switch needed)
+(names, addrs) = ctx.getDVNsForChain("base-mainnet");
+
+// Check if a specific DVN is available
+bool available = ctx.isDVNAvailable("LayerZero Labs");  // true
+```
+
+Invalid DVN names will revert with a helpful error:
+```solidity
+ctx.getDVN("LayerZero labs");  // Reverts: "DVN not found on arbitrum-mainnet: LayerZero labs"
+```
+
+---
+
+## Tutorial Scripts
+
+Complete examples in `scripts/examples/`:
+
+| Script | Description |
+|--------|-------------|
+| `DeployOFT.s.sol` | Deploy OFT to any supported chain |
+| `ConfigureByChainName.s.sol` | Configure using human-readable chain names |
+| `ConfigureByEid.s.sol` | Configure using LayerZero Endpoint IDs |
+| `ConfigureByChainId.s.sol` | Configure using native chain IDs |
+| `SetPeers.s.sol` | Wire peers to open messaging channel |
+
+### Workflow
 
 ```bash
-git clone https://github.com/LayerZero-Labs/lz-address-book lib/lz-address-book
+# 1. Deploy on each chain
+CHAIN_NAME=arbitrum-mainnet forge script scripts/examples/DeployOFT.s.sol --broadcast
+CHAIN_NAME=base-mainnet forge script scripts/examples/DeployOFT.s.sol --broadcast
+
+# 2. Configure each chain (sets DVNs, executor, libraries)
+forge script scripts/examples/ConfigureByChainName.s.sol --rpc-url arbitrum --broadcast
+forge script scripts/examples/ConfigureByChainName.s.sol --rpc-url base --broadcast
+
+# 3. Set peers (final step - opens the channel)
+OAPP_ADDRESS=0x... PEER_CHAIN=base-mainnet PEER_ADDRESS=0x... \
+  forge script scripts/examples/SetPeers.s.sol --rpc-url arbitrum --broadcast
 ```
 
-## Usage
+---
 
-### Quick Start
+## Fork Testing
 
-Import and use addresses directly in your Solidity contracts:
+Test cross-chain logic against real mainnet state:
 
 ```solidity
-// SPDX-License-Identifier: MIT
-pragma solidity ^0.8.22;
+import {Test} from "forge-std/Test.sol";
+import {LZAddressContext} from "lz-address-book/helpers/LZAddressContext.sol";
 
-import {LayerZeroV2EthereumMainnet} from "lz-address-book/generated/LZAddresses.sol";
-import {ILayerZeroEndpointV2} from "@layerzerolabs/lz-evm-protocol-v2/contracts/interfaces/ILayerZeroEndpointV2.sol";
+contract MyOAppForkTest is Test {
+    LZAddressContext ctx;
+    mapping(string => uint256) forks;
 
-contract MyOApp {
-    ILayerZeroEndpointV2 public immutable endpoint;
+    function setUp() public {
+        ctx = new LZAddressContext();
+        ctx.makePersistent(vm);  // Persists across fork switches
+        
+        // Create forks
+        forks["arbitrum-mainnet"] = vm.createFork(_getRpc("arbitrum-mainnet"));
+        forks["base-mainnet"] = vm.createFork(_getRpc("base-mainnet"));
+        
+        // Deploy on Arbitrum
+        vm.selectFork(forks["arbitrum-mainnet"]);
+        ctx.setChain("arbitrum-mainnet");
+        arbOApp = new MyOApp(ctx.getEndpoint(), address(this));
+        
+        // Deploy on Base
+        vm.selectFork(forks["base-mainnet"]);
+        ctx.setChain("base-mainnet");
+        baseOApp = new MyOApp(ctx.getEndpoint(), address(this));
+    }
     
-    constructor() {
-        // Use the address directly from the generated library
-        endpoint = LayerZeroV2EthereumMainnet.ENDPOINT_V2;
+    function _getRpc(string memory chainName) internal view returns (string memory) {
+        // Try foundry.toml first
+        try vm.rpcUrl(chainName) returns (string memory url) {
+            if (bytes(url).length > 0) return url;
+        } catch {}
+        
+        // Fall back to address book metadata
+        return ctx.getProtocolAddressesFor(chainName).rpcUrls[0];
     }
 }
 ```
 
-### Using Helper Contracts
-
-For more dynamic access patterns, use the helper contracts:
+Or use the `LZTest` base contract for even simpler setup:
 
 ```solidity
-import {LZProtocol, ILZProtocol} from "lz-address-book/helpers/LZProtocol.sol";
-import {LZWorkers, ILZWorkers} from "lz-address-book/helpers/LZWorkers.sol";
+import {LZTest} from "lz-address-book/framework/LZTest.sol";
 
-contract MyDeploymentScript {
-    LZProtocol public protocolProvider = new LZProtocol();
-    LZWorkers public workersRegistry = new LZWorkers();
-    
-    function deployToArbitrum() public {
-        // Get all protocol addresses by chain name
-        ILZProtocol.ProtocolAddresses memory addresses = 
-            protocolProvider.getProtocolAddresses("arbitrum-mainnet");
+contract MyOAppForkTest is LZTest {
+    function setUp() public {
+        // ctx is already available and persistent
+        createAndSelectFork("arbitrum-mainnet", "https://arb1.arbitrum.io/rpc");
+        arbOApp = new MyOApp(ctx.getEndpoint(), address(this));
         
-        // Get DVN addresses for security config
-        string[] memory dvnNames = new string[](2);
-        dvnNames[0] = "LayerZero Labs";
-        dvnNames[1] = "Nethermind";
+        createAndSelectFork("base-mainnet", "https://mainnet.base.org");
+        baseOApp = new MyOApp(ctx.getEndpoint(), address(this));
         
-        address[] memory dvnAddresses = 
-            workersRegistry.getDVNAddresses("arbitrum-mainnet", dvnNames);
-        
-        // Use addresses to configure your OApp...
+        // Wire peers in one call
+        wireOAppsBidirectional("arbitrum-mainnet", "base-mainnet", address(arbOApp), address(baseOApp));
     }
 }
 ```
 
-### Available Address Libraries
+---
 
-Each chain has its own library following the naming pattern `LayerZeroV2{ChainName}`:
+## Static Access
 
-- `LayerZeroV2EthereumMainnet`
-- `LayerZeroV2ArbitrumMainnet`
-- `LayerZeroV2BaseMainnet`
-- `LayerZeroV2OptimismMainnet`
-- `LayerZeroV2PolygonMainnet`
-- And 300+ more...
-
-Each library contains:
+For single-chain scripts where you know the target at compile time:
 
 ```solidity
-library LayerZeroV2EthereumMainnet {
-    // Chain metadata
-    uint32 internal constant EID = 30101;
-    uint256 internal constant CHAIN_ID = 1;
-    string internal constant CHAIN_KEY = "ethereum-mainnet";
-    
-    // Core protocol
-    ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x1a44076050125825900e736c501f859c50fE728c);
-    
-    // Message libraries
-    IMessageLib internal constant SEND_ULN_302 = IMessageLib(...);
-    IMessageLib internal constant RECEIVE_ULN_302 = IMessageLib(...);
-    
-    // Other contracts
-    address internal constant EXECUTOR = ...;
-    address internal constant DEAD_DVN = ...;
-}
+import {LayerZeroV2ArbitrumMainnet} from "lz-address-book/generated/LZAddresses.sol";
+
+address endpoint = address(LayerZeroV2ArbitrumMainnet.ENDPOINT_V2);
+uint32 eid = LayerZeroV2ArbitrumMainnet.EID;
 ```
 
-### DVN (Decentralized Verification Network) Libraries
+---
 
-Each chain also has a DVN library with addresses of all available DVNs:
+## API Reference
 
-```solidity
-library LayerZeroV2DVNEthereumMainnet {
-    // LayerZero Labs
-    address internal constant DVN_LAYERZERO_LABS = 0x589dEDbD617e0CBcB916A9223F4d1300c294236b;
-    
-    // Nethermind
-    address internal constant DVN_NETHERMIND = 0xa7b5189bcA84Cd304D8553977c7C614329750d99;
-    
-    // And many more...
-}
-```
+### LZAddressContext
 
-## Helper Contracts
+#### Chain Context
 
-### LZProtocol
+| Method | Description |
+|--------|-------------|
+| `setChain(string)` | Set context by chain name |
+| `setChainByEid(uint32)` | Set context by LayerZero endpoint ID |
+| `setChainByChainId(uint256)` | Set context by native chain ID |
+| `makePersistent(Vm)` | Persist context across fork switches |
 
-Provides convenient access to protocol addresses:
+#### Current Chain Getters
 
-```solidity
-// Get addresses by EID
-ILZProtocol.ProtocolAddresses memory addresses = protocolProvider.getProtocolAddresses(30101);
+| Method | Description |
+|--------|-------------|
+| `getCurrentChainName()` | Get current chain name |
+| `getCurrentEID()` | Get current chain EID |
+| `getCurrentChainId()` | Get current chain's native chain ID |
+| `getEndpoint()` | Get EndpointV2 for current chain |
+| `getSendLib()` | Get SendUln302 for current chain |
+| `getReceiveLib()` | Get ReceiveUln302 for current chain |
+| `getExecutor()` | Get Executor for current chain |
+| `getDVN(string)` | Get DVN by name for current chain (reverts if not found) |
 
-// Get addresses by chain name
-ILZProtocol.ProtocolAddresses memory addresses = protocolProvider.getProtocolAddresses("ethereum-mainnet");
+#### DVN Discovery & Batch Lookup
 
-// Convert chain ID to EID
-uint32 eid = protocolProvider.getEidFromChainId(1); // Returns 30101
+| Method | Description |
+|--------|-------------|
+| `getAvailableDVNs()` | Get all DVN names across all chains |
+| `getDVNsForCurrentChain()` | Get DVN names and addresses for current chain |
+| `getDVNsForChain(string)` | Get DVN names and addresses for any chain |
+| `getDVNs(string[])` | Get multiple DVN addresses by name (batch lookup) |
+| `isDVNAvailable(string)` | Check if DVN exists on current chain |
 
-// Check if chain is supported
-bool supported = protocolProvider.isChainSupported(30101);
+#### Chain Discovery
 
-// Get all supported EIDs
-uint32[] memory eids = protocolProvider.getSupportedEids();
-```
+| Method | Description |
+|--------|-------------|
+| `getSupportedChainNames()` | Get all supported chain names |
+| `getSupportedEids()` | Get all supported LayerZero endpoint IDs |
 
-### LZWorkers
+#### Cross-Chain Lookups (no context switch)
 
-Provides convenient access to DVN addresses:
+| Method | Description |
+|--------|-------------|
+| `getEid(string)` | Get EID for any chain |
+| `getEndpointFor(string)` | Get endpoint for any chain |
+| `getExecutorFor(string)` | Get executor for any chain |
+| `getSendLibFor(string)` | Get send library for any chain |
+| `getReceiveLibFor(string)` | Get receive library for any chain |
+| `getDVNFor(string, string)` | Get DVN for any chain |
+| `getProtocolAddressesFor(string)` | Get all addresses for any chain |
 
-```solidity
-// Get single DVN address by name
-address dvn = workersRegistry.getDVNAddress("LayerZero Labs", 30101);
+#### Validation
 
-// Get single DVN address by chain name
-address dvn = workersRegistry.getDVNAddressByChainName("LayerZero Labs", "ethereum-mainnet");
+| Method | Description |
+|--------|-------------|
+| `isChainSupported(string)` | Check if chain name is supported |
+| `isChainSupportedByEid(uint32)` | Check if EID is supported |
+| `isChainSupportedByChainId(uint256)` | Check if chain ID is supported |
 
-// Get multiple DVN addresses at once
-string[] memory dvnNames = new string[](2);
-dvnNames[0] = "LayerZero Labs";
-dvnNames[1] = "Nethermind";
-address[] memory dvns = workersRegistry.getDVNAddresses("ethereum-mainnet", dvnNames);
+#### Utilities
 
-// Get all DVNs for a chain
-(string[] memory names, address[] memory addresses) = workersRegistry.getDVNsForChain(30101);
+| Method | Description |
+|--------|-------------|
+| `addressToBytes32(address)` | Convert address to bytes32 |
+| `bytes32ToAddress(bytes32)` | Convert bytes32 to address |
 
-// Get all available DVN names
-string[] memory allDVNs = workersRegistry.getAvailableDVNs();
-```
+### LZUtils
+
+| Function | Description |
+|----------|-------------|
+| `addressToBytes32(address)` | Convert address to bytes32 |
+| `bytes32ToAddress(bytes32)` | Convert bytes32 to address |
+| `isZeroAddress(address)` | Check if address is zero |
+
+### DVNValidator
+
+| Method | Description |
+|--------|-------------|
+| `isDVNAvailableOnBoth(string, string, string)` | Check DVN exists on both chains |
+| `getCommonDVNs(string, string)` | Get DVNs available on both chains |
+| `getDVNAvailability(string, string, string)` | Get detailed DVN availability info |
+
+---
 
 ## Testing
 
-The repository includes comprehensive tests demonstrating usage patterns.
-
-### Address Book Tests
-
-Tests that verify the address book itself works correctly:
-
 ```bash
-# Run all address book tests
-forge test --match-path "test/LZAddressBook.t.sol"
+# Run all tests
+forge test
 
-# Run address book fork tests (requires RPC URLs)
-forge test --match-path "test/fork/LZAddressFork.t.sol"
+# Run fork tests (requires RPC)
+forge test --match-path "test/**/fork/*.sol"
+
+# Run specific example
+forge test --match-contract MyOFTForkTest
 ```
 
-### Example Tests (Reference Implementations)
+## Supported Chains
 
-The `test/examples/` directory contains **reference implementations** showing how to use the address book in your own projects:
-
-#### Unit Test Example (`test/examples/MyOFT.t.sol`)
-Demonstrates testing OFT business logic with mocked endpoints:
-- How to mock LayerZero endpoint calls
-- Testing send/receive logic without network dependencies
-- Fast unit tests for your OApp business logic
-
-```bash
-forge test --match-path "test/examples/MyOFT.t.sol"
-```
-
-#### Fork Test Example (`test/examples/fork/MyOFT.t.sol`)
-Demonstrates real cross-chain testing using the address book:
-- How to use address book for fork tests
-- Deploying OApps with real endpoint addresses
-- Testing actual cross-chain message flows
-
-**Setup for Fork Tests:**
-
-Create a `.env` file with your RPC URLs:
-
-```bash
-ETHEREUM_MAINNET_RPC_URL=https://eth-mainnet.g.alchemy.com/v2/YOUR_KEY
-ARBITRUM_MAINNET_RPC_URL=https://arb-mainnet.g.alchemy.com/v2/YOUR_KEY
-BASE_MAINNET_RPC_URL=https://base-mainnet.g.alchemy.com/v2/YOUR_KEY
-```
-
-Then run:
-
-```bash
-forge test --match-path "test/examples/fork/**/*.sol"
-```
-
-**Key Takeaways from Examples:**
-- **Copy these patterns** for your own OApp testing
-- **Unit tests** for fast business logic validation
-- **Fork tests** for integration testing with real LayerZero infrastructure
-- **Address book** eliminates hardcoded addresses
-
-## Regenerating Addresses
-
-The address book can be regenerated from LayerZero's metadata API:
-
-### Prerequisites
-
-```bash
-pip3 install -r scripts/requirements.txt
-```
-
-### Generate
-
-```bash
-# Generate mainnet addresses only
-npm run generate:mainnet
-
-# Generate all addresses (including testnets)
-npm run generate
-```
-
-This will:
-1. Fetch the latest deployment data from LayerZero's API
-2. Generate `src/generated/LZAddresses.sol` with all chain libraries
-3. Generate `src/helpers/LZProtocol.sol` for protocol address access
-4. Generate `src/helpers/LZWorkers.sol` for DVN address access
-
-## Examples
-
-### Example 1: Deploy OApp with Address Book
-
-```solidity
-pragma solidity ^0.8.22;
-
-import {OApp} from "@layerzerolabs/oapp-evm/contracts/oapp/OApp.sol";
-import {LayerZeroV2EthereumMainnet} from "lz-address-book/generated/LZAddresses.sol";
-
-contract MyOApp is OApp {
-    constructor() OApp(address(LayerZeroV2EthereumMainnet.ENDPOINT_V2), msg.sender) {}
-    
-    // Your OApp logic...
-}
-```
-
-### Example 2: Configure DVNs for Security
-
-```solidity
-pragma solidity ^0.8.22;
-
-import {LZWorkers} from "lz-address-book/helpers/LZWorkers.sol";
-import {SetConfigParam} from "@layerzerolabs/lz-evm-protocol-v2/contracts/interfaces/ILayerZeroEndpointV2.sol";
-
-contract DVNConfigHelper {
-    LZWorkers public workers = new LZWorkers();
-    
-    function getDVNConfig(string memory chainName) public view returns (address[] memory) {
-        string[] memory dvnNames = new string[](3);
-        dvnNames[0] = "LayerZero Labs";
-        dvnNames[1] = "Nethermind";
-        dvnNames[2] = "Horizen";
-        
-        return workers.getDVNAddresses(chainName, dvnNames);
-    }
-}
-```
-
-### Example 3: Multi-Chain Deployment Script
-
-```solidity
-pragma solidity ^0.8.22;
-
-import {Script} from "forge-std/Script.sol";
-import {LZProtocol, ILZProtocol} from "lz-address-book/helpers/LZProtocol.sol";
-
-contract DeployMultiChain is Script {
-    LZProtocol public protocol = new LZProtocol();
-    
-    function deployToAllChains() public {
-        uint32[] memory eids = protocol.getSupportedEids();
-        
-        for (uint256 i = 0; i < eids.length; i++) {
-            ILZProtocol.ProtocolAddresses memory addresses = 
-                protocol.getProtocolAddresses(eids[i]);
-            
-            // Deploy your contract to each chain...
-            deployOApp(addresses.endpointV2, addresses.chainId);
-        }
-    }
-    
-    function deployOApp(address endpoint, uint256 chainId) internal {
-        // Deployment logic...
-    }
-}
-```
-
-## Chain Coverage
-
-The address book currently includes:
-
-- **Mainnets**: Ethereum, Arbitrum, Base, Optimism, Polygon, Avalanche, BSC, and 100+ more
-- **Testnets**: Sepolia, Arbitrum Sepolia, Base Sepolia, and 200+ more
-- **All EVM chains** supported by LayerZero V2
-
-See [src/generated/LZAddresses.sol](src/generated/LZAddresses.sol) for the complete list.
+100+ EVM chains including:
+- **Mainnets**: Ethereum, Arbitrum, Base, Optimism, Polygon, Avalanche, BSC, etc.
+- **Testnets**: Sepolia, Arbitrum Sepolia, Base Sepolia, etc.
 
 ## Contributing
 
-Contributions are welcome! Please follow these guidelines:
-
-1. **Reporting Issues**: Open an issue with details about incorrect addresses or missing chains
-2. **Regenerating Addresses**: If addresses are outdated, run the generator script
+1. **Reporting Issues**: Open an issue for incorrect addresses or missing chains
+2. **Regenerating Addresses**: Run `python scripts/lz-generate-addresses.py`
 3. **Adding Tests**: Add tests for new usage patterns
-4. **Documentation**: Update README if adding new features
-
-### Development
-
-```bash
-# Install dependencies
-forge install
-
-# Run tests
-forge test
-
-# Regenerate addresses
-npm run generate
-
-# Build
-forge build
-```
-
-## Provenance & Data Integrity
-
-Every generated address file includes a `DATA_HASH` constant:
-
-```solidity
-bytes32 constant LZ_ADDRESSES_DATA_HASH = 0x...;
-```
-
-This hash is computed from the LayerZero metadata API response and can be used to verify that addresses haven't been tampered with.
-
-## Related Resources
-
-- [LayerZero V2 Documentation](https://docs.layerzero.network/)
-- [LayerZero V2 GitHub](https://github.com/LayerZero-Labs/LayerZero-v2)
-- [LayerZero Metadata API](https://metadata.layerzero-api.com/v1/metadata/deployments)
 
 ## License
 
 MIT License - see [LICENSE](LICENSE) for details.
-
-## Disclaimer
-
-This repository provides addresses from LayerZero's official metadata API. Always verify addresses before using them in production. The maintainers are not responsible for any losses resulting from the use of incorrect addresses.
-
----
-
-**Built with ❤️ by the LayerZero community**
-
