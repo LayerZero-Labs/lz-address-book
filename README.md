@@ -278,6 +278,13 @@ uint32 eid = LayerZeroV2ArbitrumMainnet.EID;
 | `isChainSupportedByEid(uint32)` | Check if EID is supported |
 | `isChainSupportedByChainId(uint256)` | Check if chain ID is supported |
 
+#### Reverse DVN Lookup
+
+| Method | Description |
+|--------|-------------|
+| `getDVNName(address)` | Get DVN provider name from address on current chain |
+| `getDVNNameFor(address, string)` | Get DVN provider name from address on any chain |
+
 #### Utilities
 
 | Method | Description |
@@ -300,6 +307,104 @@ uint32 eid = LayerZeroV2ArbitrumMainnet.EID;
 | `isDVNAvailableOnBoth(string, string, string)` | Check DVN exists on both chains |
 | `getCommonDVNs(string, string)` | Get DVNs available on both chains |
 | `getDVNAvailability(string, string, string)` | Get detailed DVN availability info |
+
+### STGProtocol (Stargate)
+
+#### Lookup by Chain Name
+
+| Method | Description |
+|--------|-------------|
+| `getAsset(string, string)` | Get Stargate asset by chain name and symbol |
+| `getAssetsForChain(string)` | Get all Stargate assets on a chain |
+| `getTokenMessaging(string)` | Get TokenMessaging address for a chain |
+
+#### Lookup by EID
+
+| Method | Description |
+|--------|-------------|
+| `getAssetByEid(uint32, string)` | Get Stargate asset by LayerZero EID and symbol |
+| `getAssetsForEid(uint32)` | Get all Stargate assets by EID |
+| `getTokenMessagingByEid(uint32)` | Get TokenMessaging address by EID |
+
+#### Lookup by Chain ID
+
+| Method | Description |
+|--------|-------------|
+| `getAssetByChainId(uint256, string)` | Get Stargate asset by native chain ID and symbol |
+| `getAssetsForChainId(uint256)` | Get all Stargate assets by chain ID |
+| `getTokenMessagingByChainId(uint256)` | Get TokenMessaging address by chain ID |
+
+#### Chain Name Resolution
+
+| Method | Description |
+|--------|-------------|
+| `getChainNameByEid(uint32)` | Get Stargate chain name from EID |
+| `getChainNameByChainId(uint256)` | Get Stargate chain name from chain ID |
+
+#### Discovery & Validation
+
+| Method | Description |
+|--------|-------------|
+| `getSupportedSymbols()` | Get all supported asset symbols |
+| `getSupportedChains()` | Get all chains with Stargate deployments |
+| `isHydraChain(string, string)` | Check if asset is StargateOFT (Hydra) |
+| `assetExists(string, string)` | Check if asset exists on chain |
+| `assetExistsByEid(uint32, string)` | Check if asset exists by EID |
+| `assetExistsByChainId(uint256, string)` | Check if asset exists by chain ID |
+| `isEidSupported(uint32)` | Check if EID has Stargate deployments |
+| `isChainIdSupported(uint256)` | Check if chain ID has Stargate deployments |
+
+---
+
+## Stargate Integration
+
+The address book includes Stargate V2 pool and OFT addresses for cross-chain asset transfers.
+
+### StargatePool vs StargateOFT
+
+- **StargatePool**: Native asset chains with deep liquidity (lock/unlock mechanism)
+- **StargateOFT**: Hydra chains with minted representations (mint/burn mechanism)
+
+Both implement the `IOFT` interface for cross-chain transfers.
+
+### Quick Start
+
+```solidity
+import {STGProtocol, ISTGProtocol} from "lz-address-book/helpers/STGProtocol.sol";
+import {IOFT, SendParam} from "@layerzerolabs/oft-evm/contracts/interfaces/IOFT.sol";
+
+STGProtocol stg = new STGProtocol();
+
+// Get USDC on Arbitrum (by chain name, EID, or chain ID)
+ISTGProtocol.StargateAsset memory usdc = stg.getAsset("arbitrum", "USDC");
+// OR: stg.getAssetByEid(30110, "USDC");
+// OR: stg.getAssetByChainId(42161, "USDC");
+
+// All Stargate contracts implement IOFT
+IOFT stargate = IOFT(usdc.oft);
+
+// Quote a transfer
+SendParam memory sendParam = SendParam({
+    dstEid: 30184,  // Base
+    to: bytes32(uint256(uint160(recipient))),
+    amountLD: 100e6,
+    minAmountLD: 99e6,
+    extraOptions: "",
+    composeMsg: "",
+    oftCmd: ""  // Taxi mode
+});
+
+MessagingFee memory fee = stargate.quoteSend(sendParam, false);
+```
+
+### Static Access
+
+```solidity
+import {StargateArbitrumMainnet} from "lz-address-book/generated/STGAddresses.sol";
+
+address usdcPool = StargateArbitrumMainnet.USDC_OFT;
+address usdcToken = StargateArbitrumMainnet.USDC_TOKEN;
+```
 
 ---
 

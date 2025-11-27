@@ -278,6 +278,7 @@ contract LZProtocol is ILZProtocol {
         _registerChain(LayerZeroV2MeterTestnet.EID, address(LayerZeroV2MeterTestnet.ENDPOINT_V2), address(LayerZeroV2MeterTestnet.SEND_ULN_302), address(LayerZeroV2MeterTestnet.RECEIVE_ULN_302), LayerZeroV2MeterTestnet.EXECUTOR, LayerZeroV2MeterTestnet.CHAIN_ID, "meter-testnet", new string[](0));
         _registerChain(LayerZeroV2MetissepTestnet.EID, address(LayerZeroV2MetissepTestnet.ENDPOINT_V2), address(LayerZeroV2MetissepTestnet.SEND_ULN_302), address(LayerZeroV2MetissepTestnet.RECEIVE_ULN_302), LayerZeroV2MetissepTestnet.EXECUTOR, LayerZeroV2MetissepTestnet.CHAIN_ID, "metissep-testnet", new string[](0));
         _registerChain(LayerZeroV2MinatoTestnet.EID, address(LayerZeroV2MinatoTestnet.ENDPOINT_V2), address(LayerZeroV2MinatoTestnet.SEND_ULN_302), address(LayerZeroV2MinatoTestnet.RECEIVE_ULN_302), LayerZeroV2MinatoTestnet.EXECUTOR, LayerZeroV2MinatoTestnet.CHAIN_ID, "minato-testnet", new string[](0));
+        _registerChain(LayerZeroV2MocaTestnet.EID, address(LayerZeroV2MocaTestnet.ENDPOINT_V2), address(LayerZeroV2MocaTestnet.SEND_ULN_302), address(LayerZeroV2MocaTestnet.RECEIVE_ULN_302), LayerZeroV2MocaTestnet.EXECUTOR, LayerZeroV2MocaTestnet.CHAIN_ID, "moca-testnet", new string[](0));
         _registerChain(LayerZeroV2ModeTestnet.EID, address(LayerZeroV2ModeTestnet.ENDPOINT_V2), address(LayerZeroV2ModeTestnet.SEND_ULN_302), address(LayerZeroV2ModeTestnet.RECEIVE_ULN_302), LayerZeroV2ModeTestnet.EXECUTOR, LayerZeroV2ModeTestnet.CHAIN_ID, "mode-testnet", new string[](0));
         _registerChain(LayerZeroV2MokshaTestnet.EID, address(LayerZeroV2MokshaTestnet.ENDPOINT_V2), address(LayerZeroV2MokshaTestnet.SEND_ULN_302), address(LayerZeroV2MokshaTestnet.RECEIVE_ULN_302), LayerZeroV2MokshaTestnet.EXECUTOR, LayerZeroV2MokshaTestnet.CHAIN_ID, "moksha-testnet", new string[](0));
         _registerChain(LayerZeroV2MonadTestnet.EID, address(LayerZeroV2MonadTestnet.ENDPOINT_V2), address(LayerZeroV2MonadTestnet.SEND_ULN_302), address(LayerZeroV2MonadTestnet.RECEIVE_ULN_302), LayerZeroV2MonadTestnet.EXECUTOR, LayerZeroV2MonadTestnet.CHAIN_ID, "monad-testnet", new string[](0));
@@ -402,12 +403,6 @@ contract LZProtocol is ILZProtocol {
         return _protocolAddresses[eid].exists;
     }
     
-    /// @notice Check if a chain is supported by name
-    function isChainSupportedByName(string memory chainName) public view returns (bool) {
-        uint32 eid = _chainNameToEid[chainName];
-        return eid != 0 && _protocolAddresses[eid].exists;
-    }
-    
     function getSupportedEids() public view override returns (uint32[] memory) {
         return _registeredEids;
     }
@@ -419,38 +414,16 @@ contract LZProtocol is ILZProtocol {
         return eid;
     }
     
-    /// @notice Get chain name by EID (reverse lookup)
-    function getChainNameByEid(uint32 eid) public view override returns (string memory) {
-        require(_protocolAddresses[eid].exists, "Chain not supported");
-        return _protocolAddresses[eid].chainName;
-    }
-    
-    /// @notice Get chain name by chain ID (reverse lookup)
-    function getChainNameByChainId(uint256 chainId) public view override returns (string memory) {
-        uint32 eid = getEidByChainId(chainId);
-        return _protocolAddresses[eid].chainName;
-    }
-    
-    /// @notice Get EID by chain ID (primary method)
-    function getEidByChainId(uint256 chainId) public view override returns (uint32) {
+    /// @notice Get EID from chain ID (conversion semantics)
+    function getEidFromChainId(uint256 chainId) public view override returns (uint32) {
         uint32 eid = _chainIdToEid[chainId];
         require(eid != 0, "Unsupported chain ID");
         return eid;
     }
     
-    /// @notice Get EID by chain ID (uint32 variant)
-    function getEidByChainId(uint32 chainId) public view override returns (uint32) {
-        return getEidByChainId(uint256(chainId));
-    }
-    
-    /// @notice Get EID from chain ID (alias for getEidByChainId, kept for compatibility)
-    function getEidFromChainId(uint256 chainId) public view override returns (uint32) {
-        return getEidByChainId(chainId);
-    }
-    
-    /// @notice Get EID from chain ID (uint32 variant, alias)
+    /// @notice Get EID from chain ID (uint32 variant)
     function getEidFromChainId(uint32 chainId) public view override returns (uint32) {
-        return getEidByChainId(uint256(chainId));
+        return getEidFromChainId(uint256(chainId));
     }
     
     /// @notice Check if a chain ID is supported
@@ -466,6 +439,44 @@ contract LZProtocol is ILZProtocol {
     /// @notice Get current chain's EID using block.chainid
     function forkingValidChainID() public view override returns (uint32) {
         return getEidFromChainId(block.chainid);
+    }
+    
+    /// @notice Get chain name by EID (reverse lookup)
+    function getChainNameByEid(uint32 eid) public view override returns (string memory chainName) {
+        ProtocolAddresses memory addresses = _protocolAddresses[eid];
+        require(addresses.exists, string.concat("Chain not registered: ", vm.toString(uint256(eid))));
+        return addresses.chainName;
+    }
+    
+    /// @notice Get chain name by chain ID (reverse lookup)
+    function getChainNameByChainId(uint256 chainId) public view override returns (string memory chainName) {
+        uint32 eid = _chainIdToEid[chainId];
+        require(eid != 0, "Unsupported chain ID");
+        return _protocolAddresses[eid].chainName;
+    }
+    
+    /// @notice Get EID by chain ID (alias for getEidFromChainId)
+    function getEidByChainId(uint256 chainId) public view override returns (uint32) {
+        return getEidFromChainId(chainId);
+    }
+    
+    /// @notice Get EID by chain ID (uint32 variant)
+    function getEidByChainId(uint32 chainId) public view override returns (uint32) {
+        return getEidFromChainId(uint256(chainId));
+    }
+    
+    /// @notice Check if a chain name is supported
+    function isChainSupportedByName(string memory chainName) public view returns (bool) {
+        uint32 eid = _chainNameToEid[chainName];
+        return eid != 0 || _protocolAddresses[0].exists;
+    }
+    
+    /// @notice Get all supported chain names
+    function getSupportedChainNames() public view returns (string[] memory chainNames) {
+        chainNames = new string[](_registeredEids.length);
+        for (uint256 i = 0; i < _registeredEids.length; i++) {
+            chainNames[i] = _protocolAddresses[_registeredEids[i]].chainName;
+        }
     }
 
     function getFullDeploymentInfo(uint32 eid) public view override returns (FullDeploymentInfo memory info) {

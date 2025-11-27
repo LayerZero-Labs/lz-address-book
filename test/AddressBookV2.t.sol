@@ -7,6 +7,7 @@ import {console} from "forge-std/console.sol";
 import {LZProtocol} from "../src/helpers/LZProtocol.sol";
 import {LZAddressContext} from "../src/helpers/LZAddressContext.sol";
 import {DVNValidator} from "../src/helpers/DVNValidator.sol";
+import {STGProtocol, ISTGProtocol} from "../src/helpers/STGProtocol.sol";
 import {ChainFamilies} from "../src/utils/ChainFamilies.sol";
 import {ILZProtocol} from "../src/helpers/interfaces/ILZProtocol.sol";
 import {IDVNValidator} from "../src/helpers/interfaces/IDVNValidator.sol";
@@ -15,11 +16,13 @@ contract AddressBookV2Test is Test {
     LZProtocol protocol;
     LZAddressContext context;
     DVNValidator validator;
+    STGProtocol stg;
 
     function setUp() public {
         protocol = new LZProtocol();
         context = new LZAddressContext();
         validator = new DVNValidator();
+        stg = new STGProtocol();
     }
 
     // ============================================
@@ -362,6 +365,154 @@ contract AddressBookV2Test is Test {
             }
             assertTrue(found);
         }
+    }
+    
+    // ============================================
+    // REVERSE DVN LOOKUP TESTS
+    // ============================================
+    
+    function testReverseDVNLookup() public {
+        context.setChain("arbitrum-mainnet");
+        
+        // Get DVN address by name
+        address lzLabsDVN = context.getDVN("LayerZero Labs");
+        assertTrue(lzLabsDVN != address(0), "DVN address should not be zero");
+        
+        // Reverse lookup - get name from address
+        string memory dvnName = context.getDVNName(lzLabsDVN);
+        assertTrue(_eq(dvnName, "LayerZero Labs"), "Should resolve to LayerZero Labs");
+    }
+    
+    function testReverseDVNLookupCrossChain() public {
+        context.setChain("arbitrum-mainnet");
+        
+        // Get DVN address
+        address lzLabsDVN = context.getDVN("LayerZero Labs");
+        
+        // Cross-chain reverse lookup (without changing context)
+        string memory dvnName = context.getDVNNameFor(lzLabsDVN, "arbitrum-mainnet");
+        assertTrue(_eq(dvnName, "LayerZero Labs"), "Cross-chain lookup should work");
+    }
+    
+    function testReverseDVNLookupRevertsOnNotFound() public {
+        context.setChain("arbitrum-mainnet");
+        
+        // Random address that is not a DVN
+        address randomAddr = address(0x1234567890123456789012345678901234567890);
+        
+        vm.expectRevert();
+        context.getDVNName(randomAddr);
+    }
+    
+    // ============================================
+    // STARGATE PROTOCOL TESTS
+    // ============================================
+    
+    function testStargateGetAsset() public view {
+        // Get USDC on Arbitrum
+        ISTGProtocol.StargateAsset memory usdc = stg.getAsset("arbitrum", "USDC");
+        
+        assertTrue(usdc.exists, "Asset should exist");
+        assertTrue(usdc.oft != address(0), "OFT address should not be zero");
+        assertTrue(usdc.token != address(0), "Token address should not be zero");
+        assertTrue(_eq(usdc.symbol, "USDC"), "Symbol should be USDC");
+        assertEq(usdc.decimals, 6, "USDC should have 6 decimals");
+        assertTrue(usdc.stargateType == ISTGProtocol.StargateType.POOL, "Arbitrum USDC should be a Pool");
+    }
+    
+    function testStargateGetAssetsForChain() public view {
+        ISTGProtocol.StargateAsset[] memory assets = stg.getAssetsForChain("arbitrum");
+        
+        assertTrue(assets.length > 0, "Should have at least one asset");
+        
+        // Check that all assets exist
+        for (uint256 i = 0; i < assets.length; i++) {
+            assertTrue(assets[i].exists, "Each asset should exist");
+            assertTrue(assets[i].oft != address(0), "Each asset should have OFT address");
+        }
+    }
+    
+    function testStargateGetTokenMessaging() public view {
+        address tokenMessaging = stg.getTokenMessaging("arbitrum");
+        assertTrue(tokenMessaging != address(0), "TokenMessaging should not be zero");
+    }
+    
+    function testStargateGetSupportedSymbols() public view {
+        string[] memory symbols = stg.getSupportedSymbols();
+        assertTrue(symbols.length > 0, "Should have supported symbols");
+        
+        // Check that USDC is in the list
+        bool foundUSDC = false;
+        for (uint256 i = 0; i < symbols.length; i++) {
+            if (_eq(symbols[i], "USDC")) {
+                foundUSDC = true;
+                break;
+            }
+        }
+        assertTrue(foundUSDC, "USDC should be in supported symbols");
+    }
+    
+    function testStargateGetSupportedChains() public view {
+        string[] memory chains = stg.getSupportedChains();
+        assertTrue(chains.length > 0, "Should have supported chains");
+        
+        // Check that arbitrum is in the list
+        bool foundArbitrum = false;
+        for (uint256 i = 0; i < chains.length; i++) {
+            if (_eq(chains[i], "arbitrum")) {
+                foundArbitrum = true;
+                break;
+            }
+        }
+        assertTrue(foundArbitrum, "Arbitrum should be in supported chains");
+    }
+    
+    function testStargateAssetExists() public view {
+        assertTrue(stg.assetExists("arbitrum", "USDC"), "USDC should exist on Arbitrum");
+        assertFalse(stg.assetExists("arbitrum", "FAKE_TOKEN"), "FAKE_TOKEN should not exist");
+    }
+    
+    function testStargateIsHydraChain() public view {
+        // Arbitrum USDC is a Pool, not a Hydra OFT
+        assertFalse(stg.isHydraChain("arbitrum", "USDC"), "Arbitrum USDC should not be Hydra");
+        
+        // Check if bera exists and is Hydra
+        if (stg.assetExists("bera", "USDC.e")) {
+            assertTrue(stg.isHydraChain("bera", "USDC.e"), "Bera USDC.e should be Hydra");
+        }
+    }
+    
+    function testStargateGetAssetByEid() public view {
+        // Arbitrum EID is 30110
+        ISTGProtocol.StargateAsset memory usdc = stg.getAssetByEid(30110, "USDC");
+        
+        assertTrue(usdc.exists, "Asset should exist");
+        assertTrue(_eq(usdc.symbol, "USDC"), "Symbol should be USDC");
+    }
+    
+    function testStargateGetAssetByChainId() public view {
+        // Arbitrum chain ID is 42161
+        ISTGProtocol.StargateAsset memory usdc = stg.getAssetByChainId(42161, "USDC");
+        
+        assertTrue(usdc.exists, "Asset should exist");
+        assertTrue(_eq(usdc.symbol, "USDC"), "Symbol should be USDC");
+    }
+    
+    function testStargateChainNameResolution() public view {
+        // Test EID to chain name
+        string memory chainFromEid = stg.getChainNameByEid(30110);
+        assertTrue(_eq(chainFromEid, "arbitrum"), "EID 30110 should resolve to arbitrum");
+        
+        // Test chain ID to chain name
+        string memory chainFromId = stg.getChainNameByChainId(42161);
+        assertTrue(_eq(chainFromId, "arbitrum"), "Chain ID 42161 should resolve to arbitrum");
+    }
+    
+    function testStargateEidAndChainIdSupport() public view {
+        assertTrue(stg.isEidSupported(30110), "Arbitrum EID should be supported");
+        assertTrue(stg.isChainIdSupported(42161), "Arbitrum chain ID should be supported");
+        assertFalse(stg.isEidSupported(99999), "Invalid EID should not be supported");
+        assertFalse(stg.isChainIdSupported(99999), "Invalid chain ID should not be supported");
     }
 
     // ============================================

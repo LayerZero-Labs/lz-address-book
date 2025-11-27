@@ -1,16 +1,16 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.22;
+pragma solidity ^0.8.20;
 
 // Auto-generated from LayerZero metadata - do not edit manually
 // Source: https://metadata.layerzero-api.com/v1/metadata/deployments
-// Generated: 2025-11-23T12:32:16.659547
-// DATA_HASH: 0xf4435c497ab44fe3515e0488bd112c5fad141ad124049b4214a69c957852b49b
+// Generated: 2025-11-27T00:57:58.738152
+// DATA_HASH: 0x98e34f86aa5d12d8ed39a7589e19ddeee864f2269c9e01f7fa836707c5fc471f
 
 import {ILayerZeroEndpointV2} from "@layerzerolabs/lz-evm-protocol-v2/contracts/interfaces/ILayerZeroEndpointV2.sol";
 import {IMessageLib} from "@layerzerolabs/lz-evm-protocol-v2/contracts/interfaces/IMessageLib.sol";
 
 // DATA_HASH for provenance tracking (LZIP spec requirement)
-bytes32 constant LZ_ADDRESSES_DATA_HASH = 0xf4435c497ab44fe3515e0488bd112c5fad141ad124049b4214a69c957852b49b;
+bytes32 constant LZ_ADDRESSES_DATA_HASH = 0x98e34f86aa5d12d8ed39a7589e19ddeee864f2269c9e01f7fa836707c5fc471f;
 
 
 library LayerZeroV2AavegotchiTestnet {
@@ -6528,6 +6528,8 @@ library LayerZeroV2DVNMantleMainnet {
   address internal constant DVN_MANTLE02_2 = 0x18f76f0d8CCD176BbE59B3870fa486d1Fff87026;
   // Mantle03 [mantle03]
   address internal constant DVN_MANTLE03 = 0x78203678D264063815Dac114eA810E9837Cd80f7;
+  // MantleCross [mantlecross]
+  address internal constant DVN_MANTLECROSS = 0x7a7A3Bfa6CF44136CD173fc5FcBd00BCD05d7866;
   // Nansen [nansen]
   address internal constant DVN_NANSEN = 0x58620C352dd33EaaA2f6513877515453e20e8656;
   // Nethermind [nethermind]
@@ -7067,6 +7069,34 @@ library LayerZeroV2DVNMinatoTestnet {
   address internal constant DVN_NETHERMIND = 0xEAB9a73194501424372d468970Cd5e37529eA971;
   // P2P [p2p]
   address internal constant DVN_P2P = 0x5C6727DE9BF3cB10e4de39CD3dB6D77dbC9135Ea;
+}
+
+library LayerZeroV2MocaTestnet {
+  // Chain metadata
+  uint32 internal constant EID = 40433;
+  uint256 internal constant CHAIN_ID = 222888;
+  string internal constant CHAIN_KEY = "moca-testnet";
+
+  // Core protocol
+  ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x3aCAAf60502791D199a5a5F0B173D78229eBFe32);
+
+  // Message libraries
+  IMessageLib internal constant SEND_ULN_302 = IMessageLib(0x45841dd1ca50265Da7614fC43A361e526c0e6160);
+  address internal constant BLOCKED_MESSAGE_LIB = 0xa229B65CC2191BF60bc24eFcDa3487D7b5C0C9f0;
+  IMessageLib internal constant RECEIVE_ULN_302 = IMessageLib(0xd682ECF100f6F4284138AA925348633B0611Ae21);
+
+  // Other contracts
+  address internal constant ENDPOINT_V2_VIEW = 0x6Ac7bdc07A0583A362F1497252872AE6c0A5F5B8;
+  address internal constant EXECUTOR = 0x701f3927871EfcEa1235dB722f9E608aE120d243;
+  address internal constant DEAD_DVN = 0x88B27057A9e00c5F05DDa29241027afF63f9e6e0;
+  address internal constant LZ_EXECUTOR = 0x4Cf1B3Fa61465c2c907f82fC488B43223BA0CF93;
+}
+
+library LayerZeroV2DVNMocaTestnet {
+  // LZDeadDVN (deprecated) [lz-dead-dvn]
+  address internal constant DVN_LZ_DEAD = 0x88B27057A9e00c5F05DDa29241027afF63f9e6e0;
+  // LayerZero Labs [layerzero-labs]
+  address internal constant DVN_LAYERZERO_LABS = 0xa78A78a13074eD93aD447a26Ec57121f29E8feC2;
 }
 
 library LayerZeroV2ModeMainnet {
@@ -9937,6 +9967,8 @@ library LayerZeroV2DVNSomniaMainnet {
   address internal constant DVN_P2P = 0xE57aF13D6676F7a37d37AB603aaeA6D63B1dEe8E;
   // Stargate [stargate]
   address internal constant DVN_STARGATE = 0xA83A87a0bDce466edfBB6794404E1D7F556B8F20;
+  // WBTC Canary [canary-wbtc]
+  address internal constant DVN_WBTC_CANARY = 0xE64fB301D1F893a23Ca1Da38BB05E80600A63d47;
 }
 
 library LayerZeroV2SomniaTestnet {
@@ -10691,6 +10723,8 @@ library LayerZeroV2DVNTacMainnet {
   address internal constant DVN_NETHERMIND = 0x97841D4AB18E9A923322A002d5b8Eb42b31Ccdb5;
   // P2P [p2p]
   address internal constant DVN_P2P = 0x965A80Dc87cec5848310E612DeAD84B543AeF874;
+  // WBTC Canary [canary-wbtc]
+  address internal constant DVN_WBTC_CANARY = 0x6cb6eb4099D56FeE837745D145508bFAc37Ad8Cd;
 }
 
 library LayerZeroV2TacspbTestnet {
@@ -11679,6 +11713,8 @@ library LayerZeroV2DVNZamaMainnet {
   address internal constant DVN_LZ_DEAD = 0x6788f52439ACA6BFF597d3eeC2DC9a44B8FEE842;
   // LayerZero Labs [layerzero-labs]
   address internal constant DVN_LAYERZERO_LABS = 0x282b3386571f7f794450d5789911a9804FA346b4;
+  // Luganodes [luganodes]
+  address internal constant DVN_LUGANODES = 0xddaa92ce2d2faC3f7c5eae19136E438902Ab46cc;
   // Nethermind [nethermind]
   address internal constant DVN_NETHERMIND = 0xDd7B5E1dB4AaFd5C8EC3b764eFB8ed265Aa5445B;
 }

@@ -43,6 +43,24 @@ interface ILZWorkers {
     /// @param dvnNames Array of DVN canonical names to retrieve
     /// @return addresses Array of corresponding DVN addresses
     function getDVNAddresses(string memory chainName, string[] memory dvnNames) external view returns (address[] memory addresses);
+    
+    /// @notice Get DVN provider name from address (reverse lookup)
+    /// @param dvnAddress The DVN contract address
+    /// @param eid The chain's endpoint ID
+    /// @return name The DVN provider name (e.g., "LayerZero Labs")
+    function getDVNNameByAddress(address dvnAddress, uint32 eid) external view returns (string memory name);
+    
+    /// @notice Get DVN provider name from address by chain name
+    /// @param dvnAddress The DVN contract address
+    /// @param chainName The chain name
+    /// @return name The DVN provider name
+    function getDVNNameByAddressAndChain(address dvnAddress, string memory chainName) external view returns (string memory name);
+    
+    /// @notice Check if a DVN address exists on a chain
+    /// @param dvnAddress The DVN contract address
+    /// @param eid The chain's endpoint ID
+    /// @return exists Whether the DVN address is registered
+    function dvnAddressExists(address dvnAddress, uint32 eid) external view returns (bool exists);
 }
 
 

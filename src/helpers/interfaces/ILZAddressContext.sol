@@ -172,6 +172,22 @@ interface ILZAddressContext {
     function isDVNAvailable(string memory dvnName) external view returns (bool);
     
     // ============================================
+    // Reverse DVN Lookup (address -> name)
+    // ============================================
+    
+    /// @notice Get DVN provider name from address on current chain
+    /// @dev Useful for resolving on-chain UlnConfig.requiredDVNs back to provider names
+    /// @param dvnAddress The DVN contract address
+    /// @return name The DVN provider name (e.g., "LayerZero Labs")
+    function getDVNName(address dvnAddress) external view returns (string memory name);
+    
+    /// @notice Get DVN provider name from address on any chain
+    /// @param dvnAddress The DVN contract address
+    /// @param chainName The chain name
+    /// @return name The DVN provider name
+    function getDVNNameFor(address dvnAddress, string memory chainName) external view returns (string memory name);
+    
+    // ============================================
     // Utility Helpers
     // ============================================
     

@@ -14,6 +14,9 @@ contract LZWorkers is ILZWorkers {
     // Storage: nested mapping for efficient lookups (dvnName => eid => address)
     mapping(string => mapping(uint32 => address)) private _dvnAddresses;
     
+    // Reverse lookup: address => eid => dvnName
+    mapping(address => mapping(uint32 => string)) private _dvnAddressToName;
+    
     // List of all DVN names for enumeration
     string[] private _dvnNames;
     mapping(string => bool) private _dvnNameExists;
@@ -816,6 +819,7 @@ contract LZWorkers is ILZWorkers {
         _registerDVN("LayerZero Labs", 30151, 0x32d4F92437454829b3Fe7BEBfeCE5D0523DEb475); // metis-mainnet
         _registerDVN("LayerZero Labs", 40292, 0x12523de19dc41c91F7d2093E0CFbB76b17012C8d); // metissep-testnet
         _registerDVN("LayerZero Labs", 40334, 0x12523de19dc41c91F7d2093E0CFbB76b17012C8d); // minato-testnet
+        _registerDVN("LayerZero Labs", 40433, 0xa78A78a13074eD93aD447a26Ec57121f29E8feC2); // moca-testnet
         _registerDVN("LayerZero Labs", 30260, 0xce8358bc28dd8296Ce8cAF1CD2b44787abd65887); // mode-mainnet
         _registerDVN("LayerZero Labs", 40260, 0x12523de19dc41c91F7d2093E0CFbB76b17012C8d); // mode-testnet
         _registerDVN("LayerZero Labs", 40342, 0x9dB9Ca3305B48F196D18082e91cB64663b13d014); // moksha-testnet
@@ -962,6 +966,7 @@ contract LZWorkers is ILZWorkers {
         _registerDVN("Luganodes", 30332, 0xC8B7744AFd77C3EEcf310383837A07584766A51a); // sonic-mainnet
         _registerDVN("Luganodes", 30377, 0x58249a2Ec05c1978bF21DF1f5eC1847e42455CF4); // tac-mainnet
         _registerDVN("Luganodes", 30320, 0xF02D0F9ACc2870e12C34aa3816dd86FaC1339f38); // unichain-mainnet
+        _registerDVN("Luganodes", 30397, 0xddaa92ce2d2faC3f7c5eae19136E438902Ab46cc); // zama-mainnet
         _registerDVN("Luganodes", 30183, 0x08670E326968d18D4fe359080b8E3eeeA552E867); // zkconsensys-mainnet
         _registerDVN("Luganodes", 30195, 0x9FE36b305120556dbeefab58d58877D87b553DF5); // zora-mainnet
 
@@ -1004,6 +1009,7 @@ contract LZWorkers is ILZWorkers {
         _registerDVN("Mantle03", 30181, 0x78203678D264063815Dac114eA810E9837Cd80f7); // mantle-mainnet
 
         // MantleCross
+        _registerDVN("MantleCross", 30181, 0x7a7A3Bfa6CF44136CD173fc5FcBd00BCD05d7866); // mantle-mainnet
         _registerDVN("MantleCross", 40246, 0xe6cCF6A2bc6671c6E3d862B1148457979F0353c5); // mantlesep-testnet
 
         // Muon
@@ -1680,9 +1686,11 @@ contract LZWorkers is ILZWorkers {
         _registerDVN("WBTC Canary", 30111, 0x6F798D30577c91E8F9291e82e633Dbe4dCe16b93); // optimism-mainnet
         _registerDVN("WBTC Canary", 30383, 0x3b65E87E2A4690f14cae0483014259DeD8215adc); // plasma-mainnet
         _registerDVN("WBTC Canary", 30280, 0xf2e89Ed7E342c708BA8CD79b293AD9244f5FCcb3); // sei-mainnet
+        _registerDVN("WBTC Canary", 30380, 0xE64fB301D1F893a23Ca1Da38BB05E80600A63d47); // somnia-mainnet
         _registerDVN("WBTC Canary", 30340, 0x1176B42A5c76b41e0895705af028ff8A75c08156); // soneium-mainnet
         _registerDVN("WBTC Canary", 30332, 0x87a4d47918e83Df0fcF6040dBdC358119f7deb2a); // sonic-mainnet
         _registerDVN("WBTC Canary", 30335, 0x4d09C99ED8788b191144D6Cdd129014FDe70326f); // swell-mainnet
+        _registerDVN("WBTC Canary", 30377, 0x6cb6eb4099D56FeE837745D145508bFAc37Ad8Cd); // tac-mainnet
         _registerDVN("WBTC Canary", 30199, 0xd2750419b4a663c8Ff8f7B6067885D82f299aCe9); // telos-mainnet
         _registerDVN("WBTC Canary", 30320, 0x148aE5e1df44Cf8b6D258430Eab79b28d0da4Aa6); // unichain-mainnet
 
@@ -2093,6 +2101,8 @@ contract LZWorkers is ILZWorkers {
         _eidToChainName[40292] = "metissep-testnet";
         _chainNameToEid["minato-testnet"] = 40334;
         _eidToChainName[40334] = "minato-testnet";
+        _chainNameToEid["moca-testnet"] = 40433;
+        _eidToChainName[40433] = "moca-testnet";
         _chainNameToEid["mode-mainnet"] = 30260;
         _eidToChainName[30260] = "mode-mainnet";
         _chainNameToEid["mode-testnet"] = 40260;
@@ -2399,6 +2409,9 @@ contract LZWorkers is ILZWorkers {
     function _registerDVN(string memory dvnName, uint32 eid, address dvnAddress) private {
         _dvnAddresses[dvnName][eid] = dvnAddress;
         
+        // Reverse lookup: address -> name
+        _dvnAddressToName[dvnAddress][eid] = dvnName;
+        
         // Track unique DVN names
         if (!_dvnNameExists[dvnName]) {
             _dvnNameExists[dvnName] = true;
@@ -2455,5 +2468,32 @@ contract LZWorkers is ILZWorkers {
         for (uint256 i = 0; i < dvnNames.length; i++) {
             addresses[i] = getDVNAddress(dvnNames[i], eid);
         }
+    }
+    
+    /// @notice Get DVN provider name from address (reverse lookup)
+    /// @param dvnAddress The DVN contract address
+    /// @param eid The chain's endpoint ID
+    /// @return name The DVN provider name (e.g., "LayerZero Labs")
+    function getDVNNameByAddress(address dvnAddress, uint32 eid) public view override returns (string memory name) {
+        name = _dvnAddressToName[dvnAddress][eid];
+        require(bytes(name).length > 0, string.concat("DVN address not found on chain ", vm.toString(uint256(eid))));
+    }
+    
+    /// @notice Get DVN provider name from address by chain name
+    /// @param dvnAddress The DVN contract address
+    /// @param chainName The chain name
+    /// @return name The DVN provider name
+    function getDVNNameByAddressAndChain(address dvnAddress, string memory chainName) public view override returns (string memory name) {
+        uint32 eid = _chainNameToEid[chainName];
+        require(eid != 0, string.concat("Unknown chain: ", chainName));
+        return getDVNNameByAddress(dvnAddress, eid);
+    }
+    
+    /// @notice Check if a DVN address exists on a chain
+    /// @param dvnAddress The DVN contract address
+    /// @param eid The chain's endpoint ID
+    /// @return exists Whether the DVN address is registered
+    function dvnAddressExists(address dvnAddress, uint32 eid) public view override returns (bool exists) {
+        return bytes(_dvnAddressToName[dvnAddress][eid]).length > 0;
     }
 }

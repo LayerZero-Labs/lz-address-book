@@ -16,6 +16,8 @@ from datetime import datetime
 
 # Constants
 METADATA_URL = "https://metadata.layerzero-api.com/v1/metadata/deployments"
+STARGATE_MAINNET_URL = "https://mainnet.stargate-api.com/v1/metadata?version=v2"
+STARGATE_TESTNET_URL = "https://testnet.stargate-api.com/v1/metadata?version=v2"
 SOLIDITY_HEADER = """// SPDX-License-Identifier: MIT
 pragma solidity ^0.8.22;
 
@@ -303,6 +305,26 @@ def fetch_metadata() -> Dict[str, Any]:
     response.raise_for_status()
     return response.json()
 
+def fetch_stargate_metadata(include_testnet: bool = False) -> Dict[str, Any]:
+    """Fetch Stargate pool/OFT metadata from API."""
+    print(f"Fetching Stargate mainnet metadata from {STARGATE_MAINNET_URL}...")
+    mainnet_response = requests.get(STARGATE_MAINNET_URL)
+    mainnet_response.raise_for_status()
+    mainnet_data = mainnet_response.json()
+    
+    result = {'mainnet': mainnet_data.get('data', {}).get('v2', [])}
+    
+    if include_testnet:
+        print(f"Fetching Stargate testnet metadata from {STARGATE_TESTNET_URL}...")
+        testnet_response = requests.get(STARGATE_TESTNET_URL)
+        testnet_response.raise_for_status()
+        testnet_data = testnet_response.json()
+        result['testnet'] = testnet_data.get('data', {}).get('v2', [])
+    else:
+        result['testnet'] = []
+    
+    return result
+
 def generate_lz_protocol(chains_processed: List[str], metadata: Dict[str, Any]) -> str:
     """Generate the LZProtocol contract."""
     registry_header = """// SPDX-License-Identifier: MIT
@@ -524,6 +546,44 @@ contract LZProtocol is ILZProtocol {
     function forkingValidChainID() public view override returns (uint32) {
         return getEidFromChainId(block.chainid);
     }
+    
+    /// @notice Get chain name by EID (reverse lookup)
+    function getChainNameByEid(uint32 eid) public view override returns (string memory chainName) {
+        ProtocolAddresses memory addresses = _protocolAddresses[eid];
+        require(addresses.exists, string.concat("Chain not registered: ", vm.toString(uint256(eid))));
+        return addresses.chainName;
+    }
+    
+    /// @notice Get chain name by chain ID (reverse lookup)
+    function getChainNameByChainId(uint256 chainId) public view override returns (string memory chainName) {
+        uint32 eid = _chainIdToEid[chainId];
+        require(eid != 0, "Unsupported chain ID");
+        return _protocolAddresses[eid].chainName;
+    }
+    
+    /// @notice Get EID by chain ID (alias for getEidFromChainId)
+    function getEidByChainId(uint256 chainId) public view override returns (uint32) {
+        return getEidFromChainId(chainId);
+    }
+    
+    /// @notice Get EID by chain ID (uint32 variant)
+    function getEidByChainId(uint32 chainId) public view override returns (uint32) {
+        return getEidFromChainId(uint256(chainId));
+    }
+    
+    /// @notice Check if a chain name is supported
+    function isChainSupportedByName(string memory chainName) public view returns (bool) {
+        uint32 eid = _chainNameToEid[chainName];
+        return eid != 0 || _protocolAddresses[0].exists;
+    }
+    
+    /// @notice Get all supported chain names
+    function getSupportedChainNames() public view returns (string[] memory chainNames) {
+        chainNames = new string[](_registeredEids.length);
+        for (uint256 i = 0; i < _registeredEids.length; i++) {
+            chainNames[i] = _protocolAddresses[_registeredEids[i]].chainName;
+        }
+    }
 
     function getFullDeploymentInfo(uint32 eid) public view override returns (FullDeploymentInfo memory info) {
         ProtocolAddresses memory base = getProtocolAddresses(eid);
@@ -562,6 +622,451 @@ contract LZProtocol is ILZProtocol {
     
     return "\n".join(lines)
 
+def generate_stargate_addresses(stargate_data: Dict[str, Any]) -> str:
+    """Generate STGAddresses.sol with per-chain Stargate libraries."""
+    
+    header = """// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.22;
+
+// Auto-generated from Stargate metadata - do not edit manually
+// Source: https://mainnet.stargate-api.com/v1/metadata?version=v2
+// Source: https://testnet.stargate-api.com/v1/metadata?version=v2
+
+"""
+    
+    # Group assets by chain
+    chains = {}  # chainKey -> list of assets
+    
+    all_assets = stargate_data.get('mainnet', []) + stargate_data.get('testnet', [])
+    
+    for asset in all_assets:
+        chain_key = asset.get('chainKey', '')
+        if not chain_key:
+            continue
+        
+        if chain_key not in chains:
+            chains[chain_key] = {
+                'assets': [],
+                'tokenMessaging': asset.get('tokenMessaging', '')
+            }
+        
+        chains[chain_key]['assets'].append(asset)
+        # Update tokenMessaging if we have it
+        if asset.get('tokenMessaging'):
+            chains[chain_key]['tokenMessaging'] = asset.get('tokenMessaging')
+    
+    lines = [header]
+    
+    # Generate library for each chain
+    for chain_key in sorted(chains.keys()):
+        chain_data = chains[chain_key]
+        chain_name = sanitize_chain_name(chain_key)
+        library_name = f"Stargate{chain_name}"
+        
+        lines.append(f"library {library_name} {{")
+        
+        # Add token messaging if available
+        if chain_data['tokenMessaging']:
+            checksum_addr = to_checksum_address(chain_data['tokenMessaging'])
+            lines.append(f"    address internal constant TOKEN_MESSAGING = {checksum_addr};")
+            lines.append("")
+        
+        # Add each asset
+        for asset in chain_data['assets']:
+            stargate_type = asset.get('stargateType', 'POOL')
+            address = asset.get('address', '')
+            token_info = asset.get('token', {})
+            token_address = token_info.get('address', '')
+            symbol = token_info.get('symbol', '')
+            
+            if not address or not symbol:
+                continue
+            
+            # Sanitize symbol for constant name (e.g., "USDC.e" -> "USDC_E")
+            # Also handle Unicode characters like ₮ (Tether symbol)
+            const_symbol = symbol.upper().replace('.', '_').replace('-', '_')
+            # Remove any non-ASCII characters and replace with underscore
+            const_symbol = re.sub(r'[^A-Z0-9_]', '_', const_symbol)
+            const_symbol = re.sub(r'_+', '_', const_symbol)  # Collapse multiple underscores
+            const_symbol = const_symbol.strip('_')
+            
+            # Sanitize symbol for comment (ASCII only)
+            safe_symbol = ''.join(c if ord(c) < 128 else '?' for c in symbol)
+            
+            # Add comment with type
+            type_comment = "StargatePool" if stargate_type == "POOL" else "StargateOFT"
+            lines.append(f"    // {safe_symbol} ({type_comment})")
+            
+            # OFT address (the main contract implementing IOFT)
+            checksum_addr = to_checksum_address(address)
+            lines.append(f"    address internal constant {const_symbol}_OFT = {checksum_addr};")
+            
+            # Underlying token address
+            if token_address:
+                checksum_token = to_checksum_address(token_address)
+                lines.append(f"    address internal constant {const_symbol}_TOKEN = {checksum_token};")
+            
+            lines.append("")
+        
+        lines.append("}")
+        lines.append("")
+    
+    return "\n".join(lines)
+
+
+def generate_stg_protocol(stargate_data: Dict[str, Any], lz_metadata: Dict[str, Any]) -> str:
+    """Generate STGProtocol.sol helper contract."""
+    
+    # Build mapping from Stargate chain key to LayerZero EID and chain ID
+    # Stargate uses simplified names like "arbitrum" while LZ uses "arbitrum-mainnet"
+    # We need to be careful to map mainnet names to mainnet EIDs
+    stg_to_lz_mapping = {}
+    
+    for chain_key, chain_data in lz_metadata.items():
+        # Get EID and chain ID
+        deployments = chain_data.get('deployments', [])
+        chain_details = chain_data.get('chainDetails', {})
+        native_chain_id = chain_details.get('nativeChainId', 0)
+        
+        for deployment in deployments:
+            if deployment.get('version') == 2:
+                eid = deployment.get('eid', 0)
+                if eid and native_chain_id:
+                    # Always store full name
+                    stg_to_lz_mapping[chain_key] = (eid, native_chain_id, chain_key)
+                    
+                    # For mainnet chains, also store the base name (without -mainnet suffix)
+                    # This maps "arbitrum" -> arbitrum-mainnet's EID
+                    if '-mainnet' in chain_key:
+                        base_name = chain_key.replace('-mainnet', '')
+                        stg_to_lz_mapping[base_name] = (eid, native_chain_id, chain_key)
+                break
+    
+    header = """// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.22;
+
+import "./interfaces/ISTGProtocol.sol";
+import {Vm} from "forge-std/Vm.sol";
+
+/// @title Stargate Protocol Address Provider
+/// @notice Provides Stargate pool and OFT addresses from the generated address book
+/// @dev All Stargate contracts implement the IOFT interface
+contract STGProtocol is ISTGProtocol {
+    // Forge VM for string conversion
+    Vm private constant vm = Vm(address(uint160(uint256(keccak256("hevm cheat code")))));
+    
+    // Storage for assets: chainName => symbol => StargateAsset
+    mapping(string => mapping(string => StargateAsset)) private _assets;
+    
+    // Track symbols per chain for enumeration
+    mapping(string => string[]) private _symbolsByChain;
+    
+    // Track all unique symbols
+    string[] private _allSymbols;
+    mapping(string => bool) private _symbolExists;
+    
+    // Token messaging per chain
+    mapping(string => address) private _tokenMessaging;
+    
+    // Track supported chains
+    string[] private _supportedChains;
+    mapping(string => bool) private _chainSupported;
+    
+    // EID to Stargate chain name mapping
+    mapping(uint32 => string) private _eidToChainName;
+    
+    // Chain ID to Stargate chain name mapping  
+    mapping(uint256 => string) private _chainIdToChainName;
+    
+    constructor() {
+        _registerAllAssets();
+        _registerChainMappings();
+    }
+    
+    function _registerAllAssets() private {"""
+    
+    lines = [header]
+    
+    # Group assets by chain
+    chains = {}
+    all_assets = stargate_data.get('mainnet', []) + stargate_data.get('testnet', [])
+    
+    for asset in all_assets:
+        chain_key = asset.get('chainKey', '')
+        if not chain_key:
+            continue
+        
+        if chain_key not in chains:
+            chains[chain_key] = {
+                'assets': [],
+                'tokenMessaging': asset.get('tokenMessaging', '')
+            }
+        
+        chains[chain_key]['assets'].append(asset)
+        if asset.get('tokenMessaging'):
+            chains[chain_key]['tokenMessaging'] = asset.get('tokenMessaging')
+    
+    # Generate registration calls
+    for chain_key in sorted(chains.keys()):
+        chain_data = chains[chain_key]
+        lines.append(f'\n        // {chain_key}')
+        
+        # Register token messaging
+        if chain_data['tokenMessaging']:
+            checksum_addr = to_checksum_address(chain_data['tokenMessaging'])
+            lines.append(f'        _tokenMessaging["{chain_key}"] = {checksum_addr};')
+        
+        # Register chain
+        lines.append(f'        _registerChain("{chain_key}");')
+        
+        # Register each asset
+        for asset in chain_data['assets']:
+            stargate_type = asset.get('stargateType', 'POOL')
+            address = asset.get('address', '')
+            token_info = asset.get('token', {})
+            token_address = token_info.get('address', '')
+            symbol = token_info.get('symbol', '')
+            decimals = token_info.get('decimals', 18)
+            shared_decimals = asset.get('sharedDecimals', 6)
+            
+            if not address or not symbol:
+                continue
+            
+            # Sanitize symbol for Solidity string (remove non-ASCII)
+            safe_symbol = ''.join(c if ord(c) < 128 else '_' for c in symbol)
+            
+            checksum_addr = to_checksum_address(address)
+            checksum_token = to_checksum_address(token_address) if token_address else "address(0)"
+            sg_type = "StargateType.POOL" if stargate_type == "POOL" else "StargateType.OFT"
+            
+            lines.append(f'        _registerAsset("{chain_key}", "{safe_symbol}", {checksum_addr}, {checksum_token}, {decimals}, {shared_decimals}, {sg_type});')
+    
+    lines.append("""    }
+    
+    function _registerChainMappings() private {""")
+    
+    # Add EID and chainId mappings for Stargate chains
+    all_assets = stargate_data.get('mainnet', []) + stargate_data.get('testnet', [])
+    registered_chains = set()
+    
+    for asset in all_assets:
+        chain_key = asset.get('chainKey', '')
+        if not chain_key or chain_key in registered_chains:
+            continue
+        
+        # Look up EID and chainId from LZ metadata
+        if chain_key in stg_to_lz_mapping:
+            eid, chain_id, lz_name = stg_to_lz_mapping[chain_key]
+            lines.append(f'        _eidToChainName[{eid}] = "{chain_key}";')
+            lines.append(f'        _chainIdToChainName[{chain_id}] = "{chain_key}";')
+            registered_chains.add(chain_key)
+    
+    lines.append("""    }
+    
+    function _registerChain(string memory chainName) private {
+        if (!_chainSupported[chainName]) {
+            _chainSupported[chainName] = true;
+            _supportedChains.push(chainName);
+        }
+    }
+    
+    function _registerAsset(
+        string memory chainName,
+        string memory symbol,
+        address oft,
+        address token,
+        uint8 decimals,
+        uint8 sharedDecimals,
+        StargateType stargateType
+    ) private {
+        _assets[chainName][symbol] = StargateAsset({
+            oft: oft,
+            token: token,
+            symbol: symbol,
+            decimals: decimals,
+            sharedDecimals: sharedDecimals,
+            stargateType: stargateType,
+            exists: true
+        });
+        
+        _symbolsByChain[chainName].push(symbol);
+        
+        if (!_symbolExists[symbol]) {
+            _symbolExists[symbol] = true;
+            _allSymbols.push(symbol);
+        }
+    }
+    
+    // ============================================
+    // Lookup by Chain Name
+    // ============================================
+    
+    /// @inheritdoc ISTGProtocol
+    function getAsset(string memory chainName, string memory symbol) external view override returns (StargateAsset memory) {
+        StargateAsset memory asset = _assets[chainName][symbol];
+        require(asset.exists, string.concat("Asset not found: ", symbol, " on ", chainName));
+        return asset;
+    }
+    
+    /// @inheritdoc ISTGProtocol
+    function getAssetsForChain(string memory chainName) external view override returns (StargateAsset[] memory assets) {
+        string[] memory symbols = _symbolsByChain[chainName];
+        assets = new StargateAsset[](symbols.length);
+        
+        for (uint256 i = 0; i < symbols.length; i++) {
+            assets[i] = _assets[chainName][symbols[i]];
+        }
+    }
+    
+    /// @inheritdoc ISTGProtocol
+    function getTokenMessaging(string memory chainName) external view override returns (address) {
+        address tm = _tokenMessaging[chainName];
+        require(tm != address(0), string.concat("TokenMessaging not found for: ", chainName));
+        return tm;
+    }
+    
+    // ============================================
+    // Lookup by EID
+    // ============================================
+    
+    /// @inheritdoc ISTGProtocol
+    function getAssetByEid(uint32 eid, string memory symbol) external view override returns (StargateAsset memory) {
+        string memory chainName = _eidToChainName[eid];
+        require(bytes(chainName).length > 0, string.concat("EID not supported: ", vm.toString(uint256(eid))));
+        StargateAsset memory asset = _assets[chainName][symbol];
+        require(asset.exists, string.concat("Asset not found: ", symbol, " on EID ", vm.toString(uint256(eid))));
+        return asset;
+    }
+    
+    /// @inheritdoc ISTGProtocol
+    function getAssetsForEid(uint32 eid) external view override returns (StargateAsset[] memory assets) {
+        string memory chainName = _eidToChainName[eid];
+        require(bytes(chainName).length > 0, string.concat("EID not supported: ", vm.toString(uint256(eid))));
+        
+        string[] memory symbols = _symbolsByChain[chainName];
+        assets = new StargateAsset[](symbols.length);
+        
+        for (uint256 i = 0; i < symbols.length; i++) {
+            assets[i] = _assets[chainName][symbols[i]];
+        }
+    }
+    
+    /// @inheritdoc ISTGProtocol
+    function getTokenMessagingByEid(uint32 eid) external view override returns (address) {
+        string memory chainName = _eidToChainName[eid];
+        require(bytes(chainName).length > 0, string.concat("EID not supported: ", vm.toString(uint256(eid))));
+        address tm = _tokenMessaging[chainName];
+        require(tm != address(0), string.concat("TokenMessaging not found for EID: ", vm.toString(uint256(eid))));
+        return tm;
+    }
+    
+    // ============================================
+    // Lookup by Chain ID
+    // ============================================
+    
+    /// @inheritdoc ISTGProtocol
+    function getAssetByChainId(uint256 chainId, string memory symbol) external view override returns (StargateAsset memory) {
+        string memory chainName = _chainIdToChainName[chainId];
+        require(bytes(chainName).length > 0, string.concat("Chain ID not supported: ", vm.toString(chainId)));
+        StargateAsset memory asset = _assets[chainName][symbol];
+        require(asset.exists, string.concat("Asset not found: ", symbol, " on chain ID ", vm.toString(chainId)));
+        return asset;
+    }
+    
+    /// @inheritdoc ISTGProtocol
+    function getAssetsForChainId(uint256 chainId) external view override returns (StargateAsset[] memory assets) {
+        string memory chainName = _chainIdToChainName[chainId];
+        require(bytes(chainName).length > 0, string.concat("Chain ID not supported: ", vm.toString(chainId)));
+        
+        string[] memory symbols = _symbolsByChain[chainName];
+        assets = new StargateAsset[](symbols.length);
+        
+        for (uint256 i = 0; i < symbols.length; i++) {
+            assets[i] = _assets[chainName][symbols[i]];
+        }
+    }
+    
+    /// @inheritdoc ISTGProtocol
+    function getTokenMessagingByChainId(uint256 chainId) external view override returns (address) {
+        string memory chainName = _chainIdToChainName[chainId];
+        require(bytes(chainName).length > 0, string.concat("Chain ID not supported: ", vm.toString(chainId)));
+        address tm = _tokenMessaging[chainName];
+        require(tm != address(0), string.concat("TokenMessaging not found for chain ID: ", vm.toString(chainId)));
+        return tm;
+    }
+    
+    // ============================================
+    // Chain Name Resolution
+    // ============================================
+    
+    /// @inheritdoc ISTGProtocol
+    function getChainNameByEid(uint32 eid) external view override returns (string memory) {
+        string memory chainName = _eidToChainName[eid];
+        require(bytes(chainName).length > 0, string.concat("EID not supported: ", vm.toString(uint256(eid))));
+        return chainName;
+    }
+    
+    /// @inheritdoc ISTGProtocol
+    function getChainNameByChainId(uint256 chainId) external view override returns (string memory) {
+        string memory chainName = _chainIdToChainName[chainId];
+        require(bytes(chainName).length > 0, string.concat("Chain ID not supported: ", vm.toString(chainId)));
+        return chainName;
+    }
+    
+    // ============================================
+    // Discovery & Validation
+    // ============================================
+    
+    /// @inheritdoc ISTGProtocol
+    function getSupportedSymbols() external view override returns (string[] memory) {
+        return _allSymbols;
+    }
+    
+    /// @inheritdoc ISTGProtocol
+    function getSupportedChains() external view override returns (string[] memory) {
+        return _supportedChains;
+    }
+    
+    /// @inheritdoc ISTGProtocol
+    function isHydraChain(string memory chainName, string memory symbol) external view override returns (bool) {
+        StargateAsset memory asset = _assets[chainName][symbol];
+        require(asset.exists, string.concat("Asset not found: ", symbol, " on ", chainName));
+        return asset.stargateType == StargateType.OFT;
+    }
+    
+    /// @inheritdoc ISTGProtocol
+    function assetExists(string memory chainName, string memory symbol) external view override returns (bool) {
+        return _assets[chainName][symbol].exists;
+    }
+    
+    /// @inheritdoc ISTGProtocol
+    function assetExistsByEid(uint32 eid, string memory symbol) external view override returns (bool) {
+        string memory chainName = _eidToChainName[eid];
+        if (bytes(chainName).length == 0) return false;
+        return _assets[chainName][symbol].exists;
+    }
+    
+    /// @inheritdoc ISTGProtocol
+    function assetExistsByChainId(uint256 chainId, string memory symbol) external view override returns (bool) {
+        string memory chainName = _chainIdToChainName[chainId];
+        if (bytes(chainName).length == 0) return false;
+        return _assets[chainName][symbol].exists;
+    }
+    
+    /// @inheritdoc ISTGProtocol
+    function isEidSupported(uint32 eid) external view override returns (bool) {
+        return bytes(_eidToChainName[eid]).length > 0;
+    }
+    
+    /// @inheritdoc ISTGProtocol
+    function isChainIdSupported(uint256 chainId) external view override returns (bool) {
+        return bytes(_chainIdToChainName[chainId]).length > 0;
+    }
+}""")
+    
+    return "\n".join(lines)
+
+
 def generate_lz_workers(chains_processed: List[str], metadata: Dict[str, Any]) -> str:
     """Generate the LZWorkers contract."""
     registry_header = """// SPDX-License-Identifier: MIT
@@ -579,6 +1084,9 @@ contract LZWorkers is ILZWorkers {
     
     // Storage: nested mapping for efficient lookups (dvnName => eid => address)
     mapping(string => mapping(uint32 => address)) private _dvnAddresses;
+    
+    // Reverse lookup: address => eid => dvnName
+    mapping(address => mapping(uint32 => string)) private _dvnAddressToName;
     
     // List of all DVN names for enumeration
     string[] private _dvnNames;
@@ -706,6 +1214,9 @@ contract LZWorkers is ILZWorkers {
     function _registerDVN(string memory dvnName, uint32 eid, address dvnAddress) private {
         _dvnAddresses[dvnName][eid] = dvnAddress;
         
+        // Reverse lookup: address -> name
+        _dvnAddressToName[dvnAddress][eid] = dvnName;
+        
         // Track unique DVN names
         if (!_dvnNameExists[dvnName]) {
             _dvnNameExists[dvnName] = true;
@@ -763,6 +1274,33 @@ contract LZWorkers is ILZWorkers {
             addresses[i] = getDVNAddress(dvnNames[i], eid);
         }
     }
+    
+    /// @notice Get DVN provider name from address (reverse lookup)
+    /// @param dvnAddress The DVN contract address
+    /// @param eid The chain's endpoint ID
+    /// @return name The DVN provider name (e.g., "LayerZero Labs")
+    function getDVNNameByAddress(address dvnAddress, uint32 eid) public view override returns (string memory name) {
+        name = _dvnAddressToName[dvnAddress][eid];
+        require(bytes(name).length > 0, string.concat("DVN address not found on chain ", vm.toString(uint256(eid))));
+    }
+    
+    /// @notice Get DVN provider name from address by chain name
+    /// @param dvnAddress The DVN contract address
+    /// @param chainName The chain name
+    /// @return name The DVN provider name
+    function getDVNNameByAddressAndChain(address dvnAddress, string memory chainName) public view override returns (string memory name) {
+        uint32 eid = _chainNameToEid[chainName];
+        require(eid != 0, string.concat("Unknown chain: ", chainName));
+        return getDVNNameByAddress(dvnAddress, eid);
+    }
+    
+    /// @notice Check if a DVN address exists on a chain
+    /// @param dvnAddress The DVN contract address
+    /// @param eid The chain's endpoint ID
+    /// @return exists Whether the DVN address is registered
+    function dvnAddressExists(address dvnAddress, uint32 eid) public view override returns (bool exists) {
+        return bytes(_dvnAddressToName[dvnAddress][eid]).length > 0;
+    }
 }""")
     
     return "\n".join(lines)
@@ -770,8 +1308,11 @@ contract LZWorkers is ILZWorkers {
 def generate_contracts(output_file: str = "LZAddresses.sol", 
                       protocol_file: str = "LZProtocol.sol",
                       workers_file: str = "LZWorkers.sol",
+                      stg_addresses_file: str = "STGAddresses.sol",
+                      stg_protocol_file: str = "STGProtocol.sol",
                       chain_filter: Optional[List[str]] = None,
-                      include_testnet: bool = False):
+                      include_testnet: bool = False,
+                      include_stargate: bool = True):
     """Generate Solidity contracts from LayerZero metadata."""
     # Fetch metadata
     metadata = fetch_metadata()
@@ -924,6 +1465,27 @@ bytes32 constant LZ_ADDRESSES_DATA_HASH = 0x{data_hash};
                 dvn_chain_count += 1
     
     print(f"Registered DVNs across {len(chains_processed)} chains")
+    
+    # Generate Stargate files if requested
+    if include_stargate:
+        stargate_data = fetch_stargate_metadata(include_testnet=include_testnet)
+        
+        # Generate STGAddresses.sol
+        stg_addresses_content = generate_stargate_addresses(stargate_data)
+        with open(stg_addresses_file, 'w') as f:
+            f.write(stg_addresses_content)
+        
+        mainnet_count = len(stargate_data.get('mainnet', []))
+        testnet_count = len(stargate_data.get('testnet', []))
+        print(f"\nGenerated {stg_addresses_file}")
+        print(f"Processed {mainnet_count} mainnet assets, {testnet_count} testnet assets")
+        
+        # Generate STGProtocol.sol
+        stg_protocol_content = generate_stg_protocol(stargate_data, metadata)
+        with open(stg_protocol_file, 'w') as f:
+            f.write(stg_protocol_content)
+        
+        print(f"\nGenerated {stg_protocol_file}")
 
 def main():
     """Main entry point."""
@@ -936,10 +1498,16 @@ def main():
                         help='Output file name for protocol addresses (default: src/helpers/LZProtocol.sol)')
     parser.add_argument('-w', '--workers', default='src/helpers/LZWorkers.sol',
                         help='Output file name for worker addresses (default: src/helpers/LZWorkers.sol)')
+    parser.add_argument('--stg-addresses', default='src/generated/STGAddresses.sol',
+                        help='Output file name for Stargate addresses (default: src/generated/STGAddresses.sol)')
+    parser.add_argument('--stg-protocol', default='src/helpers/STGProtocol.sol',
+                        help='Output file name for Stargate protocol (default: src/helpers/STGProtocol.sol)')
     parser.add_argument('-c', '--chains', nargs='+',
                         help='Filter to specific chains (e.g., base-mainnet arbitrum-mainnet)')
     parser.add_argument('--include-testnet', action='store_true',
                         help='Include testnet and sandbox chains')
+    parser.add_argument('--no-stargate', action='store_true',
+                        help='Skip Stargate address generation')
     
     args = parser.parse_args()
     
@@ -947,8 +1515,11 @@ def main():
         output_file=args.output,
         protocol_file=args.protocol,
         workers_file=args.workers,
+        stg_addresses_file=args.stg_addresses,
+        stg_protocol_file=args.stg_protocol,
         chain_filter=args.chains,
-        include_testnet=args.include_testnet
+        include_testnet=args.include_testnet,
+        include_stargate=not args.no_stargate
     )
 
 if __name__ == "__main__":

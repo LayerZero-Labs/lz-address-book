@@ -40,3 +40,7 @@ import {IDVNValidator} from "./helpers/interfaces/IDVNValidator.sol";
 // Export utilities
 import {LZUtils} from "./utils/LZUtils.sol";
 import {ChainFamilies} from "./utils/ChainFamilies.sol";
+
+// Export Stargate helpers
+import {STGProtocol} from "./helpers/STGProtocol.sol";
+import {ISTGProtocol} from "./helpers/interfaces/ISTGProtocol.sol";
