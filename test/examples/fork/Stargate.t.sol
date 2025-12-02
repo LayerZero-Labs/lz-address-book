@@ -4,7 +4,7 @@ pragma solidity ^0.8.22;
 import {Test} from "forge-std/Test.sol";
 import {console} from "forge-std/console.sol";
 
-import {STGProtocol, ISTGProtocol} from "../../../src/helpers/STGProtocol.sol";
+import {STGProtocol, ISTGProtocol} from "../../../src/generated/STGProtocol.sol";
 import {LZAddressContext} from "../../../src/helpers/LZAddressContext.sol";
 
 // LayerZero/Stargate imports

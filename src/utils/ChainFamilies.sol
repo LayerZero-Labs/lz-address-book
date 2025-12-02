@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.22;
 
-import {LZProtocol} from "../helpers/LZProtocol.sol";
+import {LZProtocol} from "../generated/LZProtocol.sol";
 import {ILZProtocol} from "../helpers/interfaces/ILZProtocol.sol";
 
 /// @title ChainFamilies

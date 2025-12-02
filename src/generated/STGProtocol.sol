@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.22;
 
-import "./interfaces/ISTGProtocol.sol";
+import "../helpers/interfaces/ISTGProtocol.sol";
 import {Vm} from "forge-std/Vm.sol";
 
 /// @title Stargate Protocol Address Provider

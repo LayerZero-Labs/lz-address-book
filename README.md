@@ -370,7 +370,7 @@ Both implement the `IOFT` interface for cross-chain transfers.
 ### Quick Start
 
 ```solidity
-import {STGProtocol, ISTGProtocol} from "lz-address-book/helpers/STGProtocol.sol";
+import {STGProtocol, ISTGProtocol} from "lz-address-book/generated/STGProtocol.sol";
 import {IOFT, SendParam} from "@layerzerolabs/oft-evm/contracts/interfaces/IOFT.sol";
 
 STGProtocol stg = new STGProtocol();

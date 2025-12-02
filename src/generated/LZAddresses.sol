@@ -3,14 +3,14 @@ pragma solidity ^0.8.20;
 
 // Auto-generated from LayerZero metadata - do not edit manually
 // Source: https://metadata.layerzero-api.com/v1/metadata/deployments
-// Generated: 2025-11-27T00:57:58.738152
-// DATA_HASH: 0x98e34f86aa5d12d8ed39a7589e19ddeee864f2269c9e01f7fa836707c5fc471f
+// Generated: 2025-12-01T23:07:06.874788
+// DATA_HASH: 0x0464a888d87978e87c7bf7fd8d14cbccad3f2fae1f187aaecc0edb6ebdee72ed
 
 import {ILayerZeroEndpointV2} from "@layerzerolabs/lz-evm-protocol-v2/contracts/interfaces/ILayerZeroEndpointV2.sol";
 import {IMessageLib} from "@layerzerolabs/lz-evm-protocol-v2/contracts/interfaces/IMessageLib.sol";
 
 // DATA_HASH for provenance tracking (LZIP spec requirement)
-bytes32 constant LZ_ADDRESSES_DATA_HASH = 0x98e34f86aa5d12d8ed39a7589e19ddeee864f2269c9e01f7fa836707c5fc471f;
+bytes32 constant LZ_ADDRESSES_DATA_HASH = 0x0464a888d87978e87c7bf7fd8d14cbccad3f2fae1f187aaecc0edb6ebdee72ed;
 
 
 library LayerZeroV2AavegotchiTestnet {
@@ -18,6 +18,8 @@ library LayerZeroV2AavegotchiTestnet {
   uint32 internal constant EID = 40179;
   string internal constant CHAIN_KEY = "aavegotchi-testnet";
 
+  // Message libraries
+  address internal constant BLOCKED_MESSAGE_LIB = 0x0000000000000000000000000000000000000000;
 }
 
 library LayerZeroV2DVNAavegotchiTestnet {
@@ -419,7 +421,7 @@ library LayerZeroV2DVNArbitrumMainnet {
   address internal constant DVN_OMNICAT = 0xd1C70192CC0eb9a89e3D9032b9FAcab259A0a1e9;
   // Omnix [omni-x]
   address internal constant DVN_OMNIX = 0xabEa0b6B9237b589e676dC16f6D74Bf7612591f4;
-  // Ondo (deprecated) [ondo]
+  // Ondo [ondo]
   address internal constant DVN_ONDO = 0x4708a19824bfe71262A91cDefA36ce21CBFfafE1;
   // Ondo Staging [ondo-staging]
   address internal constant DVN_ONDO_STAGING = 0x2f2F1c6025E8Da125e2Afd73BA17d3cBDfE3d093;
@@ -471,36 +473,14 @@ library LayerZeroV2DVNArbitrumMainnet {
   address internal constant DVN_ZENROCK = 0x3b65E87E2A4690f14cae0483014259DeD8215adc;
 }
 
-library LayerZeroV2ArbitrumSandbox {
-  // Chain metadata
-  uint32 internal constant EID = 50231;
-  string internal constant CHAIN_KEY = "arbitrum-sandbox";
-
-  // Core protocol
-  ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x0b48aF34f4c854F5ae1A3D587da471FeA45bAD52);
-
-  // Message libraries
-  IMessageLib internal constant READ_LIB_1002 = IMessageLib(0x0D4ff719551E23185Aeb16FFbF2ABEbB90635942);
-  IMessageLib internal constant SEND_ULN_302 = IMessageLib(0xe6b98F104c1BEf218F3893ADab4160Dc73Eb8367);
-  IMessageLib internal constant RECEIVE_ULN_302 = IMessageLib(0x5C7c905B505f0Cf40Ab6600d05e677F717916F6B);
-
-  // Other contracts
-  address internal constant ENDPOINT_V2_VIEW = 0x8cDbD76bB6Cf0293e07deEEEd460cf579873aF44;
-  address internal constant EXECUTOR = 0x36B22905A1211A55E0d62eF46720172e2b0f24BD;
-  address internal constant LZ_EXECUTOR = 0x050499eBdbBBc1216011dE07A48b5182c983Ae74;
-}
-
-library LayerZeroV2DVNArbitrumSandbox {
-  // LayerZero Labs [layerzero-labs]
-  address internal constant DVN_LAYERZERO_LABS = 0x10Aeafac83d48E2f9ac4bAAf94311c45fACe1404;
-}
-
 library LayerZeroV2ArbitrumTestnet {
   // Chain metadata
   uint32 internal constant EID = 40143;
   uint256 internal constant CHAIN_ID = 421613;
   string internal constant CHAIN_KEY = "arbitrum-testnet";
 
+  // Message libraries
+  address internal constant BLOCKED_MESSAGE_LIB = 0x0000000000000000000000000000000000000000;
 }
 
 library LayerZeroV2DVNArbitrumTestnet {
@@ -1117,6 +1097,8 @@ library LayerZeroV2BaseTestnet {
   uint256 internal constant CHAIN_ID = 84531;
   string internal constant CHAIN_KEY = "base-testnet";
 
+  // Message libraries
+  address internal constant BLOCKED_MESSAGE_LIB = 0x0000000000000000000000000000000000000000;
 }
 
 library LayerZeroV2DVNBaseTestnet {
@@ -1343,6 +1325,7 @@ library LayerZeroV2Besu1Testnet {
   // Message libraries
   IMessageLib internal constant SEND_ULN_302 = IMessageLib(0x45841dd1ca50265Da7614fC43A361e526c0e6160);
   IMessageLib internal constant RECEIVE_ULN_302 = IMessageLib(0xd682ECF100f6F4284138AA925348633B0611Ae21);
+  address internal constant BLOCKED_MESSAGE_LIB = 0x0000000000000000000000000000000000000000;
 
   // Other contracts
   address internal constant ENDPOINT_V2_VIEW = 0x6Ac7bdc07A0583A362F1497252872AE6c0A5F5B8;
@@ -1546,6 +1529,7 @@ library LayerZeroV2Bl4Mainnet {
   // Message libraries
   IMessageLib internal constant SEND_ULN_302 = IMessageLib(0xC39161c743D0307EB9BCc9FEF03eeb9Dc4802de7);
   IMessageLib internal constant RECEIVE_ULN_302 = IMessageLib(0xe1844c5D63a9543023008D332Bd3d2e6f1FE1043);
+  address internal constant BLOCKED_MESSAGE_LIB = 0x0000000000000000000000000000000000000000;
 
   // Other contracts
   address internal constant ENDPOINT_V2_VIEW = 0xAaB5A48CFC03Efa9cC34A2C1aAcCCB84b4b770e4;
@@ -1570,6 +1554,7 @@ library LayerZeroV2Bl5Mainnet {
   // Message libraries
   IMessageLib internal constant SEND_ULN_302 = IMessageLib(0xC39161c743D0307EB9BCc9FEF03eeb9Dc4802de7);
   IMessageLib internal constant RECEIVE_ULN_302 = IMessageLib(0xe1844c5D63a9543023008D332Bd3d2e6f1FE1043);
+  address internal constant BLOCKED_MESSAGE_LIB = 0x0000000000000000000000000000000000000000;
 
   // Other contracts
   address internal constant ENDPOINT_V2_VIEW = 0xAaB5A48CFC03Efa9cC34A2C1aAcCCB84b4b770e4;
@@ -1720,6 +1705,8 @@ library LayerZeroV2BlockgenTestnet {
   uint32 internal constant EID = 40177;
   string internal constant CHAIN_KEY = "blockgen-testnet";
 
+  // Message libraries
+  address internal constant BLOCKED_MESSAGE_LIB = 0x0000000000000000000000000000000000000000;
 }
 
 library LayerZeroV2DVNBlockgenTestnet {
@@ -1846,6 +1833,7 @@ library LayerZeroV2BotanixTestnet {
   // Message libraries
   IMessageLib internal constant SEND_ULN_302 = IMessageLib(0x45841dd1ca50265Da7614fC43A361e526c0e6160);
   IMessageLib internal constant RECEIVE_ULN_302 = IMessageLib(0xd682ECF100f6F4284138AA925348633B0611Ae21);
+  address internal constant BLOCKED_MESSAGE_LIB = 0x0000000000000000000000000000000000000000;
 
   // Other contracts
   address internal constant ENDPOINT_V2_VIEW = 0x6Ac7bdc07A0583A362F1497252872AE6c0A5F5B8;
@@ -2020,7 +2008,7 @@ library LayerZeroV2DVNBscMainnet {
   address internal constant DVN_OMNICAT = 0xdfF3F73C260b3361d4F006B02972c6aF6C5c5417;
   // Omnix [omni-x]
   address internal constant DVN_OMNIX = 0x5a4c666E9C7aA86FD4fBFDFbfd04646DcC45C6c5;
-  // Ondo (deprecated) [ondo]
+  // Ondo [ondo]
   address internal constant DVN_ONDO = 0x00efECF8714C2bC9376f8391f47a2fFce8BCDFEa;
   // Ondo Staging [ondo-staging]
   address internal constant DVN_ONDO_STAGING = 0x089E70BC883Ad0b6551e513bF7A71Ffd2059f9F1;
@@ -2066,31 +2054,6 @@ library LayerZeroV2DVNBscMainnet {
   address internal constant DVN_ZEEVE = 0x92453Ce02159F774f1c846a4A0693008ED020F59;
   // Zenrock (deprecated) [zenrock]
   address internal constant DVN_ZENROCK = 0xE5491Fac6965Aa664EFD6d1aE5e7D1d56Da4FDDa;
-}
-
-library LayerZeroV2BscSandbox {
-  // Chain metadata
-  uint32 internal constant EID = 50102;
-  uint256 internal constant CHAIN_ID = 889156;
-  string internal constant CHAIN_KEY = "bsc-sandbox";
-
-  // Core protocol
-  ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x0b48aF34f4c854F5ae1A3D587da471FeA45bAD52);
-
-  // Message libraries
-  IMessageLib internal constant READ_LIB_1002 = IMessageLib(0x0D4ff719551E23185Aeb16FFbF2ABEbB90635942);
-  IMessageLib internal constant SEND_ULN_302 = IMessageLib(0xe6b98F104c1BEf218F3893ADab4160Dc73Eb8367);
-  IMessageLib internal constant RECEIVE_ULN_302 = IMessageLib(0x5C7c905B505f0Cf40Ab6600d05e677F717916F6B);
-
-  // Other contracts
-  address internal constant ENDPOINT_V2_VIEW = 0x8cDbD76bB6Cf0293e07deEEEd460cf579873aF44;
-  address internal constant EXECUTOR = 0x36B22905A1211A55E0d62eF46720172e2b0f24BD;
-  address internal constant LZ_EXECUTOR = 0x050499eBdbBBc1216011dE07A48b5182c983Ae74;
-}
-
-library LayerZeroV2DVNBscSandbox {
-  // LayerZero Labs [layerzero-labs]
-  address internal constant DVN_LAYERZERO_LABS = 0x10Aeafac83d48E2f9ac4bAAf94311c45fACe1404;
 }
 
 library LayerZeroV2BscTestnet {
@@ -2281,6 +2244,8 @@ library LayerZeroV2CathayTestnet {
   uint32 internal constant EID = 40171;
   string internal constant CHAIN_KEY = "cathay-testnet";
 
+  // Message libraries
+  address internal constant BLOCKED_MESSAGE_LIB = 0x0000000000000000000000000000000000000000;
 }
 
 library LayerZeroV2DVNCathayTestnet {
@@ -2458,6 +2423,7 @@ library LayerZeroV2CodexTestnet {
   // Message libraries
   IMessageLib internal constant SEND_ULN_302 = IMessageLib(0xd682ECF100f6F4284138AA925348633B0611Ae21);
   IMessageLib internal constant RECEIVE_ULN_302 = IMessageLib(0xcF1B0F4106B0324F96fEfcC31bA9498caa80701C);
+  address internal constant BLOCKED_MESSAGE_LIB = 0x0000000000000000000000000000000000000000;
 
   // Other contracts
   address internal constant ENDPOINT_V2_VIEW = 0x145C041566B21Bec558B2A37F1a5Ff261aB55998;
@@ -3383,6 +3349,7 @@ library LayerZeroV2EbiTestnet {
   // Message libraries
   IMessageLib internal constant SEND_ULN_302 = IMessageLib(0x45841dd1ca50265Da7614fC43A361e526c0e6160);
   IMessageLib internal constant RECEIVE_ULN_302 = IMessageLib(0xd682ECF100f6F4284138AA925348633B0611Ae21);
+  address internal constant BLOCKED_MESSAGE_LIB = 0x0000000000000000000000000000000000000000;
 
   // Other contracts
   address internal constant ENDPOINT_V2_VIEW = 0x6Ac7bdc07A0583A362F1497252872AE6c0A5F5B8;
@@ -3473,6 +3440,8 @@ library LayerZeroV2EonTestnet {
   uint256 internal constant CHAIN_ID = 1663;
   string internal constant CHAIN_KEY = "eon-testnet";
 
+  // Message libraries
+  address internal constant BLOCKED_MESSAGE_LIB = 0x0000000000000000000000000000000000000000;
 }
 
 library LayerZeroV2DVNEonTestnet {
@@ -3693,7 +3662,7 @@ library LayerZeroV2DVNEthereumMainnet {
   address internal constant DVN_OMNICAT = 0xf10Ea2c0D43bC4973cfBCc94eBAfC39d1D4aF118;
   // Omnix [omni-x]
   address internal constant DVN_OMNIX = 0xAf75bfD402f3d4EE84978179a6c87D16c4Bd1724;
-  // Ondo (deprecated) [ondo]
+  // Ondo [ondo]
   address internal constant DVN_ONDO = 0x241c66a979125f230C239E79D103e0c2128C6618;
   // Ondo Staging [ondo-staging]
   address internal constant DVN_ONDO_STAGING = 0xF34D1B07c64c4F4d492aE3DdD0AaB0658A2975eb;
@@ -3753,37 +3722,14 @@ library LayerZeroV2DVNEthereumMainnet {
   address internal constant DVN_ZENROCK = 0xd42306DF1a805d8053Bc652cE0Cd9F62BDe80146;
 }
 
-library LayerZeroV2EthereumSandbox {
-  // Chain metadata
-  uint32 internal constant EID = 50121;
-  uint256 internal constant CHAIN_ID = 88911;
-  string internal constant CHAIN_KEY = "ethereum-sandbox";
-
-  // Core protocol
-  ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x0b48aF34f4c854F5ae1A3D587da471FeA45bAD52);
-
-  // Message libraries
-  IMessageLib internal constant READ_LIB_1002 = IMessageLib(0x0D4ff719551E23185Aeb16FFbF2ABEbB90635942);
-  IMessageLib internal constant SEND_ULN_302 = IMessageLib(0xe6b98F104c1BEf218F3893ADab4160Dc73Eb8367);
-  IMessageLib internal constant RECEIVE_ULN_302 = IMessageLib(0x5C7c905B505f0Cf40Ab6600d05e677F717916F6B);
-
-  // Other contracts
-  address internal constant ENDPOINT_V2_VIEW = 0x8cDbD76bB6Cf0293e07deEEEd460cf579873aF44;
-  address internal constant EXECUTOR = 0x36B22905A1211A55E0d62eF46720172e2b0f24BD;
-  address internal constant LZ_EXECUTOR = 0x050499eBdbBBc1216011dE07A48b5182c983Ae74;
-}
-
-library LayerZeroV2DVNEthereumSandbox {
-  // LayerZero Labs [layerzero-labs]
-  address internal constant DVN_LAYERZERO_LABS = 0x10Aeafac83d48E2f9ac4bAAf94311c45fACe1404;
-}
-
 library LayerZeroV2EthereumTestnet {
   // Chain metadata
   uint32 internal constant EID = 40121;
   uint256 internal constant CHAIN_ID = 11155111;
   string internal constant CHAIN_KEY = "ethereum-testnet";
 
+  // Message libraries
+  address internal constant BLOCKED_MESSAGE_LIB = 0x0000000000000000000000000000000000000000;
 }
 
 library LayerZeroV2DVNEthereumTestnet {
@@ -4259,6 +4205,7 @@ library LayerZeroV2FormTestnet {
   // Message libraries
   IMessageLib internal constant SEND_ULN_302 = IMessageLib(0x45841dd1ca50265Da7614fC43A361e526c0e6160);
   IMessageLib internal constant RECEIVE_ULN_302 = IMessageLib(0xd682ECF100f6F4284138AA925348633B0611Ae21);
+  address internal constant BLOCKED_MESSAGE_LIB = 0x0000000000000000000000000000000000000000;
 
   // Other contracts
   address internal constant ENDPOINT_V2_VIEW = 0x6Ac7bdc07A0583A362F1497252872AE6c0A5F5B8;
@@ -4277,6 +4224,8 @@ library LayerZeroV2FrameTestnet {
   uint256 internal constant CHAIN_ID = 68840142;
   string internal constant CHAIN_KEY = "frame-testnet";
 
+  // Message libraries
+  address internal constant BLOCKED_MESSAGE_LIB = 0x0000000000000000000000000000000000000000;
 }
 
 library LayerZeroV2DVNFrameTestnet {
@@ -4874,6 +4823,8 @@ library LayerZeroV2HarmonyTestnet {
   uint256 internal constant CHAIN_ID = 1666900000;
   string internal constant CHAIN_KEY = "harmony-testnet";
 
+  // Message libraries
+  address internal constant BLOCKED_MESSAGE_LIB = 0x0000000000000000000000000000000000000000;
 }
 
 library LayerZeroV2DVNHarmonyTestnet {
@@ -5120,6 +5071,7 @@ library LayerZeroV2HubbleMainnet {
   // Message libraries
   IMessageLib internal constant SEND_ULN_302 = IMessageLib(0xBB967E3A329F4c47F654B82a2F7d11E69E5A7143);
   IMessageLib internal constant RECEIVE_ULN_302 = IMessageLib(0x6f1686189f32e78f1D83e7c6Ed433FCeBc3A5B51);
+  address internal constant BLOCKED_MESSAGE_LIB = 0x0000000000000000000000000000000000000000;
 
   // Other contracts
   address internal constant ENDPOINT_V2_VIEW = 0x5B23E2bAe5C5f00e804EA2C4C9abe601604378fa;
@@ -5139,6 +5091,8 @@ library LayerZeroV2HubbleTestnet {
   uint32 internal constant EID = 40182;
   string internal constant CHAIN_KEY = "hubble-testnet";
 
+  // Message libraries
+  address internal constant BLOCKED_MESSAGE_LIB = 0x0000000000000000000000000000000000000000;
 }
 
 library LayerZeroV2DVNHubbleTestnet {
@@ -5312,6 +5266,8 @@ library LayerZeroV2IdexTestnet {
   uint32 internal constant EID = 40219;
   string internal constant CHAIN_KEY = "idex-testnet";
 
+  // Message libraries
+  address internal constant BLOCKED_MESSAGE_LIB = 0x0000000000000000000000000000000000000000;
 }
 
 library LayerZeroV2DVNIdexTestnet {
@@ -5325,6 +5281,8 @@ library LayerZeroV2InjectiveTestnet {
   uint256 internal constant CHAIN_ID = 1738;
   string internal constant CHAIN_KEY = "injective-testnet";
 
+  // Message libraries
+  address internal constant BLOCKED_MESSAGE_LIB = 0x0000000000000000000000000000000000000000;
 }
 
 library LayerZeroV2DVNInjectiveTestnet {
@@ -5488,6 +5446,8 @@ library LayerZeroV2IntainMainnet {
   uint32 internal constant EID = 30152;
   string internal constant CHAIN_KEY = "intain-mainnet";
 
+  // Message libraries
+  address internal constant BLOCKED_MESSAGE_LIB = 0x0000000000000000000000000000000000000000;
 }
 
 library LayerZeroV2IntainTestnet {
@@ -5497,6 +5457,9 @@ library LayerZeroV2IntainTestnet {
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT = ILayerZeroEndpointV2(0xae92d5aD7583AD66E49A0c67BAd18F6ba52dDDc1);
+
+  // Message libraries
+  address internal constant BLOCKED_MESSAGE_LIB = 0x0000000000000000000000000000000000000000;
 
   // Other contracts
   address internal constant RELAYER_V2 = 0xb23b28012ee92E8dE39DEb57Af31722223034747;
@@ -5875,6 +5838,8 @@ library LayerZeroV2KiwiTestnet {
   uint256 internal constant CHAIN_ID = 2037;
   string internal constant CHAIN_KEY = "kiwi-testnet";
 
+  // Message libraries
+  address internal constant BLOCKED_MESSAGE_LIB = 0x0000000000000000000000000000000000000000;
 }
 
 library LayerZeroV2DVNKiwiTestnet {
@@ -5888,6 +5853,8 @@ library LayerZeroV2Kiwi2Testnet {
   uint256 internal constant CHAIN_ID = 2037;
   string internal constant CHAIN_KEY = "kiwi2-testnet";
 
+  // Message libraries
+  address internal constant BLOCKED_MESSAGE_LIB = 0x0000000000000000000000000000000000000000;
 }
 
 library LayerZeroV2DVNKiwi2Testnet {
@@ -6223,6 +6190,7 @@ library LayerZeroV2Ll1Testnet {
   // Message libraries
   IMessageLib internal constant SEND_ULN_302 = IMessageLib(0x00C5C0B8e0f75aB862CbAaeCfff499dB555FBDD2);
   IMessageLib internal constant RECEIVE_ULN_302 = IMessageLib(0x1d186C560281B8F1AF831957ED5047fD3AB902F9);
+  address internal constant BLOCKED_MESSAGE_LIB = 0x0000000000000000000000000000000000000000;
 
   // Other contracts
   address internal constant ENDPOINT_V2_VIEW = 0xd682ECF100f6F4284138AA925348633B0611Ae21;
@@ -6289,6 +6257,7 @@ library LayerZeroV2LootTestnet {
   // Message libraries
   IMessageLib internal constant SEND_ULN_302 = IMessageLib(0x6271e24A43cCB1509FBDC22284Ab6176237562EE);
   IMessageLib internal constant RECEIVE_ULN_302 = IMessageLib(0x40d0DC337feCDC4C09774e7F92Cb963674CF7Ef2);
+  address internal constant BLOCKED_MESSAGE_LIB = 0x0000000000000000000000000000000000000000;
 
   // Other contracts
   address internal constant ENDPOINT_V2_VIEW = 0xff866Df85B3AAacAf67bEAEfb325169B2A1FAE89;
@@ -6374,6 +6343,7 @@ library LayerZeroV2LzjkTestnet {
   // Message libraries
   IMessageLib internal constant SEND_ULN_302 = IMessageLib(0x45841dd1ca50265Da7614fC43A361e526c0e6160);
   IMessageLib internal constant RECEIVE_ULN_302 = IMessageLib(0xd682ECF100f6F4284138AA925348633B0611Ae21);
+  address internal constant BLOCKED_MESSAGE_LIB = 0x0000000000000000000000000000000000000000;
 
   // Other contracts
   address internal constant ENDPOINT_V2_VIEW = 0x6Ac7bdc07A0583A362F1497252872AE6c0A5F5B8;
@@ -6439,6 +6409,8 @@ library LayerZeroV2MantaTestnet {
   uint256 internal constant CHAIN_ID = 3441005;
   string internal constant CHAIN_KEY = "manta-testnet";
 
+  // Message libraries
+  address internal constant BLOCKED_MESSAGE_LIB = 0x0000000000000000000000000000000000000000;
 }
 
 library LayerZeroV2DVNMantaTestnet {
@@ -6536,7 +6508,7 @@ library LayerZeroV2DVNMantleMainnet {
   address internal constant DVN_NETHERMIND = 0x3E249F6892aCfeF1922Fc3Bce38FEFeec3896817;
   // Nethermind [nethermind]
   address internal constant DVN_NETHERMIND_2 = 0xB19A9370D404308040A9760678c8Ca28aFfbbb76;
-  // Ondo (deprecated) [ondo]
+  // Ondo [ondo]
   address internal constant DVN_ONDO = 0xdEb742E71d57603D8F769cE36f4353468007fC02;
   // Ondo Staging [ondo-staging]
   address internal constant DVN_ONDO_STAGING = 0x377B51593a03B82543c1508fE7e75Aba6acDE008;
@@ -6566,6 +6538,7 @@ library LayerZeroV2MantleTestnet {
   // Message libraries
   IMessageLib internal constant SEND_ULN_302 = IMessageLib(0x19D1198b0f43Ec076a897bF98dEb0FD1D6CE8B9f);
   IMessageLib internal constant RECEIVE_ULN_302 = IMessageLib(0x0E91e0239971B6CF7519e458a742e2eA4Ffb7458);
+  address internal constant BLOCKED_MESSAGE_LIB = 0x0000000000000000000000000000000000000000;
 
   // Other contracts
   address internal constant ENDPOINT_V2_VIEW = 0x44220D45796ECDf3254771C6715bfbc985240709;
@@ -6629,6 +6602,7 @@ library LayerZeroV2MasaMainnet {
   // Message libraries
   IMessageLib internal constant SEND_ULN_302 = IMessageLib(0xe1844c5D63a9543023008D332Bd3d2e6f1FE1043);
   IMessageLib internal constant RECEIVE_ULN_302 = IMessageLib(0x2367325334447C5E1E0f1b3a6fB947b262F58312);
+  address internal constant BLOCKED_MESSAGE_LIB = 0x0000000000000000000000000000000000000000;
 
   // Other contracts
   address internal constant ENDPOINT_V2_VIEW = 0x4514FC667a944752ee8A29F544c1B20b1A315f25;
@@ -6662,6 +6636,7 @@ library LayerZeroV2MasaTestnet {
   // Message libraries
   IMessageLib internal constant SEND_ULN_302 = IMessageLib(0xcF1B0F4106B0324F96fEfcC31bA9498caa80701C);
   IMessageLib internal constant RECEIVE_ULN_302 = IMessageLib(0x00C5C0B8e0f75aB862CbAaeCfff499dB555FBDD2);
+  address internal constant BLOCKED_MESSAGE_LIB = 0x0000000000000000000000000000000000000000;
 
   // Other contracts
   address internal constant ENDPOINT_V2_VIEW = 0x45841dd1ca50265Da7614fC43A361e526c0e6160;
@@ -6672,6 +6647,34 @@ library LayerZeroV2MasaTestnet {
 library LayerZeroV2DVNMasaTestnet {
   // LayerZero Labs (deprecated) [layerzero-labs]
   address internal constant DVN_LAYERZERO_LABS = 0xC1868e054425D378095A003EcbA3823a5D0135C9;
+}
+
+library LayerZeroV2MegaethMainnet {
+  // Chain metadata
+  uint32 internal constant EID = 30398;
+  uint256 internal constant CHAIN_ID = 4326;
+  string internal constant CHAIN_KEY = "megaeth-mainnet";
+
+  // Core protocol
+  ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6F475642a6e85809B1c36Fa62763669b1b48DD5B);
+
+  // Message libraries
+  IMessageLib internal constant SEND_ULN_302 = IMessageLib(0xC39161c743D0307EB9BCc9FEF03eeb9Dc4802de7);
+  address internal constant BLOCKED_MESSAGE_LIB = 0xC1cE56B2099cA68720592583C7984CAb4B6d7E7a;
+  IMessageLib internal constant RECEIVE_ULN_302 = IMessageLib(0xe1844c5D63a9543023008D332Bd3d2e6f1FE1043);
+
+  // Other contracts
+  address internal constant ENDPOINT_V2_VIEW = 0xAaB5A48CFC03Efa9cC34A2C1aAcCCB84b4b770e4;
+  address internal constant EXECUTOR = 0x4208D6E27538189bB48E603D6123A94b8Abe0A0b;
+  address internal constant DEAD_DVN = 0x6788f52439ACA6BFF597d3eeC2DC9a44B8FEE842;
+  address internal constant LZ_EXECUTOR = 0x41Bdb4aa4A63a5b2Efc531858d3118392B1A1C3d;
+}
+
+library LayerZeroV2DVNMegaethMainnet {
+  // LZDeadDVN (deprecated) [lz-dead-dvn]
+  address internal constant DVN_LZ_DEAD = 0x6788f52439ACA6BFF597d3eeC2DC9a44B8FEE842;
+  // LayerZero Labs [layerzero-labs]
+  address internal constant DVN_LAYERZERO_LABS = 0x282b3386571f7f794450d5789911a9804FA346b4;
 }
 
 library LayerZeroV2MegaethTestnet {
@@ -7005,6 +7008,8 @@ library LayerZeroV2MetisTestnet {
   uint256 internal constant CHAIN_ID = 599;
   string internal constant CHAIN_KEY = "metis-testnet";
 
+  // Message libraries
+  address internal constant BLOCKED_MESSAGE_LIB = 0x0000000000000000000000000000000000000000;
 }
 
 library LayerZeroV2DVNMetisTestnet {
@@ -7238,6 +7243,8 @@ library LayerZeroV2DVNMonadMainnet {
   address internal constant DVN_LZ_DEAD = 0x6788f52439ACA6BFF597d3eeC2DC9a44B8FEE842;
   // LayerZero Labs [layerzero-labs]
   address internal constant DVN_LAYERZERO_LABS = 0x282b3386571f7f794450d5789911a9804FA346b4;
+  // Mantle Bank [mantle-bank]
+  address internal constant DVN_MANTLE_BANK = 0xe00Ff3Ebb0CD942D846FB27e4739d2da66989b4F;
   // Nethermind [nethermind]
   address internal constant DVN_NETHERMIND = 0xaCDe1f22EEAb249d3ca6Ba8805C8fEe9f52a16e7;
   // USDT0 [usdt0]
@@ -7718,6 +7725,8 @@ library LayerZeroV2OdaTestnet {
   uint256 internal constant CHAIN_ID = 25;
   string internal constant CHAIN_KEY = "oda-testnet";
 
+  // Message libraries
+  address internal constant BLOCKED_MESSAGE_LIB = 0x0000000000000000000000000000000000000000;
 }
 
 library LayerZeroV2OdysseyTestnet {
@@ -7733,6 +7742,7 @@ library LayerZeroV2OdysseyTestnet {
   IMessageLib internal constant READ_LIB_1002 = IMessageLib(0xcF1B0F4106B0324F96fEfcC31bA9498caa80701C);
   IMessageLib internal constant SEND_ULN_302 = IMessageLib(0xB0487596a0B62D1A71D0C33294bd6eB635Fc6B09);
   IMessageLib internal constant RECEIVE_ULN_302 = IMessageLib(0x073f5b4FdF17BBC16b0980d49f6C56123477bb51);
+  address internal constant BLOCKED_MESSAGE_LIB = 0x0000000000000000000000000000000000000000;
 
   // Other contracts
   address internal constant ENDPOINT_V2_VIEW = 0xd682ECF100f6F4284138AA925348633B0611Ae21;
@@ -7892,6 +7902,7 @@ library LayerZeroV2OkxTestnet {
   // Message libraries
   IMessageLib internal constant SEND_ULN_302 = IMessageLib(0x4eb38E1743669C6753C44A58B2F11E0c592183eD);
   IMessageLib internal constant RECEIVE_ULN_302 = IMessageLib(0xaaed103E18acf972b9b68743E3d4bDeBb9Ce5E5b);
+  address internal constant BLOCKED_MESSAGE_LIB = 0x0000000000000000000000000000000000000000;
 
   // Other contracts
   address internal constant ENDPOINT_V2_VIEW = 0x2E4c006d26cdDb8FAe7734fF4A97d5B2F8e0d823;
@@ -8269,32 +8280,14 @@ library LayerZeroV2DVNOptimismMainnet {
   address internal constant DVN_ZENROCK = 0xAf75bfD402f3d4EE84978179a6c87D16c4Bd1724;
 }
 
-library LayerZeroV2OptimismSandbox {
-  // Chain metadata
-  uint32 internal constant EID = 50132;
-  string internal constant CHAIN_KEY = "optimism-sandbox";
-
-  // Core protocol
-  ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x0b48aF34f4c854F5ae1A3D587da471FeA45bAD52);
-
-  // Message libraries
-  IMessageLib internal constant READ_LIB_1002 = IMessageLib(0x0D4ff719551E23185Aeb16FFbF2ABEbB90635942);
-  IMessageLib internal constant SEND_ULN_302 = IMessageLib(0xe6b98F104c1BEf218F3893ADab4160Dc73Eb8367);
-  IMessageLib internal constant SEND_ULN_301 = IMessageLib(0x73eccD6288e117cAcA738BDAD4FEC51312166C1A);
-  IMessageLib internal constant RECEIVE_ULN_301 = IMessageLib(0x381445710b5e73d34aF196c53A3D5cDa58EDBf7A);
-  IMessageLib internal constant RECEIVE_ULN_302 = IMessageLib(0x5C7c905B505f0Cf40Ab6600d05e677F717916F6B);
-
-  // Other contracts
-  address internal constant EXECUTOR = 0x36B22905A1211A55E0d62eF46720172e2b0f24BD;
-  address internal constant LZ_EXECUTOR = 0x050499eBdbBBc1216011dE07A48b5182c983Ae74;
-}
-
 library LayerZeroV2OptimismTestnet {
   // Chain metadata
   uint32 internal constant EID = 40132;
   uint256 internal constant CHAIN_ID = 420;
   string internal constant CHAIN_KEY = "optimism-testnet";
 
+  // Message libraries
+  address internal constant BLOCKED_MESSAGE_LIB = 0x0000000000000000000000000000000000000000;
 }
 
 library LayerZeroV2DVNOptimismTestnet {
@@ -8559,6 +8552,8 @@ library LayerZeroV2PgjjtkTestnet {
   uint32 internal constant EID = 40207;
   string internal constant CHAIN_KEY = "pgjjtk-testnet";
 
+  // Message libraries
+  address internal constant BLOCKED_MESSAGE_LIB = 0x0000000000000000000000000000000000000000;
 }
 
 library LayerZeroV2PgnMainnet {
@@ -8567,6 +8562,8 @@ library LayerZeroV2PgnMainnet {
   uint256 internal constant CHAIN_ID = 424;
   string internal constant CHAIN_KEY = "pgn-mainnet";
 
+  // Message libraries
+  address internal constant BLOCKED_MESSAGE_LIB = 0x0000000000000000000000000000000000000000;
 }
 
 library LayerZeroV2DVNPgnMainnet {
@@ -8582,6 +8579,8 @@ library LayerZeroV2PgnTestnet {
   uint256 internal constant CHAIN_ID = 58008;
   string internal constant CHAIN_KEY = "pgn-testnet";
 
+  // Message libraries
+  address internal constant BLOCKED_MESSAGE_LIB = 0x0000000000000000000000000000000000000000;
 }
 
 library LayerZeroV2DVNPgnTestnet {
@@ -8780,6 +8779,7 @@ library LayerZeroV2PlumeTestnet {
   // Message libraries
   IMessageLib internal constant SEND_ULN_302 = IMessageLib(0xd682ECF100f6F4284138AA925348633B0611Ae21);
   IMessageLib internal constant RECEIVE_ULN_302 = IMessageLib(0xcF1B0F4106B0324F96fEfcC31bA9498caa80701C);
+  address internal constant BLOCKED_MESSAGE_LIB = 0x0000000000000000000000000000000000000000;
 
   // Other contracts
   address internal constant ENDPOINT_V2_VIEW = 0x145C041566B21Bec558B2A37F1a5Ff261aB55998;
@@ -8807,6 +8807,7 @@ library LayerZeroV2Plume2Testnet {
   // Message libraries
   IMessageLib internal constant SEND_ULN_302 = IMessageLib(0xd682ECF100f6F4284138AA925348633B0611Ae21);
   IMessageLib internal constant RECEIVE_ULN_302 = IMessageLib(0xcF1B0F4106B0324F96fEfcC31bA9498caa80701C);
+  address internal constant BLOCKED_MESSAGE_LIB = 0x0000000000000000000000000000000000000000;
 
   // Other contracts
   address internal constant ENDPOINT_V2_VIEW = 0x145C041566B21Bec558B2A37F1a5Ff261aB55998;
@@ -9014,31 +9015,6 @@ library LayerZeroV2DVNPolygonMainnet {
   address internal constant DVN_ZENROCK = 0xCd8ea69BBCa0a2bb221AeD59fA2704f01fC76a9f;
 }
 
-library LayerZeroV2PolygonSandbox {
-  // Chain metadata
-  uint32 internal constant EID = 50109;
-  uint256 internal constant CHAIN_ID = 8891137;
-  string internal constant CHAIN_KEY = "polygon-sandbox";
-
-  // Core protocol
-  ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x0b48aF34f4c854F5ae1A3D587da471FeA45bAD52);
-
-  // Message libraries
-  IMessageLib internal constant READ_LIB_1002 = IMessageLib(0x0D4ff719551E23185Aeb16FFbF2ABEbB90635942);
-  IMessageLib internal constant SEND_ULN_302 = IMessageLib(0xe6b98F104c1BEf218F3893ADab4160Dc73Eb8367);
-  IMessageLib internal constant RECEIVE_ULN_302 = IMessageLib(0x5C7c905B505f0Cf40Ab6600d05e677F717916F6B);
-
-  // Other contracts
-  address internal constant ENDPOINT_V2_VIEW = 0x8cDbD76bB6Cf0293e07deEEEd460cf579873aF44;
-  address internal constant EXECUTOR = 0x36B22905A1211A55E0d62eF46720172e2b0f24BD;
-  address internal constant LZ_EXECUTOR = 0x050499eBdbBBc1216011dE07A48b5182c983Ae74;
-}
-
-library LayerZeroV2DVNPolygonSandbox {
-  // LayerZero Labs [layerzero-labs]
-  address internal constant DVN_LAYERZERO_LABS = 0x10Aeafac83d48E2f9ac4bAAf94311c45fACe1404;
-}
-
 library LayerZeroV2PolygonTestnet {
   // Chain metadata
   uint32 internal constant EID = 40109;
@@ -9051,6 +9027,7 @@ library LayerZeroV2PolygonTestnet {
   // Message libraries
   IMessageLib internal constant SEND_ULN_302 = IMessageLib(0x5d9F8BCf9e07BabF517f2988986FF3bB7b233bc1);
   IMessageLib internal constant RECEIVE_ULN_302 = IMessageLib(0xfa4Fbda8E809150eE1676ce675AC746Beb9aF379);
+  address internal constant BLOCKED_MESSAGE_LIB = 0x0000000000000000000000000000000000000000;
 
   // Other contracts
   address internal constant ENDPOINT_V2_VIEW = 0x67cec733D3Dd0de13ae8d7AaC74532F3555500E3;
@@ -9087,6 +9064,8 @@ library LayerZeroV2PolygoncdkTestnet {
   uint256 internal constant CHAIN_ID = 686669576;
   string internal constant CHAIN_KEY = "polygoncdk-testnet";
 
+  // Message libraries
+  address internal constant BLOCKED_MESSAGE_LIB = 0x0000000000000000000000000000000000000000;
 }
 
 library LayerZeroV2DVNPolygoncdkTestnet {
@@ -9163,6 +9142,8 @@ library LayerZeroV2Rc1Testnet {
   uint256 internal constant CHAIN_ID = 1127469;
   string internal constant CHAIN_KEY = "rc1-testnet";
 
+  // Message libraries
+  address internal constant BLOCKED_MESSAGE_LIB = 0x0000000000000000000000000000000000000000;
 }
 
 library LayerZeroV2RealMainnet {
@@ -9711,6 +9692,8 @@ library LayerZeroV2DVNSepoliaTestnet {
   address internal constant DVN_MANTLE01_3 = 0xe4f5f5Cd6229dE94adC343DeB86172C07b129Bb0;
   // Mantle02 (deprecated) [mantle02]
   address internal constant DVN_MANTLE02 = 0x15F5A70fC078279D7d4a7dd94811189364810111;
+  // MantleCross [mantlecross]
+  address internal constant DVN_MANTLECROSS = 0x63F5AAa54d459a4a94E98d41c89d37129eABe725;
   // Nethermind (deprecated) [nethermind]
   address internal constant DVN_NETHERMIND = 0x715A4451Be19106BB7CefD81e507813E23C30768;
   // Nethermind [nethermind]
@@ -9781,6 +9764,8 @@ library LayerZeroV2ShimmerTestnet {
   uint256 internal constant CHAIN_ID = 1073;
   string internal constant CHAIN_KEY = "shimmer-testnet";
 
+  // Message libraries
+  address internal constant BLOCKED_MESSAGE_LIB = 0x0000000000000000000000000000000000000000;
 }
 
 library LayerZeroV2DVNShimmerTestnet {
@@ -9794,6 +9779,8 @@ library LayerZeroV2ShrapnelMainnet {
   uint256 internal constant CHAIN_ID = 2044;
   string internal constant CHAIN_KEY = "shrapnel-mainnet";
 
+  // Message libraries
+  address internal constant BLOCKED_MESSAGE_LIB = 0x0000000000000000000000000000000000000000;
 }
 
 library LayerZeroV2DVNShrapnelMainnet {
@@ -9811,6 +9798,8 @@ library LayerZeroV2ShrapnelTestnet {
   uint256 internal constant CHAIN_ID = 2038;
   string internal constant CHAIN_KEY = "shrapnel-testnet";
 
+  // Message libraries
+  address internal constant BLOCKED_MESSAGE_LIB = 0x0000000000000000000000000000000000000000;
 }
 
 library LayerZeroV2DVNShrapnelTestnet {
@@ -10278,6 +10267,8 @@ library LayerZeroV2SpruceTestnet {
   uint256 internal constant CHAIN_ID = 424242;
   string internal constant CHAIN_KEY = "spruce-testnet";
 
+  // Message libraries
+  address internal constant BLOCKED_MESSAGE_LIB = 0x0000000000000000000000000000000000000000;
 }
 
 library LayerZeroV2StableMainnet {
@@ -10435,6 +10426,7 @@ library LayerZeroV2StoryTestnet {
   // Message libraries
   IMessageLib internal constant SEND_ULN_302 = IMessageLib(0xd682ECF100f6F4284138AA925348633B0611Ae21);
   IMessageLib internal constant RECEIVE_ULN_302 = IMessageLib(0xcF1B0F4106B0324F96fEfcC31bA9498caa80701C);
+  address internal constant BLOCKED_MESSAGE_LIB = 0x0000000000000000000000000000000000000000;
 
   // Other contracts
   address internal constant ENDPOINT_V2_VIEW = 0x145C041566B21Bec558B2A37F1a5Ff261aB55998;
@@ -10660,6 +10652,8 @@ library LayerZeroV2SwimmerMainnet {
   uint32 internal constant EID = 30114;
   string internal constant CHAIN_KEY = "swimmer-mainnet";
 
+  // Message libraries
+  address internal constant BLOCKED_MESSAGE_LIB = 0x0000000000000000000000000000000000000000;
 }
 
 library LayerZeroV2SwimmerTestnet {
@@ -10669,6 +10663,9 @@ library LayerZeroV2SwimmerTestnet {
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT = ILayerZeroEndpointV2(0xae92d5aD7583AD66E49A0c67BAd18F6ba52dDDc1);
+
+  // Message libraries
+  address internal constant BLOCKED_MESSAGE_LIB = 0x0000000000000000000000000000000000000000;
 
   // Other contracts
   address internal constant RELAYER = 0x35AdD9321507A87471a11EBd4aE4f592d531e620;
@@ -10833,6 +10830,7 @@ library LayerZeroV2TangibleTestnet {
   // Message libraries
   IMessageLib internal constant SEND_ULN_302 = IMessageLib(0x6Ac7bdc07A0583A362F1497252872AE6c0A5F5B8);
   IMessageLib internal constant RECEIVE_ULN_302 = IMessageLib(0x145C041566B21Bec558B2A37F1a5Ff261aB55998);
+  address internal constant BLOCKED_MESSAGE_LIB = 0x0000000000000000000000000000000000000000;
 
   // Other contracts
   address internal constant ENDPOINT_V2_VIEW = 0x6C7Ab2202C98C4227C5c46f1417D81144DA716Ff;
@@ -11063,6 +11061,7 @@ library LayerZeroV2TomoTestnet {
   // Message libraries
   IMessageLib internal constant SEND_ULN_302 = IMessageLib(0xbB7e6FE3fA954BF0e5Ea77d38736C56E8D09514B);
   IMessageLib internal constant RECEIVE_ULN_302 = IMessageLib(0x8468689ca62D8806614EEdb9F26a13e1Fddbd6BD);
+  address internal constant BLOCKED_MESSAGE_LIB = 0x0000000000000000000000000000000000000000;
 
   // Other contracts
   address internal constant ENDPOINT_V2_VIEW = 0x7Cfb4FADEdc96793f844371D8498F4FDCd37Da61;
@@ -11268,6 +11267,7 @@ library LayerZeroV2VennTestnet {
   // Message libraries
   IMessageLib internal constant SEND_ULN_302 = IMessageLib(0xf48994FEEb2F6798eCEEB4C3Abe4808E1D8851fB);
   IMessageLib internal constant RECEIVE_ULN_302 = IMessageLib(0x37d03C8D27d7928546B5b773566Ec9c2847054d2);
+  address internal constant BLOCKED_MESSAGE_LIB = 0x0000000000000000000000000000000000000000;
 
   // Other contracts
   address internal constant ENDPOINT_V2_VIEW = 0xd489598B8987f198483e5810CCe830e719652e80;
@@ -11822,6 +11822,7 @@ library LayerZeroV2ZkastarTestnet {
   // Message libraries
   IMessageLib internal constant SEND_ULN_302 = IMessageLib(0x00C5C0B8e0f75aB862CbAaeCfff499dB555FBDD2);
   IMessageLib internal constant RECEIVE_ULN_302 = IMessageLib(0x1d186C560281B8F1AF831957ED5047fD3AB902F9);
+  address internal constant BLOCKED_MESSAGE_LIB = 0x0000000000000000000000000000000000000000;
 
   // Other contracts
   address internal constant ENDPOINT_V2_VIEW = 0xd682ECF100f6F4284138AA925348633B0611Ae21;
@@ -11872,6 +11873,8 @@ library LayerZeroV2ZkatanaTestnet {
   uint256 internal constant CHAIN_ID = 1261120;
   string internal constant CHAIN_KEY = "zkatana-testnet";
 
+  // Message libraries
+  address internal constant BLOCKED_MESSAGE_LIB = 0x0000000000000000000000000000000000000000;
 }
 
 library LayerZeroV2DVNZkatanaTestnet {
@@ -11950,6 +11953,7 @@ library LayerZeroV2ZkconsensysTestnet {
   // Message libraries
   IMessageLib internal constant SEND_ULN_302 = IMessageLib(0x56aC647e1863a473D295a1F02E3186Fb954Be4C4);
   IMessageLib internal constant RECEIVE_ULN_302 = IMessageLib(0x2F2d67C251b53074578Af69f437f341670BAc9C7);
+  address internal constant BLOCKED_MESSAGE_LIB = 0x0000000000000000000000000000000000000000;
 
   // Other contracts
   address internal constant ENDPOINT_V2_VIEW = 0xbb4ad7b3a8d68Acb8e936db911d3ce86c8E27201;
@@ -12083,6 +12087,7 @@ library LayerZeroV2ZkpolygonTestnet {
   // Message libraries
   IMessageLib internal constant SEND_ULN_302 = IMessageLib(0x1C4Fc6f1E44EAaef53aC701b7cc4c280F536fA75);
   IMessageLib internal constant RECEIVE_ULN_302 = IMessageLib(0x08416c0eAa8ba93F907eC8D6a9cAb24821C53E64);
+  address internal constant BLOCKED_MESSAGE_LIB = 0x0000000000000000000000000000000000000000;
 
   // Other contracts
   address internal constant ENDPOINT_V2_VIEW = 0x6Ce5d3B01A66B81c97F4334c85B287D381946b95;
@@ -12173,30 +12178,6 @@ library LayerZeroV2DVNZksyncMainnet {
   address internal constant DVN_ZENROCK = 0xc4A1F52fDA034A9A5E1B3b27D14451d15776Fef6;
 }
 
-library LayerZeroV2ZksyncSandbox {
-  // Chain metadata
-  uint32 internal constant EID = 50165;
-  string internal constant CHAIN_KEY = "zksync-sandbox";
-
-  // Core protocol
-  ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x84Cdba7446AabCdc99ca84c6A83AC914d63e6669);
-
-  // Message libraries
-  IMessageLib internal constant READ_LIB_1002 = IMessageLib(0x711aCc815756cd6ca7eC02D46621d1c6faD7cc46);
-  IMessageLib internal constant SEND_ULN_302 = IMessageLib(0xb6f278a6E9615F2d5Bdeb74147611c39887068F4);
-  IMessageLib internal constant RECEIVE_ULN_302 = IMessageLib(0x7acB5D53ba51a9736288b1CC980DaC76ED179208);
-
-  // Other contracts
-  address internal constant ENDPOINT_V2_VIEW = 0xA58a1cAecA12d09165B52D4C1a77295a4fc086A0;
-  address internal constant EXECUTOR = 0x78bE7547677d09F343981C91b733A125635b6117;
-  address internal constant LZ_EXECUTOR = 0x5640c1F95f2F895B5349c9490e89d3ae4Cf9a0fA;
-}
-
-library LayerZeroV2DVNZksyncSandbox {
-  // LayerZero Labs [layerzero-labs]
-  address internal constant DVN_LAYERZERO_LABS = 0xF4aeFf6e22675F360a89E8DCe08E46c71d74855D;
-}
-
 library LayerZeroV2ZksyncTestnet {
   // Chain metadata
   uint32 internal constant EID = 40165;
@@ -12205,6 +12186,9 @@ library LayerZeroV2ZksyncTestnet {
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x82Bb8E5Ffd47Be07f0568C9aB0900DDA9D913aFD);
+
+  // Message libraries
+  address internal constant BLOCKED_MESSAGE_LIB = 0x0000000000000000000000000000000000000000;
 
   // Other contracts
   address internal constant ENDPOINT_V2_VIEW = 0x8e1660dF2F2051dc588DAb7647bd36C1e067fcda;
@@ -12365,6 +12349,7 @@ library LayerZeroV2ZoraTestnet {
   // Message libraries
   IMessageLib internal constant SEND_ULN_302 = IMessageLib(0x87FE14Af115F3b14F7d91Be426C0213a24AE9498);
   IMessageLib internal constant RECEIVE_ULN_302 = IMessageLib(0xE321800e1D8277d2bf36A0979cd281c2B6760313);
+  address internal constant BLOCKED_MESSAGE_LIB = 0x0000000000000000000000000000000000000000;
 
   // Other contracts
   address internal constant ENDPOINT_V2_VIEW = 0xEA07821eF5c98e226fC5B9d53B10d75333d792C8;

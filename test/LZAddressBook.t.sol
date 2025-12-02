@@ -8,8 +8,8 @@ import {console} from "forge-std/console.sol";
 import "../src/generated/LZAddresses.sol";
 
 // Import helper contracts
-import {LZProtocol, ILZProtocol} from "../src/helpers/LZProtocol.sol";
-import {LZWorkers, ILZWorkers} from "../src/helpers/LZWorkers.sol";
+import {LZProtocol, ILZProtocol} from "../src/generated/LZProtocol.sol";
+import {LZWorkers, ILZWorkers} from "../src/generated/LZWorkers.sol";
 
 /// @title LayerZero Address Book Unit Tests
 /// @notice Demonstrates how to use the LayerZero Address Book in unit tests

@@ -25,10 +25,10 @@ pragma solidity ^0.8.22;
 // Export provenance hash
 import {LZ_ADDRESSES_DATA_HASH} from "./generated/LZAddresses.sol";
 
-// Export core contracts
-import {LZProtocol} from "./helpers/LZProtocol.sol";
+// Export core contracts (auto-generated)
+import {LZProtocol} from "./generated/LZProtocol.sol";
 import {ILZProtocol} from "./helpers/interfaces/ILZProtocol.sol";
-import {LZWorkers} from "./helpers/LZWorkers.sol";
+import {LZWorkers} from "./generated/LZWorkers.sol";
 import {ILZWorkers} from "./helpers/interfaces/ILZWorkers.sol";
 
 // Export high-level helpers
@@ -41,6 +41,6 @@ import {IDVNValidator} from "./helpers/interfaces/IDVNValidator.sol";
 import {LZUtils} from "./utils/LZUtils.sol";
 import {ChainFamilies} from "./utils/ChainFamilies.sol";
 
-// Export Stargate helpers
-import {STGProtocol} from "./helpers/STGProtocol.sol";
+// Export Stargate helpers (auto-generated)
+import {STGProtocol} from "./generated/STGProtocol.sol";
 import {ISTGProtocol} from "./helpers/interfaces/ISTGProtocol.sol";

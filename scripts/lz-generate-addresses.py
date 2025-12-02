@@ -222,6 +222,11 @@ def generate_chain_library(chain_key: str, chain_data: Dict[str, Any]) -> Option
             else:
                 other_contracts.append(constant_line)
     
+    # Ensure BLOCKED_MESSAGE_LIB is always present (needed for LZProtocol)
+    has_blocked_lib = any('BLOCKED_MESSAGE_LIB' in line for line in message_libs)
+    if not has_blocked_lib:
+        message_libs.append("  address internal constant BLOCKED_MESSAGE_LIB = 0x0000000000000000000000000000000000000000;")
+    
     # Add categorized constants
     if core_contracts:
         lines.append("  // Core protocol")
@@ -330,8 +335,8 @@ def generate_lz_protocol(chains_processed: List[str], metadata: Dict[str, Any]) 
     registry_header = """// SPDX-License-Identifier: MIT
 pragma solidity ^0.8.22;
 
-import "../generated/LZAddresses.sol";
-import "./interfaces/ILZProtocol.sol";
+import "./LZAddresses.sol";
+import "../helpers/interfaces/ILZProtocol.sol";
 import "./LZWorkers.sol";
 import {Vm} from "forge-std/Vm.sol";
 
@@ -367,10 +372,9 @@ contract LZProtocol is ILZProtocol {
     
     lines = [registry_header]
     
-    # Group chains by category
+    # Group chains by category (sandbox chains are excluded)
     mainnet_chains = []
     testnet_chains = []
-    sandbox_chains = []
     skipped_chains = []
     
     for chain_key in chains_processed:
@@ -426,8 +430,9 @@ contract LZProtocol is ILZProtocol {
         
         entry = (chain_key, chain_name, rpc_urls)
         
+        # Skip sandbox chains - only include mainnets and testnets
         if 'sandbox' in chain_key.lower():
-            sandbox_chains.append(entry)
+            continue
         elif 'testnet' in chain_key.lower():
             testnet_chains.append(entry)
         else:
@@ -447,7 +452,7 @@ contract LZProtocol is ILZProtocol {
         for chain_key, chain_name, rpc_urls in sorted(mainnet_chains):
             lib_name = f"LayerZeroV2{chain_name}"
             rpc_arg = format_string_array(rpc_urls)
-            lines.append(f"        _registerChain({lib_name}.EID, address({lib_name}.ENDPOINT_V2), address({lib_name}.SEND_ULN_302), address({lib_name}.RECEIVE_ULN_302), {lib_name}.EXECUTOR, {lib_name}.CHAIN_ID, \"{chain_key}\", {rpc_arg});")
+            lines.append(f"        _registerChain({lib_name}.EID, address({lib_name}.ENDPOINT_V2), address({lib_name}.SEND_ULN_302), address({lib_name}.RECEIVE_ULN_302), {lib_name}.BLOCKED_MESSAGE_LIB, {lib_name}.EXECUTOR, {lib_name}.CHAIN_ID, \"{chain_key}\", {rpc_arg});")
     
     # Add testnet chains
     if testnet_chains:
@@ -455,15 +460,7 @@ contract LZProtocol is ILZProtocol {
         for chain_key, chain_name, rpc_urls in sorted(testnet_chains):
             lib_name = f"LayerZeroV2{chain_name}"
             rpc_arg = format_string_array(rpc_urls)
-            lines.append(f"        _registerChain({lib_name}.EID, address({lib_name}.ENDPOINT_V2), address({lib_name}.SEND_ULN_302), address({lib_name}.RECEIVE_ULN_302), {lib_name}.EXECUTOR, {lib_name}.CHAIN_ID, \"{chain_key}\", {rpc_arg});")
-    
-    # Add sandbox chains
-    if sandbox_chains:
-        lines.append("\n        // Sandbox environments")
-        for chain_key, chain_name, rpc_urls in sorted(sandbox_chains):
-            lib_name = f"LayerZeroV2{chain_name}"
-            rpc_arg = format_string_array(rpc_urls)
-            lines.append(f"        _registerChain({lib_name}.EID, address({lib_name}.ENDPOINT_V2), address({lib_name}.SEND_ULN_302), address({lib_name}.RECEIVE_ULN_302), {lib_name}.EXECUTOR, {lib_name}.CHAIN_ID, \"{chain_key}\", {rpc_arg});")
+            lines.append(f"        _registerChain({lib_name}.EID, address({lib_name}.ENDPOINT_V2), address({lib_name}.SEND_ULN_302), address({lib_name}.RECEIVE_ULN_302), {lib_name}.BLOCKED_MESSAGE_LIB, {lib_name}.EXECUTOR, {lib_name}.CHAIN_ID, \"{chain_key}\", {rpc_arg});")
     
     lines.append("""    }
     
@@ -473,6 +470,7 @@ contract LZProtocol is ILZProtocol {
         address endpoint,
         address sendUln,
         address receiveUln,
+        address blockedLib,
         address executor,
         uint256 chainId,
         string memory chainName,
@@ -482,6 +480,7 @@ contract LZProtocol is ILZProtocol {
             endpointV2: endpoint,
             sendUln302: sendUln,
             receiveUln302: receiveUln,
+            blockedMessageLib: blockedLib,
             executor: executor,
             chainId: chainId,
             chainName: chainName,
@@ -598,6 +597,7 @@ contract LZProtocol is ILZProtocol {
             endpointV2: base.endpointV2,
             sendUln302: base.sendUln302,
             receiveUln302: base.receiveUln302,
+            blockedMessageLib: base.blockedMessageLib,
             executor: base.executor,
             allDVNs: dvnAddrs,
             allDVNNames: dvnNames,
@@ -745,7 +745,7 @@ def generate_stg_protocol(stargate_data: Dict[str, Any], lz_metadata: Dict[str, 
     header = """// SPDX-License-Identifier: MIT
 pragma solidity ^0.8.22;
 
-import "./interfaces/ISTGProtocol.sol";
+import "../helpers/interfaces/ISTGProtocol.sol";
 import {Vm} from "forge-std/Vm.sol";
 
 /// @title Stargate Protocol Address Provider
@@ -1072,7 +1072,7 @@ def generate_lz_workers(chains_processed: List[str], metadata: Dict[str, Any]) -
     registry_header = """// SPDX-License-Identifier: MIT
 pragma solidity ^0.8.22;
 
-import "./interfaces/ILZWorkers.sol";
+import "../helpers/interfaces/ILZWorkers.sol";
 import {Vm} from "forge-std/Vm.sol";
 
 /// @title LayerZero Workers Registry
@@ -1311,7 +1311,7 @@ def generate_contracts(output_file: str = "LZAddresses.sol",
                       stg_addresses_file: str = "STGAddresses.sol",
                       stg_protocol_file: str = "STGProtocol.sol",
                       chain_filter: Optional[List[str]] = None,
-                      include_testnet: bool = False,
+                      include_testnet: bool = True,
                       include_stargate: bool = True):
     """Generate Solidity contracts from LayerZero metadata."""
     # Fetch metadata
@@ -1354,12 +1354,12 @@ bytes32 constant LZ_ADDRESSES_DATA_HASH = 0x{data_hash};
         if chain_filter and chain_key not in chain_filter:
             continue
         
-        # Skip testnet chains unless specifically requested
+        # Skip testnet chains if not requested
         if 'testnet' in chain_key and not (include_testnet or (chain_filter and chain_key in chain_filter)):
             continue
         
-        # Skip sandbox chains unless specifically requested
-        if 'sandbox' in chain_key and not (include_testnet or (chain_filter and chain_key in chain_filter)):
+        # Always skip sandbox chains (unless explicitly in chain_filter)
+        if 'sandbox' in chain_key and not (chain_filter and chain_key in chain_filter):
             continue
         
         # Skip non-EVM chains
@@ -1494,18 +1494,18 @@ def main():
     parser = argparse.ArgumentParser(description='Generate LayerZero V2 contracts from metadata')
     parser.add_argument('-o', '--output', default='src/generated/LZAddresses.sol',
                         help='Output file name for address book (default: src/generated/LZAddresses.sol)')
-    parser.add_argument('-p', '--protocol', default='src/helpers/LZProtocol.sol',
-                        help='Output file name for protocol addresses (default: src/helpers/LZProtocol.sol)')
-    parser.add_argument('-w', '--workers', default='src/helpers/LZWorkers.sol',
-                        help='Output file name for worker addresses (default: src/helpers/LZWorkers.sol)')
+    parser.add_argument('-p', '--protocol', default='src/generated/LZProtocol.sol',
+                        help='Output file name for protocol addresses (default: src/generated/LZProtocol.sol)')
+    parser.add_argument('-w', '--workers', default='src/generated/LZWorkers.sol',
+                        help='Output file name for worker addresses (default: src/generated/LZWorkers.sol)')
     parser.add_argument('--stg-addresses', default='src/generated/STGAddresses.sol',
                         help='Output file name for Stargate addresses (default: src/generated/STGAddresses.sol)')
-    parser.add_argument('--stg-protocol', default='src/helpers/STGProtocol.sol',
-                        help='Output file name for Stargate protocol (default: src/helpers/STGProtocol.sol)')
+    parser.add_argument('--stg-protocol', default='src/generated/STGProtocol.sol',
+                        help='Output file name for Stargate protocol (default: src/generated/STGProtocol.sol)')
     parser.add_argument('-c', '--chains', nargs='+',
                         help='Filter to specific chains (e.g., base-mainnet arbitrum-mainnet)')
-    parser.add_argument('--include-testnet', action='store_true',
-                        help='Include testnet and sandbox chains')
+    parser.add_argument('--no-testnet', action='store_true',
+                        help='Exclude testnet chains (testnets are included by default)')
     parser.add_argument('--no-stargate', action='store_true',
                         help='Skip Stargate address generation')
     
@@ -1518,7 +1518,7 @@ def main():
         stg_addresses_file=args.stg_addresses,
         stg_protocol_file=args.stg_protocol,
         chain_filter=args.chains,
-        include_testnet=args.include_testnet,
+        include_testnet=not args.no_testnet,
         include_stargate=not args.no_stargate
     )
 

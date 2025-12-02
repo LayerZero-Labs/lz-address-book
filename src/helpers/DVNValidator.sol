@@ -2,8 +2,8 @@
 pragma solidity ^0.8.22;
 
 import {IDVNValidator} from "./interfaces/IDVNValidator.sol";
-import {LZProtocol} from "./LZProtocol.sol";
-import {LZWorkers} from "./LZWorkers.sol";
+import {LZProtocol} from "../generated/LZProtocol.sol";
+import {LZWorkers} from "../generated/LZWorkers.sol";
 
 /// @title DVNValidator
 /// @notice Helper to validate DVN availability across chains

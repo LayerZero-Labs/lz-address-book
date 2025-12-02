@@ -8,6 +8,7 @@ interface ILZProtocol {
         address endpointV2;
         address sendUln302;
         address receiveUln302;
+        address blockedMessageLib;
         address executor;
         uint256 chainId;
         string chainName;
@@ -26,6 +27,7 @@ interface ILZProtocol {
         address endpointV2;
         address sendUln302;
         address receiveUln302;
+        address blockedMessageLib;
         address executor;
         
         // Workers

@@ -4,7 +4,7 @@ pragma solidity ^0.8.22;
 import {ILZAddressContext} from "./interfaces/ILZAddressContext.sol";
 import {ILZProtocol} from "./interfaces/ILZProtocol.sol";
 import {ILZWorkers} from "./interfaces/ILZWorkers.sol";
-import {LZProtocol} from "./LZProtocol.sol";
+import {LZProtocol} from "../generated/LZProtocol.sol";
 import {Vm} from "forge-std/Vm.sol";
 
 /// @title LZAddressContext

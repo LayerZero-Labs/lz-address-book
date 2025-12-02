@@ -8,8 +8,8 @@ import {console} from "forge-std/console.sol";
 import "../../src/generated/LZAddresses.sol";
 
 // Import helper contracts
-import {LZProtocol, ILZProtocol} from "../../src/helpers/LZProtocol.sol";
-import {LZWorkers, ILZWorkers} from "../../src/helpers/LZWorkers.sol";
+import {LZProtocol, ILZProtocol} from "../../src/generated/LZProtocol.sol";
+import {LZWorkers, ILZWorkers} from "../../src/generated/LZWorkers.sol";
 
 // Import LayerZero interfaces for testing
 import {ILayerZeroEndpointV2} from "@layerzerolabs/lz-evm-protocol-v2/contracts/interfaces/ILayerZeroEndpointV2.sol";

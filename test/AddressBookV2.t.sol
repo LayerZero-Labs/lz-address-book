@@ -4,10 +4,10 @@ pragma solidity ^0.8.22;
 import {Test} from "forge-std/Test.sol";
 import {console} from "forge-std/console.sol";
 
-import {LZProtocol} from "../src/helpers/LZProtocol.sol";
+import {LZProtocol} from "../src/generated/LZProtocol.sol";
 import {LZAddressContext} from "../src/helpers/LZAddressContext.sol";
 import {DVNValidator} from "../src/helpers/DVNValidator.sol";
-import {STGProtocol, ISTGProtocol} from "../src/helpers/STGProtocol.sol";
+import {STGProtocol, ISTGProtocol} from "../src/generated/STGProtocol.sol";
 import {ChainFamilies} from "../src/utils/ChainFamilies.sol";
 import {ILZProtocol} from "../src/helpers/interfaces/ILZProtocol.sol";
 import {IDVNValidator} from "../src/helpers/interfaces/IDVNValidator.sol";
