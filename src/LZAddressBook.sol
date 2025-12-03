@@ -16,7 +16,7 @@ pragma solidity ^0.8.22;
  *   import {DVNValidator} from "lz-address-book/LZAddressBook.sol";
  *
  *   // Utilities
- *   import {ChainFamilies} from "lz-address-book/LZAddressBook.sol";
+ *   import {ChainStage} from "lz-address-book/LZAddressBook.sol";
  *
  *   // Static chain libraries (for direct access)
  *   import {LayerZeroV2EthereumMainnet} from "lz-address-book/generated/LZAddresses.sol";
@@ -39,7 +39,7 @@ import {IDVNValidator} from "./helpers/interfaces/IDVNValidator.sol";
 
 // Export utilities
 import {LZUtils} from "./utils/LZUtils.sol";
-import {ChainFamilies} from "./utils/ChainFamilies.sol";
+import {ChainStage} from "./utils/ChainStage.sol";
 
 // Export Stargate helpers (auto-generated)
 import {STGProtocol} from "./generated/STGProtocol.sol";
