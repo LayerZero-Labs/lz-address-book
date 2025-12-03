@@ -2,6 +2,9 @@
   "lib/LayerZero-v2": {
     "rev": "ab9b083410b9359285a5756807e1b6145d4711a7"
   },
+  "lib/devtools": {
+    "rev": "ccc14e0ab26535558d22f15e1d74ff7b36fdac4d"
+  },
   "lib/forge-std": {
     "tag": {
       "name": "v1.11.0",
