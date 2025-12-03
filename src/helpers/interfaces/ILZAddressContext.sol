@@ -118,6 +118,12 @@ interface ILZAddressContext {
     /// @return addresses Array of corresponding DVN addresses
     function getDVNs(string[] memory dvnNames) external view returns (address[] memory addresses);
     
+    /// @notice Get multiple DVN addresses sorted in ascending order (required by LayerZero UlnConfig)
+    /// @param dvnNames Array of DVN names to look up
+    /// @return addresses Array of DVN addresses sorted in ascending order
+    /// @dev LayerZero requires DVN arrays to be sorted. Use this instead of getDVNs() for UlnConfig.
+    function getSortedDVNs(string[] memory dvnNames) external view returns (address[] memory addresses);
+    
     // ============================================
     // Chain Discovery
     // ============================================

@@ -3,177 +3,298 @@ pragma solidity ^0.8.22;
 
 import {Script} from "forge-std/Script.sol";
 import {console} from "forge-std/console.sol";
+
 import {LZAddressContext} from "../../src/helpers/LZAddressContext.sol";
+
 import {ILayerZeroEndpointV2} from "@layerzerolabs/lz-evm-protocol-v2/contracts/interfaces/ILayerZeroEndpointV2.sol";
 import {SetConfigParam} from "@layerzerolabs/lz-evm-protocol-v2/contracts/interfaces/IMessageLibManager.sol";
 import {UlnConfig} from "@layerzerolabs/lz-evm-messagelib-v2/contracts/uln/UlnBase.sol";
 import {ExecutorConfig} from "@layerzerolabs/lz-evm-messagelib-v2/contracts/SendLibBase.sol";
+import {IOAppCore} from "@layerzerolabs/oapp-evm/contracts/oapp/interfaces/IOAppCore.sol";
+import {IOAppOptionsType3, EnforcedOptionParam} from "@layerzerolabs/oapp-evm/contracts/oapp/interfaces/IOAppOptionsType3.sol";
+import {OptionsBuilder} from "@layerzerolabs/oapp-evm/contracts/oapp/libs/OptionsBuilder.sol";
 
-/// @title Configure OApp by Native Chain ID
-/// @notice Tutorial: Bidirectional OApp configuration using native chain IDs
-/// @dev Shows how SendUlnConfig on Chain A must match ReceiveUlnConfig on Chain B
+/// @title ConfigureByChainId
+/// @notice Configure an OApp across multiple chains using native chain IDs
+/// @dev Run this script once per chain - it auto-detects via block.chainid:
 ///
-/// Common Chain IDs:
-///   - Ethereum:  1        - Arbitrum:  42161
-///   - Base:      8453     - Optimism:  10
-///   - Polygon:   137      - Avalanche: 43114
+///   forge script ConfigureByChainId --rpc-url ethereum --broadcast --account deployer
+///   forge script ConfigureByChainId --rpc-url arbitrum --broadcast --account deployer
+///   forge script ConfigureByChainId --rpc-url base --broadcast --account deployer
+///   forge script ConfigureByChainId --rpc-url optimism --broadcast --account deployer
 ///
-/// For bidirectional messaging (A ↔ B), you need:
-///   Chain A: SendConfig(A→B) + ReceiveConfig(B→A)
-///   Chain B: SendConfig(B→A) + ReceiveConfig(A→B)
+/// The script configures:
+///   1. Send/Receive libraries
+///   2. Send ULN config (DVNs, confirmations, executor)
+///   3. Receive ULN config (DVNs, confirmations)
+///   4. Enforced options (gas limits for lzReceive/lzCompose)
+///   5. Peer connections
 contract ConfigureByChainId is Script {
-    function run() external {
-        // =============================================
-        // STEP 1: Define your two chains by Chain ID
-        // =============================================
-        uint256 chainIdA = 42161;  // Arbitrum
-        uint256 chainIdB = 8453;   // Base
-        address oapp = 0x1234567890123456789012345678901234567890;
-        
-        // Shared config parameters (MUST match on both sides of each pathway)
-        uint64 confirmations = 15;
-        uint8 requiredDVNCount = 2;
-        uint32 maxMessageSize = 10000;
-        
-        // =============================================
-        // STEP 2: Create context and resolve chain info
-        // =============================================
-        LZAddressContext ctx = new LZAddressContext();
-        
-        // Resolve chain names and EIDs from chain IDs
-        ctx.setChainByChainId(chainIdA);
-        string memory chainA = ctx.getCurrentChainName();
-        uint32 eidA = ctx.getCurrentEID();
-        
-        ctx.setChainByChainId(chainIdB);
-        string memory chainB = ctx.getCurrentChainName();
-        uint32 eidB = ctx.getCurrentEID();
-        
-        console.log("=== Bidirectional Config by Chain ID ===");
-        console.log("Chain A:", chainIdA, "->", chainA, "(EID:", eidA, ")");
-        console.log("Chain B:", chainIdB, "->", chainB, "(EID:", eidB, ")");
-        console.log("OApp:", oapp);
-        console.log("");
-        
-        vm.startBroadcast();
-        
-        // =============================================
-        // STEP 3: Configure Chain A
-        // =============================================
-        ctx.setChainByChainId(chainIdA);
-        
-        address endpointA = ctx.getEndpoint();
-        address sendLibA = ctx.getSendLib();
-        address receiveLibA = ctx.getReceiveLib();
-        address executorA = ctx.getExecutor();
-        address[] memory dvnsA = _getSortedDVNs(ctx, chainA);
-        
-        console.log("--- Chain A (chainId:", chainIdA, ") ---");
-        console.log("Endpoint:", endpointA);
-        
-        // A → B: SEND config on Chain A
-        UlnConfig memory ulnConfigAtoB = UlnConfig({
-            confirmations: confirmations,
-            requiredDVNCount: requiredDVNCount,
-            optionalDVNCount: 0,
-            optionalDVNThreshold: 0,
-            requiredDVNs: dvnsA,
-            optionalDVNs: new address[](0)
-        });
-        
-        ExecutorConfig memory execConfigA = ExecutorConfig({
-            maxMessageSize: maxMessageSize,
-            executor: executorA
-        });
-        
-        SetConfigParam[] memory sendParamsA = new SetConfigParam[](2);
-        sendParamsA[0] = SetConfigParam(eidB, 1, abi.encode(execConfigA));
-        sendParamsA[1] = SetConfigParam(eidB, 2, abi.encode(ulnConfigAtoB));
-        
-        ILayerZeroEndpointV2(endpointA).setConfig(oapp, sendLibA, sendParamsA);
-        console.log("[OK] SendConfig(A->B)");
-        
-        // B → A: RECEIVE config on Chain A
-        UlnConfig memory recvUlnA = UlnConfig({
-            confirmations: confirmations,
-            requiredDVNCount: requiredDVNCount,
-            optionalDVNCount: 0,
-            optionalDVNThreshold: 0,
-            requiredDVNs: dvnsA,
-            optionalDVNs: new address[](0)
-        });
-        
-        SetConfigParam[] memory recvParamsA = new SetConfigParam[](1);
-        recvParamsA[0] = SetConfigParam(eidB, 2, abi.encode(recvUlnA));
-        
-        ILayerZeroEndpointV2(endpointA).setConfig(oapp, receiveLibA, recvParamsA);
-        console.log("[OK] ReceiveConfig(B->A)");
-        
-        // =============================================
-        // STEP 4: Configure Chain B
-        // =============================================
-        ctx.setChainByChainId(chainIdB);
-        
-        address endpointB = ctx.getEndpoint();
-        address sendLibB = ctx.getSendLib();
-        address receiveLibB = ctx.getReceiveLib();
-        address executorB = ctx.getExecutor();
-        address[] memory dvnsB = _getSortedDVNs(ctx, chainB);
-        
-        console.log("");
-        console.log("--- Chain B (chainId:", chainIdB, ") ---");
-        console.log("Endpoint:", endpointB);
-        
-        // B → A: SEND config on Chain B
-        UlnConfig memory ulnConfigBtoA = UlnConfig({
-            confirmations: confirmations,      // Must match ReceiveConfig(B→A) on Chain A
-            requiredDVNCount: requiredDVNCount,
-            optionalDVNCount: 0,
-            optionalDVNThreshold: 0,
-            requiredDVNs: dvnsB,
-            optionalDVNs: new address[](0)
-        });
-        
-        ExecutorConfig memory execConfigB = ExecutorConfig({
-            maxMessageSize: maxMessageSize,
-            executor: executorB
-        });
-        
-        SetConfigParam[] memory sendParamsB = new SetConfigParam[](2);
-        sendParamsB[0] = SetConfigParam(eidA, 1, abi.encode(execConfigB));
-        sendParamsB[1] = SetConfigParam(eidA, 2, abi.encode(ulnConfigBtoA));
-        
-        ILayerZeroEndpointV2(endpointB).setConfig(oapp, sendLibB, sendParamsB);
-        console.log("[OK] SendConfig(B->A)");
-        
-        // A → B: RECEIVE config on Chain B
-        UlnConfig memory recvUlnB = UlnConfig({
-            confirmations: confirmations,      // Must match SendConfig(A→B) on Chain A
-            requiredDVNCount: requiredDVNCount,
-            optionalDVNCount: 0,
-            optionalDVNThreshold: 0,
-            requiredDVNs: dvnsB,
-            optionalDVNs: new address[](0)
-        });
-        
-        SetConfigParam[] memory recvParamsB = new SetConfigParam[](1);
-        recvParamsB[0] = SetConfigParam(eidA, 2, abi.encode(recvUlnB));
-        
-        ILayerZeroEndpointV2(endpointB).setConfig(oapp, receiveLibB, recvParamsB);
-        console.log("[OK] ReceiveConfig(A->B)");
-        
-        vm.stopBroadcast();
-        
-        console.log("");
-        console.log("=== Configuration Complete ===");
+    using OptionsBuilder for bytes;
+
+    /*//////////////////////////////////////////////////////////////
+                                 STRUCTS
+    //////////////////////////////////////////////////////////////*/
+
+    /// @notice Configuration for a single chain
+    /// @param chainId Native chain ID (e.g., 1 for Ethereum, 42161 for Arbitrum)
+    /// @param oapp OApp address deployed on this chain
+    /// @param confirmations Block confirmations required when this chain is destination
+    /// @param sendOptions Enforced options for MSG_TYPE_SEND (1) - gas for lzReceive
+    /// @param sendAndCallOptions Enforced options for MSG_TYPE_SEND_AND_CALL (2) - empty if not using compose
+    struct ChainConfig {
+        uint256 chainId;
+        address oapp;
+        uint64 confirmations;
+        bytes sendOptions;
+        bytes sendAndCallOptions;
     }
-    
-    function _getSortedDVNs(LZAddressContext ctx, string memory chain) internal view returns (address[] memory) {
-        address lz = ctx.getDVNFor("LayerZero Labs", chain);
-        address nm = ctx.getDVNFor("Nethermind", chain);
-        
-        address[] memory dvns = new address[](2);
-        (dvns[0], dvns[1]) = lz < nm ? (lz, nm) : (nm, lz);
-        return dvns;
+
+    /// @dev Cached addresses for the local chain
+    struct LocalContext {
+        address oapp;
+        address endpoint;
+        address sendLib;
+        address receiveLib;
+        address executor;
+        address[] dvns;
+        uint64 confirmations;
+    }
+
+    /*//////////////////////////////////////////////////////////////
+                                CONSTANTS
+    //////////////////////////////////////////////////////////////*/
+
+    uint8 internal constant REQUIRED_DVN_COUNT = 2;
+    uint32 internal constant MAX_MESSAGE_SIZE = 10000;
+
+    uint16 internal constant MSG_TYPE_SEND = 1;
+    uint16 internal constant MSG_TYPE_SEND_AND_CALL = 2;
+
+    string internal constant DVN_1 = "LayerZero Labs";
+    string internal constant DVN_2 = "Nethermind";
+
+    /*//////////////////////////////////////////////////////////////
+                              ENTRY POINT
+    //////////////////////////////////////////////////////////////*/
+
+    function run() external {
+        // ============================================================
+        // STEP 1: Define all chain configurations (MODIFY FOR YOUR DEPLOYMENT)
+        // ============================================================
+        ChainConfig[] memory chains = new ChainConfig[](4);
+
+        // Ethereum Mainnet
+        chains[0] = ChainConfig({
+            chainId: 1,
+            oapp: 0x1111111111111111111111111111111111111111,
+            confirmations: 15, // Ethereum - slower finality
+            sendOptions: OptionsBuilder.newOptions().addExecutorLzReceiveOption(80_000, 0),
+            sendAndCallOptions: "" // No compose
+        });
+
+        // Arbitrum
+        chains[1] = ChainConfig({
+            chainId: 42161,
+            oapp: 0x2222222222222222222222222222222222222222,
+            confirmations: 1, // L2 - fast finality
+            sendOptions: OptionsBuilder.newOptions().addExecutorLzReceiveOption(80_000, 0),
+            sendAndCallOptions: ""
+        });
+
+        // Base
+        chains[2] = ChainConfig({
+            chainId: 8453,
+            oapp: 0x3333333333333333333333333333333333333333,
+            confirmations: 1, // L2 - fast finality
+            sendOptions: OptionsBuilder.newOptions().addExecutorLzReceiveOption(80_000, 0),
+            sendAndCallOptions: ""
+        });
+
+        // Optimism
+        chains[3] = ChainConfig({
+            chainId: 10,
+            oapp: 0x4444444444444444444444444444444444444444,
+            confirmations: 1, // L2 - fast finality
+            sendOptions: OptionsBuilder.newOptions().addExecutorLzReceiveOption(80_000, 0),
+            sendAndCallOptions: ""
+        });
+
+        // ============================================================
+        // STEP 2: Find current chain and setup context
+        // ============================================================
+        (uint256 localIndex, LocalContext memory local, uint32[] memory eids) = _setup(chains);
+
+        if (local.endpoint == address(0)) {
+            console.log("Chain", block.chainid, "not in config. Skipping.");
+            return;
+        }
+
+        console.log("=== Configuring chain", block.chainid, "===");
+        console.log("OApp:", local.oapp);
+        console.log("");
+
+        // ============================================================
+        // STEP 3: Configure pathways to all remote chains
+        // ============================================================
+        vm.startBroadcast();
+
+        for (uint256 i = 0; i < chains.length; i++) {
+            if (i == localIndex) continue;
+            _configurePathway(local, eids[i], chains[i]);
+            console.log("Configured pathway to EID", eids[i]);
+        }
+
+        vm.stopBroadcast();
+        console.log("");
+        console.log("=== Done ===");
+    }
+
+    /*//////////////////////////////////////////////////////////////
+                                 SETUP
+    //////////////////////////////////////////////////////////////*/
+
+    function _setup(ChainConfig[] memory chains)
+        internal
+        returns (uint256 localIndex, LocalContext memory local, uint32[] memory eids)
+    {
+        // Find current chain by matching block.chainid
+        localIndex = type(uint256).max;
+        for (uint256 i = 0; i < chains.length; i++) {
+            if (chains[i].chainId == block.chainid) {
+                localIndex = i;
+                break;
+            }
+        }
+
+        if (localIndex == type(uint256).max) {
+            return (0, local, eids);
+        }
+
+        // Setup address context
+        LZAddressContext ctx = new LZAddressContext();
+        ctx.setChainByChainId(block.chainid);
+
+        local = LocalContext({
+            oapp: chains[localIndex].oapp,
+            endpoint: ctx.getEndpoint(),
+            sendLib: ctx.getSendLib(),
+            receiveLib: ctx.getReceiveLib(),
+            executor: ctx.getExecutor(),
+            dvns: ctx.getSortedDVNs(_getDvnNames()),
+            confirmations: chains[localIndex].confirmations
+        });
+
+        // Resolve all EIDs
+        eids = new uint32[](chains.length);
+        for (uint256 i = 0; i < chains.length; i++) {
+            ctx.setChainByChainId(chains[i].chainId);
+            eids[i] = ctx.getCurrentEID();
+        }
+    }
+
+    /*//////////////////////////////////////////////////////////////
+                            CONFIGURATION
+    //////////////////////////////////////////////////////////////*/
+
+    function _configurePathway(LocalContext memory local, uint32 remoteEid, ChainConfig memory remote) internal {
+        ILayerZeroEndpointV2 endpoint = ILayerZeroEndpointV2(local.endpoint);
+
+        // 1. Set libraries for this pathway
+        endpoint.setSendLibrary(local.oapp, remoteEid, local.sendLib);
+        endpoint.setReceiveLibrary(local.oapp, remoteEid, local.receiveLib, 0);
+
+        // 2. Set send config (local -> remote): use remote's confirmation requirement
+        _setSendConfig(local, remoteEid, remote.confirmations);
+
+        // 3. Set receive config (remote -> local): use local's confirmation requirement
+        _setReceiveConfig(local, remoteEid);
+
+        // 4. Set enforced options (gas to deliver to remote chain)
+        _setEnforcedOptions(local.oapp, remoteEid, remote.sendOptions, remote.sendAndCallOptions);
+
+        // 5. Set peer to open the pathway
+        IOAppCore(local.oapp).setPeer(remoteEid, bytes32(uint256(uint160(remote.oapp))));
+    }
+
+    function _setSendConfig(LocalContext memory local, uint32 remoteEid, uint64 confirmations) internal {
+        SetConfigParam[] memory params = new SetConfigParam[](2);
+
+        params[0] = SetConfigParam({
+            eid: remoteEid,
+            configType: 1,
+            config: abi.encode(ExecutorConfig({maxMessageSize: MAX_MESSAGE_SIZE, executor: local.executor}))
+        });
+
+        params[1] = SetConfigParam({
+            eid: remoteEid,
+            configType: 2,
+            config: abi.encode(
+                UlnConfig({
+                    confirmations: confirmations,
+                    requiredDVNCount: REQUIRED_DVN_COUNT,
+                    optionalDVNCount: 0,
+                    optionalDVNThreshold: 0,
+                    requiredDVNs: local.dvns,
+                    optionalDVNs: new address[](0)
+                })
+            )
+        });
+
+        ILayerZeroEndpointV2(local.endpoint).setConfig(local.oapp, local.sendLib, params);
+    }
+
+    function _setReceiveConfig(LocalContext memory local, uint32 remoteEid) internal {
+        SetConfigParam[] memory params = new SetConfigParam[](1);
+
+        params[0] = SetConfigParam({
+            eid: remoteEid,
+            configType: 2,
+            config: abi.encode(
+                UlnConfig({
+                    confirmations: local.confirmations,
+                    requiredDVNCount: REQUIRED_DVN_COUNT,
+                    optionalDVNCount: 0,
+                    optionalDVNThreshold: 0,
+                    requiredDVNs: local.dvns,
+                    optionalDVNs: new address[](0)
+                })
+            )
+        });
+
+        ILayerZeroEndpointV2(local.endpoint).setConfig(local.oapp, local.receiveLib, params);
+    }
+
+    function _setEnforcedOptions(
+        address oapp,
+        uint32 remoteEid,
+        bytes memory sendOptions,
+        bytes memory sendAndCallOptions
+    ) internal {
+        uint256 count = 1;
+        if (sendAndCallOptions.length > 0) count = 2;
+
+        EnforcedOptionParam[] memory enforcedOptions = new EnforcedOptionParam[](count);
+
+        // MSG_TYPE_SEND (1) - standard transfer
+        enforcedOptions[0] = EnforcedOptionParam({eid: remoteEid, msgType: MSG_TYPE_SEND, options: sendOptions});
+
+        // MSG_TYPE_SEND_AND_CALL (2) - transfer with compose
+        if (sendAndCallOptions.length > 0) {
+            enforcedOptions[1] =
+                EnforcedOptionParam({eid: remoteEid, msgType: MSG_TYPE_SEND_AND_CALL, options: sendAndCallOptions});
+        }
+
+        IOAppOptionsType3(oapp).setEnforcedOptions(enforcedOptions);
+    }
+
+    /*//////////////////////////////////////////////////////////////
+                                HELPERS
+    //////////////////////////////////////////////////////////////*/
+
+    function _getDvnNames() internal pure returns (string[] memory names) {
+        names = new string[](2);
+        names[0] = DVN_1;
+        names[1] = DVN_2;
     }
 }

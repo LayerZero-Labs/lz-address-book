@@ -114,9 +114,9 @@ Complete examples in `scripts/examples/`:
 | Script | Description |
 |--------|-------------|
 | `DeployOFT.s.sol` | Deploy OFT to any supported chain |
-| `ConfigureByChainName.s.sol` | Configure using human-readable chain names |
-| `ConfigureByEid.s.sol` | Configure using LayerZero Endpoint IDs |
-| `ConfigureByChainId.s.sol` | Configure using native chain IDs |
+| `ConfigureByChainId.s.sol` | Configure using native chain IDs (e.g., 42161 for Arbitrum) |
+| `ConfigureByChainName.s.sol` | Configure using chain names (e.g., "arbitrum-mainnet") |
+| `ConfigureByEid.s.sol` | Configure using LayerZero EIDs (e.g., 30110 for Arbitrum) |
 | `SetPeers.s.sol` | Wire peers to open messaging channel |
 
 ### Workflow
@@ -134,6 +134,77 @@ forge script scripts/examples/ConfigureByChainName.s.sol --rpc-url base --broadc
 OAPP_ADDRESS=0x... PEER_CHAIN=base-mainnet PEER_ADDRESS=0x... \
   forge script scripts/examples/SetPeers.s.sol --rpc-url arbitrum --broadcast
 ```
+
+---
+
+## Scripting Patterns
+
+The address book enables generic multi-chain scripts that work across all supported chains without hardcoding addresses.
+
+### Single-Chain Scripts
+
+For scripts targeting a specific chain, use context lookups:
+
+```solidity
+LZAddressContext ctx = new LZAddressContext();
+ctx.setChainByChainId(block.chainid);  // Auto-detect current chain
+
+address endpoint = ctx.getEndpoint();
+address[] memory dvns = ctx.getSortedDVNs(dvnNames);  // Pre-sorted for UlnConfig
+```
+
+### Multi-Chain Configuration
+
+For deploying OApps across multiple chains, define all configurations once and run the same script on each chain:
+
+```solidity
+// Define all chains in one place
+ChainConfig[] memory chains = new ChainConfig[](4);
+chains[0] = ChainConfig({chainId: 1, oapp: 0x..., confirmations: 15});
+chains[1] = ChainConfig({chainId: 42161, oapp: 0x..., confirmations: 1});
+chains[2] = ChainConfig({chainId: 8453, oapp: 0x..., confirmations: 1});
+chains[3] = ChainConfig({chainId: 10, oapp: 0x..., confirmations: 1});
+
+// Auto-detect which chain we're on
+uint256 currentChainId = block.chainid;
+int256 localIndex = findChainIndex(chains, currentChainId);
+
+// Prepare and execute transactions for THIS chain only
+ctx.setChainByChainId(currentChainId);
+// ... build txs using ctx lookups
+```
+
+Then run the same script on each chain:
+
+```bash
+forge script ConfigureByChainId --rpc-url ethereum --broadcast --account deployer
+forge script ConfigureByChainId --rpc-url arbitrum --broadcast --account deployer
+forge script ConfigureByChainId --rpc-url base --broadcast --account deployer
+forge script ConfigureByChainId --rpc-url optimism --broadcast --account deployer
+```
+
+See `scripts/examples/ConfigureByChainId.s.sol` for a complete implementation using chain IDs,
+or `ConfigureByChainName.s.sol` / `ConfigureByEid.s.sol` for alternative lookup methods.
+
+> **Note on Foundry Multi-Chain Broadcasting**
+> 
+> Foundry supports broadcasting to multiple chains in a single script run. The key constraint is that **all transactions for one chain must complete before switching to another**. You can switch RPCs between broadcast blocks:
+> 
+> ```solidity
+> // Configure Chain A
+> vm.createSelectFork("arbitrum");
+> vm.startBroadcast();
+> // ... all Arbitrum txs
+> vm.stopBroadcast();
+> 
+> // Configure Chain B  
+> vm.createSelectFork("base");
+> vm.startBroadcast();
+> // ... all Base txs
+> vm.stopBroadcast();
+> ```
+> 
+> Alternatively, run the same script once per chain with `--rpc-url` for simpler CI/CD pipelines.
 
 ---
 
@@ -249,6 +320,7 @@ uint32 eid = LayerZeroV2ArbitrumMainnet.EID;
 | `getDVNsForCurrentChain()` | Get DVN names and addresses for current chain |
 | `getDVNsForChain(string)` | Get DVN names and addresses for any chain |
 | `getDVNs(string[])` | Get multiple DVN addresses by name (batch lookup) |
+| `getSortedDVNs(string[])` | Get multiple DVN addresses sorted ascending (for UlnConfig) |
 | `isDVNAvailable(string)` | Check if DVN exists on current chain |
 
 #### Chain Discovery

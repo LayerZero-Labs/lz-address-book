@@ -202,7 +202,7 @@ contract LZAddressContext is ILZAddressContext {
     /// @param dvnNames Array of DVN names to look up
     /// @return addresses Array of corresponding DVN addresses
     /// @dev Reverts if any DVN is not found on current chain
-    function getDVNs(string[] memory dvnNames) external view returns (address[] memory addresses) {
+    function getDVNs(string[] memory dvnNames) public view returns (address[] memory addresses) {
         _requireChainSet();
         addresses = new address[](dvnNames.length);
         for (uint256 i = 0; i < dvnNames.length; i++) {
@@ -211,6 +211,28 @@ contract LZAddressContext is ILZAddressContext {
                 string.concat("DVN not found on ", _currentChainName, ": ", dvnNames[i])
             );
             addresses[i] = protocol.workers().getDVNAddress(dvnNames[i], _currentEid);
+        }
+    }
+    
+    /// @notice Get multiple DVN addresses sorted in ascending order (required by LayerZero UlnConfig)
+    /// @param dvnNames Array of DVN names to look up
+    /// @return addresses Array of DVN addresses sorted in ascending order
+    /// @dev LayerZero requires DVN arrays to be sorted. Use this instead of getDVNs() for UlnConfig.
+    function getSortedDVNs(string[] memory dvnNames) external view returns (address[] memory addresses) {
+        addresses = getDVNs(dvnNames);
+        _sortAddresses(addresses);
+    }
+    
+    /// @dev Sort address array in ascending order (insertion sort - efficient for small arrays)
+    function _sortAddresses(address[] memory arr) private pure {
+        for (uint256 i = 1; i < arr.length; i++) {
+            address key = arr[i];
+            uint256 j = i;
+            while (j > 0 && arr[j - 1] > key) {
+                arr[j] = arr[j - 1];
+                j--;
+            }
+            arr[j] = key;
         }
     }
     
