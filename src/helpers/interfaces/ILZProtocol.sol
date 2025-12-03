@@ -70,10 +70,7 @@ interface ILZProtocol {
     /// @notice Get protocol addresses by native chain ID
     /// @param chainId The native chain ID (e.g., 42161 for Arbitrum)
     /// @return addresses The protocol addresses for the chain
-    function getProtocolAddressesByChainId(uint256 chainId)
-        external
-        view
-        returns (ProtocolAddresses memory addresses);
+    function getProtocolAddressesByChainId(uint256 chainId) external view returns (ProtocolAddresses memory addresses);
 
     /*//////////////////////////////////////////////////////////////
                           FULL DEPLOYMENT INFO
@@ -174,5 +171,4 @@ interface ILZProtocol {
     /// @notice Get all supported chain names
     /// @return chainNames Array of supported chain names
     function getSupportedChainNames() external view returns (string[] memory chainNames);
-
 }

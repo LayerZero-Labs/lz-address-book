@@ -5,7 +5,6 @@ pragma solidity ^0.8.22;
 // Source: https://mainnet.stargate-api.com/v1/metadata?version=v2
 // Source: https://testnet.stargate-api.com/v1/metadata?version=v2
 
-
 library StargateAbstractMainnet {
     // Chain metadata
     uint32 internal constant EID = 30324;
@@ -25,7 +24,6 @@ library StargateAbstractMainnet {
     // ETH (StargateOFT)
     address internal constant ETH_OFT = 0x221F0E1280Ec657503ca55c708105F1e1529527D;
     address internal constant ETH_TOKEN = 0x0000000000000000000000000000000000000000;
-
 }
 
 library StargateApeMainnet {
@@ -47,7 +45,6 @@ library StargateApeMainnet {
     // WETH (StargateOFT)
     address internal constant WETH_OFT = 0x28E0f0eed8d6A6a96033feEe8b2D7F32EB5CCc48;
     address internal constant WETH_TOKEN = 0xf4D9235269a96aaDaFc9aDAe454a0618eBE37949;
-
 }
 
 library StargateApexfusionnexusMainnet {
@@ -61,7 +58,6 @@ library StargateApexfusionnexusMainnet {
     // USDC.e (StargateOFT)
     address internal constant USDC_E_OFT = 0x60219C44E146BAf36002eA73767820238Ebc1db6;
     address internal constant USDC_E_TOKEN = 0x8a2B28364102Bea189D99A475C494330Ef2bDD0B;
-
 }
 
 library StargateArbitrumMainnet {
@@ -83,7 +79,6 @@ library StargateArbitrumMainnet {
     // ETH (StargateOFT)
     address internal constant ETH_OFT = 0xA45B5130f36CDcA45667738e2a258AB09f4A5f7F;
     address internal constant ETH_TOKEN = 0x0000000000000000000000000000000000000000;
-
 }
 
 library StargateArbitrumSepolia {
@@ -100,7 +95,6 @@ library StargateArbitrumSepolia {
     // ETH (StargateOFT)
     address internal constant ETH_OFT = 0x6fddB6270F6c71f31B62AE0260cfa8E2e2d186E0;
     address internal constant ETH_TOKEN = 0x0000000000000000000000000000000000000000;
-
 }
 
 library StargateAuroraMainnet {
@@ -114,7 +108,6 @@ library StargateAuroraMainnet {
     // USDC (StargatePool)
     address internal constant USDC_OFT = 0x81F6138153d473E8c5EcebD3DC8Cd4903506B075;
     address internal constant USDC_TOKEN = 0x368EBb46ACa6b8D0787C96B2b20bD3CC3F2c45F7;
-
 }
 
 library StargateAvalancheMainnet {
@@ -136,7 +129,6 @@ library StargateAvalancheMainnet {
     // EURC (StargatePool)
     address internal constant EURC_OFT = 0x0cEb237E109eE22374a567c6b09F373C73FA4cBb;
     address internal constant EURC_TOKEN = 0xC891EB4cbdEFf6e073e859e987815Ed1505c2ACD;
-
 }
 
 library StargateBaseMainnet {
@@ -158,7 +150,6 @@ library StargateBaseMainnet {
     // EURC (StargatePool)
     address internal constant EURC_OFT = 0x87Dd5A7481726a53C5Ac6b0D296F5846f95a72f2;
     address internal constant EURC_TOKEN = 0x60a3E35Cc302bFA44Cb288Bc5a4F316Fdb1adb42;
-
 }
 
 library StargateBeraMainnet {
@@ -180,7 +171,6 @@ library StargateBeraMainnet {
     // EURC.e (StargateOFT)
     address internal constant EURC_E_OFT = 0x28BEc7E30E6faee657a03e19Bf1128AaD7632A00;
     address internal constant EURC_E_TOKEN = 0x12a272A581feE5577A5dFa371afEB4b2F3a8C2F8;
-
 }
 
 library StargateBotanixMainnet {
@@ -198,7 +188,6 @@ library StargateBotanixMainnet {
     // WETH (StargateOFT)
     address internal constant WETH_OFT = 0x5e37084162504da9AAa8F441D5F9360d1fe9aD40;
     address internal constant WETH_TOKEN = 0x3292c42e8E9Ab3C6a12CFdA556BbCB6f113B1E28;
-
 }
 
 library StargateBscMainnet {
@@ -216,7 +205,6 @@ library StargateBscMainnet {
     // USDT (StargatePool)
     address internal constant USDT_OFT = 0x138EB30f73BC423c6455C53df6D89CB01d9eBc63;
     address internal constant USDT_TOKEN = 0x55d398326f99059fF775485246999027B3197955;
-
 }
 
 library StargateBscTestnet {
@@ -230,7 +218,6 @@ library StargateBscTestnet {
     // USDT (StargatePool)
     address internal constant USDT_OFT = 0xf1b69ee3097c6E8CC6487B7667dB818FeDC7b1a9;
     address internal constant USDT_TOKEN = 0xe37Bdc6F09DAB6ce6E4eBC4d2E72792994Ef3765;
-
 }
 
 library StargateCampMainnet {
@@ -248,7 +235,6 @@ library StargateCampMainnet {
     // WETH (StargateOFT)
     address internal constant WETH_OFT = 0x783129E4d7bA0Af0C896c239E57C06DF379aAE8c;
     address internal constant WETH_TOKEN = 0x60219C44E146BAf36002eA73767820238Ebc1db6;
-
 }
 
 library StargateCoredaoMainnet {
@@ -266,7 +252,6 @@ library StargateCoredaoMainnet {
     // USDT (StargatePool)
     address internal constant USDT_OFT = 0x45f1A95A4D3f3836523F5c83673c797f4d4d263B;
     address internal constant USDT_TOKEN = 0x900101d06A7426441Ae63e9AB3B9b0F63Be145F1;
-
 }
 
 library StargateCronosevmMainnet {
@@ -284,7 +269,6 @@ library StargateCronosevmMainnet {
     // WETH (StargateOFT)
     address internal constant WETH_OFT = 0x816f6e3CB269712Eb199f146Db7c3Fb590ae6af2;
     address internal constant WETH_TOKEN = 0xf44acfdC916898449E39062934C2b496799B6abe;
-
 }
 
 library StargateDegenMainnet {
@@ -306,7 +290,6 @@ library StargateDegenMainnet {
     // WETH (StargateOFT)
     address internal constant WETH_OFT = 0x45f1A95A4D3f3836523F5c83673c797f4d4d263B;
     address internal constant WETH_TOKEN = 0x2F6F07CDcf3588944Bf4C42aC74ff24bF56e7590;
-
 }
 
 library StargateDomaMainnet {
@@ -324,7 +307,6 @@ library StargateDomaMainnet {
     // ETH (StargateOFT)
     address internal constant ETH_OFT = 0x5d46805BBFAcA875a96Ebbd22Aaa3DE4A81180f5;
     address internal constant ETH_TOKEN = 0x0000000000000000000000000000000000000000;
-
 }
 
 library StargateEduMainnet {
@@ -338,7 +320,6 @@ library StargateEduMainnet {
     // USDC.e (StargateOFT)
     address internal constant USDC_E_OFT = 0x28BEc7E30E6faee657a03e19Bf1128AaD7632A00;
     address internal constant USDC_E_TOKEN = 0x12a272A581feE5577A5dFa371afEB4b2F3a8C2F8;
-
 }
 
 library StargateEthereumMainnet {
@@ -372,7 +353,6 @@ library StargateEthereumMainnet {
     // EURC (StargatePool)
     address internal constant EURC_OFT = 0x783129E4d7bA0Af0C896c239E57C06DF379aAE8c;
     address internal constant EURC_TOKEN = 0x1aBaEA1f7C830bD89Acc67eC4af516284b1bC33c;
-
 }
 
 library StargateFlareMainnet {
@@ -394,7 +374,6 @@ library StargateFlareMainnet {
     // WETH (StargateOFT)
     address internal constant WETH_OFT = 0x8e8539e4CcD69123c623a106773F2b0cbbc58746;
     address internal constant WETH_TOKEN = 0x1502FA4be69d526124D453619276FacCab275d3D;
-
 }
 
 library StargateFlowMainnet {
@@ -416,7 +395,6 @@ library StargateFlowMainnet {
     // WETH (StargateOFT)
     address internal constant WETH_OFT = 0x45f1A95A4D3f3836523F5c83673c797f4d4d263B;
     address internal constant WETH_TOKEN = 0x2F6F07CDcf3588944Bf4C42aC74ff24bF56e7590;
-
 }
 
 library StargateFuseMainnet {
@@ -438,7 +416,6 @@ library StargateFuseMainnet {
     // WETH (StargateOFT)
     address internal constant WETH_OFT = 0x45f1A95A4D3f3836523F5c83673c797f4d4d263B;
     address internal constant WETH_TOKEN = 0x2F6F07CDcf3588944Bf4C42aC74ff24bF56e7590;
-
 }
 
 library StargateGlueMainnet {
@@ -460,7 +437,6 @@ library StargateGlueMainnet {
     // WETH (StargateOFT)
     address internal constant WETH_OFT = 0x45f1A95A4D3f3836523F5c83673c797f4d4d263B;
     address internal constant WETH_TOKEN = 0x2F6F07CDcf3588944Bf4C42aC74ff24bF56e7590;
-
 }
 
 library StargateGnosisMainnet {
@@ -478,7 +454,6 @@ library StargateGnosisMainnet {
     // WETH (StargatePool)
     address internal constant WETH_OFT = 0xe9aBA835f813ca05E50A6C0ce65D0D74390F7dE7;
     address internal constant WETH_TOKEN = 0x6A023CCd1ff6F2045C3309768eAd9E68F978f6e1;
-
 }
 
 library StargateGoatMainnet {
@@ -500,7 +475,6 @@ library StargateGoatMainnet {
     // WETH (StargateOFT)
     address internal constant WETH_OFT = 0x88853D410299BCBfE5fCC9Eef93c03115E908279;
     address internal constant WETH_TOKEN = 0x3a1293Bdb83bBbDd5Ebf4fAc96605aD2021BbC0f;
-
 }
 
 library StargateGravityMainnet {
@@ -522,7 +496,6 @@ library StargateGravityMainnet {
     // WETH (StargateOFT)
     address internal constant WETH_OFT = 0x17d65bF79E77B6Ab21d8a0afed3bC8657d8Ee0B2;
     address internal constant WETH_TOKEN = 0xf6f832466Cd6C21967E0D954109403f36Bc8ceaA;
-
 }
 
 library StargateHederaMainnet {
@@ -536,7 +509,6 @@ library StargateHederaMainnet {
     // WETH (StargateOFT)
     address internal constant WETH_OFT = 0xda6087E69C51E7D31b6DBAD276a3c44703DFdCAd;
     address internal constant WETH_TOKEN = 0xCa367694CDaC8f152e33683BB36CC9d6A73F1ef2;
-
 }
 
 library StargateHemiMainnet {
@@ -558,7 +530,6 @@ library StargateHemiMainnet {
     // ETH (StargateOFT)
     address internal constant ETH_OFT = 0x2F6F07CDcf3588944Bf4C42aC74ff24bF56e7590;
     address internal constant ETH_TOKEN = 0x0000000000000000000000000000000000000000;
-
 }
 
 library StargateInkMainnet {
@@ -572,7 +543,6 @@ library StargateInkMainnet {
     // USDC.e (StargateOFT)
     address internal constant USDC_E_OFT = 0x2F6F07CDcf3588944Bf4C42aC74ff24bF56e7590;
     address internal constant USDC_E_TOKEN = 0xF1815bd50389c46847f0Bda824eC8da914045D14;
-
 }
 
 library StargateIotaMainnet {
@@ -594,7 +564,6 @@ library StargateIotaMainnet {
     // WETH (StargateOFT)
     address internal constant WETH_OFT = 0x9c2dc7377717603eB92b2655c5f2E7997a4945BD;
     address internal constant WETH_TOKEN = 0x160345fC359604fC6e70E3c5fAcbdE5F7A9342d8;
-
 }
 
 library StargateIslanderMainnet {
@@ -616,7 +585,6 @@ library StargateIslanderMainnet {
     // WETH (StargateOFT)
     address internal constant WETH_OFT = 0xAf5191B0De278C7286d6C7CC6ab6BB8A73bA2Cd6;
     address internal constant WETH_TOKEN = 0x2F6F07CDcf3588944Bf4C42aC74ff24bF56e7590;
-
 }
 
 library StargateKavaMainnet {
@@ -630,7 +598,6 @@ library StargateKavaMainnet {
     // USDt (StargatePool)
     address internal constant USDT_OFT = 0x41A5b0470D96656Fb3e8f68A218b39AdBca3420b;
     address internal constant USDT_TOKEN = 0x919C1c267BC06a7039e03fcc2eF738525769109c;
-
 }
 
 library StargateKlaytnBaobab {
@@ -647,7 +614,6 @@ library StargateKlaytnBaobab {
     // WETH (StargateOFT)
     address internal constant WETH_OFT = 0x6312184c0cbe3D032daD2F2085b0e340B84F8b3B;
     address internal constant WETH_TOKEN = 0x653DbE336414A7C83e6Fbc89762Bb73eafaD2Bd3;
-
 }
 
 library StargateKlaytnMainnet {
@@ -669,7 +635,6 @@ library StargateKlaytnMainnet {
     // WETH (StargateOFT)
     address internal constant WETH_OFT = 0xBB4957E44401a31ED81Cab33539d9e8993FA13Ce;
     address internal constant WETH_TOKEN = 0x55Acee547DF909CF844e32DD66eE55a6F81dC71b;
-
 }
 
 library StargateLightlinkMainnet {
@@ -691,7 +656,6 @@ library StargateLightlinkMainnet {
     // ETH (StargateOFT)
     address internal constant ETH_OFT = 0x8731d54E9D02c286767d56ac03e8037C07e01e98;
     address internal constant ETH_TOKEN = 0x0000000000000000000000000000000000000000;
-
 }
 
 library StargateLinea {
@@ -700,7 +664,6 @@ library StargateLinea {
     // ETH (StargateOFT)
     address internal constant ETH_OFT = 0x81F6138153d473E8c5EcebD3DC8Cd4903506B075;
     address internal constant ETH_TOKEN = 0x0000000000000000000000000000000000000000;
-
 }
 
 library StargateMantaMainnet {
@@ -714,7 +677,6 @@ library StargateMantaMainnet {
     // ETH (StargateOFT)
     address internal constant ETH_OFT = 0x9895D81bB462A195b4922ED7De0e3ACD007c32CB;
     address internal constant ETH_TOKEN = 0x0000000000000000000000000000000000000000;
-
 }
 
 library StargateMantleMainnet {
@@ -740,7 +702,6 @@ library StargateMantleMainnet {
     // mETH (StargatePool)
     address internal constant METH_OFT = 0xF7628d84a2BbD9bb9c8E686AC95BB5d55169F3F1;
     address internal constant METH_TOKEN = 0xcDA86A272531e8640cD7F1a92c01839911B90bb0;
-
 }
 
 library StargateMantleSepolia {
@@ -757,7 +718,6 @@ library StargateMantleSepolia {
     // WETH (StargatePool)
     address internal constant WETH_OFT = 0xE1AD845D93853fff44990aE0DcecD8575293681e;
     address internal constant WETH_TOKEN = 0xdEAddEaDdeadDEadDEADDEAddEADDEAddead1111;
-
 }
 
 library StargateMetisMainnet {
@@ -779,7 +739,6 @@ library StargateMetisMainnet {
     // Metis (StargatePool)
     address internal constant METIS_OFT = 0xD9050e7043102a0391F81462a3916326F86331F0;
     address internal constant METIS_TOKEN = 0xDeadDeAddeAddEAddeadDEaDDEAdDeaDDeAD0000;
-
 }
 
 library StargateNibiruMainnet {
@@ -801,7 +760,6 @@ library StargateNibiruMainnet {
     // WETH (StargateOFT)
     address internal constant WETH_OFT = 0x108f4c02C9fcDF862e5f5131054c50f13703f916;
     address internal constant WETH_TOKEN = 0xcdA5b77E2E2268D9E09c874c1b9A4c3F07b37555;
-
 }
 
 library StargateOgMainnet {
@@ -823,7 +781,6 @@ library StargateOgMainnet {
     // WETH (StargateOFT)
     address internal constant WETH_OFT = 0x0F3273eA5d8B182CD87C8630Dc436a6133b9bE39;
     address internal constant WETH_TOKEN = 0x564770837Ef8bbF077cFe54E5f6106538c815B22;
-
 }
 
 library StargateOptimismMainnet {
@@ -845,7 +802,6 @@ library StargateOptimismMainnet {
     // ETH (StargateOFT)
     address internal constant ETH_OFT = 0xe8CDF27AcD73a434D661C84887215F7598e7d0d3;
     address internal constant ETH_TOKEN = 0x0000000000000000000000000000000000000000;
-
 }
 
 library StargateOptimismSepolia {
@@ -862,7 +818,6 @@ library StargateOptimismSepolia {
     // ETH (StargateOFT)
     address internal constant ETH_OFT = 0xa31dCc5C71E25146b598bADA33E303627D7fC97e;
     address internal constant ETH_TOKEN = 0x0000000000000000000000000000000000000000;
-
 }
 
 library StargateOrderlyMainnet {
@@ -876,7 +831,6 @@ library StargateOrderlyMainnet {
     // USDC.e (StargateOFT)
     address internal constant USDC_E_OFT = 0xd027aFcc69ffA2bCB288BA68da6B71EC90d7B1d2;
     address internal constant USDC_E_TOKEN = 0xda6087E69C51E7D31b6DBAD276a3c44703DFdCAd;
-
 }
 
 library StargatePeaqMainnet {
@@ -898,7 +852,6 @@ library StargatePeaqMainnet {
     // WETH (StargateOFT)
     address internal constant WETH_OFT = 0xe7Ec689f432f29383f217e36e680B5C855051f25;
     address internal constant WETH_TOKEN = 0x6694340fc020c5E6B96567843da2df01b2CE1eb6;
-
 }
 
 library StargatePlasmaMainnet {
@@ -912,7 +865,6 @@ library StargatePlasmaMainnet {
     // WETH (StargateOFT)
     address internal constant WETH_OFT = 0x0cEb237E109eE22374a567c6b09F373C73FA4cBb;
     address internal constant WETH_TOKEN = 0x9895D81bB462A195b4922ED7De0e3ACD007c32CB;
-
 }
 
 library StargatePlumephoenixMainnet {
@@ -938,7 +890,6 @@ library StargatePlumephoenixMainnet {
     // EURC.e (StargateOFT)
     address internal constant EURC_E_OFT = 0x5e2519045B5e38863c879c694fb0811dba333a60;
     address internal constant EURC_E_TOKEN = 0x94DaD7d9f37C815Eb4dDC611E6460CC5F6617fA0;
-
 }
 
 library StargatePolygonMainnet {
@@ -956,7 +907,6 @@ library StargatePolygonMainnet {
     // USDT (StargatePool)
     address internal constant USDT_OFT = 0xd47b03ee6d86Cf251ee7860FB2ACf9f91B9fD4d7;
     address internal constant USDT_TOKEN = 0xc2132D05D31c914a87C6611C10748AEb04B58e8F;
-
 }
 
 library StargateRaribleMainnet {
@@ -974,7 +924,6 @@ library StargateRaribleMainnet {
     // USDT (StargateOFT)
     address internal constant USDT_OFT = 0x17d65bF79E77B6Ab21d8a0afed3bC8657d8Ee0B2;
     address internal constant USDT_TOKEN = 0x362FAE9A75B27BBc550aAc28a7c1F96C8D483120;
-
 }
 
 library StargateRootstockMainnet {
@@ -996,7 +945,6 @@ library StargateRootstockMainnet {
     // WETH (StargateOFT)
     address internal constant WETH_OFT = 0x45f1A95A4D3f3836523F5c83673c797f4d4d263B;
     address internal constant WETH_TOKEN = 0x2F6F07CDcf3588944Bf4C42aC74ff24bF56e7590;
-
 }
 
 library StargateScrollMainnet {
@@ -1014,7 +962,6 @@ library StargateScrollMainnet {
     // ETH (StargateOFT)
     address internal constant ETH_OFT = 0xC2b638Cb5042c1B3c5d5C969361fB50569840583;
     address internal constant ETH_TOKEN = 0x0000000000000000000000000000000000000000;
-
 }
 
 library StargateSeiMainnet {
@@ -1036,7 +983,6 @@ library StargateSeiMainnet {
     // WETH (StargateOFT)
     address internal constant WETH_OFT = 0x5c386D85b1B82FD9Db681b9176C8a4248bb6345B;
     address internal constant WETH_TOKEN = 0x160345fC359604fC6e70E3c5fAcbdE5F7A9342d8;
-
 }
 
 library StargateSepolia {
@@ -1053,7 +999,6 @@ library StargateSepolia {
     // SETH (StargateOFT)
     address internal constant SETH_OFT = 0x9Cc7e185162Aa5D1425ee924D97a87A0a34A0706;
     address internal constant SETH_TOKEN = 0x0000000000000000000000000000000000000000;
-
 }
 
 library StargateSomniaMainnet {
@@ -1075,7 +1020,6 @@ library StargateSomniaMainnet {
     // WETH (StargateOFT)
     address internal constant WETH_OFT = 0xFB9e0b64Bf68b2E1E478838B8722EACe2Ad5cD02;
     address internal constant WETH_TOKEN = 0x936Ab8C674bcb567CD5dEB85D8A216494704E9D8;
-
 }
 
 library StargateSoneiumMainnet {
@@ -1093,7 +1037,6 @@ library StargateSoneiumMainnet {
     // ETH (StargateOFT)
     address internal constant ETH_OFT = 0x2F6F07CDcf3588944Bf4C42aC74ff24bF56e7590;
     address internal constant ETH_TOKEN = 0x0000000000000000000000000000000000000000;
-
 }
 
 library StargateSonicMainnet {
@@ -1107,7 +1050,6 @@ library StargateSonicMainnet {
     // USDC (StargatePool)
     address internal constant USDC_OFT = 0xA272fFe20cFfe769CdFc4b63088DCD2C82a2D8F9;
     address internal constant USDC_TOKEN = 0x29219dd400f2Bf60E5a23d13Be72B486D4038894;
-
 }
 
 library StargateStableMainnet {
@@ -1125,7 +1067,6 @@ library StargateStableMainnet {
     // WETH (StargateOFT)
     address internal constant WETH_OFT = 0x0829F361A05D993d5CEb035cA6DF3446b060970b;
     address internal constant WETH_TOKEN = 0x783129E4d7bA0Af0C896c239E57C06DF379aAE8c;
-
 }
 
 library StargateStoryMainnet {
@@ -1147,7 +1088,6 @@ library StargateStoryMainnet {
     // WETH (StargateOFT)
     address internal constant WETH_OFT = 0xA272fFe20cFfe769CdFc4b63088DCD2C82a2D8F9;
     address internal constant WETH_TOKEN = 0xBAb93B7ad7fE8692A878B95a8e689423437cc500;
-
 }
 
 library StargateSuperpositionMainnet {
@@ -1161,7 +1101,6 @@ library StargateSuperpositionMainnet {
     // USDC.e (StargateOFT)
     address internal constant USDC_E_OFT = 0x8EE21165Ecb7562BA716c9549C1dE751282b9B33;
     address internal constant USDC_E_TOKEN = 0x6c030c5CC283F791B26816f325b9C632d964F8A1;
-
 }
 
 library StargateSwellMainnet {
@@ -1175,7 +1114,6 @@ library StargateSwellMainnet {
     // ETH (StargateOFT)
     address internal constant ETH_OFT = 0xCc0587aeBDa397146cc828b445dB130a94486e74;
     address internal constant ETH_TOKEN = 0x0000000000000000000000000000000000000000;
-
 }
 
 library StargateTaikoMainnet {
@@ -1193,7 +1131,6 @@ library StargateTaikoMainnet {
     // USDT (StargateOFT)
     address internal constant USDT_OFT = 0x1C10CC06DC6D35970d1D53B2A23c76ef370d4135;
     address internal constant USDT_TOKEN = 0x9c2dc7377717603eB92b2655c5f2E7997a4945BD;
-
 }
 
 library StargateTelosMainnet {
@@ -1215,7 +1152,6 @@ library StargateTelosMainnet {
     // WETH (StargateOFT)
     address internal constant WETH_OFT = 0xA272fFe20cFfe769CdFc4b63088DCD2C82a2D8F9;
     address internal constant WETH_TOKEN = 0xBAb93B7ad7fE8692A878B95a8e689423437cc500;
-
 }
 
 library StargateUnichainMainnet {
@@ -1229,7 +1165,6 @@ library StargateUnichainMainnet {
     // ETH (StargateOFT)
     address internal constant ETH_OFT = 0xe9aBA835f813ca05E50A6C0ce65D0D74390F7dE7;
     address internal constant ETH_TOKEN = 0x0000000000000000000000000000000000000000;
-
 }
 
 library StargateXdcMainnet {
@@ -1251,5 +1186,4 @@ library StargateXdcMainnet {
     // WETH (StargateOFT)
     address internal constant WETH_OFT = 0xB0d27478A40223e427697Da523c6A3DAF29AaFfB;
     address internal constant WETH_TOKEN = 0xa7348290de5cf01772479c48D50dec791c3fC212;
-
 }

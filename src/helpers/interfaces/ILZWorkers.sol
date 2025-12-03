@@ -32,10 +32,7 @@ interface ILZWorkers {
     /// @param dvnName The canonical DVN name
     /// @param chainId The native chain ID (e.g., 42161 for Arbitrum)
     /// @return dvnAddress The DVN address on the specified chain
-    function getDVNAddressByChainId(string memory dvnName, uint256 chainId)
-        external
-        view
-        returns (address dvnAddress);
+    function getDVNAddressByChainId(string memory dvnName, uint256 chainId) external view returns (address dvnAddress);
 
     /*//////////////////////////////////////////////////////////////
                       MULTIPLE DVN ADDRESSES LOOKUP
@@ -156,5 +153,4 @@ interface ILZWorkers {
     /// @notice Get all available DVN names (global across all chains)
     /// @return dvnNames Array of all registered DVN canonical names
     function getAvailableDVNs() external view returns (string[] memory dvnNames);
-
 }
