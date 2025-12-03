@@ -256,5 +256,4 @@ interface ILZAddressContext {
     /// @param b The bytes32 to convert
     /// @return addr The address representation
     function bytes32ToAddress(bytes32 b) external pure returns (address addr);
-
 }

@@ -10,35 +10,34 @@ import {Vm} from "forge-std/Vm.sol";
 contract LZWorkers is ILZWorkers {
     // Forge VM for string conversion
     Vm private constant vm = Vm(address(uint160(uint256(keccak256("hevm cheat code")))));
-    
+
     // Storage: nested mapping for efficient lookups (dvnName => eid => address)
     mapping(string => mapping(uint32 => address)) private _dvnAddresses;
-    
+
     // Reverse lookup: address => eid => dvnName
     mapping(address => mapping(uint32 => string)) private _dvnAddressToName;
-    
+
     // List of all DVN names for enumeration
     string[] private _dvnNames;
     mapping(string => bool) private _dvnNameExists;
-    
+
     // Reverse mapping for chain name lookups
     mapping(string => uint32) private _chainNameToEid;
     mapping(uint32 => string) private _eidToChainName;
-    
+
     // Chain ID to EID mapping
     mapping(uint256 => uint32) private _chainIdToEid;
-    
+
     // Track DVNs per chain for enumeration
     mapping(uint32 => string[]) private _dvnsByChain;
-    
+
     constructor() {
         _registerAllDVNs();
         _registerChainMappings();
     }
-    
+
     /// @notice Register all DVNs from metadata
     function _registerAllDVNs() private {
-
         // 01node
         _registerDVN("01node", 30110, 0x7A205ED4e3d7f9d0777594501705D8CD405c3B05); // arbitrum-mainnet
         _registerDVN("01node", 30106, 0xA80AA110f05C9C6140018aAE0C4E08A70f43350d); // avalanche-mainnet
@@ -1700,7 +1699,7 @@ contract LZWorkers is ILZWorkers {
         _registerDVN("Zeeve", 30292, 0x1e023Ed98a1236FB30054bA1317bB82c3C37785F); // etherlink-mainnet
         _registerDVN("Zeeve", 30111, 0x4873d56816F45eF341a8819d7039E4746Ed77C21); // optimism-mainnet
     }
-    
+
     /// @notice Register chain name to EID mappings
     function _registerChainMappings() private {
         _chainNameToEid["aavegotchi-testnet"] = 40179;
@@ -2758,119 +2757,176 @@ contract LZWorkers is ILZWorkers {
         _chainIdToEid[37714555429] = 40251;
         _chainIdToEid[71461164656] = 40331;
     }
-    
+
     /// @notice Register a single DVN
     function _registerDVN(string memory dvnName, uint32 eid, address dvnAddress) private {
         _dvnAddresses[dvnName][eid] = dvnAddress;
-        
+
         // Reverse lookup: address -> name
         _dvnAddressToName[dvnAddress][eid] = dvnName;
-        
+
         // Track unique DVN names
         if (!_dvnNameExists[dvnName]) {
             _dvnNameExists[dvnName] = true;
             _dvnNames.push(dvnName);
         }
-        
+
         // Track DVNs per chain
         _dvnsByChain[eid].push(dvnName);
     }
-    
+
     function getDVNAddress(string memory dvnName, uint32 eid) public view override returns (address dvnAddress) {
         dvnAddress = _dvnAddresses[dvnName][eid];
-        require(dvnAddress != address(0), string.concat("DVN not found: ", dvnName, " on chain ", vm.toString(uint256(eid))));
+        require(
+            dvnAddress != address(0), string.concat("DVN not found: ", dvnName, " on chain ", vm.toString(uint256(eid)))
+        );
     }
-    
-    function getDVNAddressByChainName(string memory dvnName, string memory chainName) public view override returns (address dvnAddress) {
+
+    function getDVNAddressByChainName(string memory dvnName, string memory chainName)
+        public
+        view
+        override
+        returns (address dvnAddress)
+    {
         uint32 eid = _chainNameToEid[chainName];
         require(eid != 0, string.concat("Unknown chain: ", chainName));
         return getDVNAddress(dvnName, eid);
     }
-    
-    function getDVNAddressByChainId(string memory dvnName, uint256 chainId) public view override returns (address dvnAddress) {
+
+    function getDVNAddressByChainId(string memory dvnName, uint256 chainId)
+        public
+        view
+        override
+        returns (address dvnAddress)
+    {
         uint32 eid = _chainIdToEid[chainId];
         require(eid != 0, string.concat("Unknown chain ID: ", vm.toString(chainId)));
         return getDVNAddress(dvnName, eid);
     }
-    
+
     function dvnExists(string memory dvnName, uint32 eid) public view override returns (bool exists) {
         return _dvnAddresses[dvnName][eid] != address(0);
     }
-    
-    function dvnExistsByChainName(string memory dvnName, string memory chainName) public view override returns (bool exists) {
+
+    function dvnExistsByChainName(string memory dvnName, string memory chainName)
+        public
+        view
+        override
+        returns (bool exists)
+    {
         uint32 eid = _chainNameToEid[chainName];
         if (eid == 0) return false;
         return dvnExists(dvnName, eid);
     }
-    
+
     function dvnExistsByChainId(string memory dvnName, uint256 chainId) public view override returns (bool exists) {
         uint32 eid = _chainIdToEid[chainId];
         if (eid == 0) return false;
         return dvnExists(dvnName, eid);
     }
-    
+
     function getAvailableDVNs() public view override returns (string[] memory dvnNames) {
         return _dvnNames;
     }
-    
-    function getDVNsForEid(uint32 eid) public view override returns (string[] memory names, address[] memory addresses) {
+
+    function getDVNsForEid(uint32 eid)
+        public
+        view
+        override
+        returns (string[] memory names, address[] memory addresses)
+    {
         names = _dvnsByChain[eid];
         addresses = new address[](names.length);
-        
+
         for (uint256 i = 0; i < names.length; i++) {
             addresses[i] = _dvnAddresses[names[i]][eid];
         }
     }
-    
-    function getDVNsForChainName(string memory chainName) public view override returns (string[] memory names, address[] memory addresses) {
+
+    function getDVNsForChainName(string memory chainName)
+        public
+        view
+        override
+        returns (string[] memory names, address[] memory addresses)
+    {
         uint32 eid = _chainNameToEid[chainName];
         require(eid != 0, string.concat("Unknown chain: ", chainName));
         return getDVNsForEid(eid);
     }
-    
-    function getDVNsForChainId(uint256 chainId) public view override returns (string[] memory names, address[] memory addresses) {
+
+    function getDVNsForChainId(uint256 chainId)
+        public
+        view
+        override
+        returns (string[] memory names, address[] memory addresses)
+    {
         uint32 eid = _chainIdToEid[chainId];
         require(eid != 0, string.concat("Unknown chain ID: ", vm.toString(chainId)));
         return getDVNsForEid(eid);
     }
-    
-    function getDVNAddresses(string[] memory dvnNames, uint32 eid) public view override returns (address[] memory addresses) {
+
+    function getDVNAddresses(string[] memory dvnNames, uint32 eid)
+        public
+        view
+        override
+        returns (address[] memory addresses)
+    {
         addresses = new address[](dvnNames.length);
         for (uint256 i = 0; i < dvnNames.length; i++) {
             addresses[i] = getDVNAddress(dvnNames[i], eid);
         }
     }
-    
-    function getDVNAddressesByChainName(string[] memory dvnNames, string memory chainName) public view override returns (address[] memory addresses) {
+
+    function getDVNAddressesByChainName(string[] memory dvnNames, string memory chainName)
+        public
+        view
+        override
+        returns (address[] memory addresses)
+    {
         uint32 eid = _chainNameToEid[chainName];
         require(eid != 0, string.concat("Unknown chain: ", chainName));
         return getDVNAddresses(dvnNames, eid);
     }
-    
-    function getDVNAddressesByChainId(string[] memory dvnNames, uint256 chainId) public view override returns (address[] memory addresses) {
+
+    function getDVNAddressesByChainId(string[] memory dvnNames, uint256 chainId)
+        public
+        view
+        override
+        returns (address[] memory addresses)
+    {
         uint32 eid = _chainIdToEid[chainId];
         require(eid != 0, string.concat("Unknown chain ID: ", vm.toString(chainId)));
         return getDVNAddresses(dvnNames, eid);
     }
-    
+
     /// @notice Get DVN provider name from address (reverse lookup)
     function getDVNNameByAddress(address dvnAddress, uint32 eid) public view override returns (string memory name) {
         name = _dvnAddressToName[dvnAddress][eid];
         require(bytes(name).length > 0, string.concat("DVN address not found on chain ", vm.toString(uint256(eid))));
     }
-    
-    function getDVNNameByAddressAndChainName(address dvnAddress, string memory chainName) public view override returns (string memory name) {
+
+    function getDVNNameByAddressAndChainName(address dvnAddress, string memory chainName)
+        public
+        view
+        override
+        returns (string memory name)
+    {
         uint32 eid = _chainNameToEid[chainName];
         require(eid != 0, string.concat("Unknown chain: ", chainName));
         return getDVNNameByAddress(dvnAddress, eid);
     }
-    
-    function getDVNNameByAddressAndChainId(address dvnAddress, uint256 chainId) public view override returns (string memory name) {
+
+    function getDVNNameByAddressAndChainId(address dvnAddress, uint256 chainId)
+        public
+        view
+        override
+        returns (string memory name)
+    {
         uint32 eid = _chainIdToEid[chainId];
         require(eid != 0, string.concat("Unknown chain ID: ", vm.toString(chainId)));
         return getDVNNameByAddress(dvnAddress, eid);
     }
-    
+
     /// @notice Check if a DVN address exists on a chain
     function dvnAddressExists(address dvnAddress, uint32 eid) public view override returns (bool exists) {
         return bytes(_dvnAddressToName[dvnAddress][eid]).length > 0;

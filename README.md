@@ -156,7 +156,6 @@ Complete examples in `scripts/examples/`:
 | `ConfigureByChainId.s.sol` | Configure using native chain IDs (e.g., 42161 for Arbitrum) |
 | `ConfigureByChainName.s.sol` | Configure using chain names (e.g., "arbitrum-mainnet") |
 | `ConfigureByEid.s.sol` | Configure using LayerZero EIDs (e.g., 30110 for Arbitrum) |
-| `SetPeers.s.sol` | Wire peers to open messaging channel |
 
 ### Workflow
 
@@ -168,10 +167,6 @@ CHAIN_NAME=base-mainnet forge script scripts/examples/DeployOFT.s.sol --broadcas
 # 2. Configure each chain (sets DVNs, executor, libraries)
 forge script scripts/examples/ConfigureByChainName.s.sol --rpc-url arbitrum --broadcast
 forge script scripts/examples/ConfigureByChainName.s.sol --rpc-url base --broadcast
-
-# 3. Set peers (final step - opens the channel)
-OAPP_ADDRESS=0x... PEER_CHAIN=base-mainnet PEER_ADDRESS=0x... \
-  forge script scripts/examples/SetPeers.s.sol --rpc-url arbitrum --broadcast
 ```
 
 ---

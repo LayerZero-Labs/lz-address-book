@@ -9,12 +9,10 @@ import {SendParam} from "@layerzerolabs/oft-evm/contracts/OFTCore.sol";
 /// @notice Mock OFT contract for testing purposes
 /// @dev Exposes internal OFT functions and adds a mint function for testing
 contract OFTMock is OFT {
-    constructor(
-        string memory _name,
-        string memory _symbol,
-        address _lzEndpoint,
-        address _delegate
-    ) Ownable(_delegate) OFT(_name, _symbol, _lzEndpoint, _delegate) {}
+    constructor(string memory _name, string memory _symbol, address _lzEndpoint, address _delegate)
+        Ownable(_delegate)
+        OFT(_name, _symbol, _lzEndpoint, _delegate)
+    {}
 
     /// @notice Mint tokens for testing
     function mint(address _to, uint256 _amount) public {
@@ -22,20 +20,19 @@ contract OFTMock is OFT {
     }
 
     /// @dev Expose internal _debit function for testing
-    function debit(
-        uint256 _amountToSendLD,
-        uint256 _minAmountToCreditLD,
-        uint32 _dstEid
-    ) public returns (uint256 amountDebitedLD, uint256 amountToCreditLD) {
+    function debit(uint256 _amountToSendLD, uint256 _minAmountToCreditLD, uint32 _dstEid)
+        public
+        returns (uint256 amountDebitedLD, uint256 amountToCreditLD)
+    {
         return _debit(msg.sender, _amountToSendLD, _minAmountToCreditLD, _dstEid);
     }
 
     /// @dev Expose internal _debitView function for testing
-    function debitView(
-        uint256 _amountToSendLD,
-        uint256 _minAmountToCreditLD,
-        uint32 _dstEid
-    ) public view returns (uint256 amountDebitedLD, uint256 amountToCreditLD) {
+    function debitView(uint256 _amountToSendLD, uint256 _minAmountToCreditLD, uint32 _dstEid)
+        public
+        view
+        returns (uint256 amountDebitedLD, uint256 amountToCreditLD)
+    {
         return _debitView(_amountToSendLD, _minAmountToCreditLD, _dstEid);
     }
 
@@ -60,10 +57,11 @@ contract OFTMock is OFT {
     }
 
     /// @dev Expose internal _buildMsgAndOptions function for testing
-    function buildMsgAndOptions(
-        SendParam calldata _sendParam,
-        uint256 _amountToCreditLD
-    ) public view returns (bytes memory message, bytes memory options) {
+    function buildMsgAndOptions(SendParam calldata _sendParam, uint256 _amountToCreditLD)
+        public
+        view
+        returns (bytes memory message, bytes memory options)
+    {
         return _buildMsgAndOptions(_sendParam, _amountToCreditLD);
     }
 }

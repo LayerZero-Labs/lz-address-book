@@ -20,7 +20,6 @@ interface ISTGProtocol {
     enum StargateType {
         POOL, // StargatePool - native asset chains with deep liquidity (lock/unlock)
         OFT // StargateOFT - Hydra chains with minted representations (mint/burn)
-
     }
 
     /// @notice Stargate asset information
@@ -182,5 +181,4 @@ interface ISTGProtocol {
     /// @notice Get all supported Stargate chain names
     /// @return chainNames Array of all chain names with Stargate deployments
     function getSupportedChainNames() external view returns (string[] memory chainNames);
-
 }
