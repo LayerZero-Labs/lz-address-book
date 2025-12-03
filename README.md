@@ -285,26 +285,6 @@ contract MyOAppForkTest is Test {
 }
 ```
 
-Or use the `LZTest` base contract for even simpler setup:
-
-```solidity
-import {LZTest} from "lz-address-book/framework/LZTest.sol";
-
-contract MyOAppForkTest is LZTest {
-    function setUp() public {
-        // ctx is already available and persistent
-        createAndSelectFork("arbitrum-mainnet", "https://arb1.arbitrum.io/rpc");
-        arbOApp = new MyOApp(ctx.getEndpointV2(), address(this));
-        
-        createAndSelectFork("base-mainnet", "https://mainnet.base.org");
-        baseOApp = new MyOApp(ctx.getEndpointV2(), address(this));
-        
-        // Wire peers in one call
-        wireOAppsBidirectional("arbitrum-mainnet", "base-mainnet", address(arbOApp), address(baseOApp));
-    }
-}
-```
-
 ---
 
 ## Static Access

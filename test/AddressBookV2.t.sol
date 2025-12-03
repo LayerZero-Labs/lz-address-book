@@ -7,7 +7,7 @@ import {LZProtocol} from "../src/generated/LZProtocol.sol";
 import {LZAddressContext} from "../src/helpers/LZAddressContext.sol";
 import {DVNValidator} from "../src/helpers/DVNValidator.sol";
 import {STGProtocol, ISTGProtocol} from "../src/generated/STGProtocol.sol";
-import {ChainFamilies} from "../src/utils/ChainFamilies.sol";
+import {ChainStage} from "../src/utils/ChainStage.sol";
 import {ILZProtocol} from "../src/helpers/interfaces/ILZProtocol.sol";
 import {IDVNValidator} from "../src/helpers/interfaces/IDVNValidator.sol";
 
@@ -338,8 +338,8 @@ contract AddressBookV2Test is Test {
     // CHAIN FAMILIES TESTS
     // ============================================
 
-    function testChainFamilies() public view {
-        uint32[] memory mainnets = ChainFamilies.getAllMainnets(protocol);
+    function testChainStage() public view {
+        uint32[] memory mainnets = ChainStage.getAllMainnets(protocol);
         assertTrue(mainnets.length > 0, "Should have mainnets");
 
         bool found = false;
@@ -348,19 +348,8 @@ contract AddressBookV2Test is Test {
         }
         assertTrue(found, "Ethereum Mainnet should be in mainnets family");
 
-        uint32[] memory testnets = ChainFamilies.getAllTestnets(protocol);
+        uint32[] memory testnets = ChainStage.getAllTestnets(protocol);
         assertTrue(testnets.length > 0, "Should have testnets");
-    }
-
-    function testSandboxFamilies() public view {
-        uint32[] memory sandboxes = ChainFamilies.getAllSandboxes(protocol);
-        if (sandboxes.length > 0) {
-            bool found = false;
-            for (uint256 i = 0; i < sandboxes.length; i++) {
-                if (sandboxes[i] > 0) found = true;
-            }
-            assertTrue(found);
-        }
     }
 
     // ============================================

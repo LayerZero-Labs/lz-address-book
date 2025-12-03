@@ -4,19 +4,15 @@ pragma solidity ^0.8.22;
 import {LZProtocol} from "../generated/LZProtocol.sol";
 import {ILZProtocol} from "../helpers/interfaces/ILZProtocol.sol";
 
-/// @title ChainFamilies
-/// @notice Utilities for grouping chains by type (Mainnet, Testnet, etc.)
-library ChainFamilies {
+/// @title ChainStage
+/// @notice Utilities for filtering chains by deployment stage (mainnet, testnet)
+library ChainStage {
     function getAllTestnets(LZProtocol protocol) internal view returns (uint32[] memory) {
         return _filterChains(protocol, "testnet");
     }
 
     function getAllMainnets(LZProtocol protocol) internal view returns (uint32[] memory) {
         return _filterChains(protocol, "mainnet");
-    }
-
-    function getAllSandboxes(LZProtocol protocol) internal view returns (uint32[] memory) {
-        return _filterChains(protocol, "sandbox");
     }
 
     function _filterChains(LZProtocol protocol, string memory suffix) private view returns (uint32[] memory) {
@@ -64,3 +60,4 @@ library ChainFamilies {
         return false;
     }
 }
+
