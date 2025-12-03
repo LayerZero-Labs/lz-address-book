@@ -27,7 +27,7 @@ One `forge install` gets you everything you need: LayerZero contracts, protocol 
 forge install LayerZero-Labs/lz-address-book
 ```
 
-### Remappings (remappings.txt)
+Add these remappings to `remappings.txt` (create the file if it doesn't exist):
 
 ```txt
 @layerzerolabs/lz-evm-protocol-v2/=lib/lz-address-book/lib/LayerZero-v2/packages/layerzero-v2/evm/protocol/
@@ -40,25 +40,64 @@ forge-std/=lib/forge-std/src/
 lz-address-book/=lib/lz-address-book/src/
 ```
 
+Verify installation:
+
+```bash
+forge build  # Should complete in ~2 seconds
+```
+
 ---
 
 ## Quick Start
 
+Create `test/QuickStart.t.sol` to verify everything works:
+
 ```solidity
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.22;
+
+import {Test, console} from "forge-std/Test.sol";
 import {LZAddressContext} from "lz-address-book/helpers/LZAddressContext.sol";
 
-LZAddressContext ctx = new LZAddressContext();
+contract QuickStartTest is Test {
+    function test_QuickStart() public {
+        LZAddressContext ctx = new LZAddressContext();
+        
+        // Set context by chain name, EID, or chain ID
+        ctx.setChain("arbitrum-mainnet");
 
-// Set context by chain name, EID, or chain ID
-ctx.setChain("arbitrum-mainnet");
+        // Fetch addresses
+        address endpoint = ctx.getEndpointV2();
+        address dvn = ctx.getDVNByName("LayerZero Labs");
 
-// Fetch addresses
-address endpoint = ctx.getEndpointV2();
-address dvn = ctx.getDVNByName("LayerZero Labs");
+        console.log("Endpoint:", endpoint);
+        console.log("DVN:", dvn);
 
-// Cross-chain lookups (no context switch needed)
-uint32 baseEid = ctx.getEidForChainName("base-mainnet");
-address baseDvn = ctx.getDVNForChainName("LayerZero Labs", "base-mainnet");
+        // Cross-chain lookups (no context switch needed)
+        uint32 baseEid = ctx.getEidForChainName("base-mainnet");
+        address baseDvn = ctx.getDVNForChainName("LayerZero Labs", "base-mainnet");
+
+        // Verify
+        assertEq(endpoint, 0x1a44076050125825900e736c501f859c50fE728c);
+        assertEq(baseEid, 30184);
+        assertNotEq(baseDvn, address(0));
+    }
+}
+```
+
+Run the test:
+
+```bash
+forge test --match-test test_QuickStart -vv
+```
+
+Expected output:
+
+```
+[PASS] test_QuickStart()
+Logs:
+  Endpoint: 0x1a44076050125825900e736c501f859c50fE728c
+  DVN: 0x2f55C492897526677C5B68fb199ea31E2c126416
 ```
 
 ---
