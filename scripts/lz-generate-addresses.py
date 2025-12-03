@@ -191,7 +191,7 @@ def generate_chain_library(chain_key: str, chain_data: Dict[str, Any]) -> Option
         lines.append(f"  uint32 internal constant EID = {eid};")
         if native_chain_id:
             lines.append(f"  uint256 internal constant CHAIN_ID = {native_chain_id};")
-        lines.append(f'  string internal constant CHAIN_KEY = "{chain_key}";')
+        lines.append(f'  string internal constant CHAIN_NAME = "{chain_key}";')
         lines.append("")
     
     # Group contracts by category
@@ -492,102 +492,100 @@ contract LZProtocol is ILZProtocol {
         _chainIdToEid[chainId] = eid;
     }
     
+    // ============================================
+    // Protocol Address Lookups
+    // ============================================
+    
     function getProtocolAddresses(uint32 eid) public view override returns (ProtocolAddresses memory) {
         ProtocolAddresses memory addresses = _protocolAddresses[eid];
         require(addresses.exists, string.concat("Chain not registered: ", vm.toString(uint256(eid))));
         return addresses;
     }
     
-    function getProtocolAddresses(string memory chainName) public view override returns (ProtocolAddresses memory) {
+    function getProtocolAddressesByChainName(string memory chainName) public view override returns (ProtocolAddresses memory) {
         uint32 eid = _chainNameToEid[chainName];
-        require(eid != 0 || _protocolAddresses[0].exists, "Chain name not found");
+        require(eid != 0 || _protocolAddresses[0].exists, string.concat("Chain name not found: ", chainName));
         return getProtocolAddresses(eid);
     }
     
-    function isChainSupported(uint32 eid) public view override returns (bool) {
+    function getProtocolAddressesByChainId(uint256 chainId) public view override returns (ProtocolAddresses memory) {
+        uint32 eid = _chainIdToEid[chainId];
+        require(eid != 0, string.concat("Chain ID not found: ", vm.toString(chainId)));
+        return getProtocolAddresses(eid);
+    }
+    
+    // ============================================
+    // Support Checks
+    // ============================================
+    
+    function isEidSupported(uint32 eid) public view override returns (bool) {
         return _protocolAddresses[eid].exists;
     }
+    
+    function isChainIdSupported(uint256 chainId) public view override returns (bool) {
+        return _chainIdToEid[chainId] != 0;
+    }
+    
+    function isChainNameSupported(string memory chainName) public view override returns (bool) {
+        uint32 eid = _chainNameToEid[chainName];
+        return eid != 0 || _protocolAddresses[0].exists;
+    }
+    
+    // ============================================
+    // Discovery
+    // ============================================
     
     function getSupportedEids() public view override returns (uint32[] memory) {
         return _registeredEids;
     }
     
-    /// @notice Get EID by chain name
-    function getEidByChainName(string memory chainName) public view returns (uint32) {
+    function getSupportedChainNames() public view override returns (string[] memory chainNames) {
+        chainNames = new string[](_registeredEids.length);
+        for (uint256 i = 0; i < _registeredEids.length; i++) {
+            chainNames[i] = _protocolAddresses[_registeredEids[i]].chainName;
+        }
+    }
+    
+    // ============================================
+    // EID Conversions
+    // ============================================
+    
+    function getEidByChainName(string memory chainName) public view override returns (uint32) {
         uint32 eid = _chainNameToEid[chainName];
-        require(eid != 0 || _protocolAddresses[0].exists, "Chain name not found");
+        require(eid != 0 || _protocolAddresses[0].exists, string.concat("Chain name not found: ", chainName));
         return eid;
     }
     
-    /// @notice Get EID from chain ID (conversion semantics)
-    function getEidFromChainId(uint256 chainId) public view override returns (uint32) {
+    function getEidByChainId(uint256 chainId) public view override returns (uint32) {
         uint32 eid = _chainIdToEid[chainId];
-        require(eid != 0, "Unsupported chain ID");
+        require(eid != 0, string.concat("Chain ID not found: ", vm.toString(chainId)));
         return eid;
     }
     
-    /// @notice Get EID from chain ID (uint32 variant)
-    function getEidFromChainId(uint32 chainId) public view override returns (uint32) {
-        return getEidFromChainId(uint256(chainId));
-    }
+    // ============================================
+    // Chain Name Lookups
+    // ============================================
     
-    /// @notice Check if a chain ID is supported
-    function isSupportedChainId(uint32 chainId) public view override returns (bool) {
-        return _chainIdToEid[uint256(chainId)] != 0;
-    }
-    
-    /// @notice Check if a chain ID is supported (uint256 variant)
-    function isSupportedChainId(uint256 chainId) public view override returns (bool) {
-        return _chainIdToEid[chainId] != 0;
-    }
-    
-    /// @notice Get current chain's EID using block.chainid
-    function forkingValidChainID() public view override returns (uint32) {
-        return getEidFromChainId(block.chainid);
-    }
-    
-    /// @notice Get chain name by EID (reverse lookup)
     function getChainNameByEid(uint32 eid) public view override returns (string memory chainName) {
         ProtocolAddresses memory addresses = _protocolAddresses[eid];
         require(addresses.exists, string.concat("Chain not registered: ", vm.toString(uint256(eid))));
         return addresses.chainName;
     }
     
-    /// @notice Get chain name by chain ID (reverse lookup)
     function getChainNameByChainId(uint256 chainId) public view override returns (string memory chainName) {
         uint32 eid = _chainIdToEid[chainId];
-        require(eid != 0, "Unsupported chain ID");
+        require(eid != 0, string.concat("Chain ID not found: ", vm.toString(chainId)));
         return _protocolAddresses[eid].chainName;
     }
     
-    /// @notice Get EID by chain ID (alias for getEidFromChainId)
-    function getEidByChainId(uint256 chainId) public view override returns (uint32) {
-        return getEidFromChainId(chainId);
-    }
-    
-    /// @notice Get EID by chain ID (uint32 variant)
-    function getEidByChainId(uint32 chainId) public view override returns (uint32) {
-        return getEidFromChainId(uint256(chainId));
-    }
-    
-    /// @notice Check if a chain name is supported
-    function isChainSupportedByName(string memory chainName) public view returns (bool) {
-        uint32 eid = _chainNameToEid[chainName];
-        return eid != 0 || _protocolAddresses[0].exists;
-    }
-    
-    /// @notice Get all supported chain names
-    function getSupportedChainNames() public view returns (string[] memory chainNames) {
-        chainNames = new string[](_registeredEids.length);
-        for (uint256 i = 0; i < _registeredEids.length; i++) {
-            chainNames[i] = _protocolAddresses[_registeredEids[i]].chainName;
-        }
-    }
+    // ============================================
+    // Full Deployment Info
+    // ============================================
 
     function getFullDeploymentInfo(uint32 eid) public view override returns (FullDeploymentInfo memory info) {
         ProtocolAddresses memory base = getProtocolAddresses(eid);
         
-        (string[] memory dvnNames, address[] memory dvnAddrs) = workers.getDVNsForChain(eid);
+        (string[] memory dvnNames, address[] memory dvnAddrs) = workers.getDVNsForEid(eid);
         
         info = FullDeploymentInfo({
             eid: eid,
@@ -605,15 +603,31 @@ contract LZProtocol is ILZProtocol {
         });
     }
 
-    function getFullDeploymentInfo(string memory chainName) public view override returns (FullDeploymentInfo memory info) {
+    function getFullDeploymentInfoByChainName(string memory chainName) public view override returns (FullDeploymentInfo memory info) {
         uint32 eid = _chainNameToEid[chainName];
-        require(eid != 0 || _protocolAddresses[0].exists, "Chain name not found");
+        require(eid != 0 || _protocolAddresses[0].exists, string.concat("Chain name not found: ", chainName));
         return getFullDeploymentInfo(eid);
     }
 
+    function getFullDeploymentInfoByChainId(uint256 chainId) public view override returns (FullDeploymentInfo memory info) {
+        uint32 eid = _chainIdToEid[chainId];
+        require(eid != 0, string.concat("Chain ID not found: ", vm.toString(chainId)));
+        return getFullDeploymentInfo(eid);
+    }
+
+    // ============================================
+    // Pathway Info
+    // ============================================
+
     function getPathwayInfo(string memory srcChain, string memory dstChain) public view override returns (PathwayInfo memory info) {
-        info.source = getFullDeploymentInfo(srcChain);
-        info.destination = getFullDeploymentInfo(dstChain);
+        info.source = getFullDeploymentInfoByChainName(srcChain);
+        info.destination = getFullDeploymentInfoByChainName(dstChain);
+        info.connected = info.source.exists && info.destination.exists;
+    }
+
+    function getPathwayInfoByEid(uint32 srcEid, uint32 dstEid) public view override returns (PathwayInfo memory info) {
+        info.source = getFullDeploymentInfo(srcEid);
+        info.destination = getFullDeploymentInfo(dstEid);
         info.connected = info.source.exists && info.destination.exists;
     }
 }""")
@@ -622,7 +636,7 @@ contract LZProtocol is ILZProtocol {
     
     return "\n".join(lines)
 
-def generate_stargate_addresses(stargate_data: Dict[str, Any]) -> str:
+def generate_stargate_addresses(stargate_data: Dict[str, Any], lz_metadata: Dict[str, Any]) -> str:
     """Generate STGAddresses.sol with per-chain Stargate libraries."""
     
     header = """// SPDX-License-Identifier: MIT
@@ -634,36 +648,87 @@ pragma solidity ^0.8.22;
 
 """
     
-    # Group assets by chain
-    chains = {}  # chainKey -> list of assets
+    # Build mapping from Stargate chain key to LZ chain info (name, EID, chain ID)
+    stg_to_lz_info = {}
+    for chain_key, chain_data in lz_metadata.items():
+        deployments = chain_data.get('deployments', [])
+        chain_details = chain_data.get('chainDetails', {})
+        native_chain_id = chain_details.get('nativeChainId', 0)
+        
+        for deployment in deployments:
+            if deployment.get('version') == 2:
+                eid = deployment.get('eid', 0)
+                info = {
+                    'lz_name': chain_key,
+                    'eid': eid,
+                    'chain_id': native_chain_id
+                }
+                # Map full name to itself
+                stg_to_lz_info[chain_key] = info
+                # Map shortened name (without -mainnet) to full name
+                if '-mainnet' in chain_key:
+                    base_name = chain_key.replace('-mainnet', '')
+                    stg_to_lz_info[base_name] = info
+                break
+    
+    def get_lz_chain_name(stg_chain_key):
+        """Convert Stargate chain key to LZ chain name"""
+        info = stg_to_lz_info.get(stg_chain_key)
+        return info['lz_name'] if info else stg_chain_key
+    
+    def get_lz_chain_info(stg_chain_key):
+        """Get full LZ chain info for a Stargate chain key"""
+        return stg_to_lz_info.get(stg_chain_key)
+    
+    # Group assets by normalized LZ chain name
+    chains = {}  # lz_chain_name -> list of assets
     
     all_assets = stargate_data.get('mainnet', []) + stargate_data.get('testnet', [])
     
     for asset in all_assets:
-        chain_key = asset.get('chainKey', '')
-        if not chain_key:
+        stg_chain_key = asset.get('chainKey', '')
+        if not stg_chain_key:
             continue
         
-        if chain_key not in chains:
-            chains[chain_key] = {
+        # Normalize to LZ chain name and get chain info
+        lz_chain_name = get_lz_chain_name(stg_chain_key)
+        lz_info = get_lz_chain_info(stg_chain_key)
+        
+        if lz_chain_name not in chains:
+            chains[lz_chain_name] = {
                 'assets': [],
-                'tokenMessaging': asset.get('tokenMessaging', '')
+                'tokenMessaging': asset.get('tokenMessaging', ''),
+                'stg_chain_key': stg_chain_key,
+                'eid': lz_info['eid'] if lz_info else 0,
+                'chain_id': lz_info['chain_id'] if lz_info else 0
             }
         
-        chains[chain_key]['assets'].append(asset)
+        chains[lz_chain_name]['assets'].append(asset)
         # Update tokenMessaging if we have it
         if asset.get('tokenMessaging'):
-            chains[chain_key]['tokenMessaging'] = asset.get('tokenMessaging')
+            chains[lz_chain_name]['tokenMessaging'] = asset.get('tokenMessaging')
     
     lines = [header]
     
-    # Generate library for each chain
-    for chain_key in sorted(chains.keys()):
-        chain_data = chains[chain_key]
-        chain_name = sanitize_chain_name(chain_key)
+    # Generate library for each chain (using normalized LZ chain name)
+    for lz_chain_name in sorted(chains.keys()):
+        chain_data = chains[lz_chain_name]
+        chain_name = sanitize_chain_name(lz_chain_name)
         library_name = f"Stargate{chain_name}"
         
         lines.append(f"library {library_name} {{")
+        
+        # Add chain metadata
+        eid = chain_data.get('eid', 0)
+        chain_id = chain_data.get('chain_id', 0)
+        if eid or chain_id:
+            lines.append("    // Chain metadata")
+            if eid:
+                lines.append(f"    uint32 internal constant EID = {eid};")
+            if chain_id:
+                lines.append(f"    uint256 internal constant CHAIN_ID = {chain_id};")
+            lines.append(f'    string internal constant CHAIN_NAME = "{lz_chain_name}";')
+            lines.append("")
         
         # Add token messaging if available
         if chain_data['tokenMessaging']:
@@ -717,9 +782,9 @@ pragma solidity ^0.8.22;
 def generate_stg_protocol(stargate_data: Dict[str, Any], lz_metadata: Dict[str, Any]) -> str:
     """Generate STGProtocol.sol helper contract."""
     
-    # Build mapping from Stargate chain key to LayerZero EID and chain ID
+    # Build mapping from Stargate chain key to LayerZero chain name, EID, and chain ID
     # Stargate uses simplified names like "arbitrum" while LZ uses "arbitrum-mainnet"
-    # We need to be careful to map mainnet names to mainnet EIDs
+    # We normalize everything to use LZ chain names for consistency
     stg_to_lz_mapping = {}
     
     for chain_key, chain_data in lz_metadata.items():
@@ -732,15 +797,22 @@ def generate_stg_protocol(stargate_data: Dict[str, Any], lz_metadata: Dict[str, 
             if deployment.get('version') == 2:
                 eid = deployment.get('eid', 0)
                 if eid and native_chain_id:
-                    # Always store full name
+                    # Always store full name mapping to itself
                     stg_to_lz_mapping[chain_key] = (eid, native_chain_id, chain_key)
                     
-                    # For mainnet chains, also store the base name (without -mainnet suffix)
-                    # This maps "arbitrum" -> arbitrum-mainnet's EID
+                    # For mainnet chains, also store the base name mapping to full name
+                    # This maps "arbitrum" -> ("arbitrum-mainnet", EID, chainId)
                     if '-mainnet' in chain_key:
                         base_name = chain_key.replace('-mainnet', '')
                         stg_to_lz_mapping[base_name] = (eid, native_chain_id, chain_key)
                 break
+    
+    # Helper function to normalize Stargate chain key to LZ chain name
+    def get_lz_chain_name(stg_chain_key):
+        """Convert Stargate chain key to LZ chain name"""
+        if stg_chain_key in stg_to_lz_mapping:
+            return stg_to_lz_mapping[stg_chain_key][2]  # Returns the LZ chain name
+        return stg_chain_key  # Fallback to original if not found
     
     header = """// SPDX-License-Identifier: MIT
 pragma solidity ^0.8.22;
@@ -787,37 +859,42 @@ contract STGProtocol is ISTGProtocol {
     
     lines = [header]
     
-    # Group assets by chain
+    # Group assets by normalized LZ chain name
     chains = {}
     all_assets = stargate_data.get('mainnet', []) + stargate_data.get('testnet', [])
     
     for asset in all_assets:
-        chain_key = asset.get('chainKey', '')
-        if not chain_key:
+        stg_chain_key = asset.get('chainKey', '')
+        if not stg_chain_key:
             continue
         
-        if chain_key not in chains:
-            chains[chain_key] = {
+        # Normalize to LZ chain name for consistency
+        lz_chain_name = get_lz_chain_name(stg_chain_key)
+        
+        if lz_chain_name not in chains:
+            chains[lz_chain_name] = {
                 'assets': [],
-                'tokenMessaging': asset.get('tokenMessaging', '')
+                'tokenMessaging': asset.get('tokenMessaging', ''),
+                'stg_chain_key': stg_chain_key  # Keep original for reference
             }
         
-        chains[chain_key]['assets'].append(asset)
+        chains[lz_chain_name]['assets'].append(asset)
         if asset.get('tokenMessaging'):
-            chains[chain_key]['tokenMessaging'] = asset.get('tokenMessaging')
+            chains[lz_chain_name]['tokenMessaging'] = asset.get('tokenMessaging')
     
     # Generate registration calls
-    for chain_key in sorted(chains.keys()):
-        chain_data = chains[chain_key]
-        lines.append(f'\n        // {chain_key}')
+    for lz_chain_name in sorted(chains.keys()):
+        chain_data = chains[lz_chain_name]
+        stg_key = chain_data.get('stg_chain_key', lz_chain_name)
+        lines.append(f'\n        // {lz_chain_name} (Stargate: {stg_key})')
         
         # Register token messaging
         if chain_data['tokenMessaging']:
             checksum_addr = to_checksum_address(chain_data['tokenMessaging'])
-            lines.append(f'        _tokenMessaging["{chain_key}"] = {checksum_addr};')
+            lines.append(f'        _tokenMessaging["{lz_chain_name}"] = {checksum_addr};')
         
         # Register chain
-        lines.append(f'        _registerChain("{chain_key}");')
+        lines.append(f'        _registerChain("{lz_chain_name}");')
         
         # Register each asset
         for asset in chain_data['assets']:
@@ -839,27 +916,33 @@ contract STGProtocol is ISTGProtocol {
             checksum_token = to_checksum_address(token_address) if token_address else "address(0)"
             sg_type = "StargateType.POOL" if stargate_type == "POOL" else "StargateType.OFT"
             
-            lines.append(f'        _registerAsset("{chain_key}", "{safe_symbol}", {checksum_addr}, {checksum_token}, {decimals}, {shared_decimals}, {sg_type});')
+            lines.append(f'        _registerAsset("{lz_chain_name}", "{safe_symbol}", {checksum_addr}, {checksum_token}, {decimals}, {shared_decimals}, {sg_type});')
     
     lines.append("""    }
     
     function _registerChainMappings() private {""")
     
-    # Add EID and chainId mappings for Stargate chains
+    # Add EID and chainId mappings for Stargate chains (using normalized LZ chain names)
     all_assets = stargate_data.get('mainnet', []) + stargate_data.get('testnet', [])
     registered_chains = set()
     
     for asset in all_assets:
-        chain_key = asset.get('chainKey', '')
-        if not chain_key or chain_key in registered_chains:
+        stg_chain_key = asset.get('chainKey', '')
+        if not stg_chain_key:
+            continue
+        
+        # Normalize to LZ chain name
+        lz_chain_name = get_lz_chain_name(stg_chain_key)
+        
+        if lz_chain_name in registered_chains:
             continue
         
         # Look up EID and chainId from LZ metadata
-        if chain_key in stg_to_lz_mapping:
-            eid, chain_id, lz_name = stg_to_lz_mapping[chain_key]
-            lines.append(f'        _eidToChainName[{eid}] = "{chain_key}";')
-            lines.append(f'        _chainIdToChainName[{chain_id}] = "{chain_key}";')
-            registered_chains.add(chain_key)
+        if stg_chain_key in stg_to_lz_mapping:
+            eid, chain_id, _ = stg_to_lz_mapping[stg_chain_key]
+            lines.append(f'        _eidToChainName[{eid}] = "{lz_chain_name}";')
+            lines.append(f'        _chainIdToChainName[{chain_id}] = "{lz_chain_name}";')
+            registered_chains.add(lz_chain_name)
     
     lines.append("""    }
     
@@ -909,7 +992,7 @@ contract STGProtocol is ISTGProtocol {
     }
     
     /// @inheritdoc ISTGProtocol
-    function getAssetsForChain(string memory chainName) external view override returns (StargateAsset[] memory assets) {
+    function getAssetsForChainName(string memory chainName) external view override returns (StargateAsset[] memory assets) {
         string[] memory symbols = _symbolsByChain[chainName];
         assets = new StargateAsset[](symbols.length);
         
@@ -1023,14 +1106,37 @@ contract STGProtocol is ISTGProtocol {
     }
     
     /// @inheritdoc ISTGProtocol
-    function getSupportedChains() external view override returns (string[] memory) {
+    function getSupportedChainNames() external view override returns (string[] memory) {
         return _supportedChains;
+    }
+    
+    /// @inheritdoc ISTGProtocol
+    function isChainNameSupported(string memory chainName) external view override returns (bool) {
+        return _chainSupported[chainName];
     }
     
     /// @inheritdoc ISTGProtocol
     function isHydraChain(string memory chainName, string memory symbol) external view override returns (bool) {
         StargateAsset memory asset = _assets[chainName][symbol];
         require(asset.exists, string.concat("Asset not found: ", symbol, " on ", chainName));
+        return asset.stargateType == StargateType.OFT;
+    }
+    
+    /// @inheritdoc ISTGProtocol
+    function isHydraChainByEid(uint32 eid, string memory symbol) external view override returns (bool) {
+        string memory chainName = _eidToChainName[eid];
+        require(bytes(chainName).length > 0, string.concat("EID not supported: ", vm.toString(uint256(eid))));
+        StargateAsset memory asset = _assets[chainName][symbol];
+        require(asset.exists, string.concat("Asset not found: ", symbol, " on EID ", vm.toString(uint256(eid))));
+        return asset.stargateType == StargateType.OFT;
+    }
+    
+    /// @inheritdoc ISTGProtocol
+    function isHydraChainByChainId(uint256 chainId, string memory symbol) external view override returns (bool) {
+        string memory chainName = _chainIdToChainName[chainId];
+        require(bytes(chainName).length > 0, string.concat("Chain ID not supported: ", vm.toString(chainId)));
+        StargateAsset memory asset = _assets[chainName][symbol];
+        require(asset.exists, string.concat("Asset not found: ", symbol, " on chain ID ", vm.toString(chainId)));
         return asset.stargateType == StargateType.OFT;
     }
     
@@ -1095,6 +1201,9 @@ contract LZWorkers is ILZWorkers {
     // Reverse mapping for chain name lookups
     mapping(string => uint32) private _chainNameToEid;
     mapping(uint32 => string) private _eidToChainName;
+    
+    // Chain ID to EID mapping
+    mapping(uint256 => uint32) private _chainIdToEid;
     
     // Track DVNs per chain for enumeration
     mapping(uint32 => string[]) private _dvnsByChain;
@@ -1178,7 +1287,7 @@ contract LZWorkers is ILZWorkers {
     
     # Add chain mappings and collect for getEidByChainId
     chain_mappings = []
-    chain_id_to_eid = []  # For getEidByChainId function
+    chain_id_to_eid = []  # For chain ID to EID mapping
     
     for chain_key in chains_processed:
         chain_data = metadata.get(chain_key, {})
@@ -1198,15 +1307,23 @@ contract LZWorkers is ILZWorkers {
                     if current_eid > existing_eid:
                         v2_deployment = deployment
         
-        if v2_deployment and 'eid' in v2_deployment and native_chain_id:
+        if v2_deployment and 'eid' in v2_deployment:
             eid = v2_deployment['eid']
             chain_mappings.append((chain_key, eid))
-            chain_id_to_eid.append((native_chain_id, eid, chain_key))
+            if native_chain_id:
+                chain_id_to_eid.append((native_chain_id, eid))
     
     # Sort by chain name for consistent output
     for chain_key, eid in sorted(chain_mappings):
         lines.append(f'        _chainNameToEid["{chain_key}"] = {eid};')
         lines.append(f'        _eidToChainName[{eid}] = "{chain_key}";')
+    
+    # Add chain ID to EID mappings
+    if chain_id_to_eid:
+        lines.append("")
+        lines.append("        // Chain ID to EID mappings")
+        for chain_id, eid in sorted(chain_id_to_eid):
+            lines.append(f'        _chainIdToEid[{chain_id}] = {eid};')
     
     lines.append("""    }
     
@@ -1227,26 +1344,44 @@ contract LZWorkers is ILZWorkers {
         _dvnsByChain[eid].push(dvnName);
     }
     
-    function getDVNAddress(string memory dvnName, uint32 eid) public view returns (address dvnAddress) {
+    function getDVNAddress(string memory dvnName, uint32 eid) public view override returns (address dvnAddress) {
         dvnAddress = _dvnAddresses[dvnName][eid];
         require(dvnAddress != address(0), string.concat("DVN not found: ", dvnName, " on chain ", vm.toString(uint256(eid))));
     }
     
-    function getDVNAddressByChainName(string memory dvnName, string memory chainName) public view returns (address dvnAddress) {
+    function getDVNAddressByChainName(string memory dvnName, string memory chainName) public view override returns (address dvnAddress) {
         uint32 eid = _chainNameToEid[chainName];
         require(eid != 0, string.concat("Unknown chain: ", chainName));
         return getDVNAddress(dvnName, eid);
     }
     
-    function dvnExists(string memory dvnName, uint32 eid) public view returns (bool exists) {
+    function getDVNAddressByChainId(string memory dvnName, uint256 chainId) public view override returns (address dvnAddress) {
+        uint32 eid = _chainIdToEid[chainId];
+        require(eid != 0, string.concat("Unknown chain ID: ", vm.toString(chainId)));
+        return getDVNAddress(dvnName, eid);
+    }
+    
+    function dvnExists(string memory dvnName, uint32 eid) public view override returns (bool exists) {
         return _dvnAddresses[dvnName][eid] != address(0);
     }
     
-    function getAvailableDVNs() public view returns (string[] memory dvnNames) {
+    function dvnExistsByChainName(string memory dvnName, string memory chainName) public view override returns (bool exists) {
+        uint32 eid = _chainNameToEid[chainName];
+        if (eid == 0) return false;
+        return dvnExists(dvnName, eid);
+    }
+    
+    function dvnExistsByChainId(string memory dvnName, uint256 chainId) public view override returns (bool exists) {
+        uint32 eid = _chainIdToEid[chainId];
+        if (eid == 0) return false;
+        return dvnExists(dvnName, eid);
+    }
+    
+    function getAvailableDVNs() public view override returns (string[] memory dvnNames) {
         return _dvnNames;
     }
     
-    function getDVNsForChain(uint32 eid) public view returns (string[] memory names, address[] memory addresses) {
+    function getDVNsForEid(uint32 eid) public view override returns (string[] memory names, address[] memory addresses) {
         names = _dvnsByChain[eid];
         addresses = new address[](names.length);
         
@@ -1255,49 +1390,56 @@ contract LZWorkers is ILZWorkers {
         }
     }
     
-    function getDVNsForChainByName(string memory chainName) public view returns (string[] memory names, address[] memory addresses) {
+    function getDVNsForChainName(string memory chainName) public view override returns (string[] memory names, address[] memory addresses) {
         uint32 eid = _chainNameToEid[chainName];
         require(eid != 0, string.concat("Unknown chain: ", chainName));
-        return getDVNsForChain(eid);
+        return getDVNsForEid(eid);
     }
     
-    /// @notice Get multiple DVN addresses by chain name and DVN names
-    /// @param chainName The name of the chain
-    /// @param dvnNames Array of DVN names to look up
-    /// @return addresses Array of DVN addresses in the same order as dvnNames
-    function getDVNAddresses(string memory chainName, string[] memory dvnNames) public view override returns (address[] memory addresses) {
-        uint32 eid = _chainNameToEid[chainName];
-        require(eid != 0, string.concat("Unknown chain: ", chainName));
-        
+    function getDVNsForChainId(uint256 chainId) public view override returns (string[] memory names, address[] memory addresses) {
+        uint32 eid = _chainIdToEid[chainId];
+        require(eid != 0, string.concat("Unknown chain ID: ", vm.toString(chainId)));
+        return getDVNsForEid(eid);
+    }
+    
+    function getDVNAddresses(string[] memory dvnNames, uint32 eid) public view override returns (address[] memory addresses) {
         addresses = new address[](dvnNames.length);
         for (uint256 i = 0; i < dvnNames.length; i++) {
             addresses[i] = getDVNAddress(dvnNames[i], eid);
         }
     }
     
+    function getDVNAddressesByChainName(string[] memory dvnNames, string memory chainName) public view override returns (address[] memory addresses) {
+        uint32 eid = _chainNameToEid[chainName];
+        require(eid != 0, string.concat("Unknown chain: ", chainName));
+        return getDVNAddresses(dvnNames, eid);
+    }
+    
+    function getDVNAddressesByChainId(string[] memory dvnNames, uint256 chainId) public view override returns (address[] memory addresses) {
+        uint32 eid = _chainIdToEid[chainId];
+        require(eid != 0, string.concat("Unknown chain ID: ", vm.toString(chainId)));
+        return getDVNAddresses(dvnNames, eid);
+    }
+    
     /// @notice Get DVN provider name from address (reverse lookup)
-    /// @param dvnAddress The DVN contract address
-    /// @param eid The chain's endpoint ID
-    /// @return name The DVN provider name (e.g., "LayerZero Labs")
     function getDVNNameByAddress(address dvnAddress, uint32 eid) public view override returns (string memory name) {
         name = _dvnAddressToName[dvnAddress][eid];
         require(bytes(name).length > 0, string.concat("DVN address not found on chain ", vm.toString(uint256(eid))));
     }
     
-    /// @notice Get DVN provider name from address by chain name
-    /// @param dvnAddress The DVN contract address
-    /// @param chainName The chain name
-    /// @return name The DVN provider name
-    function getDVNNameByAddressAndChain(address dvnAddress, string memory chainName) public view override returns (string memory name) {
+    function getDVNNameByAddressAndChainName(address dvnAddress, string memory chainName) public view override returns (string memory name) {
         uint32 eid = _chainNameToEid[chainName];
         require(eid != 0, string.concat("Unknown chain: ", chainName));
         return getDVNNameByAddress(dvnAddress, eid);
     }
     
+    function getDVNNameByAddressAndChainId(address dvnAddress, uint256 chainId) public view override returns (string memory name) {
+        uint32 eid = _chainIdToEid[chainId];
+        require(eid != 0, string.concat("Unknown chain ID: ", vm.toString(chainId)));
+        return getDVNNameByAddress(dvnAddress, eid);
+    }
+    
     /// @notice Check if a DVN address exists on a chain
-    /// @param dvnAddress The DVN contract address
-    /// @param eid The chain's endpoint ID
-    /// @return exists Whether the DVN address is registered
     function dvnAddressExists(address dvnAddress, uint32 eid) public view override returns (bool exists) {
         return bytes(_dvnAddressToName[dvnAddress][eid]).length > 0;
     }
@@ -1471,7 +1613,7 @@ bytes32 constant LZ_ADDRESSES_DATA_HASH = 0x{data_hash};
         stargate_data = fetch_stargate_metadata(include_testnet=include_testnet)
         
         # Generate STGAddresses.sol
-        stg_addresses_content = generate_stargate_addresses(stargate_data)
+        stg_addresses_content = generate_stargate_addresses(stargate_data, metadata)
         with open(stg_addresses_file, 'w') as f:
             f.write(stg_addresses_content)
         

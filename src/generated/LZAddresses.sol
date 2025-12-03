@@ -3,20 +3,20 @@ pragma solidity ^0.8.20;
 
 // Auto-generated from LayerZero metadata - do not edit manually
 // Source: https://metadata.layerzero-api.com/v1/metadata/deployments
-// Generated: 2025-12-01T23:07:06.874788
-// DATA_HASH: 0x0464a888d87978e87c7bf7fd8d14cbccad3f2fae1f187aaecc0edb6ebdee72ed
+// Generated: 2025-12-03T17:33:12.293173
+// DATA_HASH: 0xfbb17afaa961159bd452e1d02febbc36b4b946fb2227bf7dcc09f303f30d5876
 
 import {ILayerZeroEndpointV2} from "@layerzerolabs/lz-evm-protocol-v2/contracts/interfaces/ILayerZeroEndpointV2.sol";
 import {IMessageLib} from "@layerzerolabs/lz-evm-protocol-v2/contracts/interfaces/IMessageLib.sol";
 
 // DATA_HASH for provenance tracking (LZIP spec requirement)
-bytes32 constant LZ_ADDRESSES_DATA_HASH = 0x0464a888d87978e87c7bf7fd8d14cbccad3f2fae1f187aaecc0edb6ebdee72ed;
+bytes32 constant LZ_ADDRESSES_DATA_HASH = 0xfbb17afaa961159bd452e1d02febbc36b4b946fb2227bf7dcc09f303f30d5876;
 
 
 library LayerZeroV2AavegotchiTestnet {
   // Chain metadata
   uint32 internal constant EID = 40179;
-  string internal constant CHAIN_KEY = "aavegotchi-testnet";
+  string internal constant CHAIN_NAME = "aavegotchi-testnet";
 
   // Message libraries
   address internal constant BLOCKED_MESSAGE_LIB = 0x0000000000000000000000000000000000000000;
@@ -31,7 +31,7 @@ library LayerZeroV2AbstractMainnet {
   // Chain metadata
   uint32 internal constant EID = 30324;
   uint256 internal constant CHAIN_ID = 2741;
-  string internal constant CHAIN_KEY = "abstract-mainnet";
+  string internal constant CHAIN_NAME = "abstract-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x5c6cfF4b7C49805F8295Ff73C204ac83f3bC4AE7);
@@ -82,7 +82,7 @@ library LayerZeroV2AbstractTestnet {
   // Chain metadata
   uint32 internal constant EID = 40313;
   uint256 internal constant CHAIN_ID = 11124;
-  string internal constant CHAIN_KEY = "abstract-testnet";
+  string internal constant CHAIN_NAME = "abstract-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x16c693A3924B947298F7227792953Cd6BBb21Ac8);
@@ -110,7 +110,7 @@ library LayerZeroV2AmoyTestnet {
   // Chain metadata
   uint32 internal constant EID = 40267;
   uint256 internal constant CHAIN_ID = 80002;
-  string internal constant CHAIN_KEY = "amoy-testnet";
+  string internal constant CHAIN_NAME = "amoy-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6EDCE65403992e310A62460808c4b910D972f10f);
@@ -157,7 +157,7 @@ library LayerZeroV2AnimechainMainnet {
   // Chain metadata
   uint32 internal constant EID = 30372;
   uint256 internal constant CHAIN_ID = 69000;
-  string internal constant CHAIN_KEY = "animechain-mainnet";
+  string internal constant CHAIN_NAME = "animechain-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6F475642a6e85809B1c36Fa62763669b1b48DD5B);
@@ -187,7 +187,7 @@ library LayerZeroV2AnimechainTestnet {
   // Chain metadata
   uint32 internal constant EID = 40372;
   uint256 internal constant CHAIN_ID = 6900;
-  string internal constant CHAIN_KEY = "animechain-testnet";
+  string internal constant CHAIN_NAME = "animechain-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x3aCAAf60502791D199a5a5F0B173D78229eBFe32);
@@ -215,7 +215,7 @@ library LayerZeroV2ApeMainnet {
   // Chain metadata
   uint32 internal constant EID = 30312;
   uint256 internal constant CHAIN_ID = 33139;
-  string internal constant CHAIN_KEY = "ape-mainnet";
+  string internal constant CHAIN_NAME = "ape-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6F475642a6e85809B1c36Fa62763669b1b48DD5B);
@@ -260,7 +260,7 @@ library LayerZeroV2ApexfusionnexusMainnet {
   // Chain metadata
   uint32 internal constant EID = 30384;
   uint256 internal constant CHAIN_ID = 9069;
-  string internal constant CHAIN_KEY = "apexfusionnexus-mainnet";
+  string internal constant CHAIN_NAME = "apexfusionnexus-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6F475642a6e85809B1c36Fa62763669b1b48DD5B);
@@ -292,7 +292,7 @@ library LayerZeroV2ApexfusionnexusTestnet {
   // Chain metadata
   uint32 internal constant EID = 40355;
   uint256 internal constant CHAIN_ID = 9070;
-  string internal constant CHAIN_KEY = "apexfusionnexus-testnet";
+  string internal constant CHAIN_NAME = "apexfusionnexus-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0xb23b28012ee92E8dE39DEb57Af31722223034747);
@@ -320,7 +320,7 @@ library LayerZeroV2ArbitrumMainnet {
   // Chain metadata
   uint32 internal constant EID = 30110;
   uint256 internal constant CHAIN_ID = 42161;
-  string internal constant CHAIN_KEY = "arbitrum-mainnet";
+  string internal constant CHAIN_NAME = "arbitrum-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x1a44076050125825900e736c501f859c50fE728c);
@@ -477,7 +477,7 @@ library LayerZeroV2ArbitrumTestnet {
   // Chain metadata
   uint32 internal constant EID = 40143;
   uint256 internal constant CHAIN_ID = 421613;
-  string internal constant CHAIN_KEY = "arbitrum-testnet";
+  string internal constant CHAIN_NAME = "arbitrum-testnet";
 
   // Message libraries
   address internal constant BLOCKED_MESSAGE_LIB = 0x0000000000000000000000000000000000000000;
@@ -496,7 +496,7 @@ library LayerZeroV2ArbsepTestnet {
   // Chain metadata
   uint32 internal constant EID = 40231;
   uint256 internal constant CHAIN_ID = 421614;
-  string internal constant CHAIN_KEY = "arbsep-testnet";
+  string internal constant CHAIN_NAME = "arbsep-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6EDCE65403992e310A62460808c4b910D972f10f);
@@ -557,7 +557,7 @@ library LayerZeroV2AstarMainnet {
   // Chain metadata
   uint32 internal constant EID = 30210;
   uint256 internal constant CHAIN_ID = 592;
-  string internal constant CHAIN_KEY = "astar-mainnet";
+  string internal constant CHAIN_NAME = "astar-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x1a44076050125825900e736c501f859c50fE728c);
@@ -597,7 +597,7 @@ library LayerZeroV2AstarTestnet {
   // Chain metadata
   uint32 internal constant EID = 40210;
   uint256 internal constant CHAIN_ID = 81;
-  string internal constant CHAIN_KEY = "astar-testnet";
+  string internal constant CHAIN_NAME = "astar-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6EDCE65403992e310A62460808c4b910D972f10f);
@@ -626,7 +626,7 @@ library LayerZeroV2AuroraMainnet {
   // Chain metadata
   uint32 internal constant EID = 30211;
   uint256 internal constant CHAIN_ID = 1313161554;
-  string internal constant CHAIN_KEY = "aurora-mainnet";
+  string internal constant CHAIN_NAME = "aurora-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x1a44076050125825900e736c501f859c50fE728c);
@@ -670,7 +670,7 @@ library LayerZeroV2AuroraTestnet {
   // Chain metadata
   uint32 internal constant EID = 40201;
   uint256 internal constant CHAIN_ID = 1313161555;
-  string internal constant CHAIN_KEY = "aurora-testnet";
+  string internal constant CHAIN_NAME = "aurora-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6EDCE65403992e310A62460808c4b910D972f10f);
@@ -697,7 +697,7 @@ library LayerZeroV2AvalancheMainnet {
   // Chain metadata
   uint32 internal constant EID = 30106;
   uint256 internal constant CHAIN_ID = 43114;
-  string internal constant CHAIN_KEY = "avalanche-mainnet";
+  string internal constant CHAIN_NAME = "avalanche-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x1a44076050125825900e736c501f859c50fE728c);
@@ -850,7 +850,7 @@ library LayerZeroV2AvalancheTestnet {
   // Chain metadata
   uint32 internal constant EID = 40106;
   uint256 internal constant CHAIN_ID = 43113;
-  string internal constant CHAIN_KEY = "avalanche-testnet";
+  string internal constant CHAIN_NAME = "avalanche-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6EDCE65403992e310A62460808c4b910D972f10f);
@@ -905,7 +905,7 @@ library LayerZeroV2BahamutMainnet {
   // Chain metadata
   uint32 internal constant EID = 30363;
   uint256 internal constant CHAIN_ID = 5165;
-  string internal constant CHAIN_KEY = "bahamut-mainnet";
+  string internal constant CHAIN_NAME = "bahamut-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6F475642a6e85809B1c36Fa62763669b1b48DD5B);
@@ -937,7 +937,7 @@ library LayerZeroV2BahamutTestnet {
   // Chain metadata
   uint32 internal constant EID = 40347;
   uint256 internal constant CHAIN_ID = 2552;
-  string internal constant CHAIN_KEY = "bahamut-testnet";
+  string internal constant CHAIN_NAME = "bahamut-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6C7Ab2202C98C4227C5c46f1417D81144DA716Ff);
@@ -967,7 +967,7 @@ library LayerZeroV2BartioTestnet {
   // Chain metadata
   uint32 internal constant EID = 40291;
   uint256 internal constant CHAIN_ID = 80084;
-  string internal constant CHAIN_KEY = "bartio-testnet";
+  string internal constant CHAIN_NAME = "bartio-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6EDCE65403992e310A62460808c4b910D972f10f);
@@ -992,7 +992,7 @@ library LayerZeroV2BaseMainnet {
   // Chain metadata
   uint32 internal constant EID = 30184;
   uint256 internal constant CHAIN_ID = 8453;
-  string internal constant CHAIN_KEY = "base-mainnet";
+  string internal constant CHAIN_NAME = "base-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x1a44076050125825900e736c501f859c50fE728c);
@@ -1095,7 +1095,7 @@ library LayerZeroV2BaseTestnet {
   // Chain metadata
   uint32 internal constant EID = 40160;
   uint256 internal constant CHAIN_ID = 84531;
-  string internal constant CHAIN_KEY = "base-testnet";
+  string internal constant CHAIN_NAME = "base-testnet";
 
   // Message libraries
   address internal constant BLOCKED_MESSAGE_LIB = 0x0000000000000000000000000000000000000000;
@@ -1110,7 +1110,7 @@ library LayerZeroV2BasesepTestnet {
   // Chain metadata
   uint32 internal constant EID = 40245;
   uint256 internal constant CHAIN_ID = 84532;
-  string internal constant CHAIN_KEY = "basesep-testnet";
+  string internal constant CHAIN_NAME = "basesep-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6EDCE65403992e310A62460808c4b910D972f10f);
@@ -1153,7 +1153,7 @@ library LayerZeroV2Bb1Mainnet {
   // Chain metadata
   uint32 internal constant EID = 30234;
   uint256 internal constant CHAIN_ID = 2525;
-  string internal constant CHAIN_KEY = "bb1-mainnet";
+  string internal constant CHAIN_NAME = "bb1-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x1a44076050125825900e736c501f859c50fE728c);
@@ -1189,7 +1189,7 @@ library LayerZeroV2BepoliaTestnet {
   // Chain metadata
   uint32 internal constant EID = 40371;
   uint256 internal constant CHAIN_ID = 80069;
-  string internal constant CHAIN_KEY = "bepolia-testnet";
+  string internal constant CHAIN_NAME = "bepolia-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6C7Ab2202C98C4227C5c46f1417D81144DA716Ff);
@@ -1217,7 +1217,7 @@ library LayerZeroV2BeraMainnet {
   // Chain metadata
   uint32 internal constant EID = 30362;
   uint256 internal constant CHAIN_ID = 80094;
-  string internal constant CHAIN_KEY = "bera-mainnet";
+  string internal constant CHAIN_NAME = "bera-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6F475642a6e85809B1c36Fa62763669b1b48DD5B);
@@ -1290,7 +1290,7 @@ library LayerZeroV2BeraTestnet {
   // Chain metadata
   uint32 internal constant EID = 40256;
   uint256 internal constant CHAIN_ID = 80084;
-  string internal constant CHAIN_KEY = "bera-testnet";
+  string internal constant CHAIN_NAME = "bera-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6EDCE65403992e310A62460808c4b910D972f10f);
@@ -1317,7 +1317,7 @@ library LayerZeroV2Besu1Testnet {
   // Chain metadata
   uint32 internal constant EID = 40288;
   uint256 internal constant CHAIN_ID = 1337;
-  string internal constant CHAIN_KEY = "besu1-testnet";
+  string internal constant CHAIN_NAME = "besu1-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x3aCAAf60502791D199a5a5F0B173D78229eBFe32);
@@ -1342,7 +1342,7 @@ library LayerZeroV2BevmMainnet {
   // Chain metadata
   uint32 internal constant EID = 30317;
   uint256 internal constant CHAIN_ID = 11501;
-  string internal constant CHAIN_KEY = "bevm-mainnet";
+  string internal constant CHAIN_NAME = "bevm-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0xcb566e3B6934Fa77258d68ea18E931fa75e1aaAa);
@@ -1376,7 +1376,7 @@ library LayerZeroV2BevmTestnet {
   // Chain metadata
   uint32 internal constant EID = 40324;
   uint256 internal constant CHAIN_ID = 11503;
-  string internal constant CHAIN_KEY = "bevm-testnet";
+  string internal constant CHAIN_NAME = "bevm-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6C7Ab2202C98C4227C5c46f1417D81144DA716Ff);
@@ -1404,7 +1404,7 @@ library LayerZeroV2BitlayerMainnet {
   // Chain metadata
   uint32 internal constant EID = 30314;
   uint256 internal constant CHAIN_ID = 200901;
-  string internal constant CHAIN_KEY = "bitlayer-mainnet";
+  string internal constant CHAIN_NAME = "bitlayer-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6F475642a6e85809B1c36Fa62763669b1b48DD5B);
@@ -1436,7 +1436,7 @@ library LayerZeroV2BitlayerTestnet {
   // Chain metadata
   uint32 internal constant EID = 40320;
   uint256 internal constant CHAIN_ID = 200810;
-  string internal constant CHAIN_KEY = "bitlayer-testnet";
+  string internal constant CHAIN_NAME = "bitlayer-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6C7Ab2202C98C4227C5c46f1417D81144DA716Ff);
@@ -1466,7 +1466,7 @@ library LayerZeroV2Bl2Testnet {
   // Chain metadata
   uint32 internal constant EID = 40331;
   uint256 internal constant CHAIN_ID = 71461164656;
-  string internal constant CHAIN_KEY = "bl2-testnet";
+  string internal constant CHAIN_NAME = "bl2-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6C7Ab2202C98C4227C5c46f1417D81144DA716Ff);
@@ -1494,7 +1494,7 @@ library LayerZeroV2Bl3Testnet {
   // Chain metadata
   uint32 internal constant EID = 40346;
   uint256 internal constant CHAIN_ID = 80000;
-  string internal constant CHAIN_KEY = "bl3-testnet";
+  string internal constant CHAIN_NAME = "bl3-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6C7Ab2202C98C4227C5c46f1417D81144DA716Ff);
@@ -1521,7 +1521,7 @@ library LayerZeroV2DVNBl3Testnet {
 library LayerZeroV2Bl4Mainnet {
   // Chain metadata
   uint32 internal constant EID = 30337;
-  string internal constant CHAIN_KEY = "bl4-mainnet";
+  string internal constant CHAIN_NAME = "bl4-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6F475642a6e85809B1c36Fa62763669b1b48DD5B);
@@ -1546,7 +1546,7 @@ library LayerZeroV2DVNBl4Mainnet {
 library LayerZeroV2Bl5Mainnet {
   // Chain metadata
   uint32 internal constant EID = 30338;
-  string internal constant CHAIN_KEY = "bl5-mainnet";
+  string internal constant CHAIN_NAME = "bl5-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6F475642a6e85809B1c36Fa62763669b1b48DD5B);
@@ -1572,7 +1572,7 @@ library LayerZeroV2Bl6Testnet {
   // Chain metadata
   uint32 internal constant EID = 40357;
   uint256 internal constant CHAIN_ID = 996353;
-  string internal constant CHAIN_KEY = "bl6-testnet";
+  string internal constant CHAIN_NAME = "bl6-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6C7Ab2202C98C4227C5c46f1417D81144DA716Ff);
@@ -1600,7 +1600,7 @@ library LayerZeroV2BlastMainnet {
   // Chain metadata
   uint32 internal constant EID = 30243;
   uint256 internal constant CHAIN_ID = 81457;
-  string internal constant CHAIN_KEY = "blast-mainnet";
+  string internal constant CHAIN_NAME = "blast-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x1a44076050125825900e736c501f859c50fE728c);
@@ -1651,7 +1651,7 @@ library LayerZeroV2BlastTestnet {
   // Chain metadata
   uint32 internal constant EID = 40243;
   uint256 internal constant CHAIN_ID = 168587773;
-  string internal constant CHAIN_KEY = "blast-testnet";
+  string internal constant CHAIN_NAME = "blast-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6EDCE65403992e310A62460808c4b910D972f10f);
@@ -1676,7 +1676,7 @@ library LayerZeroV2BleTestnet {
   // Chain metadata
   uint32 internal constant EID = 40330;
   uint256 internal constant CHAIN_ID = 52085143;
-  string internal constant CHAIN_KEY = "ble-testnet";
+  string internal constant CHAIN_NAME = "ble-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6Ac7bdc07A0583A362F1497252872AE6c0A5F5B8);
@@ -1703,7 +1703,7 @@ library LayerZeroV2DVNBleTestnet {
 library LayerZeroV2BlockgenTestnet {
   // Chain metadata
   uint32 internal constant EID = 40177;
-  string internal constant CHAIN_KEY = "blockgen-testnet";
+  string internal constant CHAIN_NAME = "blockgen-testnet";
 
   // Message libraries
   address internal constant BLOCKED_MESSAGE_LIB = 0x0000000000000000000000000000000000000000;
@@ -1718,7 +1718,7 @@ library LayerZeroV2BobMainnet {
   // Chain metadata
   uint32 internal constant EID = 30279;
   uint256 internal constant CHAIN_ID = 60808;
-  string internal constant CHAIN_KEY = "bob-mainnet";
+  string internal constant CHAIN_NAME = "bob-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x1a44076050125825900e736c501f859c50fE728c);
@@ -1760,7 +1760,7 @@ library LayerZeroV2BobTestnet {
   // Chain metadata
   uint32 internal constant EID = 40279;
   uint256 internal constant CHAIN_ID = 111;
-  string internal constant CHAIN_KEY = "bob-testnet";
+  string internal constant CHAIN_NAME = "bob-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6EDCE65403992e310A62460808c4b910D972f10f);
@@ -1785,7 +1785,7 @@ library LayerZeroV2BotanixMainnet {
   // Chain metadata
   uint32 internal constant EID = 30376;
   uint256 internal constant CHAIN_ID = 3637;
-  string internal constant CHAIN_KEY = "botanix-mainnet";
+  string internal constant CHAIN_NAME = "botanix-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6F475642a6e85809B1c36Fa62763669b1b48DD5B);
@@ -1825,7 +1825,7 @@ library LayerZeroV2BotanixTestnet {
   // Chain metadata
   uint32 internal constant EID = 40281;
   uint256 internal constant CHAIN_ID = 3636;
-  string internal constant CHAIN_KEY = "botanix-testnet";
+  string internal constant CHAIN_NAME = "botanix-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6EDCE65403992e310A62460808c4b910D972f10f);
@@ -1850,7 +1850,7 @@ library LayerZeroV2BouncebitMainnet {
   // Chain metadata
   uint32 internal constant EID = 30293;
   uint256 internal constant CHAIN_ID = 6001;
-  string internal constant CHAIN_KEY = "bouncebit-mainnet";
+  string internal constant CHAIN_NAME = "bouncebit-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x1a44076050125825900e736c501f859c50fE728c);
@@ -1880,7 +1880,7 @@ library LayerZeroV2BouncebitTestnet {
   // Chain metadata
   uint32 internal constant EID = 40289;
   uint256 internal constant CHAIN_ID = 6000;
-  string internal constant CHAIN_KEY = "bouncebit-testnet";
+  string internal constant CHAIN_NAME = "bouncebit-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6EDCE65403992e310A62460808c4b910D972f10f);
@@ -1905,7 +1905,7 @@ library LayerZeroV2BscMainnet {
   // Chain metadata
   uint32 internal constant EID = 30102;
   uint256 internal constant CHAIN_ID = 56;
-  string internal constant CHAIN_KEY = "bsc-mainnet";
+  string internal constant CHAIN_NAME = "bsc-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x1a44076050125825900e736c501f859c50fE728c);
@@ -2060,7 +2060,7 @@ library LayerZeroV2BscTestnet {
   // Chain metadata
   uint32 internal constant EID = 40102;
   uint256 internal constant CHAIN_ID = 97;
-  string internal constant CHAIN_KEY = "bsc-testnet";
+  string internal constant CHAIN_NAME = "bsc-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6EDCE65403992e310A62460808c4b910D972f10f);
@@ -2119,7 +2119,7 @@ library LayerZeroV2CampMainnet {
   // Chain metadata
   uint32 internal constant EID = 30381;
   uint256 internal constant CHAIN_ID = 484;
-  string internal constant CHAIN_KEY = "camp-mainnet";
+  string internal constant CHAIN_NAME = "camp-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6F475642a6e85809B1c36Fa62763669b1b48DD5B);
@@ -2151,7 +2151,7 @@ library LayerZeroV2CampTestnet {
   // Chain metadata
   uint32 internal constant EID = 40295;
   uint256 internal constant CHAIN_ID = 325000;
-  string internal constant CHAIN_KEY = "camp-testnet";
+  string internal constant CHAIN_NAME = "camp-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6EDCE65403992e310A62460808c4b910D972f10f);
@@ -2176,7 +2176,7 @@ library LayerZeroV2CantoMainnet {
   // Chain metadata
   uint32 internal constant EID = 30159;
   uint256 internal constant CHAIN_ID = 7700;
-  string internal constant CHAIN_KEY = "canto-mainnet";
+  string internal constant CHAIN_NAME = "canto-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x1a44076050125825900e736c501f859c50fE728c);
@@ -2216,7 +2216,7 @@ library LayerZeroV2CantoTestnet {
   // Chain metadata
   uint32 internal constant EID = 40159;
   uint256 internal constant CHAIN_ID = 7701;
-  string internal constant CHAIN_KEY = "canto-testnet";
+  string internal constant CHAIN_NAME = "canto-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6EDCE65403992e310A62460808c4b910D972f10f);
@@ -2242,7 +2242,7 @@ library LayerZeroV2DVNCantoTestnet {
 library LayerZeroV2CathayTestnet {
   // Chain metadata
   uint32 internal constant EID = 40171;
-  string internal constant CHAIN_KEY = "cathay-testnet";
+  string internal constant CHAIN_NAME = "cathay-testnet";
 
   // Message libraries
   address internal constant BLOCKED_MESSAGE_LIB = 0x0000000000000000000000000000000000000000;
@@ -2257,7 +2257,7 @@ library LayerZeroV2CeloMainnet {
   // Chain metadata
   uint32 internal constant EID = 30125;
   uint256 internal constant CHAIN_ID = 42220;
-  string internal constant CHAIN_KEY = "celo-mainnet";
+  string internal constant CHAIN_NAME = "celo-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x1a44076050125825900e736c501f859c50fE728c);
@@ -2318,7 +2318,7 @@ library LayerZeroV2CeloTestnet {
   // Chain metadata
   uint32 internal constant EID = 40125;
   uint256 internal constant CHAIN_ID = 44787;
-  string internal constant CHAIN_KEY = "celo-testnet";
+  string internal constant CHAIN_NAME = "celo-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6EDCE65403992e310A62460808c4b910D972f10f);
@@ -2349,7 +2349,7 @@ library LayerZeroV2CitreaTestnet {
   // Chain metadata
   uint32 internal constant EID = 40344;
   uint256 internal constant CHAIN_ID = 5115;
-  string internal constant CHAIN_KEY = "citrea-testnet";
+  string internal constant CHAIN_NAME = "citrea-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6C7Ab2202C98C4227C5c46f1417D81144DA716Ff);
@@ -2379,7 +2379,7 @@ library LayerZeroV2CodexMainnet {
   // Chain metadata
   uint32 internal constant EID = 30323;
   uint256 internal constant CHAIN_ID = 81224;
-  string internal constant CHAIN_KEY = "codex-mainnet";
+  string internal constant CHAIN_NAME = "codex-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0xcb566e3B6934Fa77258d68ea18E931fa75e1aaAa);
@@ -2415,7 +2415,7 @@ library LayerZeroV2CodexTestnet {
   // Chain metadata
   uint32 internal constant EID = 40311;
   uint256 internal constant CHAIN_ID = 6513784;
-  string internal constant CHAIN_KEY = "codex-testnet";
+  string internal constant CHAIN_NAME = "codex-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6C7Ab2202C98C4227C5c46f1417D81144DA716Ff);
@@ -2443,7 +2443,7 @@ library LayerZeroV2ConcreteMainnet {
   // Chain metadata
   uint32 internal constant EID = 30366;
   uint256 internal constant CHAIN_ID = 12739;
-  string internal constant CHAIN_KEY = "concrete-mainnet";
+  string internal constant CHAIN_NAME = "concrete-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0xcb566e3B6934Fa77258d68ea18E931fa75e1aaAa);
@@ -2475,7 +2475,7 @@ library LayerZeroV2ConfluxMainnet {
   // Chain metadata
   uint32 internal constant EID = 30212;
   uint256 internal constant CHAIN_ID = 1030;
-  string internal constant CHAIN_KEY = "conflux-mainnet";
+  string internal constant CHAIN_NAME = "conflux-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x1a44076050125825900e736c501f859c50fE728c);
@@ -2517,7 +2517,7 @@ library LayerZeroV2ConfluxTestnet {
   // Chain metadata
   uint32 internal constant EID = 40211;
   uint256 internal constant CHAIN_ID = 71;
-  string internal constant CHAIN_KEY = "conflux-testnet";
+  string internal constant CHAIN_NAME = "conflux-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6EDCE65403992e310A62460808c4b910D972f10f);
@@ -2544,7 +2544,7 @@ library LayerZeroV2ConvergeMainnet {
   // Chain metadata
   uint32 internal constant EID = 30400;
   uint256 internal constant CHAIN_ID = 432;
-  string internal constant CHAIN_KEY = "converge-mainnet";
+  string internal constant CHAIN_NAME = "converge-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6F475642a6e85809B1c36Fa62763669b1b48DD5B);
@@ -2572,7 +2572,7 @@ library LayerZeroV2ConvergeTestnet {
   // Chain metadata
   uint32 internal constant EID = 40402;
   uint256 internal constant CHAIN_ID = 52085144;
-  string internal constant CHAIN_KEY = "converge-testnet";
+  string internal constant CHAIN_NAME = "converge-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x3aCAAf60502791D199a5a5F0B173D78229eBFe32);
@@ -2600,7 +2600,7 @@ library LayerZeroV2CoredaoMainnet {
   // Chain metadata
   uint32 internal constant EID = 30153;
   uint256 internal constant CHAIN_ID = 1116;
-  string internal constant CHAIN_KEY = "coredao-mainnet";
+  string internal constant CHAIN_NAME = "coredao-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x1a44076050125825900e736c501f859c50fE728c);
@@ -2646,7 +2646,7 @@ library LayerZeroV2CoredaoTestnet {
   // Chain metadata
   uint32 internal constant EID = 40153;
   uint256 internal constant CHAIN_ID = 1115;
-  string internal constant CHAIN_KEY = "coredao-testnet";
+  string internal constant CHAIN_NAME = "coredao-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6EDCE65403992e310A62460808c4b910D972f10f);
@@ -2675,7 +2675,7 @@ library LayerZeroV2CronosevmMainnet {
   // Chain metadata
   uint32 internal constant EID = 30359;
   uint256 internal constant CHAIN_ID = 25;
-  string internal constant CHAIN_KEY = "cronosevm-mainnet";
+  string internal constant CHAIN_NAME = "cronosevm-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x3A73033C0b1407574C76BdBAc67f126f6b4a9AA9);
@@ -2711,7 +2711,7 @@ library LayerZeroV2CronosevmTestnet {
   // Chain metadata
   uint32 internal constant EID = 40359;
   uint256 internal constant CHAIN_ID = 338;
-  string internal constant CHAIN_KEY = "cronosevm-testnet";
+  string internal constant CHAIN_NAME = "cronosevm-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6C7Ab2202C98C4227C5c46f1417D81144DA716Ff);
@@ -2739,7 +2739,7 @@ library LayerZeroV2CronoszkevmMainnet {
   // Chain metadata
   uint32 internal constant EID = 30360;
   uint256 internal constant CHAIN_ID = 388;
-  string internal constant CHAIN_KEY = "cronoszkevm-mainnet";
+  string internal constant CHAIN_NAME = "cronoszkevm-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x5c6cfF4b7C49805F8295Ff73C204ac83f3bC4AE7);
@@ -2775,7 +2775,7 @@ library LayerZeroV2CronoszkevmTestnet {
   // Chain metadata
   uint32 internal constant EID = 40360;
   uint256 internal constant CHAIN_ID = 240;
-  string internal constant CHAIN_KEY = "cronoszkevm-testnet";
+  string internal constant CHAIN_NAME = "cronoszkevm-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x9EC2DB700a3c3D35888acCa134F3f860B4a0b41a);
@@ -2803,7 +2803,7 @@ library LayerZeroV2CurtisTestnet {
   // Chain metadata
   uint32 internal constant EID = 40306;
   uint256 internal constant CHAIN_ID = 33111;
-  string internal constant CHAIN_KEY = "curtis-testnet";
+  string internal constant CHAIN_NAME = "curtis-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6C7Ab2202C98C4227C5c46f1417D81144DA716Ff);
@@ -2831,7 +2831,7 @@ library LayerZeroV2CyberMainnet {
   // Chain metadata
   uint32 internal constant EID = 30283;
   uint256 internal constant CHAIN_ID = 7560;
-  string internal constant CHAIN_KEY = "cyber-mainnet";
+  string internal constant CHAIN_NAME = "cyber-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x1a44076050125825900e736c501f859c50fE728c);
@@ -2869,7 +2869,7 @@ library LayerZeroV2CyberTestnet {
   // Chain metadata
   uint32 internal constant EID = 40280;
   uint256 internal constant CHAIN_ID = 111557560;
-  string internal constant CHAIN_KEY = "cyber-testnet";
+  string internal constant CHAIN_NAME = "cyber-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6EDCE65403992e310A62460808c4b910D972f10f);
@@ -2894,7 +2894,7 @@ library LayerZeroV2DegenMainnet {
   // Chain metadata
   uint32 internal constant EID = 30267;
   uint256 internal constant CHAIN_ID = 666666666;
-  string internal constant CHAIN_KEY = "degen-mainnet";
+  string internal constant CHAIN_NAME = "degen-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x1a44076050125825900e736c501f859c50fE728c);
@@ -2932,7 +2932,7 @@ library LayerZeroV2DexalotMainnet {
   // Chain metadata
   uint32 internal constant EID = 30118;
   uint256 internal constant CHAIN_ID = 432204;
-  string internal constant CHAIN_KEY = "dexalot-mainnet";
+  string internal constant CHAIN_NAME = "dexalot-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x1a44076050125825900e736c501f859c50fE728c);
@@ -2970,7 +2970,7 @@ library LayerZeroV2DexalotTestnet {
   // Chain metadata
   uint32 internal constant EID = 40118;
   uint256 internal constant CHAIN_ID = 432201;
-  string internal constant CHAIN_KEY = "dexalot-testnet";
+  string internal constant CHAIN_NAME = "dexalot-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x72884B17f92a863fD056Ec3695Bd3484D601f39a);
@@ -2997,7 +2997,7 @@ library LayerZeroV2DfkMainnet {
   // Chain metadata
   uint32 internal constant EID = 30115;
   uint256 internal constant CHAIN_ID = 53935;
-  string internal constant CHAIN_KEY = "dfk-mainnet";
+  string internal constant CHAIN_NAME = "dfk-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x1a44076050125825900e736c501f859c50fE728c);
@@ -3035,7 +3035,7 @@ library LayerZeroV2DfkTestnet {
   // Chain metadata
   uint32 internal constant EID = 40115;
   uint256 internal constant CHAIN_ID = 335;
-  string internal constant CHAIN_KEY = "dfk-testnet";
+  string internal constant CHAIN_NAME = "dfk-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x94FF3a4d9E9792dc59193ff753B5038A14c59570);
@@ -3062,7 +3062,7 @@ library LayerZeroV2DinariMainnet {
   // Chain metadata
   uint32 internal constant EID = 30385;
   uint256 internal constant CHAIN_ID = 202110;
-  string internal constant CHAIN_KEY = "dinari-mainnet";
+  string internal constant CHAIN_NAME = "dinari-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0xAaB5A48CFC03Efa9cC34A2C1aAcCCB84b4b770e4);
@@ -3090,7 +3090,7 @@ library LayerZeroV2DinariTestnet {
   // Chain metadata
   uint32 internal constant EID = 40412;
   uint256 internal constant CHAIN_ID = 179205;
-  string internal constant CHAIN_KEY = "dinari-testnet";
+  string internal constant CHAIN_NAME = "dinari-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x145C041566B21Bec558B2A37F1a5Ff261aB55998);
@@ -3118,7 +3118,7 @@ library LayerZeroV2Dm2verseMainnet {
   // Chain metadata
   uint32 internal constant EID = 30315;
   uint256 internal constant CHAIN_ID = 68770;
-  string internal constant CHAIN_KEY = "dm2verse-mainnet";
+  string internal constant CHAIN_NAME = "dm2verse-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6F475642a6e85809B1c36Fa62763669b1b48DD5B);
@@ -3150,7 +3150,7 @@ library LayerZeroV2Dm2verseTestnet {
   // Chain metadata
   uint32 internal constant EID = 40321;
   uint256 internal constant CHAIN_ID = 68775;
-  string internal constant CHAIN_KEY = "dm2verse-testnet";
+  string internal constant CHAIN_NAME = "dm2verse-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x3aCAAf60502791D199a5a5F0B173D78229eBFe32);
@@ -3178,7 +3178,7 @@ library LayerZeroV2DomaMainnet {
   // Chain metadata
   uint32 internal constant EID = 30393;
   uint256 internal constant CHAIN_ID = 97477;
-  string internal constant CHAIN_KEY = "doma-mainnet";
+  string internal constant CHAIN_NAME = "doma-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6F475642a6e85809B1c36Fa62763669b1b48DD5B);
@@ -3212,7 +3212,7 @@ library LayerZeroV2DomaTestnet {
   // Chain metadata
   uint32 internal constant EID = 40425;
   uint256 internal constant CHAIN_ID = 97476;
-  string internal constant CHAIN_KEY = "doma-testnet";
+  string internal constant CHAIN_NAME = "doma-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x2072a32Df77bAE5713853d666f26bA5e47E54717);
@@ -3240,7 +3240,7 @@ library LayerZeroV2DosMainnet {
   // Chain metadata
   uint32 internal constant EID = 30149;
   uint256 internal constant CHAIN_ID = 7979;
-  string internal constant CHAIN_KEY = "dos-mainnet";
+  string internal constant CHAIN_NAME = "dos-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x1a44076050125825900e736c501f859c50fE728c);
@@ -3278,7 +3278,7 @@ library LayerZeroV2DosTestnet {
   // Chain metadata
   uint32 internal constant EID = 40286;
   uint256 internal constant CHAIN_ID = 3939;
-  string internal constant CHAIN_KEY = "dos-testnet";
+  string internal constant CHAIN_NAME = "dos-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x08416c0eAa8ba93F907eC8D6a9cAb24821C53E64);
@@ -3305,7 +3305,7 @@ library LayerZeroV2EbiMainnet {
   // Chain metadata
   uint32 internal constant EID = 30282;
   uint256 internal constant CHAIN_ID = 98881;
-  string internal constant CHAIN_KEY = "ebi-mainnet";
+  string internal constant CHAIN_NAME = "ebi-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6F475642a6e85809B1c36Fa62763669b1b48DD5B);
@@ -3341,7 +3341,7 @@ library LayerZeroV2EbiTestnet {
   // Chain metadata
   uint32 internal constant EID = 40284;
   uint256 internal constant CHAIN_ID = 98882;
-  string internal constant CHAIN_KEY = "ebi-testnet";
+  string internal constant CHAIN_NAME = "ebi-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6EDCE65403992e310A62460808c4b910D972f10f);
@@ -3366,7 +3366,7 @@ library LayerZeroV2EduMainnet {
   // Chain metadata
   uint32 internal constant EID = 30328;
   uint256 internal constant CHAIN_ID = 41923;
-  string internal constant CHAIN_KEY = "edu-mainnet";
+  string internal constant CHAIN_NAME = "edu-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x3A73033C0b1407574C76BdBAc67f126f6b4a9AA9);
@@ -3402,7 +3402,7 @@ library LayerZeroV2EonMainnet {
   // Chain metadata
   uint32 internal constant EID = 30215;
   uint256 internal constant CHAIN_ID = 7332;
-  string internal constant CHAIN_KEY = "eon-mainnet";
+  string internal constant CHAIN_NAME = "eon-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x1a44076050125825900e736c501f859c50fE728c);
@@ -3438,7 +3438,7 @@ library LayerZeroV2EonTestnet {
   // Chain metadata
   uint32 internal constant EID = 40215;
   uint256 internal constant CHAIN_ID = 1663;
-  string internal constant CHAIN_KEY = "eon-testnet";
+  string internal constant CHAIN_NAME = "eon-testnet";
 
   // Message libraries
   address internal constant BLOCKED_MESSAGE_LIB = 0x0000000000000000000000000000000000000000;
@@ -3453,7 +3453,7 @@ library LayerZeroV2EtherealMainnet {
   // Chain metadata
   uint32 internal constant EID = 30391;
   uint256 internal constant CHAIN_ID = 5064014;
-  string internal constant CHAIN_KEY = "ethereal-mainnet";
+  string internal constant CHAIN_NAME = "ethereal-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6F475642a6e85809B1c36Fa62763669b1b48DD5B);
@@ -3489,7 +3489,7 @@ library LayerZeroV2EtherealTestnet {
   // Chain metadata
   uint32 internal constant EID = 40407;
   uint256 internal constant CHAIN_ID = 657468;
-  string internal constant CHAIN_KEY = "ethereal-testnet";
+  string internal constant CHAIN_NAME = "ethereal-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x3aCAAf60502791D199a5a5F0B173D78229eBFe32);
@@ -3517,7 +3517,7 @@ library LayerZeroV2Ethereal2Testnet {
   // Chain metadata
   uint32 internal constant EID = 40422;
   uint256 internal constant CHAIN_ID = 13374202;
-  string internal constant CHAIN_KEY = "ethereal2-testnet";
+  string internal constant CHAIN_NAME = "ethereal2-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x3aCAAf60502791D199a5a5F0B173D78229eBFe32);
@@ -3545,7 +3545,7 @@ library LayerZeroV2EthereumMainnet {
   // Chain metadata
   uint32 internal constant EID = 30101;
   uint256 internal constant CHAIN_ID = 1;
-  string internal constant CHAIN_KEY = "ethereum-mainnet";
+  string internal constant CHAIN_NAME = "ethereum-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x1a44076050125825900e736c501f859c50fE728c);
@@ -3726,7 +3726,7 @@ library LayerZeroV2EthereumTestnet {
   // Chain metadata
   uint32 internal constant EID = 40121;
   uint256 internal constant CHAIN_ID = 11155111;
-  string internal constant CHAIN_KEY = "ethereum-testnet";
+  string internal constant CHAIN_NAME = "ethereum-testnet";
 
   // Message libraries
   address internal constant BLOCKED_MESSAGE_LIB = 0x0000000000000000000000000000000000000000;
@@ -3743,7 +3743,7 @@ library LayerZeroV2EtherlinkMainnet {
   // Chain metadata
   uint32 internal constant EID = 30292;
   uint256 internal constant CHAIN_ID = 42793;
-  string internal constant CHAIN_KEY = "etherlink-mainnet";
+  string internal constant CHAIN_NAME = "etherlink-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0xAaB5A48CFC03Efa9cC34A2C1aAcCCB84b4b770e4);
@@ -3788,7 +3788,7 @@ library LayerZeroV2EtherlinkTestnet {
   // Chain metadata
   uint32 internal constant EID = 40239;
   uint256 internal constant CHAIN_ID = 128123;
-  string internal constant CHAIN_KEY = "etherlink-testnet";
+  string internal constant CHAIN_NAME = "etherlink-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0xec28645346D781674B4272706D8a938dB2BAA2C6);
@@ -3813,7 +3813,7 @@ library LayerZeroV2EtherlinkshadownetTestnet {
   // Chain metadata
   uint32 internal constant EID = 40430;
   uint256 internal constant CHAIN_ID = 127823;
-  string internal constant CHAIN_KEY = "etherlinkshadownet-testnet";
+  string internal constant CHAIN_NAME = "etherlinkshadownet-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x3aCAAf60502791D199a5a5F0B173D78229eBFe32);
@@ -3841,7 +3841,7 @@ library LayerZeroV2ExocoreTestnet {
   // Chain metadata
   uint32 internal constant EID = 40259;
   uint256 internal constant CHAIN_ID = 233;
-  string internal constant CHAIN_KEY = "exocore-testnet";
+  string internal constant CHAIN_NAME = "exocore-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6EDCE65403992e310A62460808c4b910D972f10f);
@@ -3866,7 +3866,7 @@ library LayerZeroV2FantomMainnet {
   // Chain metadata
   uint32 internal constant EID = 30112;
   uint256 internal constant CHAIN_ID = 250;
-  string internal constant CHAIN_KEY = "fantom-mainnet";
+  string internal constant CHAIN_NAME = "fantom-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x1a44076050125825900e736c501f859c50fE728c);
@@ -3976,7 +3976,7 @@ library LayerZeroV2FantomTestnet {
   // Chain metadata
   uint32 internal constant EID = 40112;
   uint256 internal constant CHAIN_ID = 4002;
-  string internal constant CHAIN_KEY = "fantom-testnet";
+  string internal constant CHAIN_NAME = "fantom-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6EDCE65403992e310A62460808c4b910D972f10f);
@@ -4025,7 +4025,7 @@ library LayerZeroV2FiTestnet {
   // Chain metadata
   uint32 internal constant EID = 40301;
   uint256 internal constant CHAIN_ID = 18026;
-  string internal constant CHAIN_KEY = "fi-testnet";
+  string internal constant CHAIN_NAME = "fi-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6C7Ab2202C98C4227C5c46f1417D81144DA716Ff);
@@ -4053,7 +4053,7 @@ library LayerZeroV2FlareMainnet {
   // Chain metadata
   uint32 internal constant EID = 30295;
   uint256 internal constant CHAIN_ID = 14;
-  string internal constant CHAIN_KEY = "flare-mainnet";
+  string internal constant CHAIN_NAME = "flare-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x1a44076050125825900e736c501f859c50fE728c);
@@ -4095,7 +4095,7 @@ library LayerZeroV2FlareTestnet {
   // Chain metadata
   uint32 internal constant EID = 40294;
   uint256 internal constant CHAIN_ID = 114;
-  string internal constant CHAIN_KEY = "flare-testnet";
+  string internal constant CHAIN_NAME = "flare-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6EDCE65403992e310A62460808c4b910D972f10f);
@@ -4120,7 +4120,7 @@ library LayerZeroV2FlowMainnet {
   // Chain metadata
   uint32 internal constant EID = 30336;
   uint256 internal constant CHAIN_ID = 747;
-  string internal constant CHAIN_KEY = "flow-mainnet";
+  string internal constant CHAIN_NAME = "flow-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0xcb566e3B6934Fa77258d68ea18E931fa75e1aaAa);
@@ -4169,7 +4169,7 @@ library LayerZeroV2FlowTestnet {
   // Chain metadata
   uint32 internal constant EID = 40351;
   uint256 internal constant CHAIN_ID = 545;
-  string internal constant CHAIN_KEY = "flow-testnet";
+  string internal constant CHAIN_NAME = "flow-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6C7Ab2202C98C4227C5c46f1417D81144DA716Ff);
@@ -4197,7 +4197,7 @@ library LayerZeroV2FormTestnet {
   // Chain metadata
   uint32 internal constant EID = 40270;
   uint256 internal constant CHAIN_ID = 478;
-  string internal constant CHAIN_KEY = "form-testnet";
+  string internal constant CHAIN_NAME = "form-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6EDCE65403992e310A62460808c4b910D972f10f);
@@ -4222,7 +4222,7 @@ library LayerZeroV2FrameTestnet {
   // Chain metadata
   uint32 internal constant EID = 40222;
   uint256 internal constant CHAIN_ID = 68840142;
-  string internal constant CHAIN_KEY = "frame-testnet";
+  string internal constant CHAIN_NAME = "frame-testnet";
 
   // Message libraries
   address internal constant BLOCKED_MESSAGE_LIB = 0x0000000000000000000000000000000000000000;
@@ -4237,7 +4237,7 @@ library LayerZeroV2FraxtalMainnet {
   // Chain metadata
   uint32 internal constant EID = 30255;
   uint256 internal constant CHAIN_ID = 252;
-  string internal constant CHAIN_KEY = "fraxtal-mainnet";
+  string internal constant CHAIN_NAME = "fraxtal-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x1a44076050125825900e736c501f859c50fE728c);
@@ -4279,7 +4279,7 @@ library LayerZeroV2FraxtalTestnet {
   // Chain metadata
   uint32 internal constant EID = 40255;
   uint256 internal constant CHAIN_ID = 2522;
-  string internal constant CHAIN_KEY = "fraxtal-testnet";
+  string internal constant CHAIN_NAME = "fraxtal-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6EDCE65403992e310A62460808c4b910D972f10f);
@@ -4308,7 +4308,7 @@ library LayerZeroV2FuseMainnet {
   // Chain metadata
   uint32 internal constant EID = 30138;
   uint256 internal constant CHAIN_ID = 122;
-  string internal constant CHAIN_KEY = "fuse-mainnet";
+  string internal constant CHAIN_NAME = "fuse-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x1a44076050125825900e736c501f859c50fE728c);
@@ -4348,7 +4348,7 @@ library LayerZeroV2FuseTestnet {
   // Chain metadata
   uint32 internal constant EID = 40138;
   uint256 internal constant CHAIN_ID = 123;
-  string internal constant CHAIN_KEY = "fuse-testnet";
+  string internal constant CHAIN_NAME = "fuse-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6EDCE65403992e310A62460808c4b910D972f10f);
@@ -4375,7 +4375,7 @@ library LayerZeroV2GameswiftTestnet {
   // Chain metadata
   uint32 internal constant EID = 40339;
   uint256 internal constant CHAIN_ID = 10888;
-  string internal constant CHAIN_KEY = "gameswift-testnet";
+  string internal constant CHAIN_NAME = "gameswift-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6Ac7bdc07A0583A362F1497252872AE6c0A5F5B8);
@@ -4404,7 +4404,7 @@ library LayerZeroV2GateTestnet {
   // Chain metadata
   uint32 internal constant EID = 40421;
   uint256 internal constant CHAIN_ID = 10087;
-  string internal constant CHAIN_KEY = "gate-testnet";
+  string internal constant CHAIN_NAME = "gate-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6C7Ab2202C98C4227C5c46f1417D81144DA716Ff);
@@ -4432,7 +4432,7 @@ library LayerZeroV2GatelayerMainnet {
   // Chain metadata
   uint32 internal constant EID = 30389;
   uint256 internal constant CHAIN_ID = 10088;
-  string internal constant CHAIN_KEY = "gatelayer-mainnet";
+  string internal constant CHAIN_NAME = "gatelayer-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0xcb566e3B6934Fa77258d68ea18E931fa75e1aaAa);
@@ -4462,7 +4462,7 @@ library LayerZeroV2GlueMainnet {
   // Chain metadata
   uint32 internal constant EID = 30342;
   uint256 internal constant CHAIN_ID = 1300;
-  string internal constant CHAIN_KEY = "glue-mainnet";
+  string internal constant CHAIN_NAME = "glue-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0xcb566e3B6934Fa77258d68ea18E931fa75e1aaAa);
@@ -4498,7 +4498,7 @@ library LayerZeroV2GlueTestnet {
   // Chain metadata
   uint32 internal constant EID = 40296;
   uint256 internal constant CHAIN_ID = 1300;
-  string internal constant CHAIN_KEY = "glue-testnet";
+  string internal constant CHAIN_NAME = "glue-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6EDCE65403992e310A62460808c4b910D972f10f);
@@ -4523,7 +4523,7 @@ library LayerZeroV2GnosisMainnet {
   // Chain metadata
   uint32 internal constant EID = 30145;
   uint256 internal constant CHAIN_ID = 100;
-  string internal constant CHAIN_KEY = "gnosis-mainnet";
+  string internal constant CHAIN_NAME = "gnosis-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x1a44076050125825900e736c501f859c50fE728c);
@@ -4583,7 +4583,7 @@ library LayerZeroV2GnosisTestnet {
   // Chain metadata
   uint32 internal constant EID = 40145;
   uint256 internal constant CHAIN_ID = 10200;
-  string internal constant CHAIN_KEY = "gnosis-testnet";
+  string internal constant CHAIN_NAME = "gnosis-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6EDCE65403992e310A62460808c4b910D972f10f);
@@ -4616,7 +4616,7 @@ library LayerZeroV2GoatMainnet {
   // Chain metadata
   uint32 internal constant EID = 30361;
   uint256 internal constant CHAIN_ID = 2345;
-  string internal constant CHAIN_KEY = "goat-mainnet";
+  string internal constant CHAIN_NAME = "goat-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6F475642a6e85809B1c36Fa62763669b1b48DD5B);
@@ -4654,7 +4654,7 @@ library LayerZeroV2GoatTestnet {
   // Chain metadata
   uint32 internal constant EID = 40356;
   uint256 internal constant CHAIN_ID = 48816;
-  string internal constant CHAIN_KEY = "goat-testnet";
+  string internal constant CHAIN_NAME = "goat-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6C7Ab2202C98C4227C5c46f1417D81144DA716Ff);
@@ -4682,7 +4682,7 @@ library LayerZeroV2GravityMainnet {
   // Chain metadata
   uint32 internal constant EID = 30294;
   uint256 internal constant CHAIN_ID = 1625;
-  string internal constant CHAIN_KEY = "gravity-mainnet";
+  string internal constant CHAIN_NAME = "gravity-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x1a44076050125825900e736c501f859c50fE728c);
@@ -4724,7 +4724,7 @@ library LayerZeroV2GunzMainnet {
   // Chain metadata
   uint32 internal constant EID = 30371;
   uint256 internal constant CHAIN_ID = 43419;
-  string internal constant CHAIN_KEY = "gunz-mainnet";
+  string internal constant CHAIN_NAME = "gunz-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0xcb566e3B6934Fa77258d68ea18E931fa75e1aaAa);
@@ -4758,7 +4758,7 @@ library LayerZeroV2GunzillaTestnet {
   // Chain metadata
   uint32 internal constant EID = 40236;
   uint256 internal constant CHAIN_ID = 49321;
-  string internal constant CHAIN_KEY = "gunzilla-testnet";
+  string internal constant CHAIN_NAME = "gunzilla-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6EDCE65403992e310A62460808c4b910D972f10f);
@@ -4783,7 +4783,7 @@ library LayerZeroV2HarmonyMainnet {
   // Chain metadata
   uint32 internal constant EID = 30116;
   uint256 internal constant CHAIN_ID = 1666600000;
-  string internal constant CHAIN_KEY = "harmony-mainnet";
+  string internal constant CHAIN_NAME = "harmony-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x1a44076050125825900e736c501f859c50fE728c);
@@ -4821,7 +4821,7 @@ library LayerZeroV2HarmonyTestnet {
   // Chain metadata
   uint32 internal constant EID = 40133;
   uint256 internal constant CHAIN_ID = 1666900000;
-  string internal constant CHAIN_KEY = "harmony-testnet";
+  string internal constant CHAIN_NAME = "harmony-testnet";
 
   // Message libraries
   address internal constant BLOCKED_MESSAGE_LIB = 0x0000000000000000000000000000000000000000;
@@ -4836,7 +4836,7 @@ library LayerZeroV2HederaMainnet {
   // Chain metadata
   uint32 internal constant EID = 30316;
   uint256 internal constant CHAIN_ID = 295;
-  string internal constant CHAIN_KEY = "hedera-mainnet";
+  string internal constant CHAIN_NAME = "hedera-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x3A73033C0b1407574C76BdBAc67f126f6b4a9AA9);
@@ -4880,7 +4880,7 @@ library LayerZeroV2HederaTestnet {
   // Chain metadata
   uint32 internal constant EID = 40285;
   uint256 internal constant CHAIN_ID = 296;
-  string internal constant CHAIN_KEY = "hedera-testnet";
+  string internal constant CHAIN_NAME = "hedera-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0xbD672D1562Dd32C23B563C989d8140122483631d);
@@ -4905,7 +4905,7 @@ library LayerZeroV2HemiMainnet {
   // Chain metadata
   uint32 internal constant EID = 30329;
   uint256 internal constant CHAIN_ID = 43111;
-  string internal constant CHAIN_KEY = "hemi-mainnet";
+  string internal constant CHAIN_NAME = "hemi-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6F475642a6e85809B1c36Fa62763669b1b48DD5B);
@@ -4941,7 +4941,7 @@ library LayerZeroV2HemiTestnet {
   // Chain metadata
   uint32 internal constant EID = 40338;
   uint256 internal constant CHAIN_ID = 743111;
-  string internal constant CHAIN_KEY = "hemi-testnet";
+  string internal constant CHAIN_NAME = "hemi-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6C7Ab2202C98C4227C5c46f1417D81144DA716Ff);
@@ -4969,7 +4969,7 @@ library LayerZeroV2HoleskyTestnet {
   // Chain metadata
   uint32 internal constant EID = 40217;
   uint256 internal constant CHAIN_ID = 17000;
-  string internal constant CHAIN_KEY = "holesky-testnet";
+  string internal constant CHAIN_NAME = "holesky-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6EDCE65403992e310A62460808c4b910D972f10f);
@@ -5002,7 +5002,7 @@ library LayerZeroV2HomeverseMainnet {
   // Chain metadata
   uint32 internal constant EID = 30265;
   uint256 internal constant CHAIN_ID = 19011;
-  string internal constant CHAIN_KEY = "homeverse-mainnet";
+  string internal constant CHAIN_NAME = "homeverse-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x1a44076050125825900e736c501f859c50fE728c);
@@ -5038,7 +5038,7 @@ library LayerZeroV2HomeverseTestnet {
   // Chain metadata
   uint32 internal constant EID = 40265;
   uint256 internal constant CHAIN_ID = 40875;
-  string internal constant CHAIN_KEY = "homeverse-testnet";
+  string internal constant CHAIN_NAME = "homeverse-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6EDCE65403992e310A62460808c4b910D972f10f);
@@ -5059,11 +5059,39 @@ library LayerZeroV2DVNHomeverseTestnet {
   address internal constant DVN_LAYERZERO_LABS = 0x88B27057A9e00c5F05DDa29241027afF63f9e6e0;
 }
 
+library LayerZeroV2HorizenTestnet {
+  // Chain metadata
+  uint32 internal constant EID = 40435;
+  uint256 internal constant CHAIN_ID = 2651420;
+  string internal constant CHAIN_NAME = "horizen-testnet";
+
+  // Core protocol
+  ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x3aCAAf60502791D199a5a5F0B173D78229eBFe32);
+
+  // Message libraries
+  IMessageLib internal constant SEND_ULN_302 = IMessageLib(0x45841dd1ca50265Da7614fC43A361e526c0e6160);
+  address internal constant BLOCKED_MESSAGE_LIB = 0xa229B65CC2191BF60bc24eFcDa3487D7b5C0C9f0;
+  IMessageLib internal constant RECEIVE_ULN_302 = IMessageLib(0xd682ECF100f6F4284138AA925348633B0611Ae21);
+
+  // Other contracts
+  address internal constant ENDPOINT_V2_VIEW = 0x6Ac7bdc07A0583A362F1497252872AE6c0A5F5B8;
+  address internal constant EXECUTOR = 0x701f3927871EfcEa1235dB722f9E608aE120d243;
+  address internal constant DEAD_DVN = 0x88B27057A9e00c5F05DDa29241027afF63f9e6e0;
+  address internal constant LZ_EXECUTOR = 0x4Cf1B3Fa61465c2c907f82fC488B43223BA0CF93;
+}
+
+library LayerZeroV2DVNHorizenTestnet {
+  // LZDeadDVN (deprecated) [lz-dead-dvn]
+  address internal constant DVN_LZ_DEAD = 0x88B27057A9e00c5F05DDa29241027afF63f9e6e0;
+  // LayerZero Labs [layerzero-labs]
+  address internal constant DVN_LAYERZERO_LABS = 0xa78A78a13074eD93aD447a26Ec57121f29E8feC2;
+}
+
 library LayerZeroV2HubbleMainnet {
   // Chain metadata
   uint32 internal constant EID = 30182;
   uint256 internal constant CHAIN_ID = 1992;
-  string internal constant CHAIN_KEY = "hubble-mainnet";
+  string internal constant CHAIN_NAME = "hubble-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x1a44076050125825900e736c501f859c50fE728c);
@@ -5089,7 +5117,7 @@ library LayerZeroV2DVNHubbleMainnet {
 library LayerZeroV2HubbleTestnet {
   // Chain metadata
   uint32 internal constant EID = 40182;
-  string internal constant CHAIN_KEY = "hubble-testnet";
+  string internal constant CHAIN_NAME = "hubble-testnet";
 
   // Message libraries
   address internal constant BLOCKED_MESSAGE_LIB = 0x0000000000000000000000000000000000000000;
@@ -5104,7 +5132,7 @@ library LayerZeroV2HumanityMainnet {
   // Chain metadata
   uint32 internal constant EID = 30382;
   uint256 internal constant CHAIN_ID = 6985385;
-  string internal constant CHAIN_KEY = "humanity-mainnet";
+  string internal constant CHAIN_NAME = "humanity-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6F475642a6e85809B1c36Fa62763669b1b48DD5B);
@@ -5136,7 +5164,7 @@ library LayerZeroV2HumanityTestnet {
   // Chain metadata
   uint32 internal constant EID = 40410;
   uint256 internal constant CHAIN_ID = 7080969;
-  string internal constant CHAIN_KEY = "humanity-testnet";
+  string internal constant CHAIN_NAME = "humanity-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x3aCAAf60502791D199a5a5F0B173D78229eBFe32);
@@ -5164,7 +5192,7 @@ library LayerZeroV2HyperliquidMainnet {
   // Chain metadata
   uint32 internal constant EID = 30367;
   uint256 internal constant CHAIN_ID = 999;
-  string internal constant CHAIN_KEY = "hyperliquid-mainnet";
+  string internal constant CHAIN_NAME = "hyperliquid-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x3A73033C0b1407574C76BdBAc67f126f6b4a9AA9);
@@ -5229,7 +5257,7 @@ library LayerZeroV2HyperliquidTestnet {
   // Chain metadata
   uint32 internal constant EID = 40362;
   uint256 internal constant CHAIN_ID = 998;
-  string internal constant CHAIN_KEY = "hyperliquid-testnet";
+  string internal constant CHAIN_NAME = "hyperliquid-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0xf9e1815F151024bDE4B7C10BAC10e8Ba9F6b53E1);
@@ -5264,7 +5292,7 @@ library LayerZeroV2DVNHyperliquidTestnet {
 library LayerZeroV2IdexTestnet {
   // Chain metadata
   uint32 internal constant EID = 40219;
-  string internal constant CHAIN_KEY = "idex-testnet";
+  string internal constant CHAIN_NAME = "idex-testnet";
 
   // Message libraries
   address internal constant BLOCKED_MESSAGE_LIB = 0x0000000000000000000000000000000000000000;
@@ -5279,7 +5307,7 @@ library LayerZeroV2InjectiveTestnet {
   // Chain metadata
   uint32 internal constant EID = 40218;
   uint256 internal constant CHAIN_ID = 1738;
-  string internal constant CHAIN_KEY = "injective-testnet";
+  string internal constant CHAIN_NAME = "injective-testnet";
 
   // Message libraries
   address internal constant BLOCKED_MESSAGE_LIB = 0x0000000000000000000000000000000000000000;
@@ -5294,7 +5322,7 @@ library LayerZeroV2Injective1439Testnet {
   // Chain metadata
   uint32 internal constant EID = 40408;
   uint256 internal constant CHAIN_ID = 1439;
-  string internal constant CHAIN_KEY = "injective1439-testnet";
+  string internal constant CHAIN_NAME = "injective1439-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x3aCAAf60502791D199a5a5F0B173D78229eBFe32);
@@ -5322,7 +5350,7 @@ library LayerZeroV2InjectiveevmMainnet {
   // Chain metadata
   uint32 internal constant EID = 30394;
   uint256 internal constant CHAIN_ID = 1776;
-  string internal constant CHAIN_KEY = "injectiveevm-mainnet";
+  string internal constant CHAIN_NAME = "injectiveevm-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6F475642a6e85809B1c36Fa62763669b1b48DD5B);
@@ -5354,7 +5382,7 @@ library LayerZeroV2InkMainnet {
   // Chain metadata
   uint32 internal constant EID = 30339;
   uint256 internal constant CHAIN_ID = 57073;
-  string internal constant CHAIN_KEY = "ink-mainnet";
+  string internal constant CHAIN_NAME = "ink-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0xca29f3A6f966Cb2fc0dE625F8f325c0C46dbE958);
@@ -5413,7 +5441,7 @@ library LayerZeroV2InkTestnet {
   // Chain metadata
   uint32 internal constant EID = 40358;
   uint256 internal constant CHAIN_ID = 763373;
-  string internal constant CHAIN_KEY = "ink-testnet";
+  string internal constant CHAIN_NAME = "ink-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6C7Ab2202C98C4227C5c46f1417D81144DA716Ff);
@@ -5444,7 +5472,7 @@ library LayerZeroV2DVNInkTestnet {
 library LayerZeroV2IntainMainnet {
   // Chain metadata
   uint32 internal constant EID = 30152;
-  string internal constant CHAIN_KEY = "intain-mainnet";
+  string internal constant CHAIN_NAME = "intain-mainnet";
 
   // Message libraries
   address internal constant BLOCKED_MESSAGE_LIB = 0x0000000000000000000000000000000000000000;
@@ -5453,7 +5481,7 @@ library LayerZeroV2IntainMainnet {
 library LayerZeroV2IntainTestnet {
   // Chain metadata
   uint32 internal constant EID = 10152;
-  string internal constant CHAIN_KEY = "intain-testnet";
+  string internal constant CHAIN_NAME = "intain-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT = ILayerZeroEndpointV2(0xae92d5aD7583AD66E49A0c67BAd18F6ba52dDDc1);
@@ -5474,7 +5502,7 @@ library LayerZeroV2IotaMainnet {
   // Chain metadata
   uint32 internal constant EID = 30284;
   uint256 internal constant CHAIN_ID = 8822;
-  string internal constant CHAIN_KEY = "iota-mainnet";
+  string internal constant CHAIN_NAME = "iota-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x1a44076050125825900e736c501f859c50fE728c);
@@ -5514,7 +5542,7 @@ library LayerZeroV2IotaTestnet {
   // Chain metadata
   uint32 internal constant EID = 40307;
   uint256 internal constant CHAIN_ID = 1075;
-  string internal constant CHAIN_KEY = "iota-testnet";
+  string internal constant CHAIN_NAME = "iota-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6C7Ab2202C98C4227C5c46f1417D81144DA716Ff);
@@ -5542,7 +5570,7 @@ library LayerZeroV2IslanderMainnet {
   // Chain metadata
   uint32 internal constant EID = 30330;
   uint256 internal constant CHAIN_ID = 1480;
-  string internal constant CHAIN_KEY = "islander-mainnet";
+  string internal constant CHAIN_NAME = "islander-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0xcb566e3B6934Fa77258d68ea18E931fa75e1aaAa);
@@ -5578,7 +5606,7 @@ library LayerZeroV2JocMainnet {
   // Chain metadata
   uint32 internal constant EID = 30285;
   uint256 internal constant CHAIN_ID = 81;
-  string internal constant CHAIN_KEY = "joc-mainnet";
+  string internal constant CHAIN_NAME = "joc-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x1a44076050125825900e736c501f859c50fE728c);
@@ -5614,7 +5642,7 @@ library LayerZeroV2JocTestnet {
   // Chain metadata
   uint32 internal constant EID = 40242;
   uint256 internal constant CHAIN_ID = 10081;
-  string internal constant CHAIN_KEY = "joc-testnet";
+  string internal constant CHAIN_NAME = "joc-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6EDCE65403992e310A62460808c4b910D972f10f);
@@ -5643,7 +5671,7 @@ library LayerZeroV2KatanaMainnet {
   // Chain metadata
   uint32 internal constant EID = 30375;
   uint256 internal constant CHAIN_ID = 747474;
-  string internal constant CHAIN_KEY = "katana-mainnet";
+  string internal constant CHAIN_NAME = "katana-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6F475642a6e85809B1c36Fa62763669b1b48DD5B);
@@ -5681,7 +5709,7 @@ library LayerZeroV2KatanaTestnet {
   // Chain metadata
   uint32 internal constant EID = 40403;
   uint256 internal constant CHAIN_ID = 129399;
-  string internal constant CHAIN_KEY = "katana-testnet";
+  string internal constant CHAIN_NAME = "katana-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x3aCAAf60502791D199a5a5F0B173D78229eBFe32);
@@ -5709,7 +5737,7 @@ library LayerZeroV2KavaMainnet {
   // Chain metadata
   uint32 internal constant EID = 30177;
   uint256 internal constant CHAIN_ID = 2222;
-  string internal constant CHAIN_KEY = "kava-mainnet";
+  string internal constant CHAIN_NAME = "kava-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x1a44076050125825900e736c501f859c50fE728c);
@@ -5753,7 +5781,7 @@ library LayerZeroV2KavaTestnet {
   // Chain metadata
   uint32 internal constant EID = 40172;
   uint256 internal constant CHAIN_ID = 2221;
-  string internal constant CHAIN_KEY = "kava-testnet";
+  string internal constant CHAIN_NAME = "kava-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6EDCE65403992e310A62460808c4b910D972f10f);
@@ -5780,7 +5808,7 @@ library LayerZeroV2KevnetTestnet {
   // Chain metadata
   uint32 internal constant EID = 40328;
   uint256 internal constant CHAIN_ID = 1301;
-  string internal constant CHAIN_KEY = "kevnet-testnet";
+  string internal constant CHAIN_NAME = "kevnet-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x145C041566B21Bec558B2A37F1a5Ff261aB55998);
@@ -5808,7 +5836,7 @@ library LayerZeroV2KiteTestnet {
   // Chain metadata
   uint32 internal constant EID = 40415;
   uint256 internal constant CHAIN_ID = 2368;
-  string internal constant CHAIN_KEY = "kite-testnet";
+  string internal constant CHAIN_NAME = "kite-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x3aCAAf60502791D199a5a5F0B173D78229eBFe32);
@@ -5836,7 +5864,7 @@ library LayerZeroV2KiwiTestnet {
   // Chain metadata
   uint32 internal constant EID = 40209;
   uint256 internal constant CHAIN_ID = 2037;
-  string internal constant CHAIN_KEY = "kiwi-testnet";
+  string internal constant CHAIN_NAME = "kiwi-testnet";
 
   // Message libraries
   address internal constant BLOCKED_MESSAGE_LIB = 0x0000000000000000000000000000000000000000;
@@ -5851,7 +5879,7 @@ library LayerZeroV2Kiwi2Testnet {
   // Chain metadata
   uint32 internal constant EID = 40241;
   uint256 internal constant CHAIN_ID = 2037;
-  string internal constant CHAIN_KEY = "kiwi2-testnet";
+  string internal constant CHAIN_NAME = "kiwi2-testnet";
 
   // Message libraries
   address internal constant BLOCKED_MESSAGE_LIB = 0x0000000000000000000000000000000000000000;
@@ -5866,7 +5894,7 @@ library LayerZeroV2KlaytnMainnet {
   // Chain metadata
   uint32 internal constant EID = 30150;
   uint256 internal constant CHAIN_ID = 8217;
-  string internal constant CHAIN_KEY = "klaytn-mainnet";
+  string internal constant CHAIN_NAME = "klaytn-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x1a44076050125825900e736c501f859c50fE728c);
@@ -5912,7 +5940,7 @@ library LayerZeroV2KlaytnTestnet {
   // Chain metadata
   uint32 internal constant EID = 40150;
   uint256 internal constant CHAIN_ID = 1001;
-  string internal constant CHAIN_KEY = "klaytn-testnet";
+  string internal constant CHAIN_NAME = "klaytn-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6EDCE65403992e310A62460808c4b910D972f10f);
@@ -5939,7 +5967,7 @@ library LayerZeroV2LensMainnet {
   // Chain metadata
   uint32 internal constant EID = 30373;
   uint256 internal constant CHAIN_ID = 232;
-  string internal constant CHAIN_KEY = "lens-mainnet";
+  string internal constant CHAIN_NAME = "lens-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x5c6cfF4b7C49805F8295Ff73C204ac83f3bC4AE7);
@@ -5971,7 +5999,7 @@ library LayerZeroV2LensTestnet {
   // Chain metadata
   uint32 internal constant EID = 40373;
   uint256 internal constant CHAIN_ID = 37111;
-  string internal constant CHAIN_KEY = "lens-testnet";
+  string internal constant CHAIN_NAME = "lens-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x00B7b8ebA1c60183B0D2a10Fc3552902e8DD4f5f);
@@ -5999,7 +6027,7 @@ library LayerZeroV2Lif3Testnet {
   // Chain metadata
   uint32 internal constant EID = 40300;
   uint256 internal constant CHAIN_ID = 1811;
-  string internal constant CHAIN_KEY = "lif3-testnet";
+  string internal constant CHAIN_NAME = "lif3-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6C7Ab2202C98C4227C5c46f1417D81144DA716Ff);
@@ -6029,7 +6057,7 @@ library LayerZeroV2LightlinkMainnet {
   // Chain metadata
   uint32 internal constant EID = 30309;
   uint256 internal constant CHAIN_ID = 1890;
-  string internal constant CHAIN_KEY = "lightlink-mainnet";
+  string internal constant CHAIN_NAME = "lightlink-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6F475642a6e85809B1c36Fa62763669b1b48DD5B);
@@ -6065,7 +6093,7 @@ library LayerZeroV2LightlinkTestnet {
   // Chain metadata
   uint32 internal constant EID = 40309;
   uint256 internal constant CHAIN_ID = 1891;
-  string internal constant CHAIN_KEY = "lightlink-testnet";
+  string internal constant CHAIN_NAME = "lightlink-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6C7Ab2202C98C4227C5c46f1417D81144DA716Ff);
@@ -6093,7 +6121,7 @@ library LayerZeroV2LineasepTestnet {
   // Chain metadata
   uint32 internal constant EID = 40287;
   uint256 internal constant CHAIN_ID = 59141;
-  string internal constant CHAIN_KEY = "lineasep-testnet";
+  string internal constant CHAIN_NAME = "lineasep-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6EDCE65403992e310A62460808c4b910D972f10f);
@@ -6118,7 +6146,7 @@ library LayerZeroV2LiskMainnet {
   // Chain metadata
   uint32 internal constant EID = 30321;
   uint256 internal constant CHAIN_ID = 1135;
-  string internal constant CHAIN_KEY = "lisk-mainnet";
+  string internal constant CHAIN_NAME = "lisk-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6F475642a6e85809B1c36Fa62763669b1b48DD5B);
@@ -6154,7 +6182,7 @@ library LayerZeroV2LiskTestnet {
   // Chain metadata
   uint32 internal constant EID = 40327;
   uint256 internal constant CHAIN_ID = 4202;
-  string internal constant CHAIN_KEY = "lisk-testnet";
+  string internal constant CHAIN_NAME = "lisk-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6C7Ab2202C98C4227C5c46f1417D81144DA716Ff);
@@ -6182,7 +6210,7 @@ library LayerZeroV2Ll1Testnet {
   // Chain metadata
   uint32 internal constant EID = 40271;
   uint256 internal constant CHAIN_ID = 1337;
-  string internal constant CHAIN_KEY = "ll1-testnet";
+  string internal constant CHAIN_NAME = "ll1-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6EDCE65403992e310A62460808c4b910D972f10f);
@@ -6213,7 +6241,7 @@ library LayerZeroV2LootMainnet {
   // Chain metadata
   uint32 internal constant EID = 30197;
   uint256 internal constant CHAIN_ID = 5151706;
-  string internal constant CHAIN_KEY = "loot-mainnet";
+  string internal constant CHAIN_NAME = "loot-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x1a44076050125825900e736c501f859c50fE728c);
@@ -6249,7 +6277,7 @@ library LayerZeroV2LootTestnet {
   // Chain metadata
   uint32 internal constant EID = 40197;
   uint256 internal constant CHAIN_ID = 9088912;
-  string internal constant CHAIN_KEY = "loot-testnet";
+  string internal constant CHAIN_NAME = "loot-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6EDCE65403992e310A62460808c4b910D972f10f);
@@ -6276,7 +6304,7 @@ library LayerZeroV2LyraMainnet {
   // Chain metadata
   uint32 internal constant EID = 30311;
   uint256 internal constant CHAIN_ID = 957;
-  string internal constant CHAIN_KEY = "lyra-mainnet";
+  string internal constant CHAIN_NAME = "lyra-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0xcb566e3B6934Fa77258d68ea18E931fa75e1aaAa);
@@ -6308,7 +6336,7 @@ library LayerZeroV2LyraTestnet {
   // Chain metadata
   uint32 internal constant EID = 40308;
   uint256 internal constant CHAIN_ID = 901;
-  string internal constant CHAIN_KEY = "lyra-testnet";
+  string internal constant CHAIN_NAME = "lyra-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6C7Ab2202C98C4227C5c46f1417D81144DA716Ff);
@@ -6335,7 +6363,7 @@ library LayerZeroV2DVNLyraTestnet {
 library LayerZeroV2LzjkTestnet {
   // Chain metadata
   uint32 internal constant EID = 40418;
-  string internal constant CHAIN_KEY = "lzjk-testnet";
+  string internal constant CHAIN_NAME = "lzjk-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x3aCAAf60502791D199a5a5F0B173D78229eBFe32);
@@ -6363,7 +6391,7 @@ library LayerZeroV2MantaMainnet {
   // Chain metadata
   uint32 internal constant EID = 30217;
   uint256 internal constant CHAIN_ID = 169;
-  string internal constant CHAIN_KEY = "manta-mainnet";
+  string internal constant CHAIN_NAME = "manta-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x1a44076050125825900e736c501f859c50fE728c);
@@ -6407,7 +6435,7 @@ library LayerZeroV2MantaTestnet {
   // Chain metadata
   uint32 internal constant EID = 40221;
   uint256 internal constant CHAIN_ID = 3441005;
-  string internal constant CHAIN_KEY = "manta-testnet";
+  string internal constant CHAIN_NAME = "manta-testnet";
 
   // Message libraries
   address internal constant BLOCKED_MESSAGE_LIB = 0x0000000000000000000000000000000000000000;
@@ -6422,7 +6450,7 @@ library LayerZeroV2MantasepTestnet {
   // Chain metadata
   uint32 internal constant EID = 40272;
   uint256 internal constant CHAIN_ID = 3441006;
-  string internal constant CHAIN_KEY = "mantasep-testnet";
+  string internal constant CHAIN_NAME = "mantasep-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6EDCE65403992e310A62460808c4b910D972f10f);
@@ -6447,7 +6475,7 @@ library LayerZeroV2MantleMainnet {
   // Chain metadata
   uint32 internal constant EID = 30181;
   uint256 internal constant CHAIN_ID = 5000;
-  string internal constant CHAIN_KEY = "mantle-mainnet";
+  string internal constant CHAIN_NAME = "mantle-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x1a44076050125825900e736c501f859c50fE728c);
@@ -6530,7 +6558,7 @@ library LayerZeroV2MantleTestnet {
   // Chain metadata
   uint32 internal constant EID = 40181;
   uint256 internal constant CHAIN_ID = 5001;
-  string internal constant CHAIN_KEY = "mantle-testnet";
+  string internal constant CHAIN_NAME = "mantle-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6EDCE65403992e310A62460808c4b910D972f10f);
@@ -6559,7 +6587,7 @@ library LayerZeroV2MantlesepTestnet {
   // Chain metadata
   uint32 internal constant EID = 40246;
   uint256 internal constant CHAIN_ID = 5003;
-  string internal constant CHAIN_KEY = "mantlesep-testnet";
+  string internal constant CHAIN_NAME = "mantlesep-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6EDCE65403992e310A62460808c4b910D972f10f);
@@ -6594,7 +6622,7 @@ library LayerZeroV2MasaMainnet {
   // Chain metadata
   uint32 internal constant EID = 30263;
   uint256 internal constant CHAIN_ID = 13396;
-  string internal constant CHAIN_KEY = "masa-mainnet";
+  string internal constant CHAIN_NAME = "masa-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x1a44076050125825900e736c501f859c50fE728c);
@@ -6628,7 +6656,7 @@ library LayerZeroV2MasaTestnet {
   // Chain metadata
   uint32 internal constant EID = 40263;
   uint256 internal constant CHAIN_ID = 103454;
-  string internal constant CHAIN_KEY = "masa-testnet";
+  string internal constant CHAIN_NAME = "masa-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0xb23b28012ee92E8dE39DEb57Af31722223034747);
@@ -6653,7 +6681,7 @@ library LayerZeroV2MegaethMainnet {
   // Chain metadata
   uint32 internal constant EID = 30398;
   uint256 internal constant CHAIN_ID = 4326;
-  string internal constant CHAIN_KEY = "megaeth-mainnet";
+  string internal constant CHAIN_NAME = "megaeth-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6F475642a6e85809B1c36Fa62763669b1b48DD5B);
@@ -6681,7 +6709,7 @@ library LayerZeroV2MegaethTestnet {
   // Chain metadata
   uint32 internal constant EID = 40370;
   uint256 internal constant CHAIN_ID = 6342;
-  string internal constant CHAIN_KEY = "megaeth-testnet";
+  string internal constant CHAIN_NAME = "megaeth-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6C7Ab2202C98C4227C5c46f1417D81144DA716Ff);
@@ -6709,7 +6737,7 @@ library LayerZeroV2Megaeth2Testnet {
   // Chain metadata
   uint32 internal constant EID = 40427;
   uint256 internal constant CHAIN_ID = 6343;
-  string internal constant CHAIN_KEY = "megaeth2-testnet";
+  string internal constant CHAIN_NAME = "megaeth2-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0xb23b28012ee92E8dE39DEb57Af31722223034747);
@@ -6737,7 +6765,7 @@ library LayerZeroV2MemecoreformicariumTestnet {
   // Chain metadata
   uint32 internal constant EID = 40354;
   uint256 internal constant CHAIN_ID = 43521;
-  string internal constant CHAIN_KEY = "memecoreformicarium-testnet";
+  string internal constant CHAIN_NAME = "memecoreformicarium-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x145C041566B21Bec558B2A37F1a5Ff261aB55998);
@@ -6767,7 +6795,7 @@ library LayerZeroV2MeritcircleMainnet {
   // Chain metadata
   uint32 internal constant EID = 30198;
   uint256 internal constant CHAIN_ID = 4337;
-  string internal constant CHAIN_KEY = "meritcircle-mainnet";
+  string internal constant CHAIN_NAME = "meritcircle-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x1a44076050125825900e736c501f859c50fE728c);
@@ -6803,7 +6831,7 @@ library LayerZeroV2MeritcircleTestnet {
   // Chain metadata
   uint32 internal constant EID = 40178;
   uint256 internal constant CHAIN_ID = 13337;
-  string internal constant CHAIN_KEY = "meritcircle-testnet";
+  string internal constant CHAIN_NAME = "meritcircle-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6EDCE65403992e310A62460808c4b910D972f10f);
@@ -6830,7 +6858,7 @@ library LayerZeroV2MerlinMainnet {
   // Chain metadata
   uint32 internal constant EID = 30266;
   uint256 internal constant CHAIN_ID = 4200;
-  string internal constant CHAIN_KEY = "merlin-mainnet";
+  string internal constant CHAIN_NAME = "merlin-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x1a44076050125825900e736c501f859c50fE728c);
@@ -6870,7 +6898,7 @@ library LayerZeroV2MerlinTestnet {
   // Chain metadata
   uint32 internal constant EID = 40264;
   uint256 internal constant CHAIN_ID = 686868;
-  string internal constant CHAIN_KEY = "merlin-testnet";
+  string internal constant CHAIN_NAME = "merlin-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6EDCE65403992e310A62460808c4b910D972f10f);
@@ -6897,7 +6925,7 @@ library LayerZeroV2MeterMainnet {
   // Chain metadata
   uint32 internal constant EID = 30176;
   uint256 internal constant CHAIN_ID = 82;
-  string internal constant CHAIN_KEY = "meter-mainnet";
+  string internal constant CHAIN_NAME = "meter-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0xef02BacD67C0AB45510927749009F6B9ffCE0631);
@@ -6933,7 +6961,7 @@ library LayerZeroV2MeterTestnet {
   // Chain metadata
   uint32 internal constant EID = 40156;
   uint256 internal constant CHAIN_ID = 83;
-  string internal constant CHAIN_KEY = "meter-testnet";
+  string internal constant CHAIN_NAME = "meter-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x3E03163f253ec436d4562e5eFd038cf98827B7eC);
@@ -6960,7 +6988,7 @@ library LayerZeroV2MetisMainnet {
   // Chain metadata
   uint32 internal constant EID = 30151;
   uint256 internal constant CHAIN_ID = 1088;
-  string internal constant CHAIN_KEY = "metis-mainnet";
+  string internal constant CHAIN_NAME = "metis-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x1a44076050125825900e736c501f859c50fE728c);
@@ -7006,7 +7034,7 @@ library LayerZeroV2MetisTestnet {
   // Chain metadata
   uint32 internal constant EID = 40151;
   uint256 internal constant CHAIN_ID = 599;
-  string internal constant CHAIN_KEY = "metis-testnet";
+  string internal constant CHAIN_NAME = "metis-testnet";
 
   // Message libraries
   address internal constant BLOCKED_MESSAGE_LIB = 0x0000000000000000000000000000000000000000;
@@ -7021,7 +7049,7 @@ library LayerZeroV2MetissepTestnet {
   // Chain metadata
   uint32 internal constant EID = 40292;
   uint256 internal constant CHAIN_ID = 59902;
-  string internal constant CHAIN_KEY = "metissep-testnet";
+  string internal constant CHAIN_NAME = "metissep-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6EDCE65403992e310A62460808c4b910D972f10f);
@@ -7046,7 +7074,7 @@ library LayerZeroV2MinatoTestnet {
   // Chain metadata
   uint32 internal constant EID = 40334;
   uint256 internal constant CHAIN_ID = 1946;
-  string internal constant CHAIN_KEY = "minato-testnet";
+  string internal constant CHAIN_NAME = "minato-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6Ac7bdc07A0583A362F1497252872AE6c0A5F5B8);
@@ -7080,7 +7108,7 @@ library LayerZeroV2MocaTestnet {
   // Chain metadata
   uint32 internal constant EID = 40433;
   uint256 internal constant CHAIN_ID = 222888;
-  string internal constant CHAIN_KEY = "moca-testnet";
+  string internal constant CHAIN_NAME = "moca-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x3aCAAf60502791D199a5a5F0B173D78229eBFe32);
@@ -7108,7 +7136,7 @@ library LayerZeroV2ModeMainnet {
   // Chain metadata
   uint32 internal constant EID = 30260;
   uint256 internal constant CHAIN_ID = 34443;
-  string internal constant CHAIN_KEY = "mode-mainnet";
+  string internal constant CHAIN_NAME = "mode-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x1a44076050125825900e736c501f859c50fE728c);
@@ -7159,7 +7187,7 @@ library LayerZeroV2ModeTestnet {
   // Chain metadata
   uint32 internal constant EID = 40260;
   uint256 internal constant CHAIN_ID = 919;
-  string internal constant CHAIN_KEY = "mode-testnet";
+  string internal constant CHAIN_NAME = "mode-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6EDCE65403992e310A62460808c4b910D972f10f);
@@ -7184,7 +7212,7 @@ library LayerZeroV2MokshaTestnet {
   // Chain metadata
   uint32 internal constant EID = 40342;
   uint256 internal constant CHAIN_ID = 14800;
-  string internal constant CHAIN_KEY = "moksha-testnet";
+  string internal constant CHAIN_NAME = "moksha-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6C7Ab2202C98C4227C5c46f1417D81144DA716Ff);
@@ -7213,7 +7241,7 @@ library LayerZeroV2MonadMainnet {
   // Chain metadata
   uint32 internal constant EID = 30390;
   uint256 internal constant CHAIN_ID = 143;
-  string internal constant CHAIN_KEY = "monad-mainnet";
+  string internal constant CHAIN_NAME = "monad-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6F475642a6e85809B1c36Fa62763669b1b48DD5B);
@@ -7257,7 +7285,7 @@ library LayerZeroV2MonadTestnet {
   // Chain metadata
   uint32 internal constant EID = 40204;
   uint256 internal constant CHAIN_ID = 10143;
-  string internal constant CHAIN_KEY = "monad-testnet";
+  string internal constant CHAIN_NAME = "monad-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6C7Ab2202C98C4227C5c46f1417D81144DA716Ff);
@@ -7296,7 +7324,7 @@ library LayerZeroV2MoonbeamMainnet {
   // Chain metadata
   uint32 internal constant EID = 30126;
   uint256 internal constant CHAIN_ID = 1284;
-  string internal constant CHAIN_KEY = "moonbeam-mainnet";
+  string internal constant CHAIN_NAME = "moonbeam-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x1a44076050125825900e736c501f859c50fE728c);
@@ -7344,7 +7372,7 @@ library LayerZeroV2MoonbeamTestnet {
   // Chain metadata
   uint32 internal constant EID = 40126;
   uint256 internal constant CHAIN_ID = 1287;
-  string internal constant CHAIN_KEY = "moonbeam-testnet";
+  string internal constant CHAIN_NAME = "moonbeam-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6EDCE65403992e310A62460808c4b910D972f10f);
@@ -7373,7 +7401,7 @@ library LayerZeroV2MoonriverMainnet {
   // Chain metadata
   uint32 internal constant EID = 30167;
   uint256 internal constant CHAIN_ID = 1285;
-  string internal constant CHAIN_KEY = "moonriver-mainnet";
+  string internal constant CHAIN_NAME = "moonriver-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x1a44076050125825900e736c501f859c50fE728c);
@@ -7413,7 +7441,7 @@ library LayerZeroV2MorphMainnet {
   // Chain metadata
   uint32 internal constant EID = 30322;
   uint256 internal constant CHAIN_ID = 2818;
-  string internal constant CHAIN_KEY = "morph-mainnet";
+  string internal constant CHAIN_NAME = "morph-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6F475642a6e85809B1c36Fa62763669b1b48DD5B);
@@ -7449,7 +7477,7 @@ library LayerZeroV2MorphTestnet {
   // Chain metadata
   uint32 internal constant EID = 40322;
   uint256 internal constant CHAIN_ID = 2810;
-  string internal constant CHAIN_KEY = "morph-testnet";
+  string internal constant CHAIN_NAME = "morph-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6C7Ab2202C98C4227C5c46f1417D81144DA716Ff);
@@ -7479,7 +7507,7 @@ library LayerZeroV2Mp1Mainnet {
   // Chain metadata
   uint32 internal constant EID = 30331;
   uint256 internal constant CHAIN_ID = 21000000;
-  string internal constant CHAIN_KEY = "mp1-mainnet";
+  string internal constant CHAIN_NAME = "mp1-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0xcb566e3B6934Fa77258d68ea18E931fa75e1aaAa);
@@ -7517,7 +7545,7 @@ library LayerZeroV2Mp1Testnet {
   // Chain metadata
   uint32 internal constant EID = 40345;
   uint256 internal constant CHAIN_ID = 21000001;
-  string internal constant CHAIN_KEY = "mp1-testnet";
+  string internal constant CHAIN_NAME = "mp1-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6C7Ab2202C98C4227C5c46f1417D81144DA716Ff);
@@ -7545,7 +7573,7 @@ library LayerZeroV2NexeraMainnet {
   // Chain metadata
   uint32 internal constant EID = 30395;
   uint256 internal constant CHAIN_ID = 7208;
-  string internal constant CHAIN_KEY = "nexera-mainnet";
+  string internal constant CHAIN_NAME = "nexera-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6F475642a6e85809B1c36Fa62763669b1b48DD5B);
@@ -7579,7 +7607,7 @@ library LayerZeroV2NexeraTestnet {
   // Chain metadata
   uint32 internal constant EID = 40426;
   uint256 internal constant CHAIN_ID = 72080;
-  string internal constant CHAIN_KEY = "nexera-testnet";
+  string internal constant CHAIN_NAME = "nexera-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x3aCAAf60502791D199a5a5F0B173D78229eBFe32);
@@ -7607,7 +7635,7 @@ library LayerZeroV2NibiruMainnet {
   // Chain metadata
   uint32 internal constant EID = 30369;
   uint256 internal constant CHAIN_ID = 6900;
-  string internal constant CHAIN_KEY = "nibiru-mainnet";
+  string internal constant CHAIN_NAME = "nibiru-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x2a5E79DEE6E3544588BB3b675B1Cc3354Df2AEFD);
@@ -7647,7 +7675,7 @@ library LayerZeroV2NibiruTestnet {
   // Chain metadata
   uint32 internal constant EID = 40369;
   uint256 internal constant CHAIN_ID = 7210;
-  string internal constant CHAIN_KEY = "nibiru-testnet";
+  string internal constant CHAIN_NAME = "nibiru-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x19Aa25541F9f1414dcEd4C9bA4225c2a24c77CFe);
@@ -7679,7 +7707,7 @@ library LayerZeroV2NovaMainnet {
   // Chain metadata
   uint32 internal constant EID = 30175;
   uint256 internal constant CHAIN_ID = 42170;
-  string internal constant CHAIN_KEY = "nova-mainnet";
+  string internal constant CHAIN_NAME = "nova-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x1a44076050125825900e736c501f859c50fE728c);
@@ -7723,7 +7751,7 @@ library LayerZeroV2OdaTestnet {
   // Chain metadata
   uint32 internal constant EID = 40208;
   uint256 internal constant CHAIN_ID = 25;
-  string internal constant CHAIN_KEY = "oda-testnet";
+  string internal constant CHAIN_NAME = "oda-testnet";
 
   // Message libraries
   address internal constant BLOCKED_MESSAGE_LIB = 0x0000000000000000000000000000000000000000;
@@ -7733,7 +7761,7 @@ library LayerZeroV2OdysseyTestnet {
   // Chain metadata
   uint32 internal constant EID = 40340;
   uint256 internal constant CHAIN_ID = 1516;
-  string internal constant CHAIN_KEY = "odyssey-testnet";
+  string internal constant CHAIN_NAME = "odyssey-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6Ac7bdc07A0583A362F1497252872AE6c0A5F5B8);
@@ -7762,7 +7790,7 @@ library LayerZeroV2OgMainnet {
   // Chain metadata
   uint32 internal constant EID = 30388;
   uint256 internal constant CHAIN_ID = 16661;
-  string internal constant CHAIN_KEY = "og-mainnet";
+  string internal constant CHAIN_NAME = "og-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0xcb566e3B6934Fa77258d68ea18E931fa75e1aaAa);
@@ -7802,7 +7830,7 @@ library LayerZeroV2OgTestnet {
   // Chain metadata
   uint32 internal constant EID = 40419;
   uint256 internal constant CHAIN_ID = 16601;
-  string internal constant CHAIN_KEY = "og-testnet";
+  string internal constant CHAIN_NAME = "og-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x3aCAAf60502791D199a5a5F0B173D78229eBFe32);
@@ -7830,7 +7858,7 @@ library LayerZeroV2OggalileoTestnet {
   // Chain metadata
   uint32 internal constant EID = 40428;
   uint256 internal constant CHAIN_ID = 16602;
-  string internal constant CHAIN_KEY = "oggalileo-testnet";
+  string internal constant CHAIN_NAME = "oggalileo-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x3aCAAf60502791D199a5a5F0B173D78229eBFe32);
@@ -7858,7 +7886,7 @@ library LayerZeroV2OkxMainnet {
   // Chain metadata
   uint32 internal constant EID = 30155;
   uint256 internal constant CHAIN_ID = 66;
-  string internal constant CHAIN_KEY = "okx-mainnet";
+  string internal constant CHAIN_NAME = "okx-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x1a44076050125825900e736c501f859c50fE728c);
@@ -7894,7 +7922,7 @@ library LayerZeroV2OkxTestnet {
   // Chain metadata
   uint32 internal constant EID = 40155;
   uint256 internal constant CHAIN_ID = 65;
-  string internal constant CHAIN_KEY = "okx-testnet";
+  string internal constant CHAIN_NAME = "okx-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6EDCE65403992e310A62460808c4b910D972f10f);
@@ -7921,7 +7949,7 @@ library LayerZeroV2OliveTestnet {
   // Chain metadata
   uint32 internal constant EID = 40277;
   uint256 internal constant CHAIN_ID = 8101902;
-  string internal constant CHAIN_KEY = "olive-testnet";
+  string internal constant CHAIN_NAME = "olive-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6EDCE65403992e310A62460808c4b910D972f10f);
@@ -7946,7 +7974,7 @@ library LayerZeroV2OndoTestnet {
   // Chain metadata
   uint32 internal constant EID = 40375;
   uint256 internal constant CHAIN_ID = 9000;
-  string internal constant CHAIN_KEY = "ondo-testnet";
+  string internal constant CHAIN_NAME = "ondo-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x3aCAAf60502791D199a5a5F0B173D78229eBFe32);
@@ -7974,7 +8002,7 @@ library LayerZeroV2OpbnbMainnet {
   // Chain metadata
   uint32 internal constant EID = 30202;
   uint256 internal constant CHAIN_ID = 204;
-  string internal constant CHAIN_KEY = "opbnb-mainnet";
+  string internal constant CHAIN_NAME = "opbnb-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x1a44076050125825900e736c501f859c50fE728c);
@@ -8020,7 +8048,7 @@ library LayerZeroV2OpbnbTestnet {
   // Chain metadata
   uint32 internal constant EID = 40202;
   uint256 internal constant CHAIN_ID = 5611;
-  string internal constant CHAIN_KEY = "opbnb-testnet";
+  string internal constant CHAIN_NAME = "opbnb-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6EDCE65403992e310A62460808c4b910D972f10f);
@@ -8047,7 +8075,7 @@ library LayerZeroV2OpencampusTestnet {
   // Chain metadata
   uint32 internal constant EID = 40297;
   uint256 internal constant CHAIN_ID = 656476;
-  string internal constant CHAIN_KEY = "opencampus-testnet";
+  string internal constant CHAIN_NAME = "opencampus-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6C7Ab2202C98C4227C5c46f1417D81144DA716Ff);
@@ -8075,7 +8103,7 @@ library LayerZeroV2OpenledgerMainnet {
   // Chain metadata
   uint32 internal constant EID = 30392;
   uint256 internal constant CHAIN_ID = 1612;
-  string internal constant CHAIN_KEY = "openledger-mainnet";
+  string internal constant CHAIN_NAME = "openledger-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x3A73033C0b1407574C76BdBAc67f126f6b4a9AA9);
@@ -8107,7 +8135,7 @@ library LayerZeroV2OpenledgerTestnet {
   // Chain metadata
   uint32 internal constant EID = 40413;
   uint256 internal constant CHAIN_ID = 161201;
-  string internal constant CHAIN_KEY = "openledger-testnet";
+  string internal constant CHAIN_NAME = "openledger-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x3aCAAf60502791D199a5a5F0B173D78229eBFe32);
@@ -8135,7 +8163,7 @@ library LayerZeroV2OptimismMainnet {
   // Chain metadata
   uint32 internal constant EID = 30111;
   uint256 internal constant CHAIN_ID = 10;
-  string internal constant CHAIN_KEY = "optimism-mainnet";
+  string internal constant CHAIN_NAME = "optimism-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x1a44076050125825900e736c501f859c50fE728c);
@@ -8284,7 +8312,7 @@ library LayerZeroV2OptimismTestnet {
   // Chain metadata
   uint32 internal constant EID = 40132;
   uint256 internal constant CHAIN_ID = 420;
-  string internal constant CHAIN_KEY = "optimism-testnet";
+  string internal constant CHAIN_NAME = "optimism-testnet";
 
   // Message libraries
   address internal constant BLOCKED_MESSAGE_LIB = 0x0000000000000000000000000000000000000000;
@@ -8303,7 +8331,7 @@ library LayerZeroV2OptsepTestnet {
   // Chain metadata
   uint32 internal constant EID = 40232;
   uint256 internal constant CHAIN_ID = 11155420;
-  string internal constant CHAIN_KEY = "optsep-testnet";
+  string internal constant CHAIN_NAME = "optsep-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6EDCE65403992e310A62460808c4b910D972f10f);
@@ -8350,7 +8378,7 @@ library LayerZeroV2OrderlyMainnet {
   // Chain metadata
   uint32 internal constant EID = 30213;
   uint256 internal constant CHAIN_ID = 291;
-  string internal constant CHAIN_KEY = "orderly-mainnet";
+  string internal constant CHAIN_NAME = "orderly-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x1a44076050125825900e736c501f859c50fE728c);
@@ -8390,7 +8418,7 @@ library LayerZeroV2OrderlyTestnet {
   // Chain metadata
   uint32 internal constant EID = 40200;
   uint256 internal constant CHAIN_ID = 4460;
-  string internal constant CHAIN_KEY = "orderly-testnet";
+  string internal constant CHAIN_NAME = "orderly-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6EDCE65403992e310A62460808c4b910D972f10f);
@@ -8417,7 +8445,7 @@ library LayerZeroV2OtherworldTestnet {
   // Chain metadata
   uint32 internal constant EID = 40337;
   uint256 internal constant CHAIN_ID = 48795;
-  string internal constant CHAIN_KEY = "otherworld-testnet";
+  string internal constant CHAIN_NAME = "otherworld-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0xBa8dF7424dAE9C2CDB4BC1aD2b63ABD97194fDb6);
@@ -8447,7 +8475,7 @@ library LayerZeroV2OzeanTestnet {
   // Chain metadata
   uint32 internal constant EID = 40323;
   uint256 internal constant CHAIN_ID = 7849306;
-  string internal constant CHAIN_KEY = "ozean-testnet";
+  string internal constant CHAIN_NAME = "ozean-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x145C041566B21Bec558B2A37F1a5Ff261aB55998);
@@ -8475,7 +8503,7 @@ library LayerZeroV2PeaqMainnet {
   // Chain metadata
   uint32 internal constant EID = 30302;
   uint256 internal constant CHAIN_ID = 3338;
-  string internal constant CHAIN_KEY = "peaq-mainnet";
+  string internal constant CHAIN_NAME = "peaq-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6F475642a6e85809B1c36Fa62763669b1b48DD5B);
@@ -8523,7 +8551,7 @@ library LayerZeroV2PeaqTestnet {
   // Chain metadata
   uint32 internal constant EID = 40299;
   uint256 internal constant CHAIN_ID = 9990;
-  string internal constant CHAIN_KEY = "peaq-testnet";
+  string internal constant CHAIN_NAME = "peaq-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6C7Ab2202C98C4227C5c46f1417D81144DA716Ff);
@@ -8550,7 +8578,7 @@ library LayerZeroV2DVNPeaqTestnet {
 library LayerZeroV2PgjjtkTestnet {
   // Chain metadata
   uint32 internal constant EID = 40207;
-  string internal constant CHAIN_KEY = "pgjjtk-testnet";
+  string internal constant CHAIN_NAME = "pgjjtk-testnet";
 
   // Message libraries
   address internal constant BLOCKED_MESSAGE_LIB = 0x0000000000000000000000000000000000000000;
@@ -8560,7 +8588,7 @@ library LayerZeroV2PgnMainnet {
   // Chain metadata
   uint32 internal constant EID = 30218;
   uint256 internal constant CHAIN_ID = 424;
-  string internal constant CHAIN_KEY = "pgn-mainnet";
+  string internal constant CHAIN_NAME = "pgn-mainnet";
 
   // Message libraries
   address internal constant BLOCKED_MESSAGE_LIB = 0x0000000000000000000000000000000000000000;
@@ -8577,7 +8605,7 @@ library LayerZeroV2PgnTestnet {
   // Chain metadata
   uint32 internal constant EID = 40223;
   uint256 internal constant CHAIN_ID = 58008;
-  string internal constant CHAIN_KEY = "pgn-testnet";
+  string internal constant CHAIN_NAME = "pgn-testnet";
 
   // Message libraries
   address internal constant BLOCKED_MESSAGE_LIB = 0x0000000000000000000000000000000000000000;
@@ -8592,7 +8620,7 @@ library LayerZeroV2PlasmaMainnet {
   // Chain metadata
   uint32 internal constant EID = 30383;
   uint256 internal constant CHAIN_ID = 9745;
-  string internal constant CHAIN_KEY = "plasma-mainnet";
+  string internal constant CHAIN_NAME = "plasma-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6F475642a6e85809B1c36Fa62763669b1b48DD5B);
@@ -8643,7 +8671,7 @@ library LayerZeroV2PlasmaTestnet {
   // Chain metadata
   uint32 internal constant EID = 40409;
   uint256 internal constant CHAIN_ID = 9746;
-  string internal constant CHAIN_KEY = "plasma-testnet";
+  string internal constant CHAIN_NAME = "plasma-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x3aCAAf60502791D199a5a5F0B173D78229eBFe32);
@@ -8671,7 +8699,7 @@ library LayerZeroV2Plasma2Testnet {
   // Chain metadata
   uint32 internal constant EID = 40411;
   uint256 internal constant CHAIN_ID = 9746;
-  string internal constant CHAIN_KEY = "plasma2-testnet";
+  string internal constant CHAIN_NAME = "plasma2-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x3aCAAf60502791D199a5a5F0B173D78229eBFe32);
@@ -8699,7 +8727,7 @@ library LayerZeroV2Plasma3Testnet {
   // Chain metadata
   uint32 internal constant EID = 40417;
   uint256 internal constant CHAIN_ID = 9746;
-  string internal constant CHAIN_KEY = "plasma3-testnet";
+  string internal constant CHAIN_NAME = "plasma3-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x3aCAAf60502791D199a5a5F0B173D78229eBFe32);
@@ -8727,7 +8755,7 @@ library LayerZeroV2PlumeMainnet {
   // Chain metadata
   uint32 internal constant EID = 30318;
   uint256 internal constant CHAIN_ID = 98865;
-  string internal constant CHAIN_KEY = "plume-mainnet";
+  string internal constant CHAIN_NAME = "plume-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6F475642a6e85809B1c36Fa62763669b1b48DD5B);
@@ -8771,7 +8799,7 @@ library LayerZeroV2PlumeTestnet {
   // Chain metadata
   uint32 internal constant EID = 40304;
   uint256 internal constant CHAIN_ID = 161221135;
-  string internal constant CHAIN_KEY = "plume-testnet";
+  string internal constant CHAIN_NAME = "plume-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6C7Ab2202C98C4227C5c46f1417D81144DA716Ff);
@@ -8799,7 +8827,7 @@ library LayerZeroV2Plume2Testnet {
   // Chain metadata
   uint32 internal constant EID = 40329;
   uint256 internal constant CHAIN_ID = 18230;
-  string internal constant CHAIN_KEY = "plume2-testnet";
+  string internal constant CHAIN_NAME = "plume2-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6C7Ab2202C98C4227C5c46f1417D81144DA716Ff);
@@ -8827,7 +8855,7 @@ library LayerZeroV2PlumephoenixMainnet {
   // Chain metadata
   uint32 internal constant EID = 30370;
   uint256 internal constant CHAIN_ID = 98866;
-  string internal constant CHAIN_KEY = "plumephoenix-mainnet";
+  string internal constant CHAIN_NAME = "plumephoenix-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0xC1b15d3B262bEeC0e3565C11C9e0F6134BdaCB36);
@@ -8874,7 +8902,7 @@ library LayerZeroV2PolygonMainnet {
   // Chain metadata
   uint32 internal constant EID = 30109;
   uint256 internal constant CHAIN_ID = 137;
-  string internal constant CHAIN_KEY = "polygon-mainnet";
+  string internal constant CHAIN_NAME = "polygon-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x1a44076050125825900e736c501f859c50fE728c);
@@ -9019,7 +9047,7 @@ library LayerZeroV2PolygonTestnet {
   // Chain metadata
   uint32 internal constant EID = 40109;
   uint256 internal constant CHAIN_ID = 80001;
-  string internal constant CHAIN_KEY = "polygon-testnet";
+  string internal constant CHAIN_NAME = "polygon-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6EDCE65403992e310A62460808c4b910D972f10f);
@@ -9062,7 +9090,7 @@ library LayerZeroV2PolygoncdkTestnet {
   // Chain metadata
   uint32 internal constant EID = 40224;
   uint256 internal constant CHAIN_ID = 686669576;
-  string internal constant CHAIN_KEY = "polygoncdk-testnet";
+  string internal constant CHAIN_NAME = "polygoncdk-testnet";
 
   // Message libraries
   address internal constant BLOCKED_MESSAGE_LIB = 0x0000000000000000000000000000000000000000;
@@ -9077,7 +9105,7 @@ library LayerZeroV2RaribleMainnet {
   // Chain metadata
   uint32 internal constant EID = 30235;
   uint256 internal constant CHAIN_ID = 1380012617;
-  string internal constant CHAIN_KEY = "rarible-mainnet";
+  string internal constant CHAIN_NAME = "rarible-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x1a44076050125825900e736c501f859c50fE728c);
@@ -9113,7 +9141,7 @@ library LayerZeroV2RaribleTestnet {
   // Chain metadata
   uint32 internal constant EID = 40235;
   uint256 internal constant CHAIN_ID = 1918988905;
-  string internal constant CHAIN_KEY = "rarible-testnet";
+  string internal constant CHAIN_NAME = "rarible-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6EDCE65403992e310A62460808c4b910D972f10f);
@@ -9140,7 +9168,7 @@ library LayerZeroV2Rc1Testnet {
   // Chain metadata
   uint32 internal constant EID = 40238;
   uint256 internal constant CHAIN_ID = 1127469;
-  string internal constant CHAIN_KEY = "rc1-testnet";
+  string internal constant CHAIN_NAME = "rc1-testnet";
 
   // Message libraries
   address internal constant BLOCKED_MESSAGE_LIB = 0x0000000000000000000000000000000000000000;
@@ -9150,7 +9178,7 @@ library LayerZeroV2RealMainnet {
   // Chain metadata
   uint32 internal constant EID = 30237;
   uint256 internal constant CHAIN_ID = 111188;
-  string internal constant CHAIN_KEY = "real-mainnet";
+  string internal constant CHAIN_NAME = "real-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x1a44076050125825900e736c501f859c50fE728c);
@@ -9188,7 +9216,7 @@ library LayerZeroV2RedbellyTestnet {
   // Chain metadata
   uint32 internal constant EID = 40429;
   uint256 internal constant CHAIN_ID = 153;
-  string internal constant CHAIN_KEY = "redbelly-testnet";
+  string internal constant CHAIN_NAME = "redbelly-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x3aCAAf60502791D199a5a5F0B173D78229eBFe32);
@@ -9216,7 +9244,7 @@ library LayerZeroV2ReyaMainnet {
   // Chain metadata
   uint32 internal constant EID = 30313;
   uint256 internal constant CHAIN_ID = 1729;
-  string internal constant CHAIN_KEY = "reya-mainnet";
+  string internal constant CHAIN_NAME = "reya-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6F475642a6e85809B1c36Fa62763669b1b48DD5B);
@@ -9248,7 +9276,7 @@ library LayerZeroV2ReyaTestnet {
   // Chain metadata
   uint32 internal constant EID = 40319;
   uint256 internal constant CHAIN_ID = 89346162;
-  string internal constant CHAIN_KEY = "reya-testnet";
+  string internal constant CHAIN_NAME = "reya-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6C7Ab2202C98C4227C5c46f1417D81144DA716Ff);
@@ -9276,7 +9304,7 @@ library LayerZeroV2RootTestnet {
   // Chain metadata
   uint32 internal constant EID = 40318;
   uint256 internal constant CHAIN_ID = 7672;
-  string internal constant CHAIN_KEY = "root-testnet";
+  string internal constant CHAIN_NAME = "root-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0xbc2a00d907a6Aa5226Fb9444953E4464a5f4844a);
@@ -9306,7 +9334,7 @@ library LayerZeroV2RootstockMainnet {
   // Chain metadata
   uint32 internal constant EID = 30333;
   uint256 internal constant CHAIN_ID = 30;
-  string internal constant CHAIN_KEY = "rootstock-mainnet";
+  string internal constant CHAIN_NAME = "rootstock-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0xcb566e3B6934Fa77258d68ea18E931fa75e1aaAa);
@@ -9344,7 +9372,7 @@ library LayerZeroV2RootstockTestnet {
   // Chain metadata
   uint32 internal constant EID = 40350;
   uint256 internal constant CHAIN_ID = 31;
-  string internal constant CHAIN_KEY = "rootstock-testnet";
+  string internal constant CHAIN_NAME = "rootstock-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6C7Ab2202C98C4227C5c46f1417D81144DA716Ff);
@@ -9368,11 +9396,39 @@ library LayerZeroV2DVNRootstockTestnet {
   address internal constant DVN_LAYERZERO_LABS = 0x88B27057A9e00c5F05DDa29241027afF63f9e6e0;
 }
 
+library LayerZeroV2SagaevmTestnet {
+  // Chain metadata
+  uint32 internal constant EID = 40432;
+  uint256 internal constant CHAIN_ID = 54647359;
+  string internal constant CHAIN_NAME = "sagaevm-testnet";
+
+  // Core protocol
+  ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x619Eb6de16b479Ec0bE4c81d5ca9402dd4746681);
+
+  // Message libraries
+  IMessageLib internal constant SEND_ULN_302 = IMessageLib(0x662d02b68F5c07D59Df53f5bB5cd9fe7f1966569);
+  address internal constant BLOCKED_MESSAGE_LIB = 0x91C9c7143254C40aB34d5533C4EAe8752FB9EC67;
+  IMessageLib internal constant RECEIVE_ULN_302 = IMessageLib(0x9Fc33fBBDEA0e188baA1770aF6Ca2bC38bDA65d6);
+
+  // Other contracts
+  address internal constant ENDPOINT_V2_VIEW = 0x4a7BE0Cd029af7980e5a23e166Caabbeb4c9ef75;
+  address internal constant EXECUTOR = 0xDaF24Ddd2a52f0ed3c1528B11B7A69F8fcf72B79;
+  address internal constant DEAD_DVN = 0x9BfA498bAAD476427d86FD79579484534F80b092;
+  address internal constant LZ_EXECUTOR = 0x63E7f4aEAbC92bE04Ba12A02F2E893FC47Bc7CAc;
+}
+
+library LayerZeroV2DVNSagaevmTestnet {
+  // LZDeadDVN (deprecated) [lz-dead-dvn]
+  address internal constant DVN_LZ_DEAD = 0x9BfA498bAAD476427d86FD79579484534F80b092;
+  // LayerZero Labs [layerzero-labs]
+  address internal constant DVN_LAYERZERO_LABS = 0x4Cb3E5dFa5568e3508d4f15726092856E5E79a49;
+}
+
 library LayerZeroV2SankoMainnet {
   // Chain metadata
   uint32 internal constant EID = 30278;
   uint256 internal constant CHAIN_ID = 1996;
-  string internal constant CHAIN_KEY = "sanko-mainnet";
+  string internal constant CHAIN_NAME = "sanko-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x1a44076050125825900e736c501f859c50fE728c);
@@ -9410,7 +9466,7 @@ library LayerZeroV2SankoTestnet {
   // Chain metadata
   uint32 internal constant EID = 40278;
   uint256 internal constant CHAIN_ID = 1992;
-  string internal constant CHAIN_KEY = "sanko-testnet";
+  string internal constant CHAIN_NAME = "sanko-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6EDCE65403992e310A62460808c4b910D972f10f);
@@ -9435,7 +9491,7 @@ library LayerZeroV2ScrollMainnet {
   // Chain metadata
   uint32 internal constant EID = 30214;
   uint256 internal constant CHAIN_ID = 534352;
-  string internal constant CHAIN_KEY = "scroll-mainnet";
+  string internal constant CHAIN_NAME = "scroll-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x1a44076050125825900e736c501f859c50fE728c);
@@ -9500,7 +9556,7 @@ library LayerZeroV2ScrollTestnet {
   // Chain metadata
   uint32 internal constant EID = 40170;
   uint256 internal constant CHAIN_ID = 534351;
-  string internal constant CHAIN_KEY = "scroll-testnet";
+  string internal constant CHAIN_NAME = "scroll-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6EDCE65403992e310A62460808c4b910D972f10f);
@@ -9531,7 +9587,7 @@ library LayerZeroV2SeiMainnet {
   // Chain metadata
   uint32 internal constant EID = 30280;
   uint256 internal constant CHAIN_ID = 1329;
-  string internal constant CHAIN_KEY = "sei-mainnet";
+  string internal constant CHAIN_NAME = "sei-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x1a44076050125825900e736c501f859c50fE728c);
@@ -9598,7 +9654,7 @@ library LayerZeroV2SeiTestnet {
   // Chain metadata
   uint32 internal constant EID = 40258;
   uint256 internal constant CHAIN_ID = 713715;
-  string internal constant CHAIN_KEY = "sei-testnet";
+  string internal constant CHAIN_NAME = "sei-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6EDCE65403992e310A62460808c4b910D972f10f);
@@ -9627,7 +9683,7 @@ library LayerZeroV2SepoliaTestnet {
   // Chain metadata
   uint32 internal constant EID = 40161;
   uint256 internal constant CHAIN_ID = 11155111;
-  string internal constant CHAIN_KEY = "sepolia-testnet";
+  string internal constant CHAIN_NAME = "sepolia-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6EDCE65403992e310A62460808c4b910D972f10f);
@@ -9724,7 +9780,7 @@ library LayerZeroV2ShimmerMainnet {
   // Chain metadata
   uint32 internal constant EID = 30230;
   uint256 internal constant CHAIN_ID = 148;
-  string internal constant CHAIN_KEY = "shimmer-mainnet";
+  string internal constant CHAIN_NAME = "shimmer-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x148f693af10ddfaE81cDdb36F4c93B31A90076e1);
@@ -9762,7 +9818,7 @@ library LayerZeroV2ShimmerTestnet {
   // Chain metadata
   uint32 internal constant EID = 40203;
   uint256 internal constant CHAIN_ID = 1073;
-  string internal constant CHAIN_KEY = "shimmer-testnet";
+  string internal constant CHAIN_NAME = "shimmer-testnet";
 
   // Message libraries
   address internal constant BLOCKED_MESSAGE_LIB = 0x0000000000000000000000000000000000000000;
@@ -9777,7 +9833,7 @@ library LayerZeroV2ShrapnelMainnet {
   // Chain metadata
   uint32 internal constant EID = 30148;
   uint256 internal constant CHAIN_ID = 2044;
-  string internal constant CHAIN_KEY = "shrapnel-mainnet";
+  string internal constant CHAIN_NAME = "shrapnel-mainnet";
 
   // Message libraries
   address internal constant BLOCKED_MESSAGE_LIB = 0x0000000000000000000000000000000000000000;
@@ -9796,7 +9852,7 @@ library LayerZeroV2ShrapnelTestnet {
   // Chain metadata
   uint32 internal constant EID = 40164;
   uint256 internal constant CHAIN_ID = 2038;
-  string internal constant CHAIN_KEY = "shrapnel-testnet";
+  string internal constant CHAIN_NAME = "shrapnel-testnet";
 
   // Message libraries
   address internal constant BLOCKED_MESSAGE_LIB = 0x0000000000000000000000000000000000000000;
@@ -9811,7 +9867,7 @@ library LayerZeroV2SiliconMainnet {
   // Chain metadata
   uint32 internal constant EID = 30379;
   uint256 internal constant CHAIN_ID = 2355;
-  string internal constant CHAIN_KEY = "silicon-mainnet";
+  string internal constant CHAIN_NAME = "silicon-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6F475642a6e85809B1c36Fa62763669b1b48DD5B);
@@ -9841,7 +9897,7 @@ library LayerZeroV2SiliconsepoliaTestnet {
   // Chain metadata
   uint32 internal constant EID = 40406;
   uint256 internal constant CHAIN_ID = 1414;
-  string internal constant CHAIN_KEY = "siliconsepolia-testnet";
+  string internal constant CHAIN_NAME = "siliconsepolia-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x3aCAAf60502791D199a5a5F0B173D78229eBFe32);
@@ -9869,7 +9925,7 @@ library LayerZeroV2SkaleMainnet {
   // Chain metadata
   uint32 internal constant EID = 30273;
   uint256 internal constant CHAIN_ID = 2046399126;
-  string internal constant CHAIN_KEY = "skale-mainnet";
+  string internal constant CHAIN_NAME = "skale-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0xe1844c5D63a9543023008D332Bd3d2e6f1FE1043);
@@ -9897,7 +9953,7 @@ library LayerZeroV2SkaleTestnet {
   // Chain metadata
   uint32 internal constant EID = 40273;
   uint256 internal constant CHAIN_ID = 1444673419;
-  string internal constant CHAIN_KEY = "skale-testnet";
+  string internal constant CHAIN_NAME = "skale-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x82b7dc04A4ABCF2b4aE570F317dcab49f5a10f24);
@@ -9922,7 +9978,7 @@ library LayerZeroV2SomniaMainnet {
   // Chain metadata
   uint32 internal constant EID = 30380;
   uint256 internal constant CHAIN_ID = 50312;
-  string internal constant CHAIN_KEY = "somnia-mainnet";
+  string internal constant CHAIN_NAME = "somnia-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6F475642a6e85809B1c36Fa62763669b1b48DD5B);
@@ -9964,7 +10020,7 @@ library LayerZeroV2SomniaTestnet {
   // Chain metadata
   uint32 internal constant EID = 40376;
   uint256 internal constant CHAIN_ID = 50312;
-  string internal constant CHAIN_KEY = "somnia-testnet";
+  string internal constant CHAIN_NAME = "somnia-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x3aCAAf60502791D199a5a5F0B173D78229eBFe32);
@@ -9992,7 +10048,7 @@ library LayerZeroV2SomniashannonTestnet {
   // Chain metadata
   uint32 internal constant EID = 40405;
   uint256 internal constant CHAIN_ID = 50312;
-  string internal constant CHAIN_KEY = "somniashannon-testnet";
+  string internal constant CHAIN_NAME = "somniashannon-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x75B3bDfB2b31728104711f52a5DF9f6319128c5d);
@@ -10020,7 +10076,7 @@ library LayerZeroV2SoneiumMainnet {
   // Chain metadata
   uint32 internal constant EID = 30340;
   uint256 internal constant CHAIN_ID = 1868;
-  string internal constant CHAIN_KEY = "soneium-mainnet";
+  string internal constant CHAIN_NAME = "soneium-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x4bCb6A963a9563C33569D7A512D35754221F3A19);
@@ -10073,7 +10129,7 @@ library LayerZeroV2SonicMainnet {
   // Chain metadata
   uint32 internal constant EID = 30332;
   uint256 internal constant CHAIN_ID = 146;
-  string internal constant CHAIN_KEY = "sonic-mainnet";
+  string internal constant CHAIN_NAME = "sonic-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6F475642a6e85809B1c36Fa62763669b1b48DD5B);
@@ -10136,7 +10192,7 @@ library LayerZeroV2SonicTestnet {
   // Chain metadata
   uint32 internal constant EID = 40349;
   uint256 internal constant CHAIN_ID = 57054;
-  string internal constant CHAIN_KEY = "sonic-testnet";
+  string internal constant CHAIN_NAME = "sonic-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6C7Ab2202C98C4227C5c46f1417D81144DA716Ff);
@@ -10168,7 +10224,7 @@ library LayerZeroV2SophonMainnet {
   // Chain metadata
   uint32 internal constant EID = 30334;
   uint256 internal constant CHAIN_ID = 50104;
-  string internal constant CHAIN_KEY = "sophon-mainnet";
+  string internal constant CHAIN_NAME = "sophon-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x5c6cfF4b7C49805F8295Ff73C204ac83f3bC4AE7);
@@ -10204,7 +10260,7 @@ library LayerZeroV2SophonTestnet {
   // Chain metadata
   uint32 internal constant EID = 40341;
   uint256 internal constant CHAIN_ID = 531050104;
-  string internal constant CHAIN_KEY = "sophon-testnet";
+  string internal constant CHAIN_NAME = "sophon-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x9EC2DB700a3c3D35888acCa134F3f860B4a0b41a);
@@ -10233,7 +10289,7 @@ library LayerZeroV2SpaceMainnet {
   // Chain metadata
   uint32 internal constant EID = 30341;
   uint256 internal constant CHAIN_ID = 8227;
-  string internal constant CHAIN_KEY = "space-mainnet";
+  string internal constant CHAIN_NAME = "space-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0xAaB5A48CFC03Efa9cC34A2C1aAcCCB84b4b770e4);
@@ -10265,7 +10321,7 @@ library LayerZeroV2SpruceTestnet {
   // Chain metadata
   uint32 internal constant EID = 40206;
   uint256 internal constant CHAIN_ID = 424242;
-  string internal constant CHAIN_KEY = "spruce-testnet";
+  string internal constant CHAIN_NAME = "spruce-testnet";
 
   // Message libraries
   address internal constant BLOCKED_MESSAGE_LIB = 0x0000000000000000000000000000000000000000;
@@ -10275,7 +10331,7 @@ library LayerZeroV2StableMainnet {
   // Chain metadata
   uint32 internal constant EID = 30396;
   uint256 internal constant CHAIN_ID = 988;
-  string internal constant CHAIN_KEY = "stable-mainnet";
+  string internal constant CHAIN_NAME = "stable-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6F475642a6e85809B1c36Fa62763669b1b48DD5B);
@@ -10317,7 +10373,7 @@ library LayerZeroV2StableTestnet {
   // Chain metadata
   uint32 internal constant EID = 40374;
   uint256 internal constant CHAIN_ID = 2201;
-  string internal constant CHAIN_KEY = "stable-testnet";
+  string internal constant CHAIN_NAME = "stable-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x3aCAAf60502791D199a5a5F0B173D78229eBFe32);
@@ -10345,7 +10401,7 @@ library LayerZeroV2StabledevnetTestnet {
   // Chain metadata
   uint32 internal constant EID = 40361;
   uint256 internal constant CHAIN_ID = 2201;
-  string internal constant CHAIN_KEY = "stabledevnet-testnet";
+  string internal constant CHAIN_NAME = "stabledevnet-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6C7Ab2202C98C4227C5c46f1417D81144DA716Ff);
@@ -10373,7 +10429,7 @@ library LayerZeroV2StoryMainnet {
   // Chain metadata
   uint32 internal constant EID = 30364;
   uint256 internal constant CHAIN_ID = 1514;
-  string internal constant CHAIN_KEY = "story-mainnet";
+  string internal constant CHAIN_NAME = "story-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x3A73033C0b1407574C76BdBAc67f126f6b4a9AA9);
@@ -10418,7 +10474,7 @@ library LayerZeroV2StoryTestnet {
   // Chain metadata
   uint32 internal constant EID = 40315;
   uint256 internal constant CHAIN_ID = 1513;
-  string internal constant CHAIN_KEY = "story-testnet";
+  string internal constant CHAIN_NAME = "story-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6C7Ab2202C98C4227C5c46f1417D81144DA716Ff);
@@ -10446,7 +10502,7 @@ library LayerZeroV2SubtensorevmMainnet {
   // Chain metadata
   uint32 internal constant EID = 30374;
   uint256 internal constant CHAIN_ID = 964;
-  string internal constant CHAIN_KEY = "subtensorevm-mainnet";
+  string internal constant CHAIN_NAME = "subtensorevm-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6F475642a6e85809B1c36Fa62763669b1b48DD5B);
@@ -10484,7 +10540,7 @@ library LayerZeroV2SubtensorevmTestnet {
   // Chain metadata
   uint32 internal constant EID = 40377;
   uint256 internal constant CHAIN_ID = 945;
-  string internal constant CHAIN_KEY = "subtensorevm-testnet";
+  string internal constant CHAIN_NAME = "subtensorevm-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x3aCAAf60502791D199a5a5F0B173D78229eBFe32);
@@ -10512,7 +10568,7 @@ library LayerZeroV2SuperpositionMainnet {
   // Chain metadata
   uint32 internal constant EID = 30327;
   uint256 internal constant CHAIN_ID = 55244;
-  string internal constant CHAIN_KEY = "superposition-mainnet";
+  string internal constant CHAIN_NAME = "superposition-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6F475642a6e85809B1c36Fa62763669b1b48DD5B);
@@ -10550,7 +10606,7 @@ library LayerZeroV2SuperpositionTestnet {
   // Chain metadata
   uint32 internal constant EID = 40336;
   uint256 internal constant CHAIN_ID = 98985;
-  string internal constant CHAIN_KEY = "superposition-testnet";
+  string internal constant CHAIN_NAME = "superposition-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6C7Ab2202C98C4227C5c46f1417D81144DA716Ff);
@@ -10578,7 +10634,7 @@ library LayerZeroV2SwellMainnet {
   // Chain metadata
   uint32 internal constant EID = 30335;
   uint256 internal constant CHAIN_ID = 1923;
-  string internal constant CHAIN_KEY = "swell-mainnet";
+  string internal constant CHAIN_NAME = "swell-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0xcb566e3B6934Fa77258d68ea18E931fa75e1aaAa);
@@ -10621,7 +10677,7 @@ library LayerZeroV2SwellTestnet {
   // Chain metadata
   uint32 internal constant EID = 40353;
   uint256 internal constant CHAIN_ID = 1924;
-  string internal constant CHAIN_KEY = "swell-testnet";
+  string internal constant CHAIN_NAME = "swell-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6C7Ab2202C98C4227C5c46f1417D81144DA716Ff);
@@ -10650,7 +10706,7 @@ library LayerZeroV2DVNSwellTestnet {
 library LayerZeroV2SwimmerMainnet {
   // Chain metadata
   uint32 internal constant EID = 30114;
-  string internal constant CHAIN_KEY = "swimmer-mainnet";
+  string internal constant CHAIN_NAME = "swimmer-mainnet";
 
   // Message libraries
   address internal constant BLOCKED_MESSAGE_LIB = 0x0000000000000000000000000000000000000000;
@@ -10659,7 +10715,7 @@ library LayerZeroV2SwimmerMainnet {
 library LayerZeroV2SwimmerTestnet {
   // Chain metadata
   uint32 internal constant EID = 10130;
-  string internal constant CHAIN_KEY = "swimmer-testnet";
+  string internal constant CHAIN_NAME = "swimmer-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT = ILayerZeroEndpointV2(0xae92d5aD7583AD66E49A0c67BAd18F6ba52dDDc1);
@@ -10684,7 +10740,7 @@ library LayerZeroV2TacMainnet {
   // Chain metadata
   uint32 internal constant EID = 30377;
   uint256 internal constant CHAIN_ID = 239;
-  string internal constant CHAIN_KEY = "tac-mainnet";
+  string internal constant CHAIN_NAME = "tac-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6F475642a6e85809B1c36Fa62763669b1b48DD5B);
@@ -10728,7 +10784,7 @@ library LayerZeroV2TacspbTestnet {
   // Chain metadata
   uint32 internal constant EID = 40404;
   uint256 internal constant CHAIN_ID = 2391;
-  string internal constant CHAIN_KEY = "tacspb-testnet";
+  string internal constant CHAIN_NAME = "tacspb-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x3aCAAf60502791D199a5a5F0B173D78229eBFe32);
@@ -10756,7 +10812,7 @@ library LayerZeroV2TaikoMainnet {
   // Chain metadata
   uint32 internal constant EID = 30290;
   uint256 internal constant CHAIN_ID = 167000;
-  string internal constant CHAIN_KEY = "taiko-mainnet";
+  string internal constant CHAIN_NAME = "taiko-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x1a44076050125825900e736c501f859c50fE728c);
@@ -10798,7 +10854,7 @@ library LayerZeroV2TaikoTestnet {
   // Chain metadata
   uint32 internal constant EID = 40274;
   uint256 internal constant CHAIN_ID = 167009;
-  string internal constant CHAIN_KEY = "taiko-testnet";
+  string internal constant CHAIN_NAME = "taiko-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6EDCE65403992e310A62460808c4b910D972f10f);
@@ -10822,7 +10878,7 @@ library LayerZeroV2DVNTaikoTestnet {
 library LayerZeroV2TangibleTestnet {
   // Chain metadata
   uint32 internal constant EID = 40252;
-  string internal constant CHAIN_KEY = "tangible-testnet";
+  string internal constant CHAIN_NAME = "tangible-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6EDCE65403992e310A62460808c4b910D972f10f);
@@ -10847,7 +10903,7 @@ library LayerZeroV2TelosMainnet {
   // Chain metadata
   uint32 internal constant EID = 30199;
   uint256 internal constant CHAIN_ID = 40;
-  string internal constant CHAIN_KEY = "telos-mainnet";
+  string internal constant CHAIN_NAME = "telos-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x1a44076050125825900e736c501f859c50fE728c);
@@ -10893,7 +10949,7 @@ library LayerZeroV2TelosTestnet {
   // Chain metadata
   uint32 internal constant EID = 40199;
   uint256 internal constant CHAIN_ID = 41;
-  string internal constant CHAIN_KEY = "telos-testnet";
+  string internal constant CHAIN_NAME = "telos-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6EDCE65403992e310A62460808c4b910D972f10f);
@@ -10922,7 +10978,7 @@ library LayerZeroV2TenetMainnet {
   // Chain metadata
   uint32 internal constant EID = 30173;
   uint256 internal constant CHAIN_ID = 1559;
-  string internal constant CHAIN_KEY = "tenet-mainnet";
+  string internal constant CHAIN_NAME = "tenet-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x1a44076050125825900e736c501f859c50fE728c);
@@ -10958,7 +11014,7 @@ library LayerZeroV2TenetTestnet {
   // Chain metadata
   uint32 internal constant EID = 40173;
   uint256 internal constant CHAIN_ID = 155;
-  string internal constant CHAIN_KEY = "tenet-testnet";
+  string internal constant CHAIN_NAME = "tenet-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6EDCE65403992e310A62460808c4b910D972f10f);
@@ -10985,7 +11041,7 @@ library LayerZeroV2TiltyardMainnet {
   // Chain metadata
   uint32 internal constant EID = 30238;
   uint256 internal constant CHAIN_ID = 710420;
-  string internal constant CHAIN_KEY = "tiltyard-mainnet";
+  string internal constant CHAIN_NAME = "tiltyard-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x3A73033C0b1407574C76BdBAc67f126f6b4a9AA9);
@@ -11017,7 +11073,7 @@ library LayerZeroV2TomoMainnet {
   // Chain metadata
   uint32 internal constant EID = 30196;
   uint256 internal constant CHAIN_ID = 88;
-  string internal constant CHAIN_KEY = "tomo-mainnet";
+  string internal constant CHAIN_NAME = "tomo-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x1a44076050125825900e736c501f859c50fE728c);
@@ -11053,7 +11109,7 @@ library LayerZeroV2TomoTestnet {
   // Chain metadata
   uint32 internal constant EID = 40196;
   uint256 internal constant CHAIN_ID = 89;
-  string internal constant CHAIN_KEY = "tomo-testnet";
+  string internal constant CHAIN_NAME = "tomo-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6EDCE65403992e310A62460808c4b910D972f10f);
@@ -11080,7 +11136,7 @@ library LayerZeroV2TreasureTestnet {
   // Chain metadata
   uint32 internal constant EID = 40348;
   uint256 internal constant CHAIN_ID = 978658;
-  string internal constant CHAIN_KEY = "treasure-testnet";
+  string internal constant CHAIN_NAME = "treasure-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x9EC2DB700a3c3D35888acCa134F3f860B4a0b41a);
@@ -11112,7 +11168,7 @@ library LayerZeroV2UnichainMainnet {
   // Chain metadata
   uint32 internal constant EID = 30320;
   uint256 internal constant CHAIN_ID = 130;
-  string internal constant CHAIN_KEY = "unichain-mainnet";
+  string internal constant CHAIN_NAME = "unichain-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6F475642a6e85809B1c36Fa62763669b1b48DD5B);
@@ -11175,7 +11231,7 @@ library LayerZeroV2UnichainTestnet {
   // Chain metadata
   uint32 internal constant EID = 40333;
   uint256 internal constant CHAIN_ID = 1301;
-  string internal constant CHAIN_KEY = "unichain-testnet";
+  string internal constant CHAIN_NAME = "unichain-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0xb8815f3f882614048CbE201a67eF9c6F10fe5035);
@@ -11207,7 +11263,7 @@ library LayerZeroV2UnrealTestnet {
   // Chain metadata
   uint32 internal constant EID = 40262;
   uint256 internal constant CHAIN_ID = 18233;
-  string internal constant CHAIN_KEY = "unreal-testnet";
+  string internal constant CHAIN_NAME = "unreal-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6EDCE65403992e310A62460808c4b910D972f10f);
@@ -11232,7 +11288,7 @@ library LayerZeroV2VanarTestnet {
   // Chain metadata
   uint32 internal constant EID = 40298;
   uint256 internal constant CHAIN_ID = 78600;
-  string internal constant CHAIN_KEY = "vanar-testnet";
+  string internal constant CHAIN_NAME = "vanar-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6C7Ab2202C98C4227C5c46f1417D81144DA716Ff);
@@ -11259,7 +11315,7 @@ library LayerZeroV2DVNVanarTestnet {
 library LayerZeroV2VennTestnet {
   // Chain metadata
   uint32 internal constant EID = 40234;
-  string internal constant CHAIN_KEY = "venn-testnet";
+  string internal constant CHAIN_NAME = "venn-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6EDCE65403992e310A62460808c4b910D972f10f);
@@ -11284,7 +11340,7 @@ library LayerZeroV2WorldchainMainnet {
   // Chain metadata
   uint32 internal constant EID = 30319;
   uint256 internal constant CHAIN_ID = 480;
-  string internal constant CHAIN_KEY = "worldchain-mainnet";
+  string internal constant CHAIN_NAME = "worldchain-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6F475642a6e85809B1c36Fa62763669b1b48DD5B);
@@ -11329,7 +11385,7 @@ library LayerZeroV2WorldcoinTestnet {
   // Chain metadata
   uint32 internal constant EID = 40335;
   uint256 internal constant CHAIN_ID = 4801;
-  string internal constant CHAIN_KEY = "worldcoin-testnet";
+  string internal constant CHAIN_NAME = "worldcoin-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x145C041566B21Bec558B2A37F1a5Ff261aB55998);
@@ -11357,7 +11413,7 @@ library LayerZeroV2XaiMainnet {
   // Chain metadata
   uint32 internal constant EID = 30236;
   uint256 internal constant CHAIN_ID = 660279;
-  string internal constant CHAIN_KEY = "xai-mainnet";
+  string internal constant CHAIN_NAME = "xai-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x1a44076050125825900e736c501f859c50fE728c);
@@ -11395,7 +11451,7 @@ library LayerZeroV2XaiTestnet {
   // Chain metadata
   uint32 internal constant EID = 40251;
   uint256 internal constant CHAIN_ID = 37714555429;
-  string internal constant CHAIN_KEY = "xai-testnet";
+  string internal constant CHAIN_NAME = "xai-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6EDCE65403992e310A62460808c4b910D972f10f);
@@ -11420,7 +11476,7 @@ library LayerZeroV2XchainMainnet {
   // Chain metadata
   uint32 internal constant EID = 30291;
   uint256 internal constant CHAIN_ID = 94524;
-  string internal constant CHAIN_KEY = "xchain-mainnet";
+  string internal constant CHAIN_NAME = "xchain-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x1a44076050125825900e736c501f859c50fE728c);
@@ -11454,7 +11510,7 @@ library LayerZeroV2XchainTestnet {
   // Chain metadata
   uint32 internal constant EID = 40282;
   uint256 internal constant CHAIN_ID = 64002;
-  string internal constant CHAIN_KEY = "xchain-testnet";
+  string internal constant CHAIN_NAME = "xchain-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6EDCE65403992e310A62460808c4b910D972f10f);
@@ -11479,7 +11535,7 @@ library LayerZeroV2XdcMainnet {
   // Chain metadata
   uint32 internal constant EID = 30365;
   uint256 internal constant CHAIN_ID = 50;
-  string internal constant CHAIN_KEY = "xdc-mainnet";
+  string internal constant CHAIN_NAME = "xdc-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0xcb566e3B6934Fa77258d68ea18E931fa75e1aaAa);
@@ -11519,7 +11575,7 @@ library LayerZeroV2XlayerMainnet {
   // Chain metadata
   uint32 internal constant EID = 30274;
   uint256 internal constant CHAIN_ID = 196;
-  string internal constant CHAIN_KEY = "xlayer-mainnet";
+  string internal constant CHAIN_NAME = "xlayer-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x1a44076050125825900e736c501f859c50fE728c);
@@ -11565,7 +11621,7 @@ library LayerZeroV2XlayerTestnet {
   // Chain metadata
   uint32 internal constant EID = 40269;
   uint256 internal constant CHAIN_ID = 195;
-  string internal constant CHAIN_KEY = "xlayer-testnet";
+  string internal constant CHAIN_NAME = "xlayer-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6EDCE65403992e310A62460808c4b910D972f10f);
@@ -11594,7 +11650,7 @@ library LayerZeroV2Xlayer2Testnet {
   // Chain metadata
   uint32 internal constant EID = 40416;
   uint256 internal constant CHAIN_ID = 196;
-  string internal constant CHAIN_KEY = "xlayer2-testnet";
+  string internal constant CHAIN_NAME = "xlayer2-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x3aCAAf60502791D199a5a5F0B173D78229eBFe32);
@@ -11624,7 +11680,7 @@ library LayerZeroV2XplaMainnet {
   // Chain metadata
   uint32 internal constant EID = 30216;
   uint256 internal constant CHAIN_ID = 37;
-  string internal constant CHAIN_KEY = "xpla-mainnet";
+  string internal constant CHAIN_NAME = "xpla-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x1a44076050125825900e736c501f859c50fE728c);
@@ -11664,7 +11720,7 @@ library LayerZeroV2XplaTestnet {
   // Chain metadata
   uint32 internal constant EID = 40216;
   uint256 internal constant CHAIN_ID = 47;
-  string internal constant CHAIN_KEY = "xpla-testnet";
+  string internal constant CHAIN_NAME = "xpla-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6EDCE65403992e310A62460808c4b910D972f10f);
@@ -11691,7 +11747,7 @@ library LayerZeroV2ZamaMainnet {
   // Chain metadata
   uint32 internal constant EID = 30397;
   uint256 internal constant CHAIN_ID = 261131;
-  string internal constant CHAIN_KEY = "zama-mainnet";
+  string internal constant CHAIN_NAME = "zama-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6F475642a6e85809B1c36Fa62763669b1b48DD5B);
@@ -11717,13 +11773,15 @@ library LayerZeroV2DVNZamaMainnet {
   address internal constant DVN_LUGANODES = 0xddaa92ce2d2faC3f7c5eae19136E438902Ab46cc;
   // Nethermind [nethermind]
   address internal constant DVN_NETHERMIND = 0xDd7B5E1dB4AaFd5C8EC3b764eFB8ed265Aa5445B;
+  // P2P [p2p]
+  address internal constant DVN_P2P = 0x58249a2Ec05c1978bF21DF1f5eC1847e42455CF4;
 }
 
 library LayerZeroV2ZamaTestnet {
   // Chain metadata
   uint32 internal constant EID = 40424;
   uint256 internal constant CHAIN_ID = 10901;
-  string internal constant CHAIN_KEY = "zama-testnet";
+  string internal constant CHAIN_NAME = "zama-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x3aCAAf60502791D199a5a5F0B173D78229eBFe32);
@@ -11751,7 +11809,7 @@ library LayerZeroV2ZircuitMainnet {
   // Chain metadata
   uint32 internal constant EID = 30303;
   uint256 internal constant CHAIN_ID = 48900;
-  string internal constant CHAIN_KEY = "zircuit-mainnet";
+  string internal constant CHAIN_NAME = "zircuit-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6F475642a6e85809B1c36Fa62763669b1b48DD5B);
@@ -11789,7 +11847,7 @@ library LayerZeroV2ZircuitTestnet {
   // Chain metadata
   uint32 internal constant EID = 40275;
   uint256 internal constant CHAIN_ID = 48899;
-  string internal constant CHAIN_KEY = "zircuit-testnet";
+  string internal constant CHAIN_NAME = "zircuit-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6EDCE65403992e310A62460808c4b910D972f10f);
@@ -11814,7 +11872,7 @@ library LayerZeroV2ZkastarTestnet {
   // Chain metadata
   uint32 internal constant EID = 40266;
   uint256 internal constant CHAIN_ID = 6038361;
-  string internal constant CHAIN_KEY = "zkastar-testnet";
+  string internal constant CHAIN_NAME = "zkastar-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6EDCE65403992e310A62460808c4b910D972f10f);
@@ -11839,7 +11897,7 @@ library LayerZeroV2ZkatanaMainnet {
   // Chain metadata
   uint32 internal constant EID = 30257;
   uint256 internal constant CHAIN_ID = 3776;
-  string internal constant CHAIN_KEY = "zkatana-mainnet";
+  string internal constant CHAIN_NAME = "zkatana-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x1a44076050125825900e736c501f859c50fE728c);
@@ -11871,7 +11929,7 @@ library LayerZeroV2ZkatanaTestnet {
   // Chain metadata
   uint32 internal constant EID = 40220;
   uint256 internal constant CHAIN_ID = 1261120;
-  string internal constant CHAIN_KEY = "zkatana-testnet";
+  string internal constant CHAIN_NAME = "zkatana-testnet";
 
   // Message libraries
   address internal constant BLOCKED_MESSAGE_LIB = 0x0000000000000000000000000000000000000000;
@@ -11886,7 +11944,7 @@ library LayerZeroV2ZkconsensysMainnet {
   // Chain metadata
   uint32 internal constant EID = 30183;
   uint256 internal constant CHAIN_ID = 59144;
-  string internal constant CHAIN_KEY = "zkconsensys-mainnet";
+  string internal constant CHAIN_NAME = "zkconsensys-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x1a44076050125825900e736c501f859c50fE728c);
@@ -11945,7 +12003,7 @@ library LayerZeroV2ZkconsensysTestnet {
   // Chain metadata
   uint32 internal constant EID = 40157;
   uint256 internal constant CHAIN_ID = 59140;
-  string internal constant CHAIN_KEY = "zkconsensys-testnet";
+  string internal constant CHAIN_NAME = "zkconsensys-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6EDCE65403992e310A62460808c4b910D972f10f);
@@ -11972,7 +12030,7 @@ library LayerZeroV2ZklinkMainnet {
   // Chain metadata
   uint32 internal constant EID = 30301;
   uint256 internal constant CHAIN_ID = 810180;
-  string internal constant CHAIN_KEY = "zklink-mainnet";
+  string internal constant CHAIN_NAME = "zklink-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x5c6cfF4b7C49805F8295Ff73C204ac83f3bC4AE7);
@@ -12012,7 +12070,7 @@ library LayerZeroV2ZklinkTestnet {
   // Chain metadata
   uint32 internal constant EID = 40283;
   uint256 internal constant CHAIN_ID = 810181;
-  string internal constant CHAIN_KEY = "zklink-testnet";
+  string internal constant CHAIN_NAME = "zklink-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0xF3e37ca248Ff739b8d0BebCcEAe1eeB199223dba);
@@ -12037,7 +12095,7 @@ library LayerZeroV2ZkpolygonMainnet {
   // Chain metadata
   uint32 internal constant EID = 30158;
   uint256 internal constant CHAIN_ID = 1101;
-  string internal constant CHAIN_KEY = "zkpolygon-mainnet";
+  string internal constant CHAIN_NAME = "zkpolygon-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x1a44076050125825900e736c501f859c50fE728c);
@@ -12079,7 +12137,7 @@ library LayerZeroV2ZkpolygonTestnet {
   // Chain metadata
   uint32 internal constant EID = 40158;
   uint256 internal constant CHAIN_ID = 1442;
-  string internal constant CHAIN_KEY = "zkpolygon-testnet";
+  string internal constant CHAIN_NAME = "zkpolygon-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6EDCE65403992e310A62460808c4b910D972f10f);
@@ -12108,7 +12166,7 @@ library LayerZeroV2ZkpolygonsepTestnet {
   // Chain metadata
   uint32 internal constant EID = 40247;
   uint256 internal constant CHAIN_ID = 2442;
-  string internal constant CHAIN_KEY = "zkpolygonsep-testnet";
+  string internal constant CHAIN_NAME = "zkpolygonsep-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6EDCE65403992e310A62460808c4b910D972f10f);
@@ -12133,7 +12191,7 @@ library LayerZeroV2ZksyncMainnet {
   // Chain metadata
   uint32 internal constant EID = 30165;
   uint256 internal constant CHAIN_ID = 324;
-  string internal constant CHAIN_KEY = "zksync-mainnet";
+  string internal constant CHAIN_NAME = "zksync-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0xd07C30aF3Ff30D96BDc9c6044958230Eb797DDBF);
@@ -12182,7 +12240,7 @@ library LayerZeroV2ZksyncTestnet {
   // Chain metadata
   uint32 internal constant EID = 40165;
   uint256 internal constant CHAIN_ID = 280;
-  string internal constant CHAIN_KEY = "zksync-testnet";
+  string internal constant CHAIN_NAME = "zksync-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x82Bb8E5Ffd47Be07f0568C9aB0900DDA9D913aFD);
@@ -12203,7 +12261,7 @@ library LayerZeroV2ZksyncsepTestnet {
   // Chain metadata
   uint32 internal constant EID = 40305;
   uint256 internal constant CHAIN_ID = 300;
-  string internal constant CHAIN_KEY = "zksyncsep-testnet";
+  string internal constant CHAIN_NAME = "zksyncsep-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0xe2Ef622A13e71D9Dd2BBd12cd4b27e1516FA8a09);
@@ -12235,7 +12293,7 @@ library LayerZeroV2ZkverifyMainnet {
   // Chain metadata
   uint32 internal constant EID = 30386;
   uint256 internal constant CHAIN_ID = 1408;
-  string internal constant CHAIN_KEY = "zkverify-mainnet";
+  string internal constant CHAIN_NAME = "zkverify-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6F475642a6e85809B1c36Fa62763669b1b48DD5B);
@@ -12267,7 +12325,7 @@ library LayerZeroV2ZkverifyTestnet {
   // Chain metadata
   uint32 internal constant EID = 40414;
   uint256 internal constant CHAIN_ID = 1409;
-  string internal constant CHAIN_KEY = "zkverify-testnet";
+  string internal constant CHAIN_NAME = "zkverify-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x3aCAAf60502791D199a5a5F0B173D78229eBFe32);
@@ -12297,7 +12355,7 @@ library LayerZeroV2ZoraMainnet {
   // Chain metadata
   uint32 internal constant EID = 30195;
   uint256 internal constant CHAIN_ID = 7777777;
-  string internal constant CHAIN_KEY = "zora-mainnet";
+  string internal constant CHAIN_NAME = "zora-mainnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x1a44076050125825900e736c501f859c50fE728c);
@@ -12341,7 +12399,7 @@ library LayerZeroV2ZoraTestnet {
   // Chain metadata
   uint32 internal constant EID = 40195;
   uint256 internal constant CHAIN_ID = 999;
-  string internal constant CHAIN_KEY = "zora-testnet";
+  string internal constant CHAIN_NAME = "zora-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6EDCE65403992e310A62460808c4b910D972f10f);
@@ -12368,7 +12426,7 @@ library LayerZeroV2ZorasepTestnet {
   // Chain metadata
   uint32 internal constant EID = 40249;
   uint256 internal constant CHAIN_ID = 999999999;
-  string internal constant CHAIN_KEY = "zorasep-testnet";
+  string internal constant CHAIN_NAME = "zorasep-testnet";
 
   // Core protocol
   ILayerZeroEndpointV2 internal constant ENDPOINT_V2 = ILayerZeroEndpointV2(0x6EDCE65403992e310A62460808c4b910D972f10f);

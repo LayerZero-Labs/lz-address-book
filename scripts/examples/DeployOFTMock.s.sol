@@ -30,7 +30,7 @@ contract DeployOFTMock is Script {
         LZAddressContext ctx = new LZAddressContext();
         ctx.setChainByChainId(block.chainid);
 
-        address endpoint = ctx.getEndpoint();
+        address endpoint = ctx.getEndpointV2();
 
         console.log("=== Deploying OFTMock ===");
         console.log("Chain ID:", block.chainid);

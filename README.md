@@ -53,12 +53,12 @@ LZAddressContext ctx = new LZAddressContext();
 ctx.setChain("arbitrum-mainnet");
 
 // Fetch addresses
-address endpoint = ctx.getEndpoint();
-address dvn = ctx.getDVN("LayerZero Labs");
+address endpoint = ctx.getEndpointV2();
+address dvn = ctx.getDVNByName("LayerZero Labs");
 
 // Cross-chain lookups (no context switch needed)
-uint32 baseEid = ctx.getEid("base-mainnet");
-address baseDvn = ctx.getDVNFor("LayerZero Labs", "base-mainnet");
+uint32 baseEid = ctx.getEidForChainName("base-mainnet");
+address baseDvn = ctx.getDVNForChainName("LayerZero Labs", "base-mainnet");
 ```
 
 ---
@@ -94,7 +94,7 @@ ctx.setChain("arbitrum-mainnet");
 (string[] memory names, address[] memory addrs) = ctx.getDVNsForCurrentChain();
 
 // Get DVNs for any chain (no context switch needed)
-(names, addrs) = ctx.getDVNsForChain("base-mainnet");
+(names, addrs) = ctx.getDVNsForChainName("base-mainnet");
 
 // Check if a specific DVN is available
 bool available = ctx.isDVNAvailable("LayerZero Labs");  // true
@@ -102,7 +102,7 @@ bool available = ctx.isDVNAvailable("LayerZero Labs");  // true
 
 Invalid DVN names will revert with a helpful error:
 ```solidity
-ctx.getDVN("LayerZero labs");  // Reverts: "DVN not found on arbitrum-mainnet: LayerZero labs"
+ctx.getDVNByName("LayerZero labs");  // Reverts: "DVN not found on arbitrum-mainnet: LayerZero labs"
 ```
 
 ---
@@ -149,7 +149,7 @@ For scripts targeting a specific chain, use context lookups:
 LZAddressContext ctx = new LZAddressContext();
 ctx.setChainByChainId(block.chainid);  // Auto-detect current chain
 
-address endpoint = ctx.getEndpoint();
+address endpoint = ctx.getEndpointV2();
 address[] memory dvns = ctx.getSortedDVNs(dvnNames);  // Pre-sorted for UlnConfig
 ```
 
@@ -231,12 +231,12 @@ contract MyOAppForkTest is Test {
         // Deploy on Arbitrum
         vm.selectFork(forks["arbitrum-mainnet"]);
         ctx.setChain("arbitrum-mainnet");
-        arbOApp = new MyOApp(ctx.getEndpoint(), address(this));
+        arbOApp = new MyOApp(ctx.getEndpointV2(), address(this));
         
         // Deploy on Base
         vm.selectFork(forks["base-mainnet"]);
         ctx.setChain("base-mainnet");
-        baseOApp = new MyOApp(ctx.getEndpoint(), address(this));
+        baseOApp = new MyOApp(ctx.getEndpointV2(), address(this));
     }
     
     function _getRpc(string memory chainName) internal view returns (string memory) {
@@ -246,7 +246,7 @@ contract MyOAppForkTest is Test {
         } catch {}
         
         // Fall back to address book metadata
-        return ctx.getProtocolAddressesFor(chainName).rpcUrls[0];
+        return ctx.getProtocolAddressesForChainName(chainName).rpcUrls[0];
     }
 }
 ```
@@ -260,10 +260,10 @@ contract MyOAppForkTest is LZTest {
     function setUp() public {
         // ctx is already available and persistent
         createAndSelectFork("arbitrum-mainnet", "https://arb1.arbitrum.io/rpc");
-        arbOApp = new MyOApp(ctx.getEndpoint(), address(this));
+        arbOApp = new MyOApp(ctx.getEndpointV2(), address(this));
         
         createAndSelectFork("base-mainnet", "https://mainnet.base.org");
-        baseOApp = new MyOApp(ctx.getEndpoint(), address(this));
+        baseOApp = new MyOApp(ctx.getEndpointV2(), address(this));
         
         // Wire peers in one call
         wireOAppsBidirectional("arbitrum-mainnet", "base-mainnet", address(arbOApp), address(baseOApp));
@@ -283,6 +283,34 @@ import {LayerZeroV2ArbitrumMainnet} from "lz-address-book/generated/LZAddresses.
 address endpoint = address(LayerZeroV2ArbitrumMainnet.ENDPOINT_V2);
 uint32 eid = LayerZeroV2ArbitrumMainnet.EID;
 ```
+
+---
+
+## API Naming Convention
+
+All interfaces follow a standardized naming convention for consistency:
+
+| Pattern | Use Case | Example |
+|---------|----------|---------|
+| `get{Object}()` | Primary lookup (default identifier) | `getProtocolAddresses(eid)` |
+| `get{Object}By{Identifier}()` | Single item by specific key | `getAssetByEid(eid, symbol)` |
+| `get{Objects}For{Scope}()` | Multiple items for a scope | `getDVNsForEid(eid)` |
+| `is{Identifier}Supported()` | Boolean support check | `isEidSupported(eid)` |
+| `{object}Exists()` | Existence check | `assetExists(chain, symbol)` |
+
+### Key Distinctions
+
+- **`By`** = lookup **one item** using that identifier as a key
+- **`For`** = get **all items** belonging to that scope/chain
+
+### Primary Identifiers by Contract
+
+| Contract | Primary Identifier | Reason |
+|----------|-------------------|--------|
+| `ILZProtocol` | EID (uint32) | LayerZero's native identifier |
+| `ILZWorkers` | EID + DVN name | DVNs indexed by chain |
+| `ISTGProtocol` | Chain name | Stargate uses human-readable names |
+| `ILZAddressContext` | Stateful (current chain) | Simplifies multi-step lookups |
 
 ---
 
@@ -306,11 +334,11 @@ uint32 eid = LayerZeroV2ArbitrumMainnet.EID;
 | `getCurrentChainName()` | Get current chain name |
 | `getCurrentEID()` | Get current chain EID |
 | `getCurrentChainId()` | Get current chain's native chain ID |
-| `getEndpoint()` | Get EndpointV2 for current chain |
-| `getSendLib()` | Get SendUln302 for current chain |
-| `getReceiveLib()` | Get ReceiveUln302 for current chain |
+| `getEndpointV2()` | Get EndpointV2 for current chain |
+| `getSendUln302()` | Get SendUln302 for current chain |
+| `getReceiveUln302()` | Get ReceiveUln302 for current chain |
 | `getExecutor()` | Get Executor for current chain |
-| `getDVN(string)` | Get DVN by name for current chain (reverts if not found) |
+| `getDVNByName(string)` | Get DVN by name for current chain (reverts if not found) |
 
 #### DVN Discovery & Batch Lookup
 
@@ -318,7 +346,7 @@ uint32 eid = LayerZeroV2ArbitrumMainnet.EID;
 |--------|-------------|
 | `getAvailableDVNs()` | Get all DVN names across all chains |
 | `getDVNsForCurrentChain()` | Get DVN names and addresses for current chain |
-| `getDVNsForChain(string)` | Get DVN names and addresses for any chain |
+| `getDVNsForChainName(string)` | Get DVN names and addresses for any chain |
 | `getDVNs(string[])` | Get multiple DVN addresses by name (batch lookup) |
 | `getSortedDVNs(string[])` | Get multiple DVN addresses sorted ascending (for UlnConfig) |
 | `isDVNAvailable(string)` | Check if DVN exists on current chain |
@@ -334,28 +362,28 @@ uint32 eid = LayerZeroV2ArbitrumMainnet.EID;
 
 | Method | Description |
 |--------|-------------|
-| `getEid(string)` | Get EID for any chain |
-| `getEndpointFor(string)` | Get endpoint for any chain |
-| `getExecutorFor(string)` | Get executor for any chain |
-| `getSendLibFor(string)` | Get send library for any chain |
-| `getReceiveLibFor(string)` | Get receive library for any chain |
-| `getDVNFor(string, string)` | Get DVN for any chain |
-| `getProtocolAddressesFor(string)` | Get all addresses for any chain |
+| `getEidForChainName(string)` | Get EID for any chain |
+| `getEndpointForChainName(string)` | Get endpoint for any chain |
+| `getExecutorForChainName(string)` | Get executor for any chain |
+| `getSendLibForChainName(string)` | Get send library for any chain |
+| `getReceiveLibForChainName(string)` | Get receive library for any chain |
+| `getDVNForChainName(string, string)` | Get DVN for any chain |
+| `getProtocolAddressesForChainName(string)` | Get all addresses for any chain |
 
 #### Validation
 
 | Method | Description |
 |--------|-------------|
-| `isChainSupported(string)` | Check if chain name is supported |
-| `isChainSupportedByEid(uint32)` | Check if EID is supported |
-| `isChainSupportedByChainId(uint256)` | Check if chain ID is supported |
+| `isChainNameSupported(string)` | Check if chain name is supported |
+| `isEidSupported(uint32)` | Check if EID is supported |
+| `isChainIdSupported(uint256)` | Check if chain ID is supported |
 
 #### Reverse DVN Lookup
 
 | Method | Description |
 |--------|-------------|
 | `getDVNName(address)` | Get DVN provider name from address on current chain |
-| `getDVNNameFor(address, string)` | Get DVN provider name from address on any chain |
+| `getDVNNameForChainName(address, string)` | Get DVN provider name from address on any chain |
 
 #### Utilities
 
@@ -387,7 +415,7 @@ uint32 eid = LayerZeroV2ArbitrumMainnet.EID;
 | Method | Description |
 |--------|-------------|
 | `getAsset(string, string)` | Get Stargate asset by chain name and symbol |
-| `getAssetsForChain(string)` | Get all Stargate assets on a chain |
+| `getAssetsForChainName(string)` | Get all Stargate assets on a chain |
 | `getTokenMessaging(string)` | Get TokenMessaging address for a chain |
 
 #### Lookup by EID
@@ -418,7 +446,8 @@ uint32 eid = LayerZeroV2ArbitrumMainnet.EID;
 | Method | Description |
 |--------|-------------|
 | `getSupportedSymbols()` | Get all supported asset symbols |
-| `getSupportedChains()` | Get all chains with Stargate deployments |
+| `getSupportedChainNames()` | Get all chains with Stargate deployments |
+| `isChainNameSupported(string)` | Check if chain name has Stargate deployments |
 | `isHydraChain(string, string)` | Check if asset is StargateOFT (Hydra) |
 | `assetExists(string, string)` | Check if asset exists on chain |
 | `assetExistsByEid(uint32, string)` | Check if asset exists by EID |
@@ -448,7 +477,7 @@ import {IOFT, SendParam} from "@layerzerolabs/oft-evm/contracts/interfaces/IOFT.
 STGProtocol stg = new STGProtocol();
 
 // Get USDC on Arbitrum (by chain name, EID, or chain ID)
-ISTGProtocol.StargateAsset memory usdc = stg.getAsset("arbitrum", "USDC");
+ISTGProtocol.StargateAsset memory usdc = stg.getAsset("arbitrum-mainnet", "USDC");
 // OR: stg.getAssetByEid(30110, "USDC");
 // OR: stg.getAssetByChainId(42161, "USDC");
 

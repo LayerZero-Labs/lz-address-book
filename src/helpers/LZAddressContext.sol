@@ -15,8 +15,8 @@ import {Vm} from "forge-std/Vm.sol";
 ///   LZAddressContext ctx = new LZAddressContext();
 ///   ctx.makePersistent(vm);  // For fork tests
 ///   ctx.setChain("arbitrum-mainnet");
-///   address endpoint = ctx.getEndpoint();
-///   address dvn = ctx.getDVN("LayerZero Labs");
+///   address endpoint = ctx.getEndpointV2();
+///   address dvn = ctx.getDVNByName("LayerZero Labs");
 ///
 /// Discovery:
 ///   string[] memory dvns = ctx.getAvailableDVNs();  // All DVN names
@@ -47,14 +47,14 @@ contract LZAddressContext is ILZAddressContext {
     
     /// @notice Set the current chain context by name
     function setChain(string memory chainName) public {
-        require(protocol.isChainSupportedByName(chainName), string.concat("Chain not supported: ", chainName));
+        require(protocol.isChainNameSupported(chainName), string.concat("Chain not supported: ", chainName));
         _currentChainName = chainName;
         _currentEid = protocol.getEidByChainName(chainName);
     }
 
     /// @notice Set the current chain context by EID
     function setChainByEid(uint32 eid) public {
-        require(protocol.isChainSupported(eid), string.concat("EID not supported: ", _uint32ToString(eid)));
+        require(protocol.isEidSupported(eid), string.concat("EID not supported: ", _uint32ToString(eid)));
         _currentEid = eid;
         ILZProtocol.ProtocolAddresses memory addr = protocol.getProtocolAddresses(eid);
         _currentChainName = addr.chainName;
@@ -62,19 +62,9 @@ contract LZAddressContext is ILZAddressContext {
 
     /// @notice Set the current chain context by chain ID
     function setChainByChainId(uint256 chainId) public {
-        // Check if chain is supported first for better error message
-        uint32 eid = _tryGetEidFromChainId(chainId);
-        require(eid != 0, string.concat("Chain ID not supported: ", _uint256ToString(chainId)));
+        require(protocol.isChainIdSupported(chainId), string.concat("Chain ID not supported: ", _uint256ToString(chainId)));
+        uint32 eid = protocol.getEidByChainId(chainId);
         setChainByEid(eid);
-    }
-    
-    /// @dev Try to get EID from chain ID, returns 0 if not found
-    function _tryGetEidFromChainId(uint256 chainId) private view returns (uint32) {
-        try protocol.getEidFromChainId(chainId) returns (uint32 eid) {
-            return eid;
-        } catch {
-            return 0;
-        }
     }
 
     // ============================================
@@ -100,19 +90,19 @@ contract LZAddressContext is ILZAddressContext {
     }
 
     /// @notice Get the Endpoint V2 address for the current chain
-    function getEndpoint() external view returns (address) {
+    function getEndpointV2() external view returns (address) {
         _requireChainSet();
         return protocol.getProtocolAddresses(_currentEid).endpointV2;
     }
 
-    /// @notice Get the Send Library address for the current chain
-    function getSendLib() external view returns (address) {
+    /// @notice Get the Send Library (SendUln302) address for the current chain
+    function getSendUln302() external view returns (address) {
         _requireChainSet();
         return protocol.getProtocolAddresses(_currentEid).sendUln302;
     }
-    
-    /// @notice Get the Receive Library address for the current chain
-    function getReceiveLib() external view returns (address) {
+
+    /// @notice Get the Receive Library (ReceiveUln302) address for the current chain
+    function getReceiveUln302() external view returns (address) {
         _requireChainSet();
         return protocol.getProtocolAddresses(_currentEid).receiveUln302;
     }
@@ -156,7 +146,7 @@ contract LZAddressContext is ILZAddressContext {
     /// @param dvnName The canonical name of the DVN (e.g., "LayerZero Labs")
     /// @return dvnAddress The address of the DVN on the current chain
     /// @dev Reverts if DVN not found on current chain. Use getAvailableDVNs() to discover DVN names.
-    function getDVN(string memory dvnName) external view returns (address dvnAddress) {
+    function getDVNByName(string memory dvnName) external view returns (address dvnAddress) {
         _requireChainSet();
         // Check existence first to provide better error message
         require(
@@ -187,15 +177,15 @@ contract LZAddressContext is ILZAddressContext {
     /// @return addresses Array of corresponding DVN addresses
     function getDVNsForCurrentChain() external view returns (string[] memory names, address[] memory addresses) {
         _requireChainSet();
-        return protocol.workers().getDVNsForChain(_currentEid);
+        return protocol.workers().getDVNsForEid(_currentEid);
     }
     
     /// @notice Get all DVNs available on a specific chain
     /// @param chainName The chain name
     /// @return names Array of DVN names
     /// @return addresses Array of corresponding DVN addresses
-    function getDVNsForChain(string memory chainName) external view returns (string[] memory names, address[] memory addresses) {
-        return protocol.workers().getDVNsForChainByName(chainName);
+    function getDVNsForChainName(string memory chainName) external view returns (string[] memory names, address[] memory addresses) {
+        return protocol.workers().getDVNsForChainName(chainName);
     }
     
     /// @notice Get multiple DVN addresses by name for the current chain
@@ -263,51 +253,51 @@ contract LZAddressContext is ILZAddressContext {
     /// @notice Get EID for any chain by name (doesn't change context)
     /// @param chainName The chain name (e.g., "base-mainnet")
     /// @return eid The endpoint ID
-    function getEid(string memory chainName) external view returns (uint32) {
+    function getEidForChainName(string memory chainName) external view returns (uint32) {
         return protocol.getEidByChainName(chainName);
     }
     
     /// @notice Get endpoint address for any chain (doesn't change context)
     /// @param chainName The chain name
     /// @return endpoint The endpoint address
-    function getEndpointFor(string memory chainName) external view returns (address) {
-        return protocol.getProtocolAddresses(chainName).endpointV2;
+    function getEndpointForChainName(string memory chainName) external view returns (address) {
+        return protocol.getProtocolAddressesByChainName(chainName).endpointV2;
     }
     
     /// @notice Get executor address for any chain (doesn't change context)
     /// @param chainName The chain name
     /// @return executor The executor address
-    function getExecutorFor(string memory chainName) external view returns (address) {
-        return protocol.getProtocolAddresses(chainName).executor;
+    function getExecutorForChainName(string memory chainName) external view returns (address) {
+        return protocol.getProtocolAddressesByChainName(chainName).executor;
     }
     
     /// @notice Get send library address for any chain (doesn't change context)
     /// @param chainName The chain name
     /// @return sendLib The SendUln302 address
-    function getSendLibFor(string memory chainName) external view returns (address) {
-        return protocol.getProtocolAddresses(chainName).sendUln302;
+    function getSendLibForChainName(string memory chainName) external view returns (address) {
+        return protocol.getProtocolAddressesByChainName(chainName).sendUln302;
     }
     
     /// @notice Get receive library address for any chain (doesn't change context)
     /// @param chainName The chain name
     /// @return receiveLib The ReceiveUln302 address
-    function getReceiveLibFor(string memory chainName) external view returns (address) {
-        return protocol.getProtocolAddresses(chainName).receiveUln302;
+    function getReceiveLibForChainName(string memory chainName) external view returns (address) {
+        return protocol.getProtocolAddressesByChainName(chainName).receiveUln302;
     }
     
     /// @notice Get DVN address for any chain (doesn't change context)
     /// @param dvnName The DVN name
     /// @param chainName The chain name
     /// @return dvnAddress The DVN address (address(0) if not found)
-    function getDVNFor(string memory dvnName, string memory chainName) external view returns (address) {
+    function getDVNForChainName(string memory dvnName, string memory chainName) external view returns (address) {
         return protocol.workers().getDVNAddressByChainName(dvnName, chainName);
     }
     
     /// @notice Get protocol addresses for any chain (doesn't change context)
     /// @param chainName The chain name
     /// @return addresses The protocol addresses
-    function getProtocolAddressesFor(string memory chainName) external view returns (ILZProtocol.ProtocolAddresses memory) {
-        return protocol.getProtocolAddresses(chainName);
+    function getProtocolAddressesForChainName(string memory chainName) external view returns (ILZProtocol.ProtocolAddresses memory) {
+        return protocol.getProtocolAddressesByChainName(chainName);
     }
     
     // ============================================
@@ -315,22 +305,18 @@ contract LZAddressContext is ILZAddressContext {
     // ============================================
     
     /// @notice Check if a chain is supported by name
-    function isChainSupported(string memory chainName) external view returns (bool) {
-        return protocol.isChainSupportedByName(chainName);
+    function isChainNameSupported(string memory chainName) external view returns (bool) {
+        return protocol.isChainNameSupported(chainName);
     }
     
     /// @notice Check if a chain is supported by EID
-    function isChainSupportedByEid(uint32 eid) external view returns (bool) {
-        return protocol.isChainSupported(eid);
+    function isEidSupported(uint32 eid) external view returns (bool) {
+        return protocol.isEidSupported(eid);
     }
     
     /// @notice Check if a chain is supported by chain ID
-    function isChainSupportedByChainId(uint256 chainId) external view returns (bool) {
-        try protocol.getEidFromChainId(chainId) returns (uint32 eid) {
-            return eid != 0;
-        } catch {
-            return false;
-        }
+    function isChainIdSupported(uint256 chainId) external view returns (bool) {
+        return protocol.isChainIdSupported(chainId);
     }
     
     /// @notice Check if a DVN is available on the current chain
@@ -358,8 +344,8 @@ contract LZAddressContext is ILZAddressContext {
     /// @param dvnAddress The DVN contract address
     /// @param chainName The chain name
     /// @return name The DVN provider name
-    function getDVNNameFor(address dvnAddress, string memory chainName) external view returns (string memory name) {
-        return protocol.workers().getDVNNameByAddressAndChain(dvnAddress, chainName);
+    function getDVNNameForChainName(address dvnAddress, string memory chainName) external view returns (string memory name) {
+        return protocol.workers().getDVNNameByAddressAndChainName(dvnAddress, chainName);
     }
     
     // ============================================
@@ -399,7 +385,8 @@ contract LZAddressContext is ILZAddressContext {
         bytes memory buffer = new bytes(digits);
         while (value != 0) {
             digits -= 1;
-            buffer[digits] = bytes1(uint8(48 + uint256(value % 10)));
+            // forge-lint: disable-next-line(unsafe-typecast)
+            buffer[digits] = bytes1(uint8(48 + uint256(value % 10))); // Safe: digit 0-9 → ASCII 48-57
             value /= 10;
         }
         return string(buffer);

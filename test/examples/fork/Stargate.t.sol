@@ -8,8 +8,7 @@ import {STGProtocol, ISTGProtocol} from "../../../src/generated/STGProtocol.sol"
 import {LZAddressContext} from "../../../src/helpers/LZAddressContext.sol";
 
 // LayerZero/Stargate imports
-import {IOFT, SendParam, MessagingFee, OFTReceipt} from "@layerzerolabs/oft-evm/contracts/interfaces/IOFT.sol";
-import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+import {IOFT, SendParam, MessagingFee} from "@layerzerolabs/oft-evm/contracts/interfaces/IOFT.sol";
 
 /// @title Stargate Fork Test Example
 /// @notice Demonstrates how to use the Stargate address book for fork testing
@@ -19,8 +18,8 @@ contract StargateForkTest is Test {
     LZAddressContext ctx;
     
     // Test chains
-    string constant ARBITRUM = "arbitrum";
-    string constant BASE = "base";
+    string constant ARBITRUM = "arbitrum-mainnet";
+    string constant BASE = "base-mainnet";
     
     // Fork IDs
     mapping(string => uint256) forks;
@@ -128,7 +127,7 @@ contract StargateForkTest is Test {
     
     /// @notice Test listing all assets on a chain
     function testFork_listAssetsOnChain() public {
-        ISTGProtocol.StargateAsset[] memory assets = stg.getAssetsForChain(ARBITRUM);
+        ISTGProtocol.StargateAsset[] memory assets = stg.getAssetsForChainName(ARBITRUM);
         
         console.log("=== Stargate Assets on Arbitrum ===");
         console.log("Total assets:", assets.length);
@@ -162,7 +161,7 @@ contract StargateForkTest is Test {
         ctx.setChain("arbitrum-mainnet");
         
         // Get a DVN address
-        address lzLabsDVN = ctx.getDVN("LayerZero Labs");
+        address lzLabsDVN = ctx.getDVNByName("LayerZero Labs");
         
         // Reverse lookup - get name from address
         string memory dvnName = ctx.getDVNName(lzLabsDVN);
@@ -174,7 +173,7 @@ contract StargateForkTest is Test {
         assertEq(dvnName, "LayerZero Labs", "Should resolve to LayerZero Labs");
         
         // Cross-chain reverse lookup
-        string memory dvnNameForArb = ctx.getDVNNameFor(lzLabsDVN, "arbitrum-mainnet");
+        string memory dvnNameForArb = ctx.getDVNNameForChainName(lzLabsDVN, "arbitrum-mainnet");
         assertEq(dvnNameForArb, "LayerZero Labs", "Cross-chain lookup should also work");
     }
     
@@ -185,7 +184,7 @@ contract StargateForkTest is Test {
         } catch {}
         
         // Fallback to address book
-        return ctx.getProtocolAddressesFor(chainName).rpcUrls[0];
+        return ctx.getProtocolAddressesForChainName(chainName).rpcUrls[0];
     }
 }
 

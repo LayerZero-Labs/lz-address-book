@@ -40,13 +40,13 @@ contract ConfigureForkTest is Test {
         // Deploy OApp on Chain A
         vm.selectFork(forkA);
         ctx.setChain("arbitrum-mainnet");
-        oappA = new OFTMock("Test OFT", "tOFT", ctx.getEndpoint(), address(this));
+        oappA = new OFTMock("Test OFT", "tOFT", ctx.getEndpointV2(), address(this));
         vm.makePersistent(address(oappA));
         
         // Deploy OApp on Chain B
         vm.selectFork(forkB);
         ctx.setChain("base-mainnet");
-        oappB = new OFTMock("Test OFT", "tOFT", ctx.getEndpoint(), address(this));
+        oappB = new OFTMock("Test OFT", "tOFT", ctx.getEndpointV2(), address(this));
         vm.makePersistent(address(oappB));
     }
 
@@ -64,14 +64,14 @@ contract ConfigureForkTest is Test {
         vm.selectFork(forkA);
         ctx.setChain(chainA);  // <-- Set by NAME
         
-        _configureChain(ctx, address(oappA), ctx.getEid(chainB));
+        _configureChain(ctx, address(oappA), ctx.getEidForChainName(chainB));
         console.log("[OK] Chain A configured:", chainA);
         
         // Configure Chain B
         vm.selectFork(forkB);
         ctx.setChain(chainB);  // <-- Set by NAME
         
-        _configureChain(ctx, address(oappB), ctx.getEid(chainA));
+        _configureChain(ctx, address(oappB), ctx.getEidForChainName(chainA));
         console.log("[OK] Chain B configured:", chainB);
         
         // Verify configs were applied
@@ -130,7 +130,7 @@ contract ConfigureForkTest is Test {
         assertEq(chainA, "arbitrum-mainnet", "Chain ID should resolve to arbitrum-mainnet");
         
         uint32 eidA = ctx.getCurrentEID();
-        uint32 eidB = ctx.getEid("base-mainnet");
+        uint32 eidB = ctx.getEidForChainName("base-mainnet");
         
         _configureChain(ctx, address(oappA), eidB);
         console.log("[OK] Chain A configured via chainId:", chainIdA);
@@ -158,9 +158,9 @@ contract ConfigureForkTest is Test {
         address oapp,
         uint32 remoteEid
     ) internal {
-        ILayerZeroEndpointV2 endpoint = ILayerZeroEndpointV2(_ctx.getEndpoint());
-        address sendLib = _ctx.getSendLib();
-        address receiveLib = _ctx.getReceiveLib();
+        ILayerZeroEndpointV2 endpoint = ILayerZeroEndpointV2(_ctx.getEndpointV2());
+        address sendLib = _ctx.getSendUln302();
+        address receiveLib = _ctx.getReceiveUln302();
         address executor = _ctx.getExecutor();
         
         // Get local DVNs
@@ -184,13 +184,13 @@ contract ConfigureForkTest is Test {
         
         // Set SEND config
         SetConfigParam[] memory sendParams = new SetConfigParam[](2);
-        sendParams[0] = SetConfigParam(remoteEid, 1, abi.encode(execConfig));
-        sendParams[1] = SetConfigParam(remoteEid, 2, abi.encode(ulnConfig));
+        sendParams[0] = SetConfigParam({eid: remoteEid, configType: 1, config: abi.encode(execConfig)});
+        sendParams[1] = SetConfigParam({eid: remoteEid, configType: 2, config: abi.encode(ulnConfig)});
         endpoint.setConfig(oapp, sendLib, sendParams);
         
         // Set RECEIVE config
         SetConfigParam[] memory recvParams = new SetConfigParam[](1);
-        recvParams[0] = SetConfigParam(remoteEid, 2, abi.encode(ulnConfig));
+        recvParams[0] = SetConfigParam({eid: remoteEid, configType: 2, config: abi.encode(ulnConfig)});
         endpoint.setConfig(oapp, receiveLib, recvParams);
     }
 
@@ -202,7 +202,7 @@ contract ConfigureForkTest is Test {
         // Verify Chain A endpoint is live
         vm.selectFork(forkA);
         ctx.setChain(chainA);
-        address endpointA = ctx.getEndpoint();
+        address endpointA = ctx.getEndpointV2();
         uint256 codeSizeA;
         assembly { codeSizeA := extcodesize(endpointA) }
         assertGt(codeSizeA, 0, "Chain A endpoint should be deployed");
@@ -210,7 +210,7 @@ contract ConfigureForkTest is Test {
         // Verify Chain B endpoint is live
         vm.selectFork(forkB);
         ctx.setChain(chainB);
-        address endpointB = ctx.getEndpoint();
+        address endpointB = ctx.getEndpointV2();
         uint256 codeSizeB;
         assembly { codeSizeB := extcodesize(endpointB) }
         assertGt(codeSizeB, 0, "Chain B endpoint should be deployed");
@@ -236,16 +236,16 @@ contract ConfigureForkTest is Test {
         } catch {}
         
         // Fall back to address book
-        string memory rpc = ctx.getProtocolAddressesFor(chainName).rpcUrls.length > 0
-            ? ctx.getProtocolAddressesFor(chainName).rpcUrls[0]
+        string memory rpc = ctx.getProtocolAddressesForChainName(chainName).rpcUrls.length > 0
+            ? ctx.getProtocolAddressesForChainName(chainName).rpcUrls[0]
             : "";
         require(bytes(rpc).length > 0, string.concat("No RPC for ", chainName));
         return rpc;
     }
     
     function _getSortedDVNs(LZAddressContext _ctx, string memory chain) internal view returns (address[] memory) {
-        address lz = _ctx.getDVNFor("LayerZero Labs", chain);
-        address nm = _ctx.getDVNFor("Nethermind", chain);
+        address lz = _ctx.getDVNForChainName("LayerZero Labs", chain);
+        address nm = _ctx.getDVNForChainName("Nethermind", chain);
         
         address[] memory dvns = new address[](2);
         (dvns[0], dvns[1]) = lz < nm ? (lz, nm) : (nm, lz);

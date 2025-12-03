@@ -16,7 +16,7 @@ import {IOAppCore} from "@layerzerolabs/oapp-evm/contracts/oapp/interfaces/IOApp
 ///       function setUp() public {
 ///           // Forks are created automatically, just select them
 ///           selectFork("arbitrum-mainnet", "https://arb1.arbitrum.io/rpc");
-///           MyOApp oapp = new MyOApp(ctx.getEndpoint(), address(this));
+///           MyOApp oapp = new MyOApp(ctx.getEndpointV2(), address(this));
 ///       }
 ///   }
 abstract contract LZTest is Test {
@@ -67,7 +67,7 @@ abstract contract LZTest is Test {
     /// @param chainName Chain name
     /// @return forkId Fork ID
     function createForkFromAddressBook(string memory chainName) internal returns (uint256 forkId) {
-        string memory rpc = ctx.getProtocolAddressesFor(chainName).rpcUrls[0];
+        string memory rpc = ctx.getProtocolAddressesForChainName(chainName).rpcUrls[0];
         return createFork(chainName, rpc);
     }
     
@@ -118,13 +118,13 @@ abstract contract LZTest is Test {
         
         // Set peer on chain A
         selectFork(chainA);
-        uint32 eidB = ctx.getEid(chainB);
+        uint32 eidB = ctx.getEidForChainName(chainB);
         vm.prank(ownerA);
         IOAppCore(oappA).setPeer(eidB, ctx.addressToBytes32(oappB));
         
         // Set peer on chain B
         selectFork(chainB);
-        uint32 eidA = ctx.getEid(chainA);
+        uint32 eidA = ctx.getEidForChainName(chainA);
         vm.prank(ownerB);
         IOAppCore(oappB).setPeer(eidA, ctx.addressToBytes32(oappA));
         
@@ -142,7 +142,7 @@ abstract contract LZTest is Test {
         view 
         returns (ILZProtocol.ProtocolAddresses memory) 
     {
-        return ctx.getProtocolAddressesFor(chainName);
+        return ctx.getProtocolAddressesForChainName(chainName);
     }
     
     /// @notice Get DVN address by name for a chain
@@ -151,6 +151,6 @@ abstract contract LZTest is Test {
         view 
         returns (address) 
     {
-        return ctx.getDVNFor(dvnName, chainName);
+        return ctx.getDVNForChainName(dvnName, chainName);
     }
 }

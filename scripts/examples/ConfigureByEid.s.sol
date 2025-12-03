@@ -181,9 +181,9 @@ contract ConfigureByEid is Script {
 
         local = LocalContext({
             oapp: chains[localIndex].oapp,
-            endpoint: ctx.getEndpoint(),
-            sendLib: ctx.getSendLib(),
-            receiveLib: ctx.getReceiveLib(),
+            endpoint: ctx.getEndpointV2(),
+            sendLib: ctx.getSendUln302(),
+            receiveLib: ctx.getReceiveUln302(),
             executor: ctx.getExecutor(),
             dvns: ctx.getSortedDVNs(_getDvnNames()),
             confirmations: chains[localIndex].confirmations

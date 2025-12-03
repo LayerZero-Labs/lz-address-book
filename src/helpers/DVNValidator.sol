@@ -46,8 +46,8 @@ contract DVNValidator is IDVNValidator {
         uint256 srcChainId,
         uint256 dstChainId
     ) public view override returns (bool available) {
-        uint32 srcEid = protocol.getEidFromChainId(srcChainId);
-        uint32 dstEid = protocol.getEidFromChainId(dstChainId);
+        uint32 srcEid = protocol.getEidByChainId(srcChainId);
+        uint32 dstEid = protocol.getEidByChainId(dstChainId);
         return _isDVNAvailableOnBoth(dvnName, srcEid, dstEid);
     }
 
@@ -99,8 +99,8 @@ contract DVNValidator is IDVNValidator {
         uint256 srcChainId,
         uint256 dstChainId
     ) public view override returns (DVNAvailability memory details) {
-        uint32 srcEid = protocol.getEidFromChainId(srcChainId);
-        uint32 dstEid = protocol.getEidFromChainId(dstChainId);
+        uint32 srcEid = protocol.getEidByChainId(srcChainId);
+        uint32 dstEid = protocol.getEidByChainId(dstChainId);
         return _getDVNAvailability(dvnName, srcEid, dstEid);
     }
 
@@ -138,8 +138,8 @@ contract DVNValidator is IDVNValidator {
         bool allAvailable,
         DVNAvailability[] memory details
     ) {
-        uint32 srcEid = protocol.getEidFromChainId(srcChainId);
-        uint32 dstEid = protocol.getEidFromChainId(dstChainId);
+        uint32 srcEid = protocol.getEidByChainId(srcChainId);
+        uint32 dstEid = protocol.getEidByChainId(dstChainId);
         return validateDVNsForPathwayByEid(dvnNames, srcEid, dstEid);
     }
 
@@ -205,8 +205,8 @@ contract DVNValidator is IDVNValidator {
         uint256 srcChainId,
         uint256 dstChainId
     ) external view override returns (string[] memory dvnNames) {
-        uint32 srcEid = protocol.getEidFromChainId(srcChainId);
-        uint32 dstEid = protocol.getEidFromChainId(dstChainId);
+        uint32 srcEid = protocol.getEidByChainId(srcChainId);
+        uint32 dstEid = protocol.getEidByChainId(dstChainId);
         return _getCommonDVNs(srcEid, dstEid);
     }
 

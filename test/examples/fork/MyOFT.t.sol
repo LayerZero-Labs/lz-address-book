@@ -58,13 +58,13 @@ contract MyOFTForkTest is Test {
         // 3. DEPLOY ON ARBITRUM
         vm.selectFork(forks[ARBITRUM]);
         ctx.setChain(ARBITRUM);
-        arbOft = new OFTMock("Arbitrum OFT", "aOFT", ctx.getEndpoint(), address(this));
+        arbOft = new OFTMock("Arbitrum OFT", "aOFT", ctx.getEndpointV2(), address(this));
         arbOft.mint(userA, 10 ether);
         
         // 4. DEPLOY ON BASE
         vm.selectFork(forks[BASE]);
         ctx.setChain(BASE);
-        baseOft = new OFTMock("Base OFT", "bOFT", ctx.getEndpoint(), address(this));
+        baseOft = new OFTMock("Base OFT", "bOFT", ctx.getEndpointV2(), address(this));
         
         // 5. WIRE PEERS (using context helpers)
         _wirePeers();
@@ -83,8 +83,8 @@ contract MyOFTForkTest is Test {
         } catch {}
         
         // 2. Use address book metadata
-        string memory rpc = ctx.getProtocolAddressesFor(chainName).rpcUrls.length > 0
-            ? ctx.getProtocolAddressesFor(chainName).rpcUrls[0]
+        string memory rpc = ctx.getProtocolAddressesForChainName(chainName).rpcUrls.length > 0
+            ? ctx.getProtocolAddressesForChainName(chainName).rpcUrls[0]
             : "";
         require(bytes(rpc).length > 0, string.concat("No RPC for ", chainName));
         return rpc;
@@ -95,12 +95,12 @@ contract MyOFTForkTest is Test {
         
         // Set peer on Arbitrum
         vm.selectFork(forks[ARBITRUM]);
-        uint32 baseEid = ctx.getEid(BASE);
+        uint32 baseEid = ctx.getEidForChainName(BASE);
         IOAppCore(address(arbOft)).setPeer(baseEid, ctx.addressToBytes32(address(baseOft)));
         
         // Set peer on Base
         vm.selectFork(forks[BASE]);
-        uint32 arbEid = ctx.getEid(ARBITRUM);
+        uint32 arbEid = ctx.getEidForChainName(ARBITRUM);
         IOAppCore(address(baseOft)).setPeer(arbEid, ctx.addressToBytes32(address(arbOft)));
         
         vm.selectFork(currentFork);
@@ -120,7 +120,7 @@ contract MyOFTForkTest is Test {
         ctx.setChain(ARBITRUM);
         
         // Get destination EID using context
-        uint32 baseEid = ctx.getEid(BASE);
+        uint32 baseEid = ctx.getEidForChainName(BASE);
         
         // Create send parameters
         SendParam memory sendParam = SendParam({
@@ -157,20 +157,20 @@ contract MyOFTForkTest is Test {
         assertEq(userBBalanceBefore, 0);
         
         // Verify endpoint is ready
-        uint32 arbEid = ctx.getEid(ARBITRUM);
+        uint32 arbEid = ctx.getEidForChainName(ARBITRUM);
         Origin memory origin = Origin({
             srcEid: arbEid,
             sender: ctx.addressToBytes32(address(arbOft)),
             nonce: 1
         });
         
-        assertEq(ILayerZeroEndpointV2(ctx.getEndpoint()).initializable(origin, address(baseOft)), true);
+        assertEq(ILayerZeroEndpointV2(ctx.getEndpointV2()).initializable(origin, address(baseOft)), true);
 
         // Simulate message delivery
         uint64 amountSD = baseOft.toSD(tokensToSend);
         (bytes memory message,) = OFTMsgCodec.encode(ctx.addressToBytes32(userB), amountSD, hex"");
 
-        vm.prank(ctx.getEndpoint());
+        vm.prank(ctx.getEndpointV2());
         baseOft.lzReceive(origin, receipt.guid, message, address(0), hex"");
         
         VmSafe.Gas memory gasUsed = vm.lastCallGas();
@@ -186,7 +186,7 @@ contract MyOFTForkTest is Test {
         ctx.setChain(ARBITRUM);
         
         address arbEndpoint = address(arbOft.endpoint());
-        assertEq(arbEndpoint, ctx.getEndpoint(), "Should use endpoint from context");
+        assertEq(arbEndpoint, ctx.getEndpointV2(), "Should use endpoint from context");
         
         uint256 codeSize;
         assembly { codeSize := extcodesize(arbEndpoint) }
@@ -197,7 +197,7 @@ contract MyOFTForkTest is Test {
         ctx.setChain(BASE);
         
         address baseEndpoint = address(baseOft.endpoint());
-        assertEq(baseEndpoint, ctx.getEndpoint(), "Should use endpoint from context");
+        assertEq(baseEndpoint, ctx.getEndpointV2(), "Should use endpoint from context");
         
         assembly { codeSize := extcodesize(baseEndpoint) }
         assertGt(codeSize, 0, "Endpoint should be deployed");
@@ -208,8 +208,8 @@ contract MyOFTForkTest is Test {
     /// @notice Test DVN access via context
     function testFork_dvnAccess() public {
         // Get DVN addresses using context (no need for separate registry)
-        address arbLzLabsDVN = ctx.getDVNFor("LayerZero Labs", ARBITRUM);
-        address baseLzLabsDVN = ctx.getDVNFor("LayerZero Labs", BASE);
+        address arbLzLabsDVN = ctx.getDVNForChainName("LayerZero Labs", ARBITRUM);
+        address baseLzLabsDVN = ctx.getDVNForChainName("LayerZero Labs", BASE);
         
         // Verify on Arbitrum
         vm.selectFork(forks[ARBITRUM]);
@@ -232,7 +232,7 @@ contract MyOFTForkTest is Test {
     function testFork_contextSettingMethods() public {
         // ========== METHOD 1: By Chain Name (most readable) ==========
         ctx.setChain("arbitrum-mainnet");
-        address endpointByName = ctx.getEndpoint();
+        address endpointByName = ctx.getEndpointV2();
         uint32 eidByName = ctx.getCurrentEID();
         console.log("By name 'arbitrum-mainnet':");
         console.log("  Endpoint:", endpointByName);
@@ -240,7 +240,7 @@ contract MyOFTForkTest is Test {
         
         // ========== METHOD 2: By Chain ID (useful when you have block.chainid) ==========
         ctx.setChainByChainId(8453); // Base mainnet chain ID
-        address endpointByChainId = ctx.getEndpoint();
+        address endpointByChainId = ctx.getEndpointV2();
         string memory chainNameByChainId = ctx.getCurrentChainName();
         console.log("By chainId 8453:");
         console.log("  Endpoint:", endpointByChainId);
@@ -248,7 +248,7 @@ contract MyOFTForkTest is Test {
         
         // ========== METHOD 3: By EID (useful when working with LZ messages) ==========
         ctx.setChainByEid(30110); // Arbitrum mainnet EID
-        address endpointByEid = ctx.getEndpoint();
+        address endpointByEid = ctx.getEndpointV2();
         string memory chainNameByEid = ctx.getCurrentChainName();
         console.log("By EID 30110:");
         console.log("  Endpoint:", endpointByEid);

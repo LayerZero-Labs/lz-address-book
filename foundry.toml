@@ -8,6 +8,21 @@ optimizer_runs = 1000000
 verbosity = 1
 solc_version = "0.8.22"
 
+[lint]
+exclude_lints = [
+    # Acronyms like DVN, EID, RPC trigger false positives
+    "mixed-case-function",
+    "mixed-case-variable",
+    "pascal-case-struct",
+    # Generated code uses plain imports and lowercase vm constant
+    "unaliased-plain-import",
+    "screaming-snake-case-const",
+    # Immutables as SCREAMING_SNAKE is unconventional for contract refs
+    "screaming-snake-case-immutable",
+    # Barrel file (LZAddressBook.sol) intentionally re-exports
+    "unused-import"
+]
+
 [rpc_endpoints]
 ethereum-mainnet = "${ETHEREUM_MAINNET_RPC_URL}"
 arbitrum-mainnet = "${ARBITRUM_MAINNET_RPC_URL}"

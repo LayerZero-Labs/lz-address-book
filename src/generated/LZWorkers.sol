@@ -25,6 +25,9 @@ contract LZWorkers is ILZWorkers {
     mapping(string => uint32) private _chainNameToEid;
     mapping(uint32 => string) private _eidToChainName;
     
+    // Chain ID to EID mapping
+    mapping(uint256 => uint32) private _chainIdToEid;
+    
     // Track DVNs per chain for enumeration
     mapping(uint32 => string[]) private _dvnsByChain;
     
@@ -356,32 +359,6 @@ contract LZWorkers is ILZWorkers {
         _registerDVN("Citrea", 40344, 0xe7e778f704EBc0598902cBF96C6748f3B96BC8d1); // citrea-testnet
         _registerDVN("Citrea", 40232, 0xF1Eb575035fCb1291a4C1801FCaC8BD93b4E281B); // optsep-testnet
         _registerDVN("Citrea", 40161, 0x120BE7FAbDE72292E2a56240610DB1cA54Ae4000); // sepolia-testnet
-
-        // Curve
-        _registerDVN("Curve", 30110, 0x4066b6e7BfD761B579902E7e8D03F4feb9B9536E); // arbitrum-mainnet
-        _registerDVN("Curve", 30211, 0x315b0e76A510607bB0F706B17716F426D5b385b8); // aurora-mainnet
-        _registerDVN("Curve", 30106, 0x6821Ea3d3a52421D2b7DF330f2316eD157314d7f); // avalanche-mainnet
-        _registerDVN("Curve", 30184, 0x1a3A8421e48b7536f3F71d8B14A1449c90eFA909); // base-mainnet
-        _registerDVN("Curve", 30102, 0xc6e1f0fc326913bD31fB11699c61F6f1F2A5e6d2); // bsc-mainnet
-        _registerDVN("Curve", 30125, 0xc4305B4a16cb631CBd34b33380FB8c221cdf63Ab); // celo-mainnet
-        _registerDVN("Curve", 30101, 0xcc35923c43893CC31F2815e216afD7EFB60f1fB0); // ethereum-mainnet
-        _registerDVN("Curve", 30112, 0x06a32EFaFC7698c00e87f5225178d7364773E93b); // fantom-mainnet
-        _registerDVN("Curve", 30255, 0x05dF4949f0B4dC4c4b1ADc0e01700Bc669E935c3); // fraxtal-mainnet
-        _registerDVN("Curve", 30145, 0x30c673a1F34B91C4bf4951670A2B7c8C0663b100); // gnosis-mainnet
-        _registerDVN("Curve", 30367, 0x8a41c07623cdF8995aE8769BfC45859D7cA99e82); // hyperliquid-mainnet
-        _registerDVN("Curve", 30339, 0x18766cA3fEcDE0C1251922Be6D3a088aDf5f53e6); // ink-mainnet
-        _registerDVN("Curve", 30177, 0x05dF4949f0B4dC4c4b1ADc0e01700Bc669E935c3); // kava-mainnet
-        _registerDVN("Curve", 30181, 0xF18F2C3d86Ec9A350D5E10Cb67c614201f210D3D); // mantle-mainnet
-        _registerDVN("Curve", 30126, 0x7DEcC6Df3aF9CFc275E25d2f9703eCF7ad800D5D); // moonbeam-mainnet
-        _registerDVN("Curve", 30331, 0xDD779AAAd20E62275457Af91b123bB13dd5aFd0B); // mp1-mainnet
-        _registerDVN("Curve", 30111, 0xb908Fc507fE3145e855cf63127349756b9eCF3a6); // optimism-mainnet
-        _registerDVN("Curve", 30370, 0x8Ede21203E062D7D1EAeC11c4c72Ad04cDc15658); // plumephoenix-mainnet
-        _registerDVN("Curve", 30109, 0x4066b6e7BfD761B579902E7e8D03F4feb9B9536E); // polygon-mainnet
-        _registerDVN("Curve", 30332, 0x3c4e4c3baA5D883654970fe34Db8c943ebf43ab2); // sonic-mainnet
-        _registerDVN("Curve", 30377, 0x4d45727d2de5ffC811E6A161c3a7233a2Ea2e0E7); // tac-mainnet
-        _registerDVN("Curve", 30290, 0x8bAFe0299CB4D3fF75d3f7045554474Bf414FD11); // taiko-mainnet
-        _registerDVN("Curve", 30365, 0xAb6d3d37D8Dc309e7d8086B2e85a953b84Ee5fA9); // xdc-mainnet
-        _registerDVN("Curve", 30274, 0x1a92C25Cb7Cd80E1138E8125FC0a0B0642688C0B); // xlayer-mainnet
 
         // Delegate
         _registerDVN("Delegate", 30110, 0xdf30C9f6A70cE65A152c5Bd09826525D7E97Ba49); // arbitrum-mainnet
@@ -768,6 +745,7 @@ contract LZWorkers is ILZWorkers {
         _registerDVN("LayerZero Labs", 40217, 0x3E43f8ff0175580f7644DA043071c289DDf98118); // holesky-testnet
         _registerDVN("LayerZero Labs", 30265, 0x6788f52439ACA6BFF597d3eeC2DC9a44B8FEE842); // homeverse-mainnet
         _registerDVN("LayerZero Labs", 40265, 0x88B27057A9e00c5F05DDa29241027afF63f9e6e0); // homeverse-testnet
+        _registerDVN("LayerZero Labs", 40435, 0xa78A78a13074eD93aD447a26Ec57121f29E8feC2); // horizen-testnet
         _registerDVN("LayerZero Labs", 30382, 0x7cacBe439EaD55fa1c22790330b12835c6884a91); // humanity-mainnet
         _registerDVN("LayerZero Labs", 40410, 0xa78A78a13074eD93aD447a26Ec57121f29E8feC2); // humanity-testnet
         _registerDVN("LayerZero Labs", 30367, 0xc097ab8CD7b053326DFe9fB3E3a31a0CCe3B526f); // hyperliquid-mainnet
@@ -865,6 +843,7 @@ contract LZWorkers is ILZWorkers {
         _registerDVN("LayerZero Labs", 40318, 0xb100823Baa9F8D625052fc8F544fc307b0184B18); // root-testnet
         _registerDVN("LayerZero Labs", 30333, 0x6788f52439ACA6BFF597d3eeC2DC9a44B8FEE842); // rootstock-mainnet
         _registerDVN("LayerZero Labs", 40350, 0x88B27057A9e00c5F05DDa29241027afF63f9e6e0); // rootstock-testnet
+        _registerDVN("LayerZero Labs", 40432, 0x4Cb3E5dFa5568e3508d4f15726092856E5E79a49); // sagaevm-testnet
         _registerDVN("LayerZero Labs", 30278, 0x6788f52439ACA6BFF597d3eeC2DC9a44B8FEE842); // sanko-mainnet
         _registerDVN("LayerZero Labs", 40278, 0x88B27057A9e00c5F05DDa29241027afF63f9e6e0); // sanko-testnet
         _registerDVN("LayerZero Labs", 30214, 0xbe0d08a85EeBFCC6eDA0A843521f7CBB1180D2e2); // scroll-mainnet
@@ -1274,6 +1253,7 @@ contract LZWorkers is ILZWorkers {
         _registerDVN("P2P", 30377, 0x965A80Dc87cec5848310E612DeAD84B543AeF874); // tac-mainnet
         _registerDVN("P2P", 30320, 0xab82E9b24004b954985528dAc14D1B020722a3c8); // unichain-mainnet
         _registerDVN("P2P", 40333, 0x6c916e44d5fc868eD7ec45319C6fda2E1907CE6B); // unichain-testnet
+        _registerDVN("P2P", 30397, 0x58249a2Ec05c1978bF21DF1f5eC1847e42455CF4); // zama-mainnet
         _registerDVN("P2P", 30183, 0x0b239476A771834D846Cb505817baC3C391c338A); // zkconsensys-mainnet
         _registerDVN("P2P", 30195, 0xD1b5493e712081A6FBAb73116405590046668F6b); // zora-mainnet
 
@@ -1723,6 +1703,8 @@ contract LZWorkers is ILZWorkers {
     
     /// @notice Register chain name to EID mappings
     function _registerChainMappings() private {
+        _chainNameToEid["aavegotchi-testnet"] = 40179;
+        _eidToChainName[40179] = "aavegotchi-testnet";
         _chainNameToEid["abstract-mainnet"] = 30324;
         _eidToChainName[30324] = "abstract-mainnet";
         _chainNameToEid["abstract-testnet"] = 40313;
@@ -1791,6 +1773,10 @@ contract LZWorkers is ILZWorkers {
         _eidToChainName[40331] = "bl2-testnet";
         _chainNameToEid["bl3-testnet"] = 40346;
         _eidToChainName[40346] = "bl3-testnet";
+        _chainNameToEid["bl4-mainnet"] = 30337;
+        _eidToChainName[30337] = "bl4-mainnet";
+        _chainNameToEid["bl5-mainnet"] = 30338;
+        _eidToChainName[30338] = "bl5-mainnet";
         _chainNameToEid["bl6-testnet"] = 40357;
         _eidToChainName[40357] = "bl6-testnet";
         _chainNameToEid["blast-mainnet"] = 30243;
@@ -1799,6 +1785,8 @@ contract LZWorkers is ILZWorkers {
         _eidToChainName[40243] = "blast-testnet";
         _chainNameToEid["ble-testnet"] = 40330;
         _eidToChainName[40330] = "ble-testnet";
+        _chainNameToEid["blockgen-testnet"] = 40177;
+        _eidToChainName[40177] = "blockgen-testnet";
         _chainNameToEid["bob-mainnet"] = 30279;
         _eidToChainName[30279] = "bob-mainnet";
         _chainNameToEid["bob-testnet"] = 40279;
@@ -1823,6 +1811,8 @@ contract LZWorkers is ILZWorkers {
         _eidToChainName[30159] = "canto-mainnet";
         _chainNameToEid["canto-testnet"] = 40159;
         _eidToChainName[40159] = "canto-testnet";
+        _chainNameToEid["cathay-testnet"] = 40171;
+        _eidToChainName[40171] = "cathay-testnet";
         _chainNameToEid["celo-mainnet"] = 30125;
         _eidToChainName[30125] = "celo-mainnet";
         _chainNameToEid["celo-testnet"] = 40125;
@@ -1983,8 +1973,12 @@ contract LZWorkers is ILZWorkers {
         _eidToChainName[30265] = "homeverse-mainnet";
         _chainNameToEid["homeverse-testnet"] = 40265;
         _eidToChainName[40265] = "homeverse-testnet";
+        _chainNameToEid["horizen-testnet"] = 40435;
+        _eidToChainName[40435] = "horizen-testnet";
         _chainNameToEid["hubble-mainnet"] = 30182;
         _eidToChainName[30182] = "hubble-mainnet";
+        _chainNameToEid["hubble-testnet"] = 40182;
+        _eidToChainName[40182] = "hubble-testnet";
         _chainNameToEid["humanity-mainnet"] = 30382;
         _eidToChainName[30382] = "humanity-mainnet";
         _chainNameToEid["humanity-testnet"] = 40410;
@@ -1993,6 +1987,8 @@ contract LZWorkers is ILZWorkers {
         _eidToChainName[30367] = "hyperliquid-mainnet";
         _chainNameToEid["hyperliquid-testnet"] = 40362;
         _eidToChainName[40362] = "hyperliquid-testnet";
+        _chainNameToEid["idex-testnet"] = 40219;
+        _eidToChainName[40219] = "idex-testnet";
         _chainNameToEid["injective-testnet"] = 40218;
         _eidToChainName[40218] = "injective-testnet";
         _chainNameToEid["injective1439-testnet"] = 40408;
@@ -2003,6 +1999,8 @@ contract LZWorkers is ILZWorkers {
         _eidToChainName[30339] = "ink-mainnet";
         _chainNameToEid["ink-testnet"] = 40358;
         _eidToChainName[40358] = "ink-testnet";
+        _chainNameToEid["intain-mainnet"] = 30152;
+        _eidToChainName[30152] = "intain-mainnet";
         _chainNameToEid["iota-mainnet"] = 30284;
         _eidToChainName[30284] = "iota-mainnet";
         _chainNameToEid["iota-testnet"] = 40307;
@@ -2059,6 +2057,8 @@ contract LZWorkers is ILZWorkers {
         _eidToChainName[30311] = "lyra-mainnet";
         _chainNameToEid["lyra-testnet"] = 40308;
         _eidToChainName[40308] = "lyra-testnet";
+        _chainNameToEid["lzjk-testnet"] = 40418;
+        _eidToChainName[40418] = "lzjk-testnet";
         _chainNameToEid["manta-mainnet"] = 30217;
         _eidToChainName[30217] = "manta-mainnet";
         _chainNameToEid["manta-testnet"] = 40221;
@@ -2185,6 +2185,8 @@ contract LZWorkers is ILZWorkers {
         _eidToChainName[30302] = "peaq-mainnet";
         _chainNameToEid["peaq-testnet"] = 40299;
         _eidToChainName[40299] = "peaq-testnet";
+        _chainNameToEid["pgjjtk-testnet"] = 40207;
+        _eidToChainName[40207] = "pgjjtk-testnet";
         _chainNameToEid["pgn-mainnet"] = 30218;
         _eidToChainName[30218] = "pgn-mainnet";
         _chainNameToEid["pgn-testnet"] = 40223;
@@ -2231,6 +2233,8 @@ contract LZWorkers is ILZWorkers {
         _eidToChainName[30333] = "rootstock-mainnet";
         _chainNameToEid["rootstock-testnet"] = 40350;
         _eidToChainName[40350] = "rootstock-testnet";
+        _chainNameToEid["sagaevm-testnet"] = 40432;
+        _eidToChainName[40432] = "sagaevm-testnet";
         _chainNameToEid["sanko-mainnet"] = 30278;
         _eidToChainName[30278] = "sanko-mainnet";
         _chainNameToEid["sanko-testnet"] = 40278;
@@ -2303,6 +2307,8 @@ contract LZWorkers is ILZWorkers {
         _eidToChainName[30335] = "swell-mainnet";
         _chainNameToEid["swell-testnet"] = 40353;
         _eidToChainName[40353] = "swell-testnet";
+        _chainNameToEid["swimmer-mainnet"] = 30114;
+        _eidToChainName[30114] = "swimmer-mainnet";
         _chainNameToEid["tac-mainnet"] = 30377;
         _eidToChainName[30377] = "tac-mainnet";
         _chainNameToEid["tacspb-testnet"] = 40404;
@@ -2311,6 +2317,8 @@ contract LZWorkers is ILZWorkers {
         _eidToChainName[30290] = "taiko-mainnet";
         _chainNameToEid["taiko-testnet"] = 40274;
         _eidToChainName[40274] = "taiko-testnet";
+        _chainNameToEid["tangible-testnet"] = 40252;
+        _eidToChainName[40252] = "tangible-testnet";
         _chainNameToEid["telos-mainnet"] = 30199;
         _eidToChainName[30199] = "telos-mainnet";
         _chainNameToEid["telos-testnet"] = 40199;
@@ -2335,6 +2343,8 @@ contract LZWorkers is ILZWorkers {
         _eidToChainName[40262] = "unreal-testnet";
         _chainNameToEid["vanar-testnet"] = 40298;
         _eidToChainName[40298] = "vanar-testnet";
+        _chainNameToEid["venn-testnet"] = 40234;
+        _eidToChainName[40234] = "venn-testnet";
         _chainNameToEid["worldchain-mainnet"] = 30319;
         _eidToChainName[30319] = "worldchain-mainnet";
         _chainNameToEid["worldcoin-testnet"] = 40335;
@@ -2403,6 +2413,350 @@ contract LZWorkers is ILZWorkers {
         _eidToChainName[40195] = "zora-testnet";
         _chainNameToEid["zorasep-testnet"] = 40249;
         _eidToChainName[40249] = "zorasep-testnet";
+
+        // Chain ID to EID mappings
+        _chainIdToEid[1] = 30101;
+        _chainIdToEid[10] = 30111;
+        _chainIdToEid[14] = 30295;
+        _chainIdToEid[25] = 30359;
+        _chainIdToEid[25] = 40208;
+        _chainIdToEid[30] = 30333;
+        _chainIdToEid[31] = 40350;
+        _chainIdToEid[37] = 30216;
+        _chainIdToEid[40] = 30199;
+        _chainIdToEid[41] = 40199;
+        _chainIdToEid[47] = 40216;
+        _chainIdToEid[50] = 30365;
+        _chainIdToEid[56] = 30102;
+        _chainIdToEid[65] = 40155;
+        _chainIdToEid[66] = 30155;
+        _chainIdToEid[71] = 40211;
+        _chainIdToEid[81] = 30285;
+        _chainIdToEid[81] = 40210;
+        _chainIdToEid[82] = 30176;
+        _chainIdToEid[83] = 40156;
+        _chainIdToEid[88] = 30196;
+        _chainIdToEid[89] = 40196;
+        _chainIdToEid[97] = 40102;
+        _chainIdToEid[100] = 30145;
+        _chainIdToEid[111] = 40279;
+        _chainIdToEid[114] = 40294;
+        _chainIdToEid[122] = 30138;
+        _chainIdToEid[123] = 40138;
+        _chainIdToEid[130] = 30320;
+        _chainIdToEid[137] = 30109;
+        _chainIdToEid[143] = 30390;
+        _chainIdToEid[146] = 30332;
+        _chainIdToEid[148] = 30230;
+        _chainIdToEid[153] = 40429;
+        _chainIdToEid[155] = 40173;
+        _chainIdToEid[169] = 30217;
+        _chainIdToEid[195] = 40269;
+        _chainIdToEid[196] = 30274;
+        _chainIdToEid[196] = 40416;
+        _chainIdToEid[204] = 30202;
+        _chainIdToEid[232] = 30373;
+        _chainIdToEid[233] = 40259;
+        _chainIdToEid[239] = 30377;
+        _chainIdToEid[240] = 40360;
+        _chainIdToEid[250] = 30112;
+        _chainIdToEid[252] = 30255;
+        _chainIdToEid[280] = 40165;
+        _chainIdToEid[291] = 30213;
+        _chainIdToEid[295] = 30316;
+        _chainIdToEid[296] = 40285;
+        _chainIdToEid[300] = 40305;
+        _chainIdToEid[324] = 30165;
+        _chainIdToEid[335] = 40115;
+        _chainIdToEid[338] = 40359;
+        _chainIdToEid[388] = 30360;
+        _chainIdToEid[420] = 40132;
+        _chainIdToEid[424] = 30218;
+        _chainIdToEid[432] = 30400;
+        _chainIdToEid[478] = 40270;
+        _chainIdToEid[480] = 30319;
+        _chainIdToEid[484] = 30381;
+        _chainIdToEid[545] = 40351;
+        _chainIdToEid[592] = 30210;
+        _chainIdToEid[599] = 40151;
+        _chainIdToEid[747] = 30336;
+        _chainIdToEid[901] = 40308;
+        _chainIdToEid[919] = 40260;
+        _chainIdToEid[945] = 40377;
+        _chainIdToEid[957] = 30311;
+        _chainIdToEid[964] = 30374;
+        _chainIdToEid[988] = 30396;
+        _chainIdToEid[998] = 40362;
+        _chainIdToEid[999] = 30367;
+        _chainIdToEid[999] = 40195;
+        _chainIdToEid[1001] = 40150;
+        _chainIdToEid[1030] = 30212;
+        _chainIdToEid[1073] = 40203;
+        _chainIdToEid[1075] = 40307;
+        _chainIdToEid[1088] = 30151;
+        _chainIdToEid[1101] = 30158;
+        _chainIdToEid[1115] = 40153;
+        _chainIdToEid[1116] = 30153;
+        _chainIdToEid[1135] = 30321;
+        _chainIdToEid[1284] = 30126;
+        _chainIdToEid[1285] = 30167;
+        _chainIdToEid[1287] = 40126;
+        _chainIdToEid[1300] = 30342;
+        _chainIdToEid[1300] = 40296;
+        _chainIdToEid[1301] = 40328;
+        _chainIdToEid[1301] = 40333;
+        _chainIdToEid[1329] = 30280;
+        _chainIdToEid[1337] = 40271;
+        _chainIdToEid[1337] = 40288;
+        _chainIdToEid[1408] = 30386;
+        _chainIdToEid[1409] = 40414;
+        _chainIdToEid[1414] = 40406;
+        _chainIdToEid[1439] = 40408;
+        _chainIdToEid[1442] = 40158;
+        _chainIdToEid[1480] = 30330;
+        _chainIdToEid[1513] = 40315;
+        _chainIdToEid[1514] = 30364;
+        _chainIdToEid[1516] = 40340;
+        _chainIdToEid[1559] = 30173;
+        _chainIdToEid[1612] = 30392;
+        _chainIdToEid[1625] = 30294;
+        _chainIdToEid[1663] = 40215;
+        _chainIdToEid[1729] = 30313;
+        _chainIdToEid[1738] = 40218;
+        _chainIdToEid[1776] = 30394;
+        _chainIdToEid[1811] = 40300;
+        _chainIdToEid[1868] = 30340;
+        _chainIdToEid[1890] = 30309;
+        _chainIdToEid[1891] = 40309;
+        _chainIdToEid[1923] = 30335;
+        _chainIdToEid[1924] = 40353;
+        _chainIdToEid[1946] = 40334;
+        _chainIdToEid[1992] = 30182;
+        _chainIdToEid[1992] = 40278;
+        _chainIdToEid[1996] = 30278;
+        _chainIdToEid[2037] = 40209;
+        _chainIdToEid[2037] = 40241;
+        _chainIdToEid[2038] = 40164;
+        _chainIdToEid[2044] = 30148;
+        _chainIdToEid[2201] = 40361;
+        _chainIdToEid[2201] = 40374;
+        _chainIdToEid[2221] = 40172;
+        _chainIdToEid[2222] = 30177;
+        _chainIdToEid[2345] = 30361;
+        _chainIdToEid[2355] = 30379;
+        _chainIdToEid[2368] = 40415;
+        _chainIdToEid[2391] = 40404;
+        _chainIdToEid[2442] = 40247;
+        _chainIdToEid[2522] = 40255;
+        _chainIdToEid[2525] = 30234;
+        _chainIdToEid[2552] = 40347;
+        _chainIdToEid[2741] = 30324;
+        _chainIdToEid[2810] = 40322;
+        _chainIdToEid[2818] = 30322;
+        _chainIdToEid[3338] = 30302;
+        _chainIdToEid[3636] = 40281;
+        _chainIdToEid[3637] = 30376;
+        _chainIdToEid[3776] = 30257;
+        _chainIdToEid[3939] = 40286;
+        _chainIdToEid[4002] = 40112;
+        _chainIdToEid[4200] = 30266;
+        _chainIdToEid[4202] = 40327;
+        _chainIdToEid[4326] = 30398;
+        _chainIdToEid[4337] = 30198;
+        _chainIdToEid[4460] = 40200;
+        _chainIdToEid[4801] = 40335;
+        _chainIdToEid[5000] = 30181;
+        _chainIdToEid[5001] = 40181;
+        _chainIdToEid[5003] = 40246;
+        _chainIdToEid[5115] = 40344;
+        _chainIdToEid[5165] = 30363;
+        _chainIdToEid[5611] = 40202;
+        _chainIdToEid[6000] = 40289;
+        _chainIdToEid[6001] = 30293;
+        _chainIdToEid[6342] = 40370;
+        _chainIdToEid[6343] = 40427;
+        _chainIdToEid[6900] = 30369;
+        _chainIdToEid[6900] = 40372;
+        _chainIdToEid[7208] = 30395;
+        _chainIdToEid[7210] = 40369;
+        _chainIdToEid[7332] = 30215;
+        _chainIdToEid[7560] = 30283;
+        _chainIdToEid[7672] = 40318;
+        _chainIdToEid[7700] = 30159;
+        _chainIdToEid[7701] = 40159;
+        _chainIdToEid[7979] = 30149;
+        _chainIdToEid[8217] = 30150;
+        _chainIdToEid[8227] = 30341;
+        _chainIdToEid[8453] = 30184;
+        _chainIdToEid[8822] = 30284;
+        _chainIdToEid[9000] = 40375;
+        _chainIdToEid[9069] = 30384;
+        _chainIdToEid[9070] = 40355;
+        _chainIdToEid[9745] = 30383;
+        _chainIdToEid[9746] = 40409;
+        _chainIdToEid[9746] = 40411;
+        _chainIdToEid[9746] = 40417;
+        _chainIdToEid[9990] = 40299;
+        _chainIdToEid[10081] = 40242;
+        _chainIdToEid[10087] = 40421;
+        _chainIdToEid[10088] = 30389;
+        _chainIdToEid[10143] = 40204;
+        _chainIdToEid[10200] = 40145;
+        _chainIdToEid[10888] = 40339;
+        _chainIdToEid[10901] = 40424;
+        _chainIdToEid[11124] = 40313;
+        _chainIdToEid[11501] = 30317;
+        _chainIdToEid[11503] = 40324;
+        _chainIdToEid[12739] = 30366;
+        _chainIdToEid[13337] = 40178;
+        _chainIdToEid[13396] = 30263;
+        _chainIdToEid[14800] = 40342;
+        _chainIdToEid[16601] = 40419;
+        _chainIdToEid[16602] = 40428;
+        _chainIdToEid[16661] = 30388;
+        _chainIdToEid[17000] = 40217;
+        _chainIdToEid[18026] = 40301;
+        _chainIdToEid[18230] = 40329;
+        _chainIdToEid[18233] = 40262;
+        _chainIdToEid[19011] = 30265;
+        _chainIdToEid[33111] = 40306;
+        _chainIdToEid[33139] = 30312;
+        _chainIdToEid[34443] = 30260;
+        _chainIdToEid[37111] = 40373;
+        _chainIdToEid[40875] = 40265;
+        _chainIdToEid[41923] = 30328;
+        _chainIdToEid[42161] = 30110;
+        _chainIdToEid[42170] = 30175;
+        _chainIdToEid[42220] = 30125;
+        _chainIdToEid[42793] = 30292;
+        _chainIdToEid[43111] = 30329;
+        _chainIdToEid[43113] = 40106;
+        _chainIdToEid[43114] = 30106;
+        _chainIdToEid[43419] = 30371;
+        _chainIdToEid[43521] = 40354;
+        _chainIdToEid[44787] = 40125;
+        _chainIdToEid[48795] = 40337;
+        _chainIdToEid[48816] = 40356;
+        _chainIdToEid[48899] = 40275;
+        _chainIdToEid[48900] = 30303;
+        _chainIdToEid[49321] = 40236;
+        _chainIdToEid[50104] = 30334;
+        _chainIdToEid[50312] = 30380;
+        _chainIdToEid[50312] = 40376;
+        _chainIdToEid[50312] = 40405;
+        _chainIdToEid[53935] = 30115;
+        _chainIdToEid[55244] = 30327;
+        _chainIdToEid[57054] = 40349;
+        _chainIdToEid[57073] = 30339;
+        _chainIdToEid[58008] = 40223;
+        _chainIdToEid[59140] = 40157;
+        _chainIdToEid[59141] = 40287;
+        _chainIdToEid[59144] = 30183;
+        _chainIdToEid[59902] = 40292;
+        _chainIdToEid[60808] = 30279;
+        _chainIdToEid[64002] = 40282;
+        _chainIdToEid[68770] = 30315;
+        _chainIdToEid[68775] = 40321;
+        _chainIdToEid[69000] = 30372;
+        _chainIdToEid[72080] = 40426;
+        _chainIdToEid[78600] = 40298;
+        _chainIdToEid[80000] = 40346;
+        _chainIdToEid[80001] = 40109;
+        _chainIdToEid[80002] = 40267;
+        _chainIdToEid[80069] = 40371;
+        _chainIdToEid[80084] = 40256;
+        _chainIdToEid[80084] = 40291;
+        _chainIdToEid[80094] = 30362;
+        _chainIdToEid[81224] = 30323;
+        _chainIdToEid[81457] = 30243;
+        _chainIdToEid[84531] = 40160;
+        _chainIdToEid[84532] = 40245;
+        _chainIdToEid[94524] = 30291;
+        _chainIdToEid[97476] = 40425;
+        _chainIdToEid[97477] = 30393;
+        _chainIdToEid[98865] = 30318;
+        _chainIdToEid[98866] = 30370;
+        _chainIdToEid[98881] = 30282;
+        _chainIdToEid[98882] = 40284;
+        _chainIdToEid[98985] = 40336;
+        _chainIdToEid[103454] = 40263;
+        _chainIdToEid[111188] = 30237;
+        _chainIdToEid[127823] = 40430;
+        _chainIdToEid[128123] = 40239;
+        _chainIdToEid[129399] = 40403;
+        _chainIdToEid[161201] = 40413;
+        _chainIdToEid[167000] = 30290;
+        _chainIdToEid[167009] = 40274;
+        _chainIdToEid[179205] = 40412;
+        _chainIdToEid[200810] = 40320;
+        _chainIdToEid[200901] = 30314;
+        _chainIdToEid[202110] = 30385;
+        _chainIdToEid[222888] = 40433;
+        _chainIdToEid[261131] = 30397;
+        _chainIdToEid[325000] = 40295;
+        _chainIdToEid[421613] = 40143;
+        _chainIdToEid[421614] = 40231;
+        _chainIdToEid[424242] = 40206;
+        _chainIdToEid[432201] = 40118;
+        _chainIdToEid[432204] = 30118;
+        _chainIdToEid[534351] = 40170;
+        _chainIdToEid[534352] = 30214;
+        _chainIdToEid[656476] = 40297;
+        _chainIdToEid[657468] = 40407;
+        _chainIdToEid[660279] = 30236;
+        _chainIdToEid[686868] = 40264;
+        _chainIdToEid[710420] = 30238;
+        _chainIdToEid[713715] = 40258;
+        _chainIdToEid[743111] = 40338;
+        _chainIdToEid[747474] = 30375;
+        _chainIdToEid[763373] = 40358;
+        _chainIdToEid[810180] = 30301;
+        _chainIdToEid[810181] = 40283;
+        _chainIdToEid[978658] = 40348;
+        _chainIdToEid[996353] = 40357;
+        _chainIdToEid[1127469] = 40238;
+        _chainIdToEid[1261120] = 40220;
+        _chainIdToEid[2651420] = 40435;
+        _chainIdToEid[3441005] = 40221;
+        _chainIdToEid[3441006] = 40272;
+        _chainIdToEid[5064014] = 30391;
+        _chainIdToEid[5151706] = 30197;
+        _chainIdToEid[6038361] = 40266;
+        _chainIdToEid[6513784] = 40311;
+        _chainIdToEid[6985385] = 30382;
+        _chainIdToEid[7080969] = 40410;
+        _chainIdToEid[7777777] = 30195;
+        _chainIdToEid[7849306] = 40323;
+        _chainIdToEid[8101902] = 40277;
+        _chainIdToEid[9088912] = 40197;
+        _chainIdToEid[11155111] = 40121;
+        _chainIdToEid[11155111] = 40161;
+        _chainIdToEid[11155420] = 40232;
+        _chainIdToEid[13374202] = 40422;
+        _chainIdToEid[21000000] = 30331;
+        _chainIdToEid[21000001] = 40345;
+        _chainIdToEid[52085143] = 40330;
+        _chainIdToEid[52085144] = 40402;
+        _chainIdToEid[54647359] = 40432;
+        _chainIdToEid[68840142] = 40222;
+        _chainIdToEid[89346162] = 40319;
+        _chainIdToEid[111557560] = 40280;
+        _chainIdToEid[161221135] = 40304;
+        _chainIdToEid[168587773] = 40243;
+        _chainIdToEid[531050104] = 40341;
+        _chainIdToEid[666666666] = 30267;
+        _chainIdToEid[686669576] = 40224;
+        _chainIdToEid[999999999] = 40249;
+        _chainIdToEid[1313161554] = 30211;
+        _chainIdToEid[1313161555] = 40201;
+        _chainIdToEid[1380012617] = 30235;
+        _chainIdToEid[1444673419] = 40273;
+        _chainIdToEid[1666600000] = 30116;
+        _chainIdToEid[1666900000] = 40133;
+        _chainIdToEid[1918988905] = 40235;
+        _chainIdToEid[2046399126] = 30273;
+        _chainIdToEid[37714555429] = 40251;
+        _chainIdToEid[71461164656] = 40331;
     }
     
     /// @notice Register a single DVN
@@ -2422,26 +2776,44 @@ contract LZWorkers is ILZWorkers {
         _dvnsByChain[eid].push(dvnName);
     }
     
-    function getDVNAddress(string memory dvnName, uint32 eid) public view returns (address dvnAddress) {
+    function getDVNAddress(string memory dvnName, uint32 eid) public view override returns (address dvnAddress) {
         dvnAddress = _dvnAddresses[dvnName][eid];
         require(dvnAddress != address(0), string.concat("DVN not found: ", dvnName, " on chain ", vm.toString(uint256(eid))));
     }
     
-    function getDVNAddressByChainName(string memory dvnName, string memory chainName) public view returns (address dvnAddress) {
+    function getDVNAddressByChainName(string memory dvnName, string memory chainName) public view override returns (address dvnAddress) {
         uint32 eid = _chainNameToEid[chainName];
         require(eid != 0, string.concat("Unknown chain: ", chainName));
         return getDVNAddress(dvnName, eid);
     }
     
-    function dvnExists(string memory dvnName, uint32 eid) public view returns (bool exists) {
+    function getDVNAddressByChainId(string memory dvnName, uint256 chainId) public view override returns (address dvnAddress) {
+        uint32 eid = _chainIdToEid[chainId];
+        require(eid != 0, string.concat("Unknown chain ID: ", vm.toString(chainId)));
+        return getDVNAddress(dvnName, eid);
+    }
+    
+    function dvnExists(string memory dvnName, uint32 eid) public view override returns (bool exists) {
         return _dvnAddresses[dvnName][eid] != address(0);
     }
     
-    function getAvailableDVNs() public view returns (string[] memory dvnNames) {
+    function dvnExistsByChainName(string memory dvnName, string memory chainName) public view override returns (bool exists) {
+        uint32 eid = _chainNameToEid[chainName];
+        if (eid == 0) return false;
+        return dvnExists(dvnName, eid);
+    }
+    
+    function dvnExistsByChainId(string memory dvnName, uint256 chainId) public view override returns (bool exists) {
+        uint32 eid = _chainIdToEid[chainId];
+        if (eid == 0) return false;
+        return dvnExists(dvnName, eid);
+    }
+    
+    function getAvailableDVNs() public view override returns (string[] memory dvnNames) {
         return _dvnNames;
     }
     
-    function getDVNsForChain(uint32 eid) public view returns (string[] memory names, address[] memory addresses) {
+    function getDVNsForEid(uint32 eid) public view override returns (string[] memory names, address[] memory addresses) {
         names = _dvnsByChain[eid];
         addresses = new address[](names.length);
         
@@ -2450,49 +2822,56 @@ contract LZWorkers is ILZWorkers {
         }
     }
     
-    function getDVNsForChainByName(string memory chainName) public view returns (string[] memory names, address[] memory addresses) {
+    function getDVNsForChainName(string memory chainName) public view override returns (string[] memory names, address[] memory addresses) {
         uint32 eid = _chainNameToEid[chainName];
         require(eid != 0, string.concat("Unknown chain: ", chainName));
-        return getDVNsForChain(eid);
+        return getDVNsForEid(eid);
     }
     
-    /// @notice Get multiple DVN addresses by chain name and DVN names
-    /// @param chainName The name of the chain
-    /// @param dvnNames Array of DVN names to look up
-    /// @return addresses Array of DVN addresses in the same order as dvnNames
-    function getDVNAddresses(string memory chainName, string[] memory dvnNames) public view override returns (address[] memory addresses) {
-        uint32 eid = _chainNameToEid[chainName];
-        require(eid != 0, string.concat("Unknown chain: ", chainName));
-        
+    function getDVNsForChainId(uint256 chainId) public view override returns (string[] memory names, address[] memory addresses) {
+        uint32 eid = _chainIdToEid[chainId];
+        require(eid != 0, string.concat("Unknown chain ID: ", vm.toString(chainId)));
+        return getDVNsForEid(eid);
+    }
+    
+    function getDVNAddresses(string[] memory dvnNames, uint32 eid) public view override returns (address[] memory addresses) {
         addresses = new address[](dvnNames.length);
         for (uint256 i = 0; i < dvnNames.length; i++) {
             addresses[i] = getDVNAddress(dvnNames[i], eid);
         }
     }
     
+    function getDVNAddressesByChainName(string[] memory dvnNames, string memory chainName) public view override returns (address[] memory addresses) {
+        uint32 eid = _chainNameToEid[chainName];
+        require(eid != 0, string.concat("Unknown chain: ", chainName));
+        return getDVNAddresses(dvnNames, eid);
+    }
+    
+    function getDVNAddressesByChainId(string[] memory dvnNames, uint256 chainId) public view override returns (address[] memory addresses) {
+        uint32 eid = _chainIdToEid[chainId];
+        require(eid != 0, string.concat("Unknown chain ID: ", vm.toString(chainId)));
+        return getDVNAddresses(dvnNames, eid);
+    }
+    
     /// @notice Get DVN provider name from address (reverse lookup)
-    /// @param dvnAddress The DVN contract address
-    /// @param eid The chain's endpoint ID
-    /// @return name The DVN provider name (e.g., "LayerZero Labs")
     function getDVNNameByAddress(address dvnAddress, uint32 eid) public view override returns (string memory name) {
         name = _dvnAddressToName[dvnAddress][eid];
         require(bytes(name).length > 0, string.concat("DVN address not found on chain ", vm.toString(uint256(eid))));
     }
     
-    /// @notice Get DVN provider name from address by chain name
-    /// @param dvnAddress The DVN contract address
-    /// @param chainName The chain name
-    /// @return name The DVN provider name
-    function getDVNNameByAddressAndChain(address dvnAddress, string memory chainName) public view override returns (string memory name) {
+    function getDVNNameByAddressAndChainName(address dvnAddress, string memory chainName) public view override returns (string memory name) {
         uint32 eid = _chainNameToEid[chainName];
         require(eid != 0, string.concat("Unknown chain: ", chainName));
         return getDVNNameByAddress(dvnAddress, eid);
     }
     
+    function getDVNNameByAddressAndChainId(address dvnAddress, uint256 chainId) public view override returns (string memory name) {
+        uint32 eid = _chainIdToEid[chainId];
+        require(eid != 0, string.concat("Unknown chain ID: ", vm.toString(chainId)));
+        return getDVNNameByAddress(dvnAddress, eid);
+    }
+    
     /// @notice Check if a DVN address exists on a chain
-    /// @param dvnAddress The DVN contract address
-    /// @param eid The chain's endpoint ID
-    /// @return exists Whether the DVN address is registered
     function dvnAddressExists(address dvnAddress, uint32 eid) public view override returns (bool exists) {
         return bytes(_dvnAddressToName[dvnAddress][eid]).length > 0;
     }

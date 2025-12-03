@@ -2,7 +2,6 @@
 pragma solidity ^0.8.22;
 
 import {Test} from "forge-std/Test.sol";
-import {console} from "forge-std/console.sol";
 
 import {LZProtocol} from "../src/generated/LZProtocol.sol";
 import {LZAddressContext} from "../src/helpers/LZAddressContext.sol";
@@ -58,14 +57,14 @@ contract AddressBookV2Test is Test {
         context.setChainByEid(30184); // Base
         assertEq(context.getCurrentChainName(), "base-mainnet");
         
-        address ep = context.getEndpoint();
+        address ep = context.getEndpointV2();
         assertTrue(ep != address(0), "Endpoint should not be zero");
     }
 
     function testContextByChainName() public {
         context.setChain("arbitrum-mainnet");
         assertEq(context.getCurrentEID(), 30110);
-        assertTrue(context.getEndpoint() != address(0));
+        assertTrue(context.getEndpointV2() != address(0));
     }
 
     function testContextByChainId() public {
@@ -76,8 +75,8 @@ contract AddressBookV2Test is Test {
     function testGetLibraries() public {
         context.setChain("arbitrum-mainnet");
         
-        address sendLib = context.getSendLib();
-        address receiveLib = context.getReceiveLib();
+        address sendLib = context.getSendUln302();
+        address receiveLib = context.getReceiveUln302();
         address executor = context.getExecutor();
         
         assertTrue(sendLib != address(0), "SendLib should be set");
@@ -86,8 +85,8 @@ contract AddressBookV2Test is Test {
     }
 
     function testGetDVNFor() public view {
-        address arbLz = context.getDVNFor("LayerZero Labs", "arbitrum-mainnet");
-        address baseLz = context.getDVNFor("LayerZero Labs", "base-mainnet");
+        address arbLz = context.getDVNForChainName("LayerZero Labs", "arbitrum-mainnet");
+        address baseLz = context.getDVNForChainName("LayerZero Labs", "base-mainnet");
         
         assertTrue(arbLz != address(0), "Arbitrum DVN should exist");
         assertTrue(baseLz != address(0), "Base DVN should exist");
@@ -95,8 +94,8 @@ contract AddressBookV2Test is Test {
     }
 
     function testGetEidCrossChain() public view {
-        uint32 arbEid = context.getEid("arbitrum-mainnet");
-        uint32 baseEid = context.getEid("base-mainnet");
+        uint32 arbEid = context.getEidForChainName("arbitrum-mainnet");
+        uint32 baseEid = context.getEidForChainName("base-mainnet");
         
         assertEq(arbEid, 30110);
         assertEq(baseEid, 30184);
@@ -133,23 +132,23 @@ contract AddressBookV2Test is Test {
     }
 
     function testGetExecutorFor() public view {
-        address arbExecutor = context.getExecutorFor("arbitrum-mainnet");
-        address baseExecutor = context.getExecutorFor("base-mainnet");
+        address arbExecutor = context.getExecutorForChainName("arbitrum-mainnet");
+        address baseExecutor = context.getExecutorForChainName("base-mainnet");
         
         assertTrue(arbExecutor != address(0), "Arbitrum executor should exist");
         assertTrue(baseExecutor != address(0), "Base executor should exist");
     }
 
     function testIsChainSupported() public view {
-        assertTrue(context.isChainSupported("arbitrum-mainnet"), "arbitrum-mainnet should be supported");
-        assertTrue(context.isChainSupported("base-mainnet"), "base-mainnet should be supported");
-        assertFalse(context.isChainSupported("fake-chain"), "fake-chain should not be supported");
+        assertTrue(context.isChainNameSupported("arbitrum-mainnet"), "arbitrum-mainnet should be supported");
+        assertTrue(context.isChainNameSupported("base-mainnet"), "base-mainnet should be supported");
+        assertFalse(context.isChainNameSupported("fake-chain"), "fake-chain should not be supported");
         
-        assertTrue(context.isChainSupportedByEid(30110), "EID 30110 should be supported");
-        assertFalse(context.isChainSupportedByEid(99999), "EID 99999 should not be supported");
+        assertTrue(context.isEidSupported(30110), "EID 30110 should be supported");
+        assertFalse(context.isEidSupported(99999), "EID 99999 should not be supported");
         
-        assertTrue(context.isChainSupportedByChainId(42161), "Chain ID 42161 should be supported");
-        assertFalse(context.isChainSupportedByChainId(999999), "Chain ID 999999 should not be supported");
+        assertTrue(context.isChainIdSupported(42161), "Chain ID 42161 should be supported");
+        assertFalse(context.isChainIdSupported(999999), "Chain ID 999999 should not be supported");
     }
 
     function testDVNDiscovery() public view {
@@ -182,7 +181,7 @@ contract AddressBookV2Test is Test {
     }
 
     function testDVNsForChain() public view {
-        (string[] memory names, address[] memory addresses) = context.getDVNsForChain("base-mainnet");
+        (string[] memory names, address[] memory addresses) = context.getDVNsForChainName("base-mainnet");
         
         assertTrue(names.length > 0, "Should have DVNs on Base");
         assertEq(names.length, addresses.length, "Names and addresses should match");
@@ -197,7 +196,7 @@ contract AddressBookV2Test is Test {
     function testGetDVNRevertsOnNotFound() public {
         context.setChain("arbitrum-mainnet");
         vm.expectRevert("DVN not found on arbitrum-mainnet: NonExistentDVN");
-        context.getDVN("NonExistentDVN");
+        context.getDVNByName("NonExistentDVN");
     }
 
     function testGetDVNsBatch() public {
@@ -258,16 +257,16 @@ contract AddressBookV2Test is Test {
     }
 
     function testGetSendLibFor() public view {
-        address arbSendLib = context.getSendLibFor("arbitrum-mainnet");
-        address baseSendLib = context.getSendLibFor("base-mainnet");
+        address arbSendLib = context.getSendLibForChainName("arbitrum-mainnet");
+        address baseSendLib = context.getSendLibForChainName("base-mainnet");
         
         assertTrue(arbSendLib != address(0), "Arbitrum send lib should exist");
         assertTrue(baseSendLib != address(0), "Base send lib should exist");
     }
 
     function testGetReceiveLibFor() public view {
-        address arbReceiveLib = context.getReceiveLibFor("arbitrum-mainnet");
-        address baseReceiveLib = context.getReceiveLibFor("base-mainnet");
+        address arbReceiveLib = context.getReceiveLibForChainName("arbitrum-mainnet");
+        address baseReceiveLib = context.getReceiveLibForChainName("base-mainnet");
         
         assertTrue(arbReceiveLib != address(0), "Arbitrum receive lib should exist");
         assertTrue(baseReceiveLib != address(0), "Base receive lib should exist");
@@ -295,7 +294,7 @@ contract AddressBookV2Test is Test {
         // Create fresh context without setting chain
         LZAddressContext freshCtx = new LZAddressContext();
         vm.expectRevert("Chain context not set. Call setChain(), setChainByEid(), or setChainByChainId() first.");
-        freshCtx.getEndpoint();
+        freshCtx.getEndpointV2();
     }
 
     // ============================================
@@ -375,7 +374,7 @@ contract AddressBookV2Test is Test {
         context.setChain("arbitrum-mainnet");
         
         // Get DVN address by name
-        address lzLabsDVN = context.getDVN("LayerZero Labs");
+        address lzLabsDVN = context.getDVNByName("LayerZero Labs");
         assertTrue(lzLabsDVN != address(0), "DVN address should not be zero");
         
         // Reverse lookup - get name from address
@@ -387,10 +386,10 @@ contract AddressBookV2Test is Test {
         context.setChain("arbitrum-mainnet");
         
         // Get DVN address
-        address lzLabsDVN = context.getDVN("LayerZero Labs");
+        address lzLabsDVN = context.getDVNByName("LayerZero Labs");
         
         // Cross-chain reverse lookup (without changing context)
-        string memory dvnName = context.getDVNNameFor(lzLabsDVN, "arbitrum-mainnet");
+        string memory dvnName = context.getDVNNameForChainName(lzLabsDVN, "arbitrum-mainnet");
         assertTrue(_eq(dvnName, "LayerZero Labs"), "Cross-chain lookup should work");
     }
     
@@ -410,7 +409,7 @@ contract AddressBookV2Test is Test {
     
     function testStargateGetAsset() public view {
         // Get USDC on Arbitrum
-        ISTGProtocol.StargateAsset memory usdc = stg.getAsset("arbitrum", "USDC");
+        ISTGProtocol.StargateAsset memory usdc = stg.getAsset("arbitrum-mainnet", "USDC");
         
         assertTrue(usdc.exists, "Asset should exist");
         assertTrue(usdc.oft != address(0), "OFT address should not be zero");
@@ -421,7 +420,7 @@ contract AddressBookV2Test is Test {
     }
     
     function testStargateGetAssetsForChain() public view {
-        ISTGProtocol.StargateAsset[] memory assets = stg.getAssetsForChain("arbitrum");
+        ISTGProtocol.StargateAsset[] memory assets = stg.getAssetsForChainName("arbitrum-mainnet");
         
         assertTrue(assets.length > 0, "Should have at least one asset");
         
@@ -433,7 +432,7 @@ contract AddressBookV2Test is Test {
     }
     
     function testStargateGetTokenMessaging() public view {
-        address tokenMessaging = stg.getTokenMessaging("arbitrum");
+        address tokenMessaging = stg.getTokenMessaging("arbitrum-mainnet");
         assertTrue(tokenMessaging != address(0), "TokenMessaging should not be zero");
     }
     
@@ -453,13 +452,13 @@ contract AddressBookV2Test is Test {
     }
     
     function testStargateGetSupportedChains() public view {
-        string[] memory chains = stg.getSupportedChains();
+        string[] memory chains = stg.getSupportedChainNames();
         assertTrue(chains.length > 0, "Should have supported chains");
         
-        // Check that arbitrum is in the list
+        // Check that arbitrum-mainnet is in the list
         bool foundArbitrum = false;
         for (uint256 i = 0; i < chains.length; i++) {
-            if (_eq(chains[i], "arbitrum")) {
+            if (_eq(chains[i], "arbitrum-mainnet")) {
                 foundArbitrum = true;
                 break;
             }
@@ -468,17 +467,17 @@ contract AddressBookV2Test is Test {
     }
     
     function testStargateAssetExists() public view {
-        assertTrue(stg.assetExists("arbitrum", "USDC"), "USDC should exist on Arbitrum");
-        assertFalse(stg.assetExists("arbitrum", "FAKE_TOKEN"), "FAKE_TOKEN should not exist");
+        assertTrue(stg.assetExists("arbitrum-mainnet", "USDC"), "USDC should exist on Arbitrum");
+        assertFalse(stg.assetExists("arbitrum-mainnet", "FAKE_TOKEN"), "FAKE_TOKEN should not exist");
     }
     
     function testStargateIsHydraChain() public view {
         // Arbitrum USDC is a Pool, not a Hydra OFT
-        assertFalse(stg.isHydraChain("arbitrum", "USDC"), "Arbitrum USDC should not be Hydra");
+        assertFalse(stg.isHydraChain("arbitrum-mainnet", "USDC"), "Arbitrum USDC should not be Hydra");
         
         // Check if bera exists and is Hydra
-        if (stg.assetExists("bera", "USDC.e")) {
-            assertTrue(stg.isHydraChain("bera", "USDC.e"), "Bera USDC.e should be Hydra");
+        if (stg.assetExists("bera-mainnet", "USDC.e")) {
+            assertTrue(stg.isHydraChain("bera-mainnet", "USDC.e"), "Bera USDC.e should be Hydra");
         }
     }
     
@@ -501,11 +500,11 @@ contract AddressBookV2Test is Test {
     function testStargateChainNameResolution() public view {
         // Test EID to chain name
         string memory chainFromEid = stg.getChainNameByEid(30110);
-        assertTrue(_eq(chainFromEid, "arbitrum"), "EID 30110 should resolve to arbitrum");
+        assertTrue(_eq(chainFromEid, "arbitrum-mainnet"), "EID 30110 should resolve to arbitrum-mainnet");
         
         // Test chain ID to chain name
         string memory chainFromId = stg.getChainNameByChainId(42161);
-        assertTrue(_eq(chainFromId, "arbitrum"), "Chain ID 42161 should resolve to arbitrum");
+        assertTrue(_eq(chainFromId, "arbitrum-mainnet"), "Chain ID 42161 should resolve to arbitrum-mainnet");
     }
     
     function testStargateEidAndChainIdSupport() public view {

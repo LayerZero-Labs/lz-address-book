@@ -6,7 +6,12 @@ pragma solidity ^0.8.22;
 // Source: https://testnet.stargate-api.com/v1/metadata?version=v2
 
 
-library StargateAbstract {
+library StargateAbstractMainnet {
+    // Chain metadata
+    uint32 internal constant EID = 30324;
+    uint256 internal constant CHAIN_ID = 2741;
+    string internal constant CHAIN_NAME = "abstract-mainnet";
+
     address internal constant TOKEN_MESSAGING = 0x183D6b82680189bB4dB826F739CdC9527D467B25;
 
     // USDC.e (StargateOFT)
@@ -23,7 +28,12 @@ library StargateAbstract {
 
 }
 
-library StargateApe {
+library StargateApeMainnet {
+    // Chain metadata
+    uint32 internal constant EID = 30312;
+    uint256 internal constant CHAIN_ID = 33139;
+    string internal constant CHAIN_NAME = "ape-mainnet";
+
     address internal constant TOKEN_MESSAGING = 0xBE574b6219C6D985d08712e90C21A88fd55f1ae8;
 
     // USDC.e (StargateOFT)
@@ -40,7 +50,12 @@ library StargateApe {
 
 }
 
-library StargateApexfusionnexus {
+library StargateApexfusionnexusMainnet {
+    // Chain metadata
+    uint32 internal constant EID = 30384;
+    uint256 internal constant CHAIN_ID = 9069;
+    string internal constant CHAIN_NAME = "apexfusionnexus-mainnet";
+
     address internal constant TOKEN_MESSAGING = 0x783129E4d7bA0Af0C896c239E57C06DF379aAE8c;
 
     // USDC.e (StargateOFT)
@@ -49,7 +64,12 @@ library StargateApexfusionnexus {
 
 }
 
-library StargateArbitrum {
+library StargateArbitrumMainnet {
+    // Chain metadata
+    uint32 internal constant EID = 30110;
+    uint256 internal constant CHAIN_ID = 42161;
+    string internal constant CHAIN_NAME = "arbitrum-mainnet";
+
     address internal constant TOKEN_MESSAGING = 0x19cFCE47eD54a88614648DC3f19A5980097007dD;
 
     // USDC (StargatePool)
@@ -83,7 +103,12 @@ library StargateArbitrumSepolia {
 
 }
 
-library StargateAurora {
+library StargateAuroraMainnet {
+    // Chain metadata
+    uint32 internal constant EID = 30211;
+    uint256 internal constant CHAIN_ID = 1313161554;
+    string internal constant CHAIN_NAME = "aurora-mainnet";
+
     address internal constant TOKEN_MESSAGING = 0x5f688F563Dc16590e570f97b542FA87931AF2feD;
 
     // USDC (StargatePool)
@@ -92,7 +117,12 @@ library StargateAurora {
 
 }
 
-library StargateAvalanche {
+library StargateAvalancheMainnet {
+    // Chain metadata
+    uint32 internal constant EID = 30106;
+    uint256 internal constant CHAIN_ID = 43114;
+    string internal constant CHAIN_NAME = "avalanche-mainnet";
+
     address internal constant TOKEN_MESSAGING = 0x17E450Be3Ba9557F2378E20d64AD417E59Ef9A34;
 
     // USDC (StargatePool)
@@ -109,7 +139,12 @@ library StargateAvalanche {
 
 }
 
-library StargateBase {
+library StargateBaseMainnet {
+    // Chain metadata
+    uint32 internal constant EID = 30184;
+    uint256 internal constant CHAIN_ID = 8453;
+    string internal constant CHAIN_NAME = "base-mainnet";
+
     address internal constant TOKEN_MESSAGING = 0x5634c4a5FEd09819E3c46D86A965Dd9447d86e47;
 
     // USDC (StargatePool)
@@ -126,7 +161,12 @@ library StargateBase {
 
 }
 
-library StargateBera {
+library StargateBeraMainnet {
+    // Chain metadata
+    uint32 internal constant EID = 30362;
+    uint256 internal constant CHAIN_ID = 80094;
+    string internal constant CHAIN_NAME = "bera-mainnet";
+
     address internal constant TOKEN_MESSAGING = 0xAf5191B0De278C7286d6C7CC6ab6BB8A73bA2Cd6;
 
     // USDC.e (StargateOFT)
@@ -143,7 +183,12 @@ library StargateBera {
 
 }
 
-library StargateBotanix {
+library StargateBotanixMainnet {
+    // Chain metadata
+    uint32 internal constant EID = 30376;
+    uint256 internal constant CHAIN_ID = 3637;
+    string internal constant CHAIN_NAME = "botanix-mainnet";
+
     address internal constant TOKEN_MESSAGING = 0x3a1e3062414165A15D4cAE4a6CBFF6D83F60BE55;
 
     // USDC.e (StargateOFT)
@@ -156,7 +201,12 @@ library StargateBotanix {
 
 }
 
-library StargateBsc {
+library StargateBscMainnet {
+    // Chain metadata
+    uint32 internal constant EID = 30102;
+    uint256 internal constant CHAIN_ID = 56;
+    string internal constant CHAIN_NAME = "bsc-mainnet";
+
     address internal constant TOKEN_MESSAGING = 0x6E3d884C96d640526F273C61dfcF08915eBd7e2B;
 
     // USDC (StargatePool)
@@ -170,6 +220,11 @@ library StargateBsc {
 }
 
 library StargateBscTestnet {
+    // Chain metadata
+    uint32 internal constant EID = 40102;
+    uint256 internal constant CHAIN_ID = 97;
+    string internal constant CHAIN_NAME = "bsc-testnet";
+
     address internal constant TOKEN_MESSAGING = 0xe19525580913971d220dBa3BbD01eE2A0b1adc6F;
 
     // USDT (StargatePool)
@@ -178,7 +233,12 @@ library StargateBscTestnet {
 
 }
 
-library StargateCamp {
+library StargateCampMainnet {
+    // Chain metadata
+    uint32 internal constant EID = 30381;
+    uint256 internal constant CHAIN_ID = 484;
+    string internal constant CHAIN_NAME = "camp-mainnet";
+
     address internal constant TOKEN_MESSAGING = 0x31EEf89D5215C305304a2fA5376a1f1b6C5dc477;
 
     // USDC.e (StargateOFT)
@@ -191,7 +251,12 @@ library StargateCamp {
 
 }
 
-library StargateCoredao {
+library StargateCoredaoMainnet {
+    // Chain metadata
+    uint32 internal constant EID = 30153;
+    uint256 internal constant CHAIN_ID = 1116;
+    string internal constant CHAIN_NAME = "coredao-mainnet";
+
     address internal constant TOKEN_MESSAGING = 0xAF54BE5B6eEc24d6BFACf1cce4eaF680A8239398;
 
     // USDC (StargatePool)
@@ -204,7 +269,12 @@ library StargateCoredao {
 
 }
 
-library StargateCronosevm {
+library StargateCronosevmMainnet {
+    // Chain metadata
+    uint32 internal constant EID = 30359;
+    uint256 internal constant CHAIN_ID = 25;
+    string internal constant CHAIN_NAME = "cronosevm-mainnet";
+
     address internal constant TOKEN_MESSAGING = 0x52926c0B4ecE39FEAA572927BAA42aceFD64c56D;
 
     // USDC.e (StargateOFT)
@@ -217,7 +287,12 @@ library StargateCronosevm {
 
 }
 
-library StargateDegen {
+library StargateDegenMainnet {
+    // Chain metadata
+    uint32 internal constant EID = 30267;
+    uint256 internal constant CHAIN_ID = 666666666;
+    string internal constant CHAIN_NAME = "degen-mainnet";
+
     address internal constant TOKEN_MESSAGING = 0x45A01E4e04F14f7A4a6702c74187c5F6222033cd;
 
     // USDC (StargateOFT)
@@ -234,7 +309,12 @@ library StargateDegen {
 
 }
 
-library StargateDoma {
+library StargateDomaMainnet {
+    // Chain metadata
+    uint32 internal constant EID = 30393;
+    uint256 internal constant CHAIN_ID = 97477;
+    string internal constant CHAIN_NAME = "doma-mainnet";
+
     address internal constant TOKEN_MESSAGING = 0x108f4c02C9fcDF862e5f5131054c50f13703f916;
 
     // USDC.e (StargateOFT)
@@ -247,7 +327,12 @@ library StargateDoma {
 
 }
 
-library StargateEdu {
+library StargateEduMainnet {
+    // Chain metadata
+    uint32 internal constant EID = 30328;
+    uint256 internal constant CHAIN_ID = 41923;
+    string internal constant CHAIN_NAME = "edu-mainnet";
+
     address internal constant TOKEN_MESSAGING = 0x87Dd5A7481726a53C5Ac6b0D296F5846f95a72f2;
 
     // USDC.e (StargateOFT)
@@ -256,7 +341,12 @@ library StargateEdu {
 
 }
 
-library StargateEthereum {
+library StargateEthereumMainnet {
+    // Chain metadata
+    uint32 internal constant EID = 30101;
+    uint256 internal constant CHAIN_ID = 1;
+    string internal constant CHAIN_NAME = "ethereum-mainnet";
+
     address internal constant TOKEN_MESSAGING = 0x6d6620eFa72948C5f68A3C8646d58C00d3f4A980;
 
     // USDC (StargatePool)
@@ -285,7 +375,12 @@ library StargateEthereum {
 
 }
 
-library StargateFlare {
+library StargateFlareMainnet {
+    // Chain metadata
+    uint32 internal constant EID = 30295;
+    uint256 internal constant CHAIN_ID = 14;
+    string internal constant CHAIN_NAME = "flare-mainnet";
+
     address internal constant TOKEN_MESSAGING = 0x45d417612e177672958dC0537C45a8f8d754Ac2E;
 
     // USDC.e (StargateOFT)
@@ -302,7 +397,12 @@ library StargateFlare {
 
 }
 
-library StargateFlow {
+library StargateFlowMainnet {
+    // Chain metadata
+    uint32 internal constant EID = 30336;
+    uint256 internal constant CHAIN_ID = 747;
+    string internal constant CHAIN_NAME = "flow-mainnet";
+
     address internal constant TOKEN_MESSAGING = 0x45A01E4e04F14f7A4a6702c74187c5F6222033cd;
 
     // stgUSDC (StargateOFT)
@@ -319,7 +419,12 @@ library StargateFlow {
 
 }
 
-library StargateFuse {
+library StargateFuseMainnet {
+    // Chain metadata
+    uint32 internal constant EID = 30138;
+    uint256 internal constant CHAIN_ID = 122;
+    string internal constant CHAIN_NAME = "fuse-mainnet";
+
     address internal constant TOKEN_MESSAGING = 0x45A01E4e04F14f7A4a6702c74187c5F6222033cd;
 
     // USDC.e (StargateOFT)
@@ -336,7 +441,12 @@ library StargateFuse {
 
 }
 
-library StargateGlue {
+library StargateGlueMainnet {
+    // Chain metadata
+    uint32 internal constant EID = 30342;
+    uint256 internal constant CHAIN_ID = 1300;
+    string internal constant CHAIN_NAME = "glue-mainnet";
+
     address internal constant TOKEN_MESSAGING = 0x45A01E4e04F14f7A4a6702c74187c5F6222033cd;
 
     // USDC.e (StargateOFT)
@@ -353,7 +463,12 @@ library StargateGlue {
 
 }
 
-library StargateGnosis {
+library StargateGnosisMainnet {
+    // Chain metadata
+    uint32 internal constant EID = 30145;
+    uint256 internal constant CHAIN_ID = 100;
+    string internal constant CHAIN_NAME = "gnosis-mainnet";
+
     address internal constant TOKEN_MESSAGING = 0xAf368c91793CB22739386DFCbBb2F1A9e4bCBeBf;
 
     // USDC.e (StargatePool)
@@ -366,7 +481,12 @@ library StargateGnosis {
 
 }
 
-library StargateGoat {
+library StargateGoatMainnet {
+    // Chain metadata
+    uint32 internal constant EID = 30361;
+    uint256 internal constant CHAIN_ID = 2345;
+    string internal constant CHAIN_NAME = "goat-mainnet";
+
     address internal constant TOKEN_MESSAGING = 0xB0B2391a32E066FDf354ef7f4199300f920789F0;
 
     // USDC.e (StargateOFT)
@@ -383,7 +503,12 @@ library StargateGoat {
 
 }
 
-library StargateGravity {
+library StargateGravityMainnet {
+    // Chain metadata
+    uint32 internal constant EID = 30294;
+    uint256 internal constant CHAIN_ID = 1625;
+    string internal constant CHAIN_NAME = "gravity-mainnet";
+
     address internal constant TOKEN_MESSAGING = 0x9c2dc7377717603eB92b2655c5f2E7997a4945BD;
 
     // USDC.e (StargateOFT)
@@ -400,7 +525,12 @@ library StargateGravity {
 
 }
 
-library StargateHedera {
+library StargateHederaMainnet {
+    // Chain metadata
+    uint32 internal constant EID = 30316;
+    uint256 internal constant CHAIN_ID = 295;
+    string internal constant CHAIN_NAME = "hedera-mainnet";
+
     address internal constant TOKEN_MESSAGING = 0x8a2B28364102Bea189D99A475C494330Ef2bDD0B;
 
     // WETH (StargateOFT)
@@ -409,7 +539,12 @@ library StargateHedera {
 
 }
 
-library StargateHemi {
+library StargateHemiMainnet {
+    // Chain metadata
+    uint32 internal constant EID = 30329;
+    uint256 internal constant CHAIN_ID = 43111;
+    string internal constant CHAIN_NAME = "hemi-mainnet";
+
     address internal constant TOKEN_MESSAGING = 0xAf5191B0De278C7286d6C7CC6ab6BB8A73bA2Cd6;
 
     // USDC.e (StargateOFT)
@@ -426,7 +561,12 @@ library StargateHemi {
 
 }
 
-library StargateInk {
+library StargateInkMainnet {
+    // Chain metadata
+    uint32 internal constant EID = 30339;
+    uint256 internal constant CHAIN_ID = 57073;
+    string internal constant CHAIN_NAME = "ink-mainnet";
+
     address internal constant TOKEN_MESSAGING = 0x45f1A95A4D3f3836523F5c83673c797f4d4d263B;
 
     // USDC.e (StargateOFT)
@@ -435,7 +575,12 @@ library StargateInk {
 
 }
 
-library StargateIota {
+library StargateIotaMainnet {
+    // Chain metadata
+    uint32 internal constant EID = 30284;
+    uint256 internal constant CHAIN_ID = 8822;
+    string internal constant CHAIN_NAME = "iota-mainnet";
+
     address internal constant TOKEN_MESSAGING = 0x1C10CC06DC6D35970d1D53B2A23c76ef370d4135;
 
     // USDC.e (StargateOFT)
@@ -452,7 +597,12 @@ library StargateIota {
 
 }
 
-library StargateIslander {
+library StargateIslanderMainnet {
+    // Chain metadata
+    uint32 internal constant EID = 30330;
+    uint256 internal constant CHAIN_ID = 1480;
+    string internal constant CHAIN_NAME = "islander-mainnet";
+
     address internal constant TOKEN_MESSAGING = 0x808d7c71ad2ba3FA531b068a2417C63106BC0949;
 
     // USDC.e (StargateOFT)
@@ -469,29 +619,17 @@ library StargateIslander {
 
 }
 
-library StargateKava {
+library StargateKavaMainnet {
+    // Chain metadata
+    uint32 internal constant EID = 30177;
+    uint256 internal constant CHAIN_ID = 2222;
+    string internal constant CHAIN_NAME = "kava-mainnet";
+
     address internal constant TOKEN_MESSAGING = 0x6B73D3cBbb278Ce2E8698E983AecCdD94Dc4594B;
 
     // USDt (StargatePool)
     address internal constant USDT_OFT = 0x41A5b0470D96656Fb3e8f68A218b39AdBca3420b;
     address internal constant USDT_TOKEN = 0x919C1c267BC06a7039e03fcc2eF738525769109c;
-
-}
-
-library StargateKlaytn {
-    address internal constant TOKEN_MESSAGING = 0x16F3F98D82d965988E6853681fD578F4d719A1c0;
-
-    // USDC.e (StargateOFT)
-    address internal constant USDC_E_OFT = 0x01A7c805cc47AbDB254CD8AaD29dE5e447F59224;
-    address internal constant USDC_E_TOKEN = 0xE2053BCf56D2030d2470Fb454574237cF9ee3D4B;
-
-    // USDT (StargateOFT)
-    address internal constant USDT_OFT = 0x8619bA1B324e099CB2227060c4BC5bDEe14456c6;
-    address internal constant USDT_TOKEN = 0x9025095263d1E548dc890A7589A4C78038aC40ab;
-
-    // WETH (StargateOFT)
-    address internal constant WETH_OFT = 0xBB4957E44401a31ED81Cab33539d9e8993FA13Ce;
-    address internal constant WETH_TOKEN = 0x55Acee547DF909CF844e32DD66eE55a6F81dC71b;
 
 }
 
@@ -512,7 +650,34 @@ library StargateKlaytnBaobab {
 
 }
 
-library StargateLightlink {
+library StargateKlaytnMainnet {
+    // Chain metadata
+    uint32 internal constant EID = 30150;
+    uint256 internal constant CHAIN_ID = 8217;
+    string internal constant CHAIN_NAME = "klaytn-mainnet";
+
+    address internal constant TOKEN_MESSAGING = 0x16F3F98D82d965988E6853681fD578F4d719A1c0;
+
+    // USDC.e (StargateOFT)
+    address internal constant USDC_E_OFT = 0x01A7c805cc47AbDB254CD8AaD29dE5e447F59224;
+    address internal constant USDC_E_TOKEN = 0xE2053BCf56D2030d2470Fb454574237cF9ee3D4B;
+
+    // USDT (StargateOFT)
+    address internal constant USDT_OFT = 0x8619bA1B324e099CB2227060c4BC5bDEe14456c6;
+    address internal constant USDT_TOKEN = 0x9025095263d1E548dc890A7589A4C78038aC40ab;
+
+    // WETH (StargateOFT)
+    address internal constant WETH_OFT = 0xBB4957E44401a31ED81Cab33539d9e8993FA13Ce;
+    address internal constant WETH_TOKEN = 0x55Acee547DF909CF844e32DD66eE55a6F81dC71b;
+
+}
+
+library StargateLightlinkMainnet {
+    // Chain metadata
+    uint32 internal constant EID = 30309;
+    uint256 internal constant CHAIN_ID = 1890;
+    string internal constant CHAIN_NAME = "lightlink-mainnet";
+
     address internal constant TOKEN_MESSAGING = 0x693604E757AC7e2c4A8263594A18d69c35562341;
 
     // USDC.e (StargateOFT)
@@ -538,7 +703,12 @@ library StargateLinea {
 
 }
 
-library StargateManta {
+library StargateMantaMainnet {
+    // Chain metadata
+    uint32 internal constant EID = 30217;
+    uint256 internal constant CHAIN_ID = 169;
+    string internal constant CHAIN_NAME = "manta-mainnet";
+
     address internal constant TOKEN_MESSAGING = 0x0cEb237E109eE22374a567c6b09F373C73FA4cBb;
 
     // ETH (StargateOFT)
@@ -547,7 +717,12 @@ library StargateManta {
 
 }
 
-library StargateMantle {
+library StargateMantleMainnet {
+    // Chain metadata
+    uint32 internal constant EID = 30181;
+    uint256 internal constant CHAIN_ID = 5000;
+    string internal constant CHAIN_NAME = "mantle-mainnet";
+
     address internal constant TOKEN_MESSAGING = 0x41B491285A4f888F9f636cEc8a363AB9770a0AEF;
 
     // USDC (StargatePool)
@@ -585,7 +760,12 @@ library StargateMantleSepolia {
 
 }
 
-library StargateMetis {
+library StargateMetisMainnet {
+    // Chain metadata
+    uint32 internal constant EID = 30151;
+    uint256 internal constant CHAIN_ID = 1088;
+    string internal constant CHAIN_NAME = "metis-mainnet";
+
     address internal constant TOKEN_MESSAGING = 0xcbE78230CcA58b9EF4c3c5D1bC0D7E4b3206588a;
 
     // m.USDT (StargatePool)
@@ -602,7 +782,12 @@ library StargateMetis {
 
 }
 
-library StargateNibiru {
+library StargateNibiruMainnet {
+    // Chain metadata
+    uint32 internal constant EID = 30369;
+    uint256 internal constant CHAIN_ID = 6900;
+    string internal constant CHAIN_NAME = "nibiru-mainnet";
+
     address internal constant TOKEN_MESSAGING = 0x08C49257767c1f92634A9cDbF0663Af0356a472A;
 
     // USDC.e (StargateOFT)
@@ -619,7 +804,12 @@ library StargateNibiru {
 
 }
 
-library StargateOg {
+library StargateOgMainnet {
+    // Chain metadata
+    uint32 internal constant EID = 30388;
+    uint256 internal constant CHAIN_ID = 16661;
+    string internal constant CHAIN_NAME = "og-mainnet";
+
     address internal constant TOKEN_MESSAGING = 0x108f4c02C9fcDF862e5f5131054c50f13703f916;
 
     // USDC.e (StargateOFT)
@@ -636,7 +826,12 @@ library StargateOg {
 
 }
 
-library StargateOptimism {
+library StargateOptimismMainnet {
+    // Chain metadata
+    uint32 internal constant EID = 30111;
+    uint256 internal constant CHAIN_ID = 10;
+    string internal constant CHAIN_NAME = "optimism-mainnet";
+
     address internal constant TOKEN_MESSAGING = 0xF1fCb4CBd57B67d683972A59B6a7b1e2E8Bf27E6;
 
     // USDC (StargatePool)
@@ -670,7 +865,12 @@ library StargateOptimismSepolia {
 
 }
 
-library StargateOrderly {
+library StargateOrderlyMainnet {
+    // Chain metadata
+    uint32 internal constant EID = 30213;
+    uint256 internal constant CHAIN_ID = 291;
+    string internal constant CHAIN_NAME = "orderly-mainnet";
+
     address internal constant TOKEN_MESSAGING = 0x9FBBAFC2Ad79af2b57eD23C60DfF79eF5c2b0FB5;
 
     // USDC.e (StargateOFT)
@@ -679,7 +879,12 @@ library StargateOrderly {
 
 }
 
-library StargatePeaq {
+library StargatePeaqMainnet {
+    // Chain metadata
+    uint32 internal constant EID = 30302;
+    uint256 internal constant CHAIN_ID = 3338;
+    string internal constant CHAIN_NAME = "peaq-mainnet";
+
     address internal constant TOKEN_MESSAGING = 0x53Bf833A5d6c4ddA888F69c22C88C9f356a41614;
 
     // USDC (StargateOFT)
@@ -696,7 +901,12 @@ library StargatePeaq {
 
 }
 
-library StargatePlasma {
+library StargatePlasmaMainnet {
+    // Chain metadata
+    uint32 internal constant EID = 30383;
+    uint256 internal constant CHAIN_ID = 9745;
+    string internal constant CHAIN_NAME = "plasma-mainnet";
+
     address internal constant TOKEN_MESSAGING = 0x102d758f688a4C1C5a80b116bD945d4455460282;
 
     // WETH (StargateOFT)
@@ -705,7 +915,12 @@ library StargatePlasma {
 
 }
 
-library StargatePlumephoenix {
+library StargatePlumephoenixMainnet {
+    // Chain metadata
+    uint32 internal constant EID = 30370;
+    uint256 internal constant CHAIN_ID = 98866;
+    string internal constant CHAIN_NAME = "plumephoenix-mainnet";
+
     address internal constant TOKEN_MESSAGING = 0xf26d57bbE1D99561B13003783b5e040B71AdCb14;
 
     // USDC.e (StargateOFT)
@@ -726,7 +941,12 @@ library StargatePlumephoenix {
 
 }
 
-library StargatePolygon {
+library StargatePolygonMainnet {
+    // Chain metadata
+    uint32 internal constant EID = 30109;
+    uint256 internal constant CHAIN_ID = 137;
+    string internal constant CHAIN_NAME = "polygon-mainnet";
+
     address internal constant TOKEN_MESSAGING = 0x6CE9bf8CDaB780416AD1fd87b318A077D2f50EaC;
 
     // USDC (StargatePool)
@@ -739,7 +959,12 @@ library StargatePolygon {
 
 }
 
-library StargateRarible {
+library StargateRaribleMainnet {
+    // Chain metadata
+    uint32 internal constant EID = 30235;
+    uint256 internal constant CHAIN_ID = 1380012617;
+    string internal constant CHAIN_NAME = "rarible-mainnet";
+
     address internal constant TOKEN_MESSAGING = 0xC1B8045A6ef2934Cf0f78B0dbD489969Fa9Be7E4;
 
     // USDC.e (StargateOFT)
@@ -752,7 +977,12 @@ library StargateRarible {
 
 }
 
-library StargateRootstock {
+library StargateRootstockMainnet {
+    // Chain metadata
+    uint32 internal constant EID = 30333;
+    uint256 internal constant CHAIN_ID = 30;
+    string internal constant CHAIN_NAME = "rootstock-mainnet";
+
     address internal constant TOKEN_MESSAGING = 0x45A01E4e04F14f7A4a6702c74187c5F6222033cd;
 
     // USDC.e (StargateOFT)
@@ -769,7 +999,12 @@ library StargateRootstock {
 
 }
 
-library StargateScroll {
+library StargateScrollMainnet {
+    // Chain metadata
+    uint32 internal constant EID = 30214;
+    uint256 internal constant CHAIN_ID = 534352;
+    string internal constant CHAIN_NAME = "scroll-mainnet";
+
     address internal constant TOKEN_MESSAGING = 0x4e422B0aCb2Bd7e3aC70B5c0E5eb806e86a94038;
 
     // USDC (StargatePool)
@@ -782,7 +1017,12 @@ library StargateScroll {
 
 }
 
-library StargateSei {
+library StargateSeiMainnet {
+    // Chain metadata
+    uint32 internal constant EID = 30280;
+    uint256 internal constant CHAIN_ID = 1329;
+    string internal constant CHAIN_NAME = "sei-mainnet";
+
     address internal constant TOKEN_MESSAGING = 0x1502FA4be69d526124D453619276FacCab275d3D;
 
     // USDC (StargatePool)
@@ -816,7 +1056,12 @@ library StargateSepolia {
 
 }
 
-library StargateSomnia {
+library StargateSomniaMainnet {
+    // Chain metadata
+    uint32 internal constant EID = 30380;
+    uint256 internal constant CHAIN_ID = 50312;
+    string internal constant CHAIN_NAME = "somnia-mainnet";
+
     address internal constant TOKEN_MESSAGING = 0x78adD880A697070c1e765Ac44D65323a0DcCE913;
 
     // USDC.e (StargateOFT)
@@ -833,7 +1078,12 @@ library StargateSomnia {
 
 }
 
-library StargateSoneium {
+library StargateSoneiumMainnet {
+    // Chain metadata
+    uint32 internal constant EID = 30340;
+    uint256 internal constant CHAIN_ID = 1868;
+    string internal constant CHAIN_NAME = "soneium-mainnet";
+
     address internal constant TOKEN_MESSAGING = 0xAF54BE5B6eEc24d6BFACf1cce4eaF680A8239398;
 
     // USDC.e (StargatePool)
@@ -846,7 +1096,12 @@ library StargateSoneium {
 
 }
 
-library StargateSonic {
+library StargateSonicMainnet {
+    // Chain metadata
+    uint32 internal constant EID = 30332;
+    uint256 internal constant CHAIN_ID = 146;
+    string internal constant CHAIN_NAME = "sonic-mainnet";
+
     address internal constant TOKEN_MESSAGING = 0x2086f755A6d9254045C257ea3d382ef854849B0f;
 
     // USDC (StargatePool)
@@ -855,7 +1110,12 @@ library StargateSonic {
 
 }
 
-library StargateStable {
+library StargateStableMainnet {
+    // Chain metadata
+    uint32 internal constant EID = 30396;
+    uint256 internal constant CHAIN_ID = 988;
+    string internal constant CHAIN_NAME = "stable-mainnet";
+
     address internal constant TOKEN_MESSAGING = 0xd027aFcc69ffA2bCB288BA68da6B71EC90d7B1d2;
 
     // USDC.e (StargateOFT)
@@ -868,7 +1128,12 @@ library StargateStable {
 
 }
 
-library StargateStory {
+library StargateStoryMainnet {
+    // Chain metadata
+    uint32 internal constant EID = 30364;
+    uint256 internal constant CHAIN_ID = 1514;
+    string internal constant CHAIN_NAME = "story-mainnet";
+
     address internal constant TOKEN_MESSAGING = 0x88853D410299BCBfE5fCC9Eef93c03115E908279;
 
     // USDC.e (StargateOFT)
@@ -885,7 +1150,12 @@ library StargateStory {
 
 }
 
-library StargateSuperposition {
+library StargateSuperpositionMainnet {
+    // Chain metadata
+    uint32 internal constant EID = 30327;
+    uint256 internal constant CHAIN_ID = 55244;
+    string internal constant CHAIN_NAME = "superposition-mainnet";
+
     address internal constant TOKEN_MESSAGING = 0x06Eb48763f117c7Be887296CDcdfad2E4092739C;
 
     // USDC.e (StargateOFT)
@@ -894,7 +1164,12 @@ library StargateSuperposition {
 
 }
 
-library StargateSwell {
+library StargateSwellMainnet {
+    // Chain metadata
+    uint32 internal constant EID = 30335;
+    uint256 internal constant CHAIN_ID = 1923;
+    string internal constant CHAIN_NAME = "swell-mainnet";
+
     address internal constant TOKEN_MESSAGING = 0x851C9D74BF5cfAEB4a0082A55a65A8F2718b337F;
 
     // ETH (StargateOFT)
@@ -903,7 +1178,12 @@ library StargateSwell {
 
 }
 
-library StargateTaiko {
+library StargateTaikoMainnet {
+    // Chain metadata
+    uint32 internal constant EID = 30290;
+    uint256 internal constant CHAIN_ID = 167000;
+    string internal constant CHAIN_NAME = "taiko-mainnet";
+
     address internal constant TOKEN_MESSAGING = 0x45d417612e177672958dC0537C45a8f8d754Ac2E;
 
     // USDC.e (StargateOFT)
@@ -916,7 +1196,12 @@ library StargateTaiko {
 
 }
 
-library StargateTelos {
+library StargateTelosMainnet {
+    // Chain metadata
+    uint32 internal constant EID = 30199;
+    uint256 internal constant CHAIN_ID = 40;
+    string internal constant CHAIN_NAME = "telos-mainnet";
+
     address internal constant TOKEN_MESSAGING = 0x88853D410299BCBfE5fCC9Eef93c03115E908279;
 
     // USDC.e (StargateOFT)
@@ -933,7 +1218,12 @@ library StargateTelos {
 
 }
 
-library StargateUnichain {
+library StargateUnichainMainnet {
+    // Chain metadata
+    uint32 internal constant EID = 30320;
+    uint256 internal constant CHAIN_ID = 130;
+    string internal constant CHAIN_NAME = "unichain-mainnet";
+
     address internal constant TOKEN_MESSAGING = 0xB1EeAD6959cb5bB9B20417d6689922523B2B86C3;
 
     // ETH (StargateOFT)
@@ -942,7 +1232,12 @@ library StargateUnichain {
 
 }
 
-library StargateXdc {
+library StargateXdcMainnet {
+    // Chain metadata
+    uint32 internal constant EID = 30365;
+    uint256 internal constant CHAIN_ID = 50;
+    string internal constant CHAIN_NAME = "xdc-mainnet";
+
     address internal constant TOKEN_MESSAGING = 0x2761c39102BCF7fc6365580d94cd1882F9cc2650;
 
     // USDC.e (StargateOFT)

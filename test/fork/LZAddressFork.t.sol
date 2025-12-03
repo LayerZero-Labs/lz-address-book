@@ -9,7 +9,7 @@ import "../../src/generated/LZAddresses.sol";
 
 // Import helper contracts
 import {LZProtocol, ILZProtocol} from "../../src/generated/LZProtocol.sol";
-import {LZWorkers, ILZWorkers} from "../../src/generated/LZWorkers.sol";
+import {LZWorkers} from "../../src/generated/LZWorkers.sol";
 
 // Import LayerZero interfaces for testing
 import {ILayerZeroEndpointV2} from "@layerzerolabs/lz-evm-protocol-v2/contracts/interfaces/ILayerZeroEndpointV2.sol";
@@ -119,7 +119,7 @@ contract LZAddressForkTest is Test {
         vm.createSelectFork(rpc);
         
         // Get addresses using helper
-        ILZProtocol.ProtocolAddresses memory addresses = protocolProvider.getProtocolAddresses("arbitrum-mainnet");
+        ILZProtocol.ProtocolAddresses memory addresses = protocolProvider.getProtocolAddressesByChainName("arbitrum-mainnet");
         
         // Verify endpoint
         ILayerZeroEndpointV2 endpoint = ILayerZeroEndpointV2(addresses.endpointV2);
@@ -144,7 +144,7 @@ contract LZAddressForkTest is Test {
         dvnNames[0] = "LayerZero Labs";
         dvnNames[1] = "Nethermind";
         
-        address[] memory dvnAddresses = workersRegistry.getDVNAddresses("arbitrum-mainnet", dvnNames);
+        address[] memory dvnAddresses = workersRegistry.getDVNAddressesByChainName(dvnNames, "arbitrum-mainnet");
         
         // Verify they have code
         for (uint256 i = 0; i < dvnAddresses.length; i++) {
@@ -235,7 +235,7 @@ contract LZAddressForkTest is Test {
         // Scenario: You're deploying an OApp on Ethereum and need to configure it
         
         // 1. Get protocol addresses
-        ILZProtocol.ProtocolAddresses memory ethAddresses = protocolProvider.getProtocolAddresses("ethereum-mainnet");
+        ILZProtocol.ProtocolAddresses memory ethAddresses = protocolProvider.getProtocolAddressesByChainName("ethereum-mainnet");
         
         // 2. Get DVN addresses for security configuration
         string[] memory dvnNames = new string[](3);
@@ -243,7 +243,7 @@ contract LZAddressForkTest is Test {
         dvnNames[1] = "Nethermind";
         dvnNames[2] = "Horizen";
         
-        address[] memory dvnAddresses = workersRegistry.getDVNAddresses("ethereum-mainnet", dvnNames);
+        address[] memory dvnAddresses = workersRegistry.getDVNAddressesByChainName(dvnNames, "ethereum-mainnet");
         
         // 3. Verify all addresses are valid
         assertNotEq(ethAddresses.endpointV2, address(0), "Endpoint should be set");
