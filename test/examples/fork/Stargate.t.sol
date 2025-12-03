@@ -175,14 +175,22 @@ contract StargateForkTest is Test {
         assertEq(dvnNameForArb, "LayerZero Labs", "Cross-chain lookup should also work");
     }
 
-    /// @dev Get RPC URL: foundry.toml → fallback
-    function _getRpc(string memory chainName) internal view returns (string memory) {
+    /// @dev Get RPC URL: foundry.toml → address book → skip if unavailable
+    function _getRpc(string memory chainName) internal returns (string memory) {
+        // 1. Try foundry.toml [rpc_endpoints]
         try vm.rpcUrl(chainName) returns (string memory url) {
             if (bytes(url).length > 0) return url;
         } catch {}
 
-        // Fallback to address book
-        return ctx.getProtocolAddressesForChainName(chainName).rpcUrls[0];
+        // 2. Try address book metadata
+        string[] memory rpcUrls = ctx.getProtocolAddressesForChainName(chainName).rpcUrls;
+        if (rpcUrls.length > 0 && bytes(rpcUrls[0]).length > 0) {
+            return rpcUrls[0];
+        }
+
+        // 3. No RPC available - skip test gracefully
+        vm.skip(true);
+        return ""; // Never reached
     }
 }
 

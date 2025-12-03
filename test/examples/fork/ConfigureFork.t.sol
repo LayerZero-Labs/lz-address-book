@@ -222,18 +222,21 @@ contract ConfigureForkTest is Test {
     // HELPERS
     // ============================================
 
-    function _getRpc(string memory chainName) internal view returns (string memory) {
-        // Try foundry.toml first
+    function _getRpc(string memory chainName) internal returns (string memory) {
+        // 1. Try foundry.toml [rpc_endpoints]
         try vm.rpcUrl(chainName) returns (string memory url) {
             if (bytes(url).length > 0) return url;
         } catch {}
 
-        // Fall back to address book
-        string memory rpc = ctx.getProtocolAddressesForChainName(chainName).rpcUrls.length > 0
-            ? ctx.getProtocolAddressesForChainName(chainName).rpcUrls[0]
-            : "";
-        require(bytes(rpc).length > 0, string.concat("No RPC for ", chainName));
-        return rpc;
+        // 2. Try address book metadata
+        string[] memory rpcUrls = ctx.getProtocolAddressesForChainName(chainName).rpcUrls;
+        if (rpcUrls.length > 0 && bytes(rpcUrls[0]).length > 0) {
+            return rpcUrls[0];
+        }
+
+        // 3. No RPC available - skip test gracefully
+        vm.skip(true);
+        return ""; // Never reached
     }
 
     function _getSortedDVNs(LZAddressContext _ctx, string memory chain) internal view returns (address[] memory) {
