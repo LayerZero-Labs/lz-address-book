@@ -42,7 +42,7 @@ contract WireScript is Script {
         console.log("\n=== Wiring OApp ===");
         console.log("Local:", localChain);
         console.log("Local OApp:", localOapp);
-        console.log("Remote:", remoteChain, "(EID:", remoteEid, ")");
+        console.log("Remote:", remoteChain, "EID:", remoteEid);
         console.log("Remote OApp:", remoteOapp);
         console.log("Confirmations:", confirmations);
         console.log("===================\n");
@@ -86,7 +86,7 @@ contract WireDefaultScript is Script {
         console.log("\n=== Wiring OApp (Default Config) ===");
         console.log("Local:", localChain);
         console.log("Local OApp:", localOapp);
-        console.log("Remote:", remoteChain, "(EID:", remoteEid, ")");
+        console.log("Remote:", remoteChain, "EID:", remoteEid);
         console.log("Remote OApp:", remoteOapp);
         console.log("Config: LZ Labs + Nethermind, 15 confirmations");
         console.log("====================================\n");
