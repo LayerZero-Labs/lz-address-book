@@ -3,27 +3,36 @@ pragma solidity ^0.8.22;
 
 import {Test} from "forge-std/Test.sol";
 import {LZAddressContext} from "../helpers/LZAddressContext.sol";
+import {LZWireHelper} from "../helpers/LZWireHelper.sol";
 import {ILZProtocol} from "../helpers/interfaces/ILZProtocol.sol";
 import {OptionsBuilder} from "@layerzerolabs/oapp-evm/contracts/oapp/libs/OptionsBuilder.sol";
 import {IOAppCore} from "@layerzerolabs/oapp-evm/contracts/oapp/interfaces/IOAppCore.sol";
 
 /// @title LayerZero Test Base
 /// @notice Base contract for LayerZero fork tests with helpful utilities
-/// @dev Provides fork management and address book integration via LZAddressContext
+/// @dev Provides fork management, address book integration, and wiring helpers
 ///
 /// Usage:
 ///   contract MyTest is LZTest {
 ///       function setUp() public {
-///           // Forks are created automatically, just select them
-///           selectFork("arbitrum-mainnet", "https://arb1.arbitrum.io/rpc");
-///           MyOApp oapp = new MyOApp(ctx.getEndpoint(), address(this));
+///           createAndSelectFork("arbitrum-mainnet", "https://arb1.arbitrum.io/rpc");
+///           MyOApp arbOapp = new MyOApp(ctx.getEndpoint(), address(this));
+///           
+///           createAndSelectFork("base-mainnet", "https://mainnet.base.org");
+///           MyOApp baseOapp = new MyOApp(ctx.getEndpoint(), address(this));
+///           
+///           // Wire with full config (pathways + peers)
+///           wireOApps("arbitrum-mainnet", "base-mainnet", address(arbOapp), address(baseOapp));
 ///       }
 ///   }
 abstract contract LZTest is Test {
     using OptionsBuilder for bytes;
     
-    /// @notice The address context - use this to access all LayerZero addresses
+    /// @notice Address context for reading LayerZero addresses
     LZAddressContext public ctx;
+    
+    /// @notice Wire helper for configuring OApps
+    LZWireHelper public wireHelper;
     
     /// @notice Fork IDs by chain name
     mapping(string => uint256) public chainForks;
@@ -33,11 +42,13 @@ abstract contract LZTest is Test {
     
     constructor() {
         ctx = new LZAddressContext();
+        wireHelper = new LZWireHelper(ctx);
         
-        // Make context persistent across forks
+        // Make persistent across forks
         vm.makePersistent(address(ctx));
         vm.makePersistent(address(ctx.protocol()));
         vm.makePersistent(address(ctx.protocol().workers()));
+        vm.makePersistent(address(wireHelper));
     }
     
     // ============================================
@@ -82,31 +93,76 @@ abstract contract LZTest is Test {
     }
     
     // ============================================
-    // OApp Wiring Helpers
+    // Wiring Helpers
     // ============================================
     
-    /// @notice Wire OApps bidirectionally (assumes test contract is owner)
-    /// @param chainA First chain name
-    /// @param chainB Second chain name
-    /// @param oappA OApp address on chain A
-    /// @param oappB OApp address on chain B
-    function wireOAppsBidirectional(
+    /// @notice Wire OApps bidirectionally with full config (pathways + peers)
+    /// @dev Uses default DVNs (LZ Labs + Nethermind) and 15 confirmations
+    function wireOApps(
         string memory chainA,
         string memory chainB,
         address oappA,
         address oappB
     ) internal {
-        wireOAppsBidirectional(chainA, chainB, oappA, oappB, address(this), address(this));
+        wireOApps(chainA, chainB, oappA, oappB, address(this), address(this));
     }
     
     /// @notice Wire OApps bidirectionally with explicit owners
-    /// @param chainA First chain name
-    /// @param chainB Second chain name
-    /// @param oappA OApp address on chain A
-    /// @param oappB OApp address on chain B
-    /// @param ownerA Owner of oappA (for prank)
-    /// @param ownerB Owner of oappB (for prank)
-    function wireOAppsBidirectional(
+    function wireOApps(
+        string memory chainA,
+        string memory chainB,
+        address oappA,
+        address oappB,
+        address ownerA,
+        address ownerB
+    ) internal {
+        uint256 currentFork = vm.activeFork();
+        
+        // Wire A → B
+        selectFork(chainA);
+        vm.prank(ownerA);
+        wireHelper.wireDefault(oappA, chainB, oappB);
+        
+        // Wire B → A
+        selectFork(chainB);
+        vm.prank(ownerB);
+        wireHelper.wireDefault(oappB, chainA, oappA);
+        
+        vm.selectFork(currentFork);
+    }
+    
+    /// @notice Wire OApps with custom config
+    function wireOAppsCustom(
+        string memory chainA,
+        string memory chainB,
+        address oappA,
+        address oappB,
+        uint64 confirmations,
+        string[] memory dvnNames
+    ) internal {
+        uint256 currentFork = vm.activeFork();
+        
+        selectFork(chainA);
+        wireHelper.wire(oappA, chainB, oappB, confirmations, dvnNames);
+        
+        selectFork(chainB);
+        wireHelper.wire(oappB, chainA, oappA, confirmations, dvnNames);
+        
+        vm.selectFork(currentFork);
+    }
+    
+    /// @notice Set peers only (no pathway config) - for testing with default LZ config
+    function setPeersBidirectional(
+        string memory chainA,
+        string memory chainB,
+        address oappA,
+        address oappB
+    ) internal {
+        setPeersBidirectional(chainA, chainB, oappA, oappB, address(this), address(this));
+    }
+    
+    /// @notice Set peers only with explicit owners
+    function setPeersBidirectional(
         string memory chainA,
         string memory chainB,
         address oappA,
