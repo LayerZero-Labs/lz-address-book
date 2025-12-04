@@ -6,6 +6,11 @@ on:
     - cron: '0 */6 * * *'
   workflow_dispatch: # Allow manual trigger
 
+# Explicit permissions for security (CodeQL requirement)
+permissions:
+  contents: write       # Required to push commits and create branches
+  pull-requests: write  # Required to create pull requests
+
 jobs:
   regenerate:
     name: Check and Regenerate Addresses
@@ -22,7 +27,9 @@ jobs:
           python-version: '3.11'
 
       - name: Install Foundry
-        uses: foundry-rs/foundry-toolchain@v1
+        # Pinned to v1.2.0 commit for security (CodeQL requirement)
+        # Check https://github.com/foundry-rs/foundry-toolchain/releases for updates
+        uses: foundry-rs/foundry-toolchain@8f1998e9878d786b311c0572e96d5bbd66ca88c2
         with:
           version: nightly
 

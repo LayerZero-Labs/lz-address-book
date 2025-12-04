@@ -6,6 +6,10 @@ on:
   pull_request:
     branches: [main]
 
+# Explicit permissions for security (CodeQL requirement)
+permissions:
+  contents: read  # Only need to read repository contents for testing
+
 env:
   FOUNDRY_PROFILE: default
 
@@ -20,7 +24,9 @@ jobs:
           submodules: recursive
 
       - name: Install Foundry
-        uses: foundry-rs/foundry-toolchain@v1
+        # Pinned to v1.2.0 commit for security (CodeQL requirement)
+        # Check https://github.com/foundry-rs/foundry-toolchain/releases for updates
+        uses: foundry-rs/foundry-toolchain@8f1998e9878d786b311c0572e96d5bbd66ca88c2
         with:
           version: nightly
 
@@ -50,7 +56,8 @@ jobs:
           submodules: recursive
 
       - name: Install Foundry
-        uses: foundry-rs/foundry-toolchain@v1
+        # Pinned to v1.2.0 commit for security (CodeQL requirement)
+        uses: foundry-rs/foundry-toolchain@8f1998e9878d786b311c0572e96d5bbd66ca88c2
         with:
           version: nightly
 
