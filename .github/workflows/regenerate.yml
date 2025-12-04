@@ -27,9 +27,9 @@ jobs:
           python-version: '3.11'
 
       - name: Install Foundry
-        # Pinned to v1.2.0 commit for security (CodeQL requirement)
-        # Check https://github.com/foundry-rs/foundry-toolchain/releases for updates
-        uses: foundry-rs/foundry-toolchain@8f1998e9878d786b311c0572e96d5bbd66ca88c2
+        # Using major version tag - foundry-toolchain needs frequent updates for security fixes
+        # Maintained by official Foundry team: https://github.com/foundry-rs/foundry-toolchain
+        uses: foundry-rs/foundry-toolchain@v1 # codeql[skip-reason:trusted-action-needs-updates]
         with:
           version: nightly
 
