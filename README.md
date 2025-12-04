@@ -152,17 +152,20 @@ Complete examples in `scripts/examples/`:
 
 | Script | Description |
 |--------|-------------|
-| `DeployOFT.s.sol` | Deploy OFT to any supported chain |
+| `DeployOFTMock.s.sol` | Deploy test OFT mock (for development/testing only) |
 | `ConfigureByChainId.s.sol` | Configure using native chain IDs (e.g., 42161 for Arbitrum) |
 | `ConfigureByChainName.s.sol` | Configure using chain names (e.g., "arbitrum-mainnet") |
 | `ConfigureByEid.s.sol` | Configure using LayerZero EIDs (e.g., 30110 for Arbitrum) |
 
+> **Note**: `DeployOFTMock.s.sol` deploys a simplified mock for testing address book integration. 
+> For production OFTs, use the official [LayerZero OFT template](https://github.com/LayerZero-Labs/devtools/tree/main/examples/oft).
+
 ### Workflow
 
 ```bash
-# 1. Deploy on each chain
-CHAIN_NAME=arbitrum-mainnet forge script scripts/examples/DeployOFT.s.sol --broadcast
-CHAIN_NAME=base-mainnet forge script scripts/examples/DeployOFT.s.sol --broadcast
+# 1. Deploy mocks for testing (NOT for production)
+CHAIN_NAME=arbitrum-mainnet forge script scripts/examples/DeployOFTMock.s.sol --broadcast
+CHAIN_NAME=base-mainnet forge script scripts/examples/DeployOFTMock.s.sol --broadcast
 
 # 2. Configure each chain (sets DVNs, executor, libraries)
 forge script scripts/examples/ConfigureByChainName.s.sol --rpc-url arbitrum --broadcast
