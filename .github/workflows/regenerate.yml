@@ -74,6 +74,11 @@ jobs:
             fi
           fi
 
+      - name: Get timestamp
+        if: steps.diff.outputs.changed == 'true'
+        id: timestamp
+        run: echo "time=$(date -u '+%Y-%m-%d %H:%M:%S UTC')" >> $GITHUB_OUTPUT
+
       - name: Run tests
         if: steps.diff.outputs.changed == 'true'
         run: |
@@ -100,7 +105,7 @@ jobs:
             |--------|-------|
             | **Previous Hash** | `${{ steps.before.outputs.hash }}` |
             | **New Hash** | `${{ steps.after.outputs.hash }}` |
-            | **Generated At** | `${{ github.event.repository.updated_at }}` |
+            | **Generated At** | `${{ steps.timestamp.outputs.time }}` |
             | **Workflow Run** | [#${{ github.run_number }}](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}) |
             
             ### What Changed
