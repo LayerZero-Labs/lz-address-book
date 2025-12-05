@@ -83,6 +83,7 @@ jobs:
         if: steps.diff.outputs.changed == 'true'
         run: |
           echo "Running tests to verify regenerated code..."
+          forge fmt
           forge build --sizes --ignore-eip-3860
           forge test -vvv --no-match-path "**/fork/**"
           echo "All tests passed"
