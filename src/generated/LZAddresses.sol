@@ -3,14 +3,14 @@ pragma solidity ^0.8.20;
 
 // Auto-generated from LayerZero metadata - do not edit manually
 // Source: https://metadata.layerzero-api.com/v1/metadata/deployments
-// Generated: 2025-12-03T17:33:12.293173
-// DATA_HASH: 0xfbb17afaa961159bd452e1d02febbc36b4b946fb2227bf7dcc09f303f30d5876
+// Generated: 2025-12-06T20:03:43.282919
+// DATA_HASH: 0xec3dc233472fcd355bd96f81a1b695956383837acd62cc314c2142ea56cf9ada
 
 import {ILayerZeroEndpointV2} from "@layerzerolabs/lz-evm-protocol-v2/contracts/interfaces/ILayerZeroEndpointV2.sol";
 import {IMessageLib} from "@layerzerolabs/lz-evm-protocol-v2/contracts/interfaces/IMessageLib.sol";
 
 // DATA_HASH for provenance tracking (LZIP spec requirement)
-bytes32 constant LZ_ADDRESSES_DATA_HASH = 0xfbb17afaa961159bd452e1d02febbc36b4b946fb2227bf7dcc09f303f30d5876;
+bytes32 constant LZ_ADDRESSES_DATA_HASH = 0xec3dc233472fcd355bd96f81a1b695956383837acd62cc314c2142ea56cf9ada;
 
 library LayerZeroV2AavegotchiTestnet {
     // Chain metadata
@@ -3731,6 +3731,8 @@ library LayerZeroV2DVNEthereumMainnet {
     address internal constant DVN_MANTLE02_2 = 0xdd907f5aF01A829Cd65C99A132E8720d3e990D02;
     // Mantle03 [mantle03]
     address internal constant DVN_MANTLE03 = 0x554833698Ae0FB22ECC90B01222903fD62CA4B47;
+    // MantleCross [mantlecross]
+    address internal constant DVN_MANTLECROSS = 0x96A2894042dFEc802a23B1Ad02f0314AC24B6010;
     // Muon [muon]
     address internal constant DVN_MUON = 0xA3858e2A9860C935Fc9586a617e9b2A674C3e4c8;
     // Mysten Labs [mysten-labs]
@@ -7452,6 +7454,8 @@ library LayerZeroV2DVNMonadMainnet {
     address internal constant DVN_CANARY = 0x493626C5D852B9B187a9eb709D0b0978a3877238;
     // Deutsche Telekom [deutsche-telekom]
     address internal constant DVN_DEUTSCHE_TELEKOM = 0x2c7185f5B0976397d9eB5c19d639d4005e6708f0;
+    // Frax [frax]
+    address internal constant DVN_FRAX = 0x5EC52fB644072247C3264F0AC3db981CDEbE3eCA;
     // Horizen [horizen-labs]
     address internal constant DVN_HORIZEN = 0xdCdd4628F858b45260C31D6ad076bD2C3D3c2f73;
     // LZDeadDVN (deprecated) [lz-dead-dvn]
