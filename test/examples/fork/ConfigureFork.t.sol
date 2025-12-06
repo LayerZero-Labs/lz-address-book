@@ -10,10 +10,12 @@ import {UlnConfig} from "@layerzerolabs/lz-evm-messagelib-v2/contracts/uln/UlnBa
 import {ExecutorConfig} from "@layerzerolabs/lz-evm-messagelib-v2/contracts/SendLibBase.sol";
 import {OFTMock} from "../../../src/mocks/OFTMock.sol";
 
+import {ForkHelper} from "../../utils/ForkHelper.sol";
+
 /// @title Configure Fork Tests
 /// @notice Tests bidirectional OApp configuration using all three context methods
 /// @dev Validates that configs are applied correctly on real mainnet forks
-contract ConfigureForkTest is Test {
+contract ConfigureForkTest is ForkHelper {
     LZAddressContext ctx;
 
     // Forks
@@ -30,7 +32,8 @@ contract ConfigureForkTest is Test {
     uint32 constant MAX_MESSAGE_SIZE = 10000;
 
     function setUp() public {
-        ctx = new LZAddressContext();
+        setUpForkHelper();
+        ctx = _forkHelperCtx;
         ctx.makePersistent(vm);
 
         // Create forks
@@ -221,36 +224,6 @@ contract ConfigureForkTest is Test {
     // ============================================
     // HELPERS
     // ============================================
-
-    function _createFork(string memory chainName) internal returns (uint256) {
-        // 1. Try foundry.toml [rpc_endpoints]
-        try vm.rpcUrl(chainName) returns (string memory url) {
-            if (bytes(url).length > 0) {
-                try vm.createFork(url) returns (uint256 forkId) {
-                    return forkId;
-                } catch {
-                    console.log("Failed to create fork with foundry.toml RPC for", chainName);
-                }
-            }
-        } catch {}
-
-        // 2. Try address book metadata
-        string[] memory rpcUrls = ctx.getProtocolAddressesForChainName(chainName).rpcUrls;
-        for (uint256 i = 0; i < rpcUrls.length; i++) {
-            if (bytes(rpcUrls[i]).length > 0) {
-                try vm.createFork(rpcUrls[i]) returns (uint256 forkId) {
-                    return forkId;
-                } catch {
-                    console.log("Failed to create fork with Address Book RPC:", rpcUrls[i]);
-                }
-            }
-        }
-
-        // 3. No RPC available - skip test gracefully
-        console.log("Skipping test: No working RPC found for", chainName);
-        vm.skip(true);
-        return 0;
-    }
 
     function _getSortedDVNs(LZAddressContext _ctx, string memory chain) internal view returns (address[] memory) {
         address lz = _ctx.getDVNForChainName("LayerZero Labs", chain);

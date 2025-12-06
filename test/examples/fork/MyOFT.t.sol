@@ -18,11 +18,12 @@ import {OFTMsgCodec} from "@layerzerolabs/oft-evm/contracts/libs/OFTMsgCodec.sol
 import {OptionsBuilder} from "@layerzerolabs/oapp-evm/contracts/oapp/libs/OptionsBuilder.sol";
 import {IOAppCore} from "@layerzerolabs/oapp-evm/contracts/oapp/interfaces/IOAppCore.sol";
 import {VmSafe} from "forge-std/Vm.sol";
+import {ForkHelper} from "../../utils/ForkHelper.sol";
 
 /// @title MyOFT Fork Test Example
 /// @notice Demonstrates cross-chain OFT testing using LZAddressContext
 /// @dev This is a REFERENCE IMPLEMENTATION - copy and adapt for your own OApp
-contract MyOFTForkTest is Test {
+contract MyOFTForkTest is ForkHelper {
     using OptionsBuilder for bytes;
 
     // ============================================
@@ -51,7 +52,8 @@ contract MyOFTForkTest is Test {
 
     function setUp() public {
         // 1. CREATE CONTEXT - this is all you need
-        ctx = new LZAddressContext();
+        setUpForkHelper();
+        ctx = _forkHelperCtx;
         ctx.makePersistent(vm); // Single call handles all internal contracts
 
         // 2. CREATE FORKS
@@ -76,37 +78,6 @@ contract MyOFTForkTest is Test {
         console.log("Arbitrum OFT:", address(arbOft));
         console.log("Base OFT:", address(baseOft));
         console.log("====================\n");
-    }
-
-    /// @dev Get RPC URL: foundry.toml -> address book -> skip if unavailable
-    function _createFork(string memory chainName) internal returns (uint256) {
-        // 1. Try foundry.toml [rpc_endpoints]
-        try vm.rpcUrl(chainName) returns (string memory url) {
-            if (bytes(url).length > 0) {
-                try vm.createFork(url) returns (uint256 forkId) {
-                    return forkId;
-                } catch {
-                    console.log("Failed to create fork with foundry.toml RPC for", chainName);
-                }
-            }
-        } catch {}
-
-        // 2. Try address book metadata
-        string[] memory rpcUrls = ctx.getProtocolAddressesForChainName(chainName).rpcUrls;
-        for (uint256 i = 0; i < rpcUrls.length; i++) {
-            if (bytes(rpcUrls[i]).length > 0) {
-                try vm.createFork(rpcUrls[i]) returns (uint256 forkId) {
-                    return forkId;
-                } catch {
-                    console.log("Failed to create fork with Address Book RPC:", rpcUrls[i]);
-                }
-            }
-        }
-
-        // 3. No RPC available - skip test gracefully
-        console.log("Skipping test: No working RPC found for", chainName);
-        vm.skip(true);
-        return 0;
     }
 
     function _wirePeers() internal {

@@ -7,13 +7,15 @@ import {console} from "forge-std/console.sol";
 import {STGProtocol, ISTGProtocol} from "../../../src/generated/STGProtocol.sol";
 import {LZAddressContext} from "../../../src/helpers/LZAddressContext.sol";
 
+import {ForkHelper} from "../../utils/ForkHelper.sol";
+
 // LayerZero/Stargate imports
 import {IOFT, SendParam, MessagingFee} from "@layerzerolabs/oft-evm/contracts/interfaces/IOFT.sol";
 
 /// @title Stargate Fork Test Example
 /// @notice Demonstrates how to use the Stargate address book for fork testing
 /// @dev Shows IOFT interface usage with StargatePool and StargateOFT contracts
-contract StargateForkTest is Test {
+contract StargateForkTest is ForkHelper {
     STGProtocol stg;
     LZAddressContext ctx;
 
@@ -26,8 +28,9 @@ contract StargateForkTest is Test {
 
     function setUp() public {
         // Create helpers
+        setUpForkHelper();
         stg = new STGProtocol();
-        ctx = new LZAddressContext();
+        ctx = _forkHelperCtx;
 
         // Make persistent across forks
         vm.makePersistent(address(stg));
@@ -175,35 +178,6 @@ contract StargateForkTest is Test {
         assertEq(dvnNameForArb, "LayerZero Labs", "Cross-chain lookup should also work");
     }
 
-    /// @dev Get RPC URL: foundry.toml -> address book -> skip if unavailable
-    function _createFork(string memory chainName) internal returns (uint256) {
-        // 1. Try foundry.toml [rpc_endpoints]
-        try vm.rpcUrl(chainName) returns (string memory url) {
-            if (bytes(url).length > 0) {
-                try vm.createFork(url) returns (uint256 forkId) {
-                    return forkId;
-                } catch {
-                    console.log("Failed to create fork with foundry.toml RPC for", chainName);
-                }
-            }
-        } catch {}
-
-        // 2. Try address book metadata
-        string[] memory rpcUrls = ctx.getProtocolAddressesForChainName(chainName).rpcUrls;
-        for (uint256 i = 0; i < rpcUrls.length; i++) {
-            if (bytes(rpcUrls[i]).length > 0) {
-                try vm.createFork(rpcUrls[i]) returns (uint256 forkId) {
-                    return forkId;
-                } catch {
-                    console.log("Failed to create fork with Address Book RPC:", rpcUrls[i]);
-                }
-            }
-        }
-
-        // 3. No RPC available - skip test gracefully
-        console.log("Skipping test: No working RPC found for", chainName);
-        vm.skip(true);
-        return 0;
     }
 }
 

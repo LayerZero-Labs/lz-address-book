@@ -15,14 +15,18 @@ import {LZWorkers} from "../../src/generated/LZWorkers.sol";
 import {ILayerZeroEndpointV2} from "@layerzerolabs/lz-evm-protocol-v2/contracts/interfaces/ILayerZeroEndpointV2.sol";
 import {IMessageLib} from "@layerzerolabs/lz-evm-protocol-v2/contracts/interfaces/IMessageLib.sol";
 
+import {ForkHelper} from "../utils/ForkHelper.sol";
+
 /// @title LayerZero Address Book Fork Tests
 /// @notice Demonstrates how to use the address book in fork tests
 /// @dev Verifies that addresses point to valid deployed contracts
-contract LZAddressForkTest is Test {
+contract LZAddressForkTest is ForkHelper {
     LZProtocol public protocolProvider;
     LZWorkers public workersRegistry;
 
     function setUp() public {
+        setUpForkHelper();
+
         // Deploy helper contracts
         protocolProvider = new LZProtocol();
         workersRegistry = new LZWorkers();
@@ -38,8 +42,7 @@ contract LZAddressForkTest is Test {
 
     /// @notice Test Ethereum mainnet endpoint is valid
     function testFork_ethereumEndpoint() public {
-        string memory rpc = _getRpc("ETHEREUM_MAINNET_RPC_URL", "https://eth.llamarpc.com");
-        vm.createSelectFork(rpc);
+        _createSelectFork("ethereum-mainnet", "ETHEREUM_MAINNET_RPC_URL", "https://eth.llamarpc.com");
 
         // Get endpoint address
         address endpoint = address(LayerZeroV2EthereumMainnet.ENDPOINT_V2);
@@ -63,8 +66,7 @@ contract LZAddressForkTest is Test {
 
     /// @notice Test Ethereum mainnet message libraries are valid
     function testFork_ethereumMessageLibs() public {
-        string memory rpc = _getRpc("ETHEREUM_MAINNET_RPC_URL", "https://eth.llamarpc.com");
-        vm.createSelectFork(rpc);
+        _createSelectFork("ethereum-mainnet", "ETHEREUM_MAINNET_RPC_URL", "https://eth.llamarpc.com");
 
         address sendLib = address(LayerZeroV2EthereumMainnet.SEND_ULN_302);
         address receiveLib = address(LayerZeroV2EthereumMainnet.RECEIVE_ULN_302);
@@ -99,8 +101,7 @@ contract LZAddressForkTest is Test {
 
     /// @notice Test Ethereum DVNs are valid contracts
     function testFork_ethereumDVNs() public {
-        string memory rpc = _getRpc("ETHEREUM_MAINNET_RPC_URL", "https://eth.llamarpc.com");
-        vm.createSelectFork(rpc);
+        _createSelectFork("ethereum-mainnet", "ETHEREUM_MAINNET_RPC_URL", "https://eth.llamarpc.com");
 
         address lzLabsDVN = LayerZeroV2DVNEthereumMainnet.DVN_LAYERZERO_LABS;
 
@@ -120,8 +121,7 @@ contract LZAddressForkTest is Test {
 
     /// @notice Test Arbitrum mainnet addresses using helper contract
     function testFork_arbitrumViaHelper() public {
-        string memory rpc = _getRpc("ARBITRUM_MAINNET_RPC_URL", "https://arb1.arbitrum.io/rpc");
-        vm.createSelectFork(rpc);
+        _createSelectFork("arbitrum-mainnet", "ARBITRUM_MAINNET_RPC_URL", "https://arb1.arbitrum.io/rpc");
 
         // Get addresses using helper
         ILZProtocol.ProtocolAddresses memory addresses =
@@ -142,8 +142,7 @@ contract LZAddressForkTest is Test {
 
     /// @notice Test getting DVN addresses on Arbitrum
     function testFork_arbitrumDVNs() public {
-        string memory rpc = _getRpc("ARBITRUM_MAINNET_RPC_URL", "https://arb1.arbitrum.io/rpc");
-        vm.createSelectFork(rpc);
+        _createSelectFork("arbitrum-mainnet", "ARBITRUM_MAINNET_RPC_URL", "https://arb1.arbitrum.io/rpc");
 
         // Get DVN addresses
         string[] memory dvnNames = new string[](2);
@@ -170,8 +169,7 @@ contract LZAddressForkTest is Test {
 
     /// @notice Test Base mainnet addresses
     function testFork_baseMainnet() public {
-        string memory rpc = _getRpc("BASE_MAINNET_RPC_URL", "https://mainnet.base.org");
-        vm.createSelectFork(rpc);
+        _createSelectFork("base-mainnet", "BASE_MAINNET_RPC_URL", "https://mainnet.base.org");
 
         // Access directly from library
         address endpoint = address(LayerZeroV2BaseMainnet.ENDPOINT_V2);
@@ -194,13 +192,11 @@ contract LZAddressForkTest is Test {
     /// @notice Test that the same DVN has different addresses on different chains
     function testFork_dvnAddressesDifferAcrossChains() public {
         // Get LayerZero Labs DVN address on Ethereum
-        string memory ethRpc = _getRpc("ETHEREUM_MAINNET_RPC_URL", "https://eth.llamarpc.com");
-        vm.createSelectFork(ethRpc);
+        _createSelectFork("ethereum-mainnet", "ETHEREUM_MAINNET_RPC_URL", "https://eth.llamarpc.com");
         address ethDVN = workersRegistry.getDVNAddressByChainName("LayerZero Labs", "ethereum-mainnet");
 
         // Get LayerZero Labs DVN address on Arbitrum
-        string memory arbRpc = _getRpc("ARBITRUM_MAINNET_RPC_URL", "https://arb1.arbitrum.io/rpc");
-        vm.createSelectFork(arbRpc);
+        _createSelectFork("arbitrum-mainnet", "ARBITRUM_MAINNET_RPC_URL", "https://arb1.arbitrum.io/rpc");
         address arbDVN = workersRegistry.getDVNAddressByChainName("LayerZero Labs", "arbitrum-mainnet");
 
         // They should be different
@@ -210,12 +206,12 @@ contract LZAddressForkTest is Test {
         uint256 ethCodeSize;
         uint256 arbCodeSize;
 
-        vm.createSelectFork(ethRpc);
+        _createSelectFork("ethereum-mainnet", "ETHEREUM_MAINNET_RPC_URL", "https://eth.llamarpc.com");
         assembly {
             ethCodeSize := extcodesize(ethDVN)
         }
 
-        vm.createSelectFork(arbRpc);
+        _createSelectFork("arbitrum-mainnet", "ARBITRUM_MAINNET_RPC_URL", "https://arb1.arbitrum.io/rpc");
         assembly {
             arbCodeSize := extcodesize(arbDVN)
         }
@@ -235,8 +231,7 @@ contract LZAddressForkTest is Test {
     /// @notice Demonstrate a practical use case: configuring an OApp
     /// @dev This shows how you would use the address book in a real deployment script
     function testFork_practicalUsage_OAppConfiguration() public {
-        string memory rpc = _getRpc("ETHEREUM_MAINNET_RPC_URL", "https://eth.llamarpc.com");
-        vm.createSelectFork(rpc);
+        _createSelectFork("ethereum-mainnet", "ETHEREUM_MAINNET_RPC_URL", "https://eth.llamarpc.com");
 
         // Scenario: You're deploying an OApp on Ethereum and need to configure it
 
@@ -267,11 +262,6 @@ contract LZAddressForkTest is Test {
         console.log("==================================\n");
     }
 
-    function _getRpc(string memory envKey, string memory fallbackUrl) internal view returns (string memory) {
-        try vm.envString(envKey) returns (string memory url) {
-            if (bytes(url).length > 0) return url;
-        } catch {}
-        return fallbackUrl;
     }
 }
 
