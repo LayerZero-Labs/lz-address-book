@@ -10,10 +10,12 @@ import {UlnConfig} from "@layerzerolabs/lz-evm-messagelib-v2/contracts/uln/UlnBa
 import {ExecutorConfig} from "@layerzerolabs/lz-evm-messagelib-v2/contracts/SendLibBase.sol";
 import {OFTMock} from "../../../src/mocks/OFTMock.sol";
 
+import {LZForkTest} from "../../utils/LZForkTest.sol";
+
 /// @title Configure Fork Tests
 /// @notice Tests bidirectional OApp configuration using all three context methods
 /// @dev Validates that configs are applied correctly on real mainnet forks
-contract ConfigureForkTest is Test {
+contract ConfigureForkTest is LZForkTest {
     LZAddressContext ctx;
 
     // Forks
@@ -30,12 +32,13 @@ contract ConfigureForkTest is Test {
     uint32 constant MAX_MESSAGE_SIZE = 10000;
 
     function setUp() public {
-        ctx = new LZAddressContext();
+        setUpForkHelper();
+        ctx = _forkHelperCtx;
         ctx.makePersistent(vm);
 
         // Create forks
-        forkA = vm.createFork(_getRpc("arbitrum-mainnet"));
-        forkB = vm.createFork(_getRpc("base-mainnet"));
+        forkA = _createFork("arbitrum-mainnet");
+        forkB = _createFork("base-mainnet");
 
         // Deploy OApp on Chain A
         vm.selectFork(forkA);
@@ -221,23 +224,6 @@ contract ConfigureForkTest is Test {
     // ============================================
     // HELPERS
     // ============================================
-
-    function _getRpc(string memory chainName) internal returns (string memory) {
-        // 1. Try foundry.toml [rpc_endpoints]
-        try vm.rpcUrl(chainName) returns (string memory url) {
-            if (bytes(url).length > 0) return url;
-        } catch {}
-
-        // 2. Try address book metadata
-        string[] memory rpcUrls = ctx.getProtocolAddressesForChainName(chainName).rpcUrls;
-        if (rpcUrls.length > 0 && bytes(rpcUrls[0]).length > 0) {
-            return rpcUrls[0];
-        }
-
-        // 3. No RPC available - skip test gracefully
-        vm.skip(true);
-        return ""; // Never reached
-    }
 
     function _getSortedDVNs(LZAddressContext _ctx, string memory chain) internal view returns (address[] memory) {
         address lz = _ctx.getDVNForChainName("LayerZero Labs", chain);

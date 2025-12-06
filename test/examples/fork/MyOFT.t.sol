@@ -18,11 +18,12 @@ import {OFTMsgCodec} from "@layerzerolabs/oft-evm/contracts/libs/OFTMsgCodec.sol
 import {OptionsBuilder} from "@layerzerolabs/oapp-evm/contracts/oapp/libs/OptionsBuilder.sol";
 import {IOAppCore} from "@layerzerolabs/oapp-evm/contracts/oapp/interfaces/IOAppCore.sol";
 import {VmSafe} from "forge-std/Vm.sol";
+import {LZForkTest} from "../../utils/LZForkTest.sol";
 
 /// @title MyOFT Fork Test Example
 /// @notice Demonstrates cross-chain OFT testing using LZAddressContext
 /// @dev This is a REFERENCE IMPLEMENTATION - copy and adapt for your own OApp
-contract MyOFTForkTest is Test {
+contract MyOFTForkTest is LZForkTest {
     using OptionsBuilder for bytes;
 
     // ============================================
@@ -51,12 +52,13 @@ contract MyOFTForkTest is Test {
 
     function setUp() public {
         // 1. CREATE CONTEXT - this is all you need
-        ctx = new LZAddressContext();
+        setUpForkHelper();
+        ctx = _forkHelperCtx;
         ctx.makePersistent(vm); // Single call handles all internal contracts
 
         // 2. CREATE FORKS
-        forks[ARBITRUM] = vm.createFork(_getRpc(ARBITRUM));
-        forks[BASE] = vm.createFork(_getRpc(BASE));
+        forks[ARBITRUM] = _createFork(ARBITRUM);
+        forks[BASE] = _createFork(BASE);
 
         // 3. DEPLOY ON ARBITRUM
         vm.selectFork(forks[ARBITRUM]);
@@ -76,24 +78,6 @@ contract MyOFTForkTest is Test {
         console.log("Arbitrum OFT:", address(arbOft));
         console.log("Base OFT:", address(baseOft));
         console.log("====================\n");
-    }
-
-    /// @dev Get RPC URL: foundry.toml → address book → skip if unavailable
-    function _getRpc(string memory chainName) internal returns (string memory) {
-        // 1. Try foundry.toml [rpc_endpoints]
-        try vm.rpcUrl(chainName) returns (string memory url) {
-            if (bytes(url).length > 0) return url;
-        } catch {}
-
-        // 2. Try address book metadata
-        string[] memory rpcUrls = ctx.getProtocolAddressesForChainName(chainName).rpcUrls;
-        if (rpcUrls.length > 0 && bytes(rpcUrls[0]).length > 0) {
-            return rpcUrls[0];
-        }
-
-        // 3. No RPC available - skip test gracefully
-        vm.skip(true);
-        return ""; // Never reached
     }
 
     function _wirePeers() internal {
