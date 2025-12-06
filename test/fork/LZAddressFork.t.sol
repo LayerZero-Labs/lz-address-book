@@ -15,7 +15,7 @@ import {LZWorkers} from "../../src/generated/LZWorkers.sol";
 import {ILayerZeroEndpointV2} from "@layerzerolabs/lz-evm-protocol-v2/contracts/interfaces/ILayerZeroEndpointV2.sol";
 import {IMessageLib} from "@layerzerolabs/lz-evm-protocol-v2/contracts/interfaces/IMessageLib.sol";
 
-import {LZForkTest} from "../utils/ForkHelper.sol";
+import {LZForkTest} from "../utils/LZForkTest.sol";
 
 /// @title LayerZero Address Book Fork Tests
 /// @notice Demonstrates how to use the address book in fork tests

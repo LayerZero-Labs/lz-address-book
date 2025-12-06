@@ -18,7 +18,7 @@ import {OFTMsgCodec} from "@layerzerolabs/oft-evm/contracts/libs/OFTMsgCodec.sol
 import {OptionsBuilder} from "@layerzerolabs/oapp-evm/contracts/oapp/libs/OptionsBuilder.sol";
 import {IOAppCore} from "@layerzerolabs/oapp-evm/contracts/oapp/interfaces/IOAppCore.sol";
 import {VmSafe} from "forge-std/Vm.sol";
-import {LZForkTest} from "../../utils/ForkHelper.sol";
+import {LZForkTest} from "../../utils/LZForkTest.sol";
 
 /// @title MyOFT Fork Test Example
 /// @notice Demonstrates cross-chain OFT testing using LZAddressContext

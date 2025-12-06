@@ -7,7 +7,7 @@ import {console} from "forge-std/console.sol";
 import {STGProtocol, ISTGProtocol} from "../../../src/generated/STGProtocol.sol";
 import {LZAddressContext} from "../../../src/helpers/LZAddressContext.sol";
 
-import {LZForkTest} from "../../utils/ForkHelper.sol";
+import {LZForkTest} from "../../utils/LZForkTest.sol";
 
 // LayerZero/Stargate imports
 import {IOFT, SendParam, MessagingFee} from "@layerzerolabs/oft-evm/contracts/interfaces/IOFT.sol";
