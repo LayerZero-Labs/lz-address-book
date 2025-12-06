@@ -62,68 +62,11 @@ abstract contract LZForkTest is Test {
     }
 
     /// @notice Creates and selects a fork in one step
-    /// @dev Specialized version for tests that just need to "be" on a chain (like LZAddressForkTest)
+    /// @dev Convenience wrapper around _createFork + vm.selectFork
     /// @param chainName The standardized chain name (e.g., "arbitrum-mainnet")
-    /// @param envKey Optional specific env var key to check first (e.g., "ETHEREUM_MAINNET_RPC_URL")
-    /// @param fallbackUrl Optional hardcoded fallback URL
-    function _createSelectFork(string memory chainName, string memory envKey, string memory fallbackUrl) internal {
-        // Ensure context is initialized
-        if (address(_forkHelperCtx) == address(0)) {
-            setUpForkHelper();
-        }
-
-        // 1. Try specific environment variable if provided
-        if (bytes(envKey).length > 0) {
-            try vm.envString(envKey) returns (string memory url) {
-                if (bytes(url).length > 0) {
-                    try vm.createSelectFork(url) {
-                        return;
-                    } catch {
-                        console.log("Failed to create fork with env var", envKey);
-                    }
-                }
-            } catch {}
-        }
-
-        // 2. Try standard vm.rpcUrl (foundry.toml)
-        try vm.rpcUrl(chainName) returns (string memory url) {
-            if (bytes(url).length > 0) {
-                try vm.createSelectFork(url) {
-                    return;
-                } catch {
-                    console.log("Failed to create fork with foundry.toml RPC for", chainName);
-                }
-            }
-        } catch {}
-
-        // 3. Try provided fallback URL
-        if (bytes(fallbackUrl).length > 0) {
-            try vm.createSelectFork(fallbackUrl) {
-                return;
-            } catch {
-                console.log("Failed to create fork with fallback URL:", fallbackUrl);
-            }
-        }
-
-        // 4. Try address book metadata
-        try _forkHelperCtx.getProtocolAddressesForChainName(chainName) returns (
-            ILZProtocol.ProtocolAddresses memory addrs
-        ) {
-            string[] memory rpcUrls = addrs.rpcUrls;
-            for (uint256 i = 0; i < rpcUrls.length; i++) {
-                if (bytes(rpcUrls[i]).length > 0) {
-                    try vm.createSelectFork(rpcUrls[i]) {
-                        return;
-                    } catch {
-                        console.log("Failed to create fork with Address Book RPC:", rpcUrls[i]);
-                    }
-                }
-            }
-        } catch {}
-
-        // 5. No working RPC found - skip test gracefully
-        console.log("Skipping test: No working RPC found for", chainName);
-        vm.skip(true);
+    function _createSelectFork(string memory chainName) internal {
+        uint256 forkId = _createFork(chainName);
+        vm.selectFork(forkId);
     }
 }
 
