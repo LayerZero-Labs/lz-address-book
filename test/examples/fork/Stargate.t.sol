@@ -39,7 +39,7 @@ contract StargateForkTest is Test {
     /// @notice Test that Stargate USDC pool exists on Arbitrum
     function testFork_stargateUSDCPoolExists() public {
         // Create fork
-        forks[ARBITRUM] = vm.createFork(_getRpc("arbitrum-mainnet"));
+        forks[ARBITRUM] = _createFork("arbitrum-mainnet");
         vm.selectFork(forks[ARBITRUM]);
 
         // Get USDC asset from Stargate address book
@@ -71,7 +71,7 @@ contract StargateForkTest is Test {
     /// @notice Test quoting a cross-chain USDC transfer
     function testFork_quoteStargateTransfer() public {
         // Create fork
-        forks[ARBITRUM] = vm.createFork(_getRpc("arbitrum-mainnet"));
+        forks[ARBITRUM] = _createFork("arbitrum-mainnet");
         vm.selectFork(forks[ARBITRUM]);
 
         // Get USDC asset
@@ -153,7 +153,7 @@ contract StargateForkTest is Test {
     /// @notice Test reverse DVN lookup (new feature)
     function testFork_reverseDVNLookup() public {
         // Create fork
-        forks[ARBITRUM] = vm.createFork(_getRpc("arbitrum-mainnet"));
+        forks[ARBITRUM] = _createFork("arbitrum-mainnet");
         vm.selectFork(forks[ARBITRUM]);
 
         ctx.setChain("arbitrum-mainnet");
@@ -175,22 +175,35 @@ contract StargateForkTest is Test {
         assertEq(dvnNameForArb, "LayerZero Labs", "Cross-chain lookup should also work");
     }
 
-    /// @dev Get RPC URL: foundry.toml → address book → skip if unavailable
-    function _getRpc(string memory chainName) internal returns (string memory) {
+    /// @dev Get RPC URL: foundry.toml -> address book -> skip if unavailable
+    function _createFork(string memory chainName) internal returns (uint256) {
         // 1. Try foundry.toml [rpc_endpoints]
         try vm.rpcUrl(chainName) returns (string memory url) {
-            if (bytes(url).length > 0) return url;
+            if (bytes(url).length > 0) {
+                try vm.createFork(url) returns (uint256 forkId) {
+                    return forkId;
+                } catch {
+                    console.log("Failed to create fork with foundry.toml RPC for", chainName);
+                }
+            }
         } catch {}
 
         // 2. Try address book metadata
         string[] memory rpcUrls = ctx.getProtocolAddressesForChainName(chainName).rpcUrls;
-        if (rpcUrls.length > 0 && bytes(rpcUrls[0]).length > 0) {
-            return rpcUrls[0];
+        for (uint256 i = 0; i < rpcUrls.length; i++) {
+            if (bytes(rpcUrls[i]).length > 0) {
+                try vm.createFork(rpcUrls[i]) returns (uint256 forkId) {
+                    return forkId;
+                } catch {
+                    console.log("Failed to create fork with Address Book RPC:", rpcUrls[i]);
+                }
+            }
         }
 
         // 3. No RPC available - skip test gracefully
+        console.log("Skipping test: No working RPC found for", chainName);
         vm.skip(true);
-        return ""; // Never reached
+        return 0;
     }
 }
 

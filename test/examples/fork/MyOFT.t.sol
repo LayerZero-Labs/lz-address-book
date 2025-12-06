@@ -55,8 +55,8 @@ contract MyOFTForkTest is Test {
         ctx.makePersistent(vm); // Single call handles all internal contracts
 
         // 2. CREATE FORKS
-        forks[ARBITRUM] = vm.createFork(_getRpc(ARBITRUM));
-        forks[BASE] = vm.createFork(_getRpc(BASE));
+        forks[ARBITRUM] = _createFork(ARBITRUM);
+        forks[BASE] = _createFork(BASE);
 
         // 3. DEPLOY ON ARBITRUM
         vm.selectFork(forks[ARBITRUM]);
@@ -78,22 +78,35 @@ contract MyOFTForkTest is Test {
         console.log("====================\n");
     }
 
-    /// @dev Get RPC URL: foundry.toml → address book → skip if unavailable
-    function _getRpc(string memory chainName) internal returns (string memory) {
+    /// @dev Get RPC URL: foundry.toml -> address book -> skip if unavailable
+    function _createFork(string memory chainName) internal returns (uint256) {
         // 1. Try foundry.toml [rpc_endpoints]
         try vm.rpcUrl(chainName) returns (string memory url) {
-            if (bytes(url).length > 0) return url;
+            if (bytes(url).length > 0) {
+                try vm.createFork(url) returns (uint256 forkId) {
+                    return forkId;
+                } catch {
+                    console.log("Failed to create fork with foundry.toml RPC for", chainName);
+                }
+            }
         } catch {}
 
         // 2. Try address book metadata
         string[] memory rpcUrls = ctx.getProtocolAddressesForChainName(chainName).rpcUrls;
-        if (rpcUrls.length > 0 && bytes(rpcUrls[0]).length > 0) {
-            return rpcUrls[0];
+        for (uint256 i = 0; i < rpcUrls.length; i++) {
+            if (bytes(rpcUrls[i]).length > 0) {
+                try vm.createFork(rpcUrls[i]) returns (uint256 forkId) {
+                    return forkId;
+                } catch {
+                    console.log("Failed to create fork with Address Book RPC:", rpcUrls[i]);
+                }
+            }
         }
 
         // 3. No RPC available - skip test gracefully
+        console.log("Skipping test: No working RPC found for", chainName);
         vm.skip(true);
-        return ""; // Never reached
+        return 0;
     }
 
     function _wirePeers() internal {
