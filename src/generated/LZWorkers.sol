@@ -438,6 +438,7 @@ contract LZWorkers is ILZWorkers {
         _registerDVN("Frax", 30339, 0xF007f1Fef50C0aCAF4418741454BCAEaeCB96B87); // ink-mainnet
         _registerDVN("Frax", 30375, 0x5FA12ebC08e183C1F5d44678cF897edEfe68738B); // katana-mainnet
         _registerDVN("Frax", 30260, 0x315b0e76A510607bB0F706B17716F426D5b385b8); // mode-mainnet
+        _registerDVN("Frax", 30390, 0x5EC52fB644072247C3264F0AC3db981CDEbE3eCA); // monad-mainnet
         _registerDVN("Frax", 30111, 0x7240264781Aa2f97Cb994C6231297A8606483242); // optimism-mainnet
         _registerDVN("Frax", 40232, 0x4CD993429e3D478858a3Ddf6EDAe48627A3483A4); // optsep-testnet
         _registerDVN("Frax", 30383, 0x0a5a808dc5f9280B26EBE11b356D200e34a48517); // plasma-mainnet
@@ -984,6 +985,7 @@ contract LZWorkers is ILZWorkers {
         _registerDVN("Mantle03", 30181, 0x78203678D264063815Dac114eA810E9837Cd80f7); // mantle-mainnet
 
         // MantleCross
+        _registerDVN("MantleCross", 30101, 0x96A2894042dFEc802a23B1Ad02f0314AC24B6010); // ethereum-mainnet
         _registerDVN("MantleCross", 30181, 0x7a7A3Bfa6CF44136CD173fc5FcBd00BCD05d7866); // mantle-mainnet
         _registerDVN("MantleCross", 40246, 0xe6cCF6A2bc6671c6E3d862B1148457979F0353c5); // mantlesep-testnet
         _registerDVN("MantleCross", 40161, 0x63F5AAa54d459a4a94E98d41c89d37129eABe725); // sepolia-testnet
