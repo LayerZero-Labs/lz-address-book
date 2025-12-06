@@ -177,7 +177,5 @@ contract StargateForkTest is LZForkTest {
         string memory dvnNameForArb = ctx.getDVNNameForChainName(lzLabsDVN, "arbitrum-mainnet");
         assertEq(dvnNameForArb, "LayerZero Labs", "Cross-chain lookup should also work");
     }
-
-    }
 }
 

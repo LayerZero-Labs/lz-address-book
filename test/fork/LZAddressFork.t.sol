@@ -261,7 +261,5 @@ contract LZAddressForkTest is LZForkTest {
         console.log("Receive Library:", ethAddresses.receiveUln302);
         console.log("==================================\n");
     }
-
-    }
 }
 
