@@ -10,12 +10,12 @@ import {UlnConfig} from "@layerzerolabs/lz-evm-messagelib-v2/contracts/uln/UlnBa
 import {ExecutorConfig} from "@layerzerolabs/lz-evm-messagelib-v2/contracts/SendLibBase.sol";
 import {OFTMock} from "../../../src/mocks/OFTMock.sol";
 
-import {ForkHelper} from "../../utils/ForkHelper.sol";
+import {LZForkTest} from "../../utils/ForkHelper.sol";
 
 /// @title Configure Fork Tests
 /// @notice Tests bidirectional OApp configuration using all three context methods
 /// @dev Validates that configs are applied correctly on real mainnet forks
-contract ConfigureForkTest is ForkHelper {
+contract ConfigureForkTest is LZForkTest {
     LZAddressContext ctx;
 
     // Forks

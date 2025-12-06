@@ -18,12 +18,12 @@ import {OFTMsgCodec} from "@layerzerolabs/oft-evm/contracts/libs/OFTMsgCodec.sol
 import {OptionsBuilder} from "@layerzerolabs/oapp-evm/contracts/oapp/libs/OptionsBuilder.sol";
 import {IOAppCore} from "@layerzerolabs/oapp-evm/contracts/oapp/interfaces/IOAppCore.sol";
 import {VmSafe} from "forge-std/Vm.sol";
-import {ForkHelper} from "../../utils/ForkHelper.sol";
+import {LZForkTest} from "../../utils/ForkHelper.sol";
 
 /// @title MyOFT Fork Test Example
 /// @notice Demonstrates cross-chain OFT testing using LZAddressContext
 /// @dev This is a REFERENCE IMPLEMENTATION - copy and adapt for your own OApp
-contract MyOFTForkTest is ForkHelper {
+contract MyOFTForkTest is LZForkTest {
     using OptionsBuilder for bytes;
 
     // ============================================

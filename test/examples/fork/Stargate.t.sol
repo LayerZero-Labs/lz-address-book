@@ -7,7 +7,7 @@ import {console} from "forge-std/console.sol";
 import {STGProtocol, ISTGProtocol} from "../../../src/generated/STGProtocol.sol";
 import {LZAddressContext} from "../../../src/helpers/LZAddressContext.sol";
 
-import {ForkHelper} from "../../utils/ForkHelper.sol";
+import {LZForkTest} from "../../utils/ForkHelper.sol";
 
 // LayerZero/Stargate imports
 import {IOFT, SendParam, MessagingFee} from "@layerzerolabs/oft-evm/contracts/interfaces/IOFT.sol";
@@ -15,7 +15,7 @@ import {IOFT, SendParam, MessagingFee} from "@layerzerolabs/oft-evm/contracts/in
 /// @title Stargate Fork Test Example
 /// @notice Demonstrates how to use the Stargate address book for fork testing
 /// @dev Shows IOFT interface usage with StargatePool and StargateOFT contracts
-contract StargateForkTest is ForkHelper {
+contract StargateForkTest is LZForkTest {
     STGProtocol stg;
     LZAddressContext ctx;
 
