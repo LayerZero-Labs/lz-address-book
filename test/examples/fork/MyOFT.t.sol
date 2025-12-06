@@ -58,18 +58,12 @@ contract MyOFTForkTest is Test {
         forks[ARBITRUM] = vm.createFork(_getRpc(ARBITRUM));
         forks[BASE] = vm.createFork(_getRpc(BASE));
 
-        // 3. DEPLOY ON ARBITRUM
-        vm.selectFork(forks[ARBITRUM]);
-        ctx.setChain(ARBITRUM);
-        arbOft = new OFTMock("Arbitrum OFT", "aOFT", ctx.getEndpointV2(), address(this));
+        // 3. DEPLOY OFTs
+        arbOft = _deployOFT(ARBITRUM, "Arbitrum OFT", "aOFT");
         arbOft.mint(userA, 10 ether);
+        baseOft = _deployOFT(BASE, "Base OFT", "bOFT");
 
-        // 4. DEPLOY ON BASE
-        vm.selectFork(forks[BASE]);
-        ctx.setChain(BASE);
-        baseOft = new OFTMock("Base OFT", "bOFT", ctx.getEndpointV2(), address(this));
-
-        // 5. WIRE PEERS (using context helpers)
+        // 4. WIRE PEERS (using context helpers)
         _wirePeers();
 
         console.log("\n=== Setup Complete ===");
@@ -123,7 +117,7 @@ contract MyOFTForkTest is Test {
 
         // ========== SEND SIDE (Arbitrum) ==========
         vm.selectFork(forks[ARBITRUM]);
-        ctx.setChain(ARBITRUM);
+        ctx.setChainByChainId(block.chainid);
 
         // Get destination EID using context
         uint32 baseEid = ctx.getEidForChainName(BASE);
@@ -153,7 +147,7 @@ contract MyOFTForkTest is Test {
 
         // ========== RECEIVE SIDE (Base) ==========
         vm.selectFork(forks[BASE]);
-        ctx.setChain(BASE);
+        ctx.setChainByChainId(block.chainid);
 
         uint256 userBBalanceBefore = baseOft.balanceOf(userB);
         assertEq(userBBalanceBefore, 0);
@@ -181,7 +175,7 @@ contract MyOFTForkTest is Test {
     function testFork_addressBookIntegration() public {
         // Verify Arbitrum OFT uses correct endpoint
         vm.selectFork(forks[ARBITRUM]);
-        ctx.setChain(ARBITRUM);
+        ctx.setChainByChainId(block.chainid);
 
         address arbEndpoint = address(arbOft.endpoint());
         assertEq(arbEndpoint, ctx.getEndpointV2(), "Should use endpoint from context");
@@ -192,7 +186,7 @@ contract MyOFTForkTest is Test {
 
         // Verify Base OFT
         vm.selectFork(forks[BASE]);
-        ctx.setChain(BASE);
+        ctx.setChainByChainId(block.chainid);
 
         address baseEndpoint = address(baseOft.endpoint());
         assertEq(baseEndpoint, ctx.getEndpointV2(), "Should use endpoint from context");
@@ -263,6 +257,17 @@ contract MyOFTForkTest is Test {
     // ============================================
     // HELPERS
     // ============================================
+
+    /// @dev Deploy an OFT on a specific chain fork
+    function _deployOFT(
+        string memory chainName,
+        string memory name,
+        string memory symbol
+    ) internal returns (OFTMock) {
+        vm.selectFork(forks[chainName]);
+        ctx.setChainByChainId(block.chainid);  // Auto-detect from fork
+        return new OFTMock(name, symbol, ctx.getEndpointV2(), address(this));
+    }
 
     function _eq(string memory a, string memory b) internal pure returns (bool) {
         return keccak256(bytes(a)) == keccak256(bytes(b));
