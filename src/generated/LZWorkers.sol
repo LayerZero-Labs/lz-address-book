@@ -1074,6 +1074,7 @@ contract LZWorkers is ILZWorkers {
         _registerDVN("Nethermind", 30255, 0xa7b5189bcA84Cd304D8553977c7C614329750d99); // fraxtal-mainnet
         _registerDVN("Nethermind", 40255, 0x14CcB1a6ebb0b6F669fcE087a2DbF664A1F57251); // fraxtal-testnet
         _registerDVN("Nethermind", 30138, 0x809CDE2AfcF8627312E87a6a7bbFFaB3F8F347c7); // fuse-mainnet
+        _registerDVN("Nethermind", 30389, 0x54dD79f5cE72b51FCBbcb170Dd01E32034323565); // gatelayer-mainnet
         _registerDVN("Nethermind", 30342, 0xaA3099F91912E07976c2DD1598DC740d81BD3FeA); // glue-mainnet
         _registerDVN("Nethermind", 30145, 0x7fe673201724925B5c477d4E1A4Bd3E954688cF5); // gnosis-mainnet
         _registerDVN("Nethermind", 40145, 0xb186F85d0604FE58af2Ea33fE40244f5EEF7351B); // gnosis-testnet
