@@ -3,7 +3,7 @@ pragma solidity ^0.8.20;
 
 // Auto-generated from LayerZero metadata - do not edit manually
 // Source: https://metadata.layerzero-api.com/v1/metadata/deployments
-// Generated: 2025-12-07T18:02:08.880438
+// Generated: 2025-12-08T18:02:12.980193
 // DATA_HASH: 0x863ba3df579a82a70fea410c780ffa3ce783d00a07ecc1b130aff7bc524d6e90
 
 import {ILayerZeroEndpointV2} from "@layerzerolabs/lz-evm-protocol-v2/contracts/interfaces/ILayerZeroEndpointV2.sol";
