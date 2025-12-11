@@ -237,6 +237,137 @@ string memory chainName = LayerZeroV2ArbitrumMainnet.CHAIN_NAME;
 
 ---
 
+## Stargate Integration
+
+The address book includes Stargate V2 pool and OFT addresses for cross-chain asset transfers.
+
+### StargatePool vs StargateOFT
+
+- **StargatePool**: Native asset chains with deep liquidity (lock/unlock mechanism)
+- **StargateOFT**: Hydra chains with minted representations (mint/burn mechanism)
+
+Both implement the `IOFT` interface for cross-chain transfers.
+
+### Quick Start
+
+```solidity
+import {STGProtocol, ISTGProtocol} from "lz-address-book/generated/STGProtocol.sol";
+import {IOFT, SendParam} from "@layerzerolabs/oft-evm/contracts/interfaces/IOFT.sol";
+
+STGProtocol stg = new STGProtocol();
+
+// Get USDC on Arbitrum (by chain name, EID, or chain ID)
+ISTGProtocol.StargateAsset memory usdc = stg.getAsset("arbitrum-mainnet", "USDC");
+// OR: stg.getAssetByEid(30110, "USDC");
+// OR: stg.getAssetByChainId(42161, "USDC");
+
+// All Stargate contracts implement IOFT
+IOFT stargate = IOFT(usdc.oft);
+
+// Quote a transfer
+SendParam memory sendParam = SendParam({
+    dstEid: 30184,  // Base
+    to: bytes32(uint256(uint160(recipient))),
+    amountLD: 100e6,
+    minAmountLD: 99e6,
+    extraOptions: "",
+    composeMsg: "",
+    oftCmd: ""  // Taxi mode
+});
+
+MessagingFee memory fee = stargate.quoteSend(sendParam, false);
+```
+
+### Static Access
+
+```solidity
+import {StargateArbitrumMainnet} from "lz-address-book/generated/STGAddresses.sol";
+
+address usdcPool = StargateArbitrumMainnet.USDC_OFT;
+address usdcToken = StargateArbitrumMainnet.USDC_TOKEN;
+uint32 eid = StargateArbitrumMainnet.EID;
+```
+
+---
+
+## Common Pitfalls
+
+### DVN Name Case Sensitivity
+
+DVN names are **case-sensitive**. Use exact names:
+
+```solidity
+// ✅ Correct
+ctx.getDVNByName("LayerZero Labs");
+
+// ❌ Wrong - will revert
+ctx.getDVNByName("layerzero labs");
+ctx.getDVNByName("LayerZero labs");
+```
+
+Use `ctx.getAvailableDVNs()` to see exact names.
+
+### DVN Sorting for UlnConfig
+
+LayerZero requires DVN addresses in ascending order. Use the helper:
+
+```solidity
+// ✅ Correct - addresses are sorted
+string[] memory dvnNames = new string[](2);
+dvnNames[0] = "LayerZero Labs";
+dvnNames[1] = "Nethermind";
+address[] memory sorted = ctx.getSortedDVNs(dvnNames);
+
+// ❌ Wrong - manual array may not be sorted
+address[] memory manual = new address[](2);
+manual[0] = ctx.getDVNByName("LayerZero Labs");
+manual[1] = ctx.getDVNByName("Nethermind");
+// This could fail if manual[0] > manual[1]
+```
+
+### Fork Test Persistence
+
+Always call `makePersistent` before creating forks:
+
+```solidity
+function setUp() public {
+    ctx = new LZAddressContext();
+    ctx.makePersistent(vm);  // ✅ Call BEFORE creating forks
+    
+    forks["arb"] = vm.createFork(rpc);
+    // ctx state now persists across fork switches
+}
+```
+
+### OApp Delegate Authorization
+
+When configuring OApps, `msg.sender` must be the OApp's delegate:
+
+```solidity
+// In deployment script
+OFT oft = new OFT("MyOFT", "MOFT", endpoint, deployer);
+//                                          ^^^^^^^^
+//                                          This address must call setConfig
+
+// In configuration script
+vm.broadcast(deployer);  // Must match delegate
+endpoint.setConfig(address(oft), sendLib, params);
+```
+
+---
+
+## Address Book Updates
+
+The address book is automatically regenerated every 6 hours via GitHub Actions to capture new chain deployments and DVN additions. You can:
+
+1. **Pull latest**: `forge update lz-address-book`
+2. **Pin version**: Use a specific git tag for stability
+3. **Manual regenerate**: `python scripts/lz-generate-addresses.py`
+
+Each generated file includes a `LZ_ADDRESSES_DATA_HASH` for provenance tracking.
+
+---
+
 ## Resources
 
 - **LayerZero Docs**: [docs.layerzero.network](https://docs.layerzero.network/)
