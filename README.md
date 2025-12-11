@@ -174,12 +174,13 @@ See [`scripts/examples/`](scripts/examples/) for complete deployment and configu
 
 | Script | Description |
 |--------|-------------|
-| [`DeployOFTMock.s.sol`](scripts/examples/DeployOFTMock.s.sol) | Deploy an OFT to any chain |
-| [`ConfigureByChainId.s.sol`](scripts/examples/ConfigureByChainId.s.sol) | Full OApp config using native chain IDs |
-| [`ConfigureByChainName.s.sol`](scripts/examples/ConfigureByChainName.s.sol) | Full OApp config using chain names |
-| [`ConfigureByEid.s.sol`](scripts/examples/ConfigureByEid.s.sol) | Full OApp config using LayerZero EIDs |
+| [`00_DeployOFTMock.s.sol`](scripts/examples/00_DeployOFTMock.s.sol) | Deploy an OFT to any chain |
+| [`01a_ConfigureByChainId.s.sol`](scripts/examples/01a_ConfigureByChainId.s.sol) | Full OApp config using native chain IDs |
+| [`01b_ConfigureByChainName.s.sol`](scripts/examples/01b_ConfigureByChainName.s.sol) | Full OApp config using chain names |
+| [`01c_ConfigureByEid.s.sol`](scripts/examples/01c_ConfigureByEid.s.sol) | Full OApp config using LayerZero EIDs |
+| [`02_TransferOwnership.s.sol`](scripts/examples/02_TransferOwnership.s.sol) | Transfer OApp ownership post-config |
 
-These scripts demonstrate the full workflow: setting peers, configuring DVNs, setting libraries, and enforced options.
+These scripts demonstrate the full workflow: deploy, configure (peers, DVNs, libraries, enforced options), and transfer ownership.
 
 ---
 
