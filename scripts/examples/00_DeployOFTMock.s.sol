@@ -11,18 +11,21 @@ import {OFTMock} from "../../src/mocks/OFTMock.sol";
 /// @notice Deploy OFTMock to multiple chains
 /// @dev Run once per chain:
 ///
-///   DEPLOYER=0xYourAddress forge script DeployOFTMock --rpc-url arbitrum-mainnet --account deployer --broadcast
-///   DEPLOYER=0xYourAddress forge script DeployOFTMock --rpc-url base-mainnet --account deployer --broadcast
-///   DEPLOYER=0xYourAddress forge script DeployOFTMock --rpc-url optimism-mainnet --account deployer --broadcast
+///   forge script 00_DeployOFTMock --rpc-url arbitrum --broadcast --account deployer
+///   forge script 00_DeployOFTMock --rpc-url base --broadcast --account deployer
 ///
 /// After deployment, copy the addresses into your configuration script
-/// (e.g., ConfigureByChainId.s.sol, ConfigureByChainName.s.sol, or ConfigureByEid.s.sol)
+/// (e.g., 01a_ConfigureByChainId.s.sol)
 contract DeployOFTMock is Script {
     function run() external {
-        // Get deployer from environment variable
-        address deployer = vm.envAddress("DEPLOYER");
+        // ============================================================
+        // CONFIGURATION - Modify these for your deployment
+        // ============================================================
 
-        // Token configuration
+        // The delegate/owner of the OFT
+        address delegate = 0x1111111111111111111111111111111111111111;
+
+        // Token metadata
         string memory name = "My OFT";
         string memory symbol = "MOFT";
 
@@ -35,19 +38,18 @@ contract DeployOFTMock is Script {
         console.log("=== Deploying OFTMock ===");
         console.log("Chain ID:", block.chainid);
         console.log("Endpoint:", endpoint);
-        console.log("Deployer:", deployer);
+        console.log("Delegate:", delegate);
         console.log("");
 
-        vm.startBroadcast(deployer);
+        vm.startBroadcast();
 
-        OFTMock oft = new OFTMock(name, symbol, endpoint, deployer);
+        OFTMock oft = new OFTMock(name, symbol, endpoint, delegate);
 
         vm.stopBroadcast();
 
-        console.log("OFTMock deployed to:", address(oft));
+        console.log("OFTMock deployed:", address(oft));
         console.log("");
-        console.log("Add this to your configuration script:");
-        console.log("  chainId:", block.chainid);
+        console.log("Add to your 01_Configure script:");
         console.log("  oapp:", address(oft));
     }
 }
