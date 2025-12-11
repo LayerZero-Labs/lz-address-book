@@ -7,13 +7,15 @@ import {console} from "forge-std/console.sol";
 import {STGProtocol, ISTGProtocol} from "../../../src/generated/STGProtocol.sol";
 import {LZAddressContext} from "../../../src/helpers/LZAddressContext.sol";
 
+import {LZForkTest} from "../../utils/LZForkTest.sol";
+
 // LayerZero/Stargate imports
 import {IOFT, SendParam, MessagingFee} from "@layerzerolabs/oft-evm/contracts/interfaces/IOFT.sol";
 
 /// @title Stargate Fork Test Example
 /// @notice Demonstrates how to use the Stargate address book for fork testing
 /// @dev Shows IOFT interface usage with StargatePool and StargateOFT contracts
-contract StargateForkTest is Test {
+contract StargateForkTest is LZForkTest {
     STGProtocol stg;
     LZAddressContext ctx;
 
@@ -26,8 +28,9 @@ contract StargateForkTest is Test {
 
     function setUp() public {
         // Create helpers
+        setUpForkHelper();
         stg = new STGProtocol();
-        ctx = new LZAddressContext();
+        ctx = _forkHelperCtx;
 
         // Make persistent across forks
         vm.makePersistent(address(stg));
@@ -39,7 +42,7 @@ contract StargateForkTest is Test {
     /// @notice Test that Stargate USDC pool exists on Arbitrum
     function testFork_stargateUSDCPoolExists() public {
         // Create fork
-        forks[ARBITRUM] = vm.createFork(_getRpc("arbitrum-mainnet"));
+        forks[ARBITRUM] = _createFork("arbitrum-mainnet");
         vm.selectFork(forks[ARBITRUM]);
 
         // Get USDC asset from Stargate address book
@@ -71,7 +74,7 @@ contract StargateForkTest is Test {
     /// @notice Test quoting a cross-chain USDC transfer
     function testFork_quoteStargateTransfer() public {
         // Create fork
-        forks[ARBITRUM] = vm.createFork(_getRpc("arbitrum-mainnet"));
+        forks[ARBITRUM] = _createFork("arbitrum-mainnet");
         vm.selectFork(forks[ARBITRUM]);
 
         // Get USDC asset
@@ -153,7 +156,7 @@ contract StargateForkTest is Test {
     /// @notice Test reverse DVN lookup (new feature)
     function testFork_reverseDVNLookup() public {
         // Create fork
-        forks[ARBITRUM] = vm.createFork(_getRpc("arbitrum-mainnet"));
+        forks[ARBITRUM] = _createFork("arbitrum-mainnet");
         vm.selectFork(forks[ARBITRUM]);
 
         ctx.setChain("arbitrum-mainnet");
@@ -173,24 +176,6 @@ contract StargateForkTest is Test {
         // Cross-chain reverse lookup
         string memory dvnNameForArb = ctx.getDVNNameForChainName(lzLabsDVN, "arbitrum-mainnet");
         assertEq(dvnNameForArb, "LayerZero Labs", "Cross-chain lookup should also work");
-    }
-
-    /// @dev Get RPC URL: foundry.toml → address book → skip if unavailable
-    function _getRpc(string memory chainName) internal returns (string memory) {
-        // 1. Try foundry.toml [rpc_endpoints]
-        try vm.rpcUrl(chainName) returns (string memory url) {
-            if (bytes(url).length > 0) return url;
-        } catch {}
-
-        // 2. Try address book metadata
-        string[] memory rpcUrls = ctx.getProtocolAddressesForChainName(chainName).rpcUrls;
-        if (rpcUrls.length > 0 && bytes(rpcUrls[0]).length > 0) {
-            return rpcUrls[0];
-        }
-
-        // 3. No RPC available - skip test gracefully
-        vm.skip(true);
-        return ""; // Never reached
     }
 }
 
