@@ -279,6 +279,17 @@ contract LZProtocol is ILZProtocol {
             new string[](0)
         );
         _registerChain(
+            LayerZeroV2CitreaMainnet.EID,
+            address(LayerZeroV2CitreaMainnet.ENDPOINT_V2),
+            address(LayerZeroV2CitreaMainnet.SEND_ULN_302),
+            address(LayerZeroV2CitreaMainnet.RECEIVE_ULN_302),
+            LayerZeroV2CitreaMainnet.BLOCKED_MESSAGE_LIB,
+            LayerZeroV2CitreaMainnet.EXECUTOR,
+            LayerZeroV2CitreaMainnet.CHAIN_ID,
+            "citrea-mainnet",
+            new string[](0)
+        );
+        _registerChain(
             LayerZeroV2CodexMainnet.EID,
             address(LayerZeroV2CodexMainnet.ENDPOINT_V2),
             address(LayerZeroV2CodexMainnet.SEND_ULN_302),
@@ -672,6 +683,17 @@ contract LZProtocol is ILZProtocol {
             LayerZeroV2HomeverseMainnet.EXECUTOR,
             LayerZeroV2HomeverseMainnet.CHAIN_ID,
             "homeverse-mainnet",
+            new string[](0)
+        );
+        _registerChain(
+            LayerZeroV2HorizenMainnet.EID,
+            address(LayerZeroV2HorizenMainnet.ENDPOINT_V2),
+            address(LayerZeroV2HorizenMainnet.SEND_ULN_302),
+            address(LayerZeroV2HorizenMainnet.RECEIVE_ULN_302),
+            LayerZeroV2HorizenMainnet.BLOCKED_MESSAGE_LIB,
+            LayerZeroV2HorizenMainnet.EXECUTOR,
+            LayerZeroV2HorizenMainnet.CHAIN_ID,
+            "horizen-mainnet",
             new string[](0)
         );
         _registerChain(
@@ -1181,6 +1203,17 @@ contract LZProtocol is ILZProtocol {
             new string[](0)
         );
         _registerChain(
+            LayerZeroV2RedbellyMainnet.EID,
+            address(LayerZeroV2RedbellyMainnet.ENDPOINT_V2),
+            address(LayerZeroV2RedbellyMainnet.SEND_ULN_302),
+            address(LayerZeroV2RedbellyMainnet.RECEIVE_ULN_302),
+            LayerZeroV2RedbellyMainnet.BLOCKED_MESSAGE_LIB,
+            LayerZeroV2RedbellyMainnet.EXECUTOR,
+            LayerZeroV2RedbellyMainnet.CHAIN_ID,
+            "redbelly-mainnet",
+            new string[](0)
+        );
+        _registerChain(
             LayerZeroV2ReyaMainnet.EID,
             address(LayerZeroV2ReyaMainnet.ENDPOINT_V2),
             address(LayerZeroV2ReyaMainnet.SEND_ULN_302),
@@ -1200,6 +1233,17 @@ contract LZProtocol is ILZProtocol {
             LayerZeroV2RootstockMainnet.EXECUTOR,
             LayerZeroV2RootstockMainnet.CHAIN_ID,
             "rootstock-mainnet",
+            new string[](0)
+        );
+        _registerChain(
+            LayerZeroV2SagaevmMainnet.EID,
+            address(LayerZeroV2SagaevmMainnet.ENDPOINT_V2),
+            address(LayerZeroV2SagaevmMainnet.SEND_ULN_302),
+            address(LayerZeroV2SagaevmMainnet.RECEIVE_ULN_302),
+            LayerZeroV2SagaevmMainnet.BLOCKED_MESSAGE_LIB,
+            LayerZeroV2SagaevmMainnet.EXECUTOR,
+            LayerZeroV2SagaevmMainnet.CHAIN_ID,
+            "sagaevm-mainnet",
             new string[](0)
         );
         _registerChain(
