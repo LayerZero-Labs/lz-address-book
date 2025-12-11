@@ -64,14 +64,8 @@ jobs:
             echo "changed=true" >> $GITHUB_OUTPUT
             echo "Hash changed: ${{ steps.before.outputs.hash }} -> ${{ steps.after.outputs.hash }}"
           else
-            # Also check for any file changes (in case hash logic changes)
-            if git diff --quiet src/generated/; then
-              echo "changed=false" >> $GITHUB_OUTPUT
-              echo "No changes detected"
-            else
-              echo "changed=true" >> $GITHUB_OUTPUT
-              echo "Files changed (hash unchanged)"
-            fi
+            echo "changed=false" >> $GITHUB_OUTPUT
+            echo "No changes detected (hash unchanged)"
           fi
 
       - name: Get timestamp
