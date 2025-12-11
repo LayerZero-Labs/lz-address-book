@@ -231,6 +231,8 @@ import {LayerZeroV2ArbitrumMainnet} from "lz-address-book/generated/LZAddresses.
 
 address endpoint = address(LayerZeroV2ArbitrumMainnet.ENDPOINT_V2);
 uint32 eid = LayerZeroV2ArbitrumMainnet.EID;
+uint256 chainId = LayerZeroV2ArbitrumMainnet.CHAIN_ID;
+string memory chainName = LayerZeroV2ArbitrumMainnet.CHAIN_NAME;
 ```
 
 ---
