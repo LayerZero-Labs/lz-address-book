@@ -64,8 +64,14 @@ jobs:
             echo "changed=true" >> $GITHUB_OUTPUT
             echo "Hash changed: ${{ steps.before.outputs.hash }} -> ${{ steps.after.outputs.hash }}"
           else
-            echo "changed=false" >> $GITHUB_OUTPUT
-            echo "No changes detected (hash unchanged)"
+            # Fallback to git diff to catch changes in other generated files (e.g., Stargate)
+            if git diff --quiet src/generated/; then
+              echo "changed=false" >> $GITHUB_OUTPUT
+              echo "No changes detected"
+            else
+              echo "changed=true" >> $GITHUB_OUTPUT
+              echo "Files changed (hash unchanged - likely Stargate or other data)"
+            fi
           fi
 
       - name: Get timestamp

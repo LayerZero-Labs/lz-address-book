@@ -12,7 +12,6 @@ from typing import Dict, Any, List, Optional
 import re
 from web3 import Web3
 import hashlib
-from datetime import datetime
 
 # Constants
 METADATA_URL = "https://metadata.layerzero-api.com/v1/metadata/deployments"
@@ -1462,15 +1461,14 @@ def generate_contracts(output_file: str = "LZAddresses.sol",
     # Generate DATA_HASH for provenance tracking
     metadata_json = json.dumps(metadata, sort_keys=True)
     data_hash = hashlib.sha256(metadata_json.encode()).hexdigest()
-    timestamp = datetime.utcnow().isoformat()
     
     # Create custom header with DATA_HASH for LZAddresses.sol
+    # Note: No timestamp - it causes spurious diffs in CI. The hash provides provenance.
     registry_header = f"""// SPDX-License-Identifier: MIT
 pragma solidity ^0.8.20;
 
 // Auto-generated from LayerZero metadata - do not edit manually
 // Source: {METADATA_URL}
-// Generated: {timestamp}
 // DATA_HASH: 0x{data_hash}
 
 import {{ILayerZeroEndpointV2}} from "@layerzerolabs/lz-evm-protocol-v2/contracts/interfaces/ILayerZeroEndpointV2.sol";
