@@ -1733,6 +1733,17 @@ contract LZProtocol is ILZProtocol {
             new string[](0)
         );
         _registerChain(
+            LayerZeroV2AtlanticoceanTestnet.EID,
+            address(LayerZeroV2AtlanticoceanTestnet.ENDPOINT_V2),
+            address(LayerZeroV2AtlanticoceanTestnet.SEND_ULN_302),
+            address(LayerZeroV2AtlanticoceanTestnet.RECEIVE_ULN_302),
+            LayerZeroV2AtlanticoceanTestnet.BLOCKED_MESSAGE_LIB,
+            LayerZeroV2AtlanticoceanTestnet.EXECUTOR,
+            LayerZeroV2AtlanticoceanTestnet.CHAIN_ID,
+            "atlanticocean-testnet",
+            new string[](0)
+        );
+        _registerChain(
             LayerZeroV2AuroraTestnet.EID,
             address(LayerZeroV2AuroraTestnet.ENDPOINT_V2),
             address(LayerZeroV2AuroraTestnet.SEND_ULN_302),
@@ -3097,6 +3108,17 @@ contract LZProtocol is ILZProtocol {
             new string[](0)
         );
         _registerChain(
+            LayerZeroV2RiseTestnet.EID,
+            address(LayerZeroV2RiseTestnet.ENDPOINT_V2),
+            address(LayerZeroV2RiseTestnet.SEND_ULN_302),
+            address(LayerZeroV2RiseTestnet.RECEIVE_ULN_302),
+            LayerZeroV2RiseTestnet.BLOCKED_MESSAGE_LIB,
+            LayerZeroV2RiseTestnet.EXECUTOR,
+            LayerZeroV2RiseTestnet.CHAIN_ID,
+            "rise-testnet",
+            new string[](0)
+        );
+        _registerChain(
             LayerZeroV2RootTestnet.EID,
             address(LayerZeroV2RootTestnet.ENDPOINT_V2),
             address(LayerZeroV2RootTestnet.SEND_ULN_302),
@@ -3240,6 +3262,17 @@ contract LZProtocol is ILZProtocol {
             new string[](0)
         );
         _registerChain(
+            LayerZeroV2SophonosTestnet.EID,
+            address(LayerZeroV2SophonosTestnet.ENDPOINT_V2),
+            address(LayerZeroV2SophonosTestnet.SEND_ULN_302),
+            address(LayerZeroV2SophonosTestnet.RECEIVE_ULN_302),
+            LayerZeroV2SophonosTestnet.BLOCKED_MESSAGE_LIB,
+            LayerZeroV2SophonosTestnet.EXECUTOR,
+            LayerZeroV2SophonosTestnet.CHAIN_ID,
+            "sophonos-testnet",
+            new string[](0)
+        );
+        _registerChain(
             LayerZeroV2StableTestnet.EID,
             address(LayerZeroV2StableTestnet.ENDPOINT_V2),
             address(LayerZeroV2StableTestnet.SEND_ULN_302),
@@ -3336,6 +3369,17 @@ contract LZProtocol is ILZProtocol {
             LayerZeroV2TelosTestnet.EXECUTOR,
             LayerZeroV2TelosTestnet.CHAIN_ID,
             "telos-testnet",
+            new string[](0)
+        );
+        _registerChain(
+            LayerZeroV2Tempodev1Testnet.EID,
+            address(LayerZeroV2Tempodev1Testnet.ENDPOINT_V2),
+            address(LayerZeroV2Tempodev1Testnet.SEND_ULN_302),
+            address(LayerZeroV2Tempodev1Testnet.RECEIVE_ULN_302),
+            LayerZeroV2Tempodev1Testnet.BLOCKED_MESSAGE_LIB,
+            LayerZeroV2Tempodev1Testnet.EXECUTOR,
+            LayerZeroV2Tempodev1Testnet.CHAIN_ID,
+            "tempodev1-testnet",
             new string[](0)
         );
         _registerChain(
