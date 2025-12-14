@@ -1063,6 +1063,7 @@ contract LZWorkers is ILZWorkers {
         _registerDVN("Nethermind", 30159, 0x809CDE2AfcF8627312E87a6a7bbFFaB3F8F347c7); // canto-mainnet
         _registerDVN("Nethermind", 30125, 0xDd7B5E1dB4AaFd5C8EC3b764eFB8ed265Aa5445B); // celo-mainnet
         _registerDVN("Nethermind", 40125, 0x449391D6812BCe0B0b86d32D752035FF5BE3f159); // celo-testnet
+        _registerDVN("Nethermind", 30403, 0xe7331335AE08c46C8749efF56728F3949E07BDf3); // citrea-mainnet
         _registerDVN("Nethermind", 30323, 0xabC9b1819cc4D9846550F928B985993cF6240439); // codex-mainnet
         _registerDVN("Nethermind", 30212, 0x809CDE2AfcF8627312E87a6a7bbFFaB3F8F347c7); // conflux-mainnet
         _registerDVN("Nethermind", 30153, 0x7fe673201724925B5c477d4E1A4Bd3E954688cF5); // coredao-mainnet
