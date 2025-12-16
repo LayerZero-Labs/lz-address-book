@@ -3,9 +3,13 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Foundry](https://img.shields.io/badge/Built%20with-Foundry-FFDB1C.svg)](https://getfoundry.sh/)
 
-**All LayerZero V2 addresses in pure Solidity.** No JavaScript, no address lookups—just `forge install` and build.
+**All LayerZero V2 addresses in pure Solidity.** No JavaScript, no address lookups, just `forge install` and build.
 
 ---
+
+## Overview
+
+The LayerZero Address Book is an auto-generated, Solidity-based registry providing programmatic access to LayerZero V2 and Stargate protocol addresses across 320+ EVM blockchain networks. The repository eliminates manual address management for EVM networks by bundling all LayerZero infrastructure addresses (endpoints, message libraries, executors, DVNs) and Stargate asset addresses into compile-time constants and runtime registries, enabling pure Foundry workflows without JavaScript dependencies.
 
 ## Motivation
 
