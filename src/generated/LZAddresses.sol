@@ -3,13 +3,13 @@ pragma solidity ^0.8.20;
 
 // Auto-generated from LayerZero metadata - do not edit manually
 // Source: https://metadata.layerzero-api.com/v1/metadata/deployments
-// DATA_HASH: 0xd5dd7d1ee0bf971bbecca75ca447c566712681ca9eba65447e7d87753d20dc07
+// DATA_HASH: 0x70509270241202549c734008752118f5533e8027c76e1f48397e05b0d88f2f83
 
 import {ILayerZeroEndpointV2} from "@layerzerolabs/lz-evm-protocol-v2/contracts/interfaces/ILayerZeroEndpointV2.sol";
 import {IMessageLib} from "@layerzerolabs/lz-evm-protocol-v2/contracts/interfaces/IMessageLib.sol";
 
 // DATA_HASH for provenance tracking (LZIP spec requirement)
-bytes32 constant LZ_ADDRESSES_DATA_HASH = 0xd5dd7d1ee0bf971bbecca75ca447c566712681ca9eba65447e7d87753d20dc07;
+bytes32 constant LZ_ADDRESSES_DATA_HASH = 0x70509270241202549c734008752118f5533e8027c76e1f48397e05b0d88f2f83;
 
 library LayerZeroV2AavegotchiTestnet {
     // Chain metadata
@@ -2451,8 +2451,6 @@ library LayerZeroV2DVNCitreaMainnet {
     address internal constant DVN_LZ_DEAD = 0x9C061c9A4782294eeF65ef28Cb88233A987F4bdD;
     // LayerZero Labs [layerzero-labs]
     address internal constant DVN_LAYERZERO_LABS = 0x6788f52439ACA6BFF597d3eeC2DC9a44B8FEE842;
-    // Nethermind [nethermind]
-    address internal constant DVN_NETHERMIND = 0xe7331335AE08c46C8749efF56728F3949E07BDf3;
 }
 
 library LayerZeroV2CitreaTestnet {
@@ -6967,6 +6965,8 @@ library LayerZeroV2DVNMegaethMainnet {
     address internal constant DVN_LZ_DEAD = 0x6788f52439ACA6BFF597d3eeC2DC9a44B8FEE842;
     // LayerZero Labs [layerzero-labs]
     address internal constant DVN_LAYERZERO_LABS = 0x282b3386571f7f794450d5789911a9804FA346b4;
+    // Nethermind [nethermind]
+    address internal constant DVN_NETHERMIND = 0xeEdE111103535e473451311e26C3E6660b0F77e1;
 }
 
 library LayerZeroV2MegaethTestnet {

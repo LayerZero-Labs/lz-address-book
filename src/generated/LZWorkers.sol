@@ -1063,7 +1063,6 @@ contract LZWorkers is ILZWorkers {
         _registerDVN("Nethermind", 30159, 0x809CDE2AfcF8627312E87a6a7bbFFaB3F8F347c7); // canto-mainnet
         _registerDVN("Nethermind", 30125, 0xDd7B5E1dB4AaFd5C8EC3b764eFB8ed265Aa5445B); // celo-mainnet
         _registerDVN("Nethermind", 40125, 0x449391D6812BCe0B0b86d32D752035FF5BE3f159); // celo-testnet
-        _registerDVN("Nethermind", 30403, 0xe7331335AE08c46C8749efF56728F3949E07BDf3); // citrea-mainnet
         _registerDVN("Nethermind", 30323, 0xabC9b1819cc4D9846550F928B985993cF6240439); // codex-mainnet
         _registerDVN("Nethermind", 30212, 0x809CDE2AfcF8627312E87a6a7bbFFaB3F8F347c7); // conflux-mainnet
         _registerDVN("Nethermind", 30153, 0x7fe673201724925B5c477d4E1A4Bd3E954688cF5); // coredao-mainnet
@@ -1111,6 +1110,7 @@ contract LZWorkers is ILZWorkers {
         _registerDVN("Nethermind", 30321, 0x4b92BC2A7d681bf5230472C80d92aCFE9A6b9435); // lisk-mainnet
         _registerDVN("Nethermind", 30217, 0x247624e2143504730aeC22912ed41F092498bEf2); // manta-mainnet
         _registerDVN("Nethermind", 30181, 0xB19A9370D404308040A9760678c8Ca28aFfbbb76); // mantle-mainnet
+        _registerDVN("Nethermind", 30398, 0xeEdE111103535e473451311e26C3E6660b0F77e1); // megaeth-mainnet
         _registerDVN("Nethermind", 30266, 0xabC9b1819cc4D9846550F928B985993cF6240439); // merlin-mainnet
         _registerDVN("Nethermind", 40264, 0x3Bd9Af5Aa8C33b1e71C94cAe7c009C36413e08FD); // merlin-testnet
         _registerDVN("Nethermind", 30176, 0x08095eceD6c0b46D50eE45a6a59C0fD3De0b0855); // meter-mainnet
