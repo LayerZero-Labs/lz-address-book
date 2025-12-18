@@ -246,7 +246,6 @@ contract LZWorkers is ILZWorkers {
         _registerDVN("Canary", 30106, 0xcC49E6fca014c77E1Eb604351cc1E08C84511760); // avalanche-mainnet
         _registerDVN("Canary", 30363, 0x4FE90e0f2A99e464d6E97B161d72101CD03C20fe); // bahamut-mainnet
         _registerDVN("Canary", 30184, 0x554833698Ae0FB22ECC90B01222903fD62CA4B47); // base-mainnet
-        _registerDVN("Canary", 30234, 0x2A22804Cfa992D5cb1324863ec4aDa920256B908); // bb1-mainnet
         _registerDVN("Canary", 30362, 0x06e8042729CeF3aE6D6DB5350f48F9D736C3675d); // bera-mainnet
         _registerDVN("Canary", 30317, 0x4FE90e0f2A99e464d6E97B161d72101CD03C20fe); // bevm-mainnet
         _registerDVN("Canary", 30243, 0x6398E91001Cc1682bBA103E6B2489Fa5675a5a64); // blast-mainnet
@@ -500,7 +499,6 @@ contract LZWorkers is ILZWorkers {
         _registerDVN("Horizen", 30363, 0xDd7B5E1dB4AaFd5C8EC3b764eFB8ed265Aa5445B); // bahamut-mainnet
         _registerDVN("Horizen", 30184, 0xa7b5189bcA84Cd304D8553977c7C614329750d99); // base-mainnet
         _registerDVN("Horizen", 40245, 0xB1B2319767B86800C4CFe8623a72C00D9d90cFb6); // basesep-testnet
-        _registerDVN("Horizen", 30234, 0xC9c1B26505bf3f4D6562159a119f6eDe1e245DeB); // bb1-mainnet
         _registerDVN("Horizen", 30362, 0xeCbaA45c33ce6Fa284995e5F8314f5bC7F1C2008); // bera-mainnet
         _registerDVN("Horizen", 30317, 0xDd7B5E1dB4AaFd5C8EC3b764eFB8ed265Aa5445B); // bevm-mainnet
         _registerDVN("Horizen", 30314, 0x95729Ea44326f8adD8A9b1d987279DBdC1DD3dFf); // bitlayer-mainnet
@@ -604,7 +602,6 @@ contract LZWorkers is ILZWorkers {
         _registerDVN("Horizen", 30290, 0xBD237eF21319E2200487BDF30c188C6c34b16D3B); // taiko-mainnet
         _registerDVN("Horizen", 30199, 0xDd7B5E1dB4AaFd5C8EC3b764eFB8ed265Aa5445B); // telos-mainnet
         _registerDVN("Horizen", 30173, 0xDd7B5E1dB4AaFd5C8EC3b764eFB8ed265Aa5445B); // tenet-mainnet
-        _registerDVN("Horizen", 30238, 0x0165C910Ea47964a23DC4FB7c7483F6f3ad462aE); // tiltyard-mainnet
         _registerDVN("Horizen", 30196, 0xDd7B5E1dB4AaFd5C8EC3b764eFB8ed265Aa5445B); // tomo-mainnet
         _registerDVN("Horizen", 30320, 0xC6a6324932B399D6A673B7Ed0af671F28033E046); // unichain-mainnet
         _registerDVN("Horizen", 30319, 0x95729Ea44326f8adD8A9b1d987279DBdC1DD3dFf); // worldchain-mainnet
@@ -659,7 +656,6 @@ contract LZWorkers is ILZWorkers {
         _registerDVN("LayerZero Labs", 40347, 0x88B27057A9e00c5F05DDa29241027afF63f9e6e0); // bahamut-testnet
         _registerDVN("LayerZero Labs", 30184, 0x9e059a54699a285714207b43B055483E78FAac25); // base-mainnet
         _registerDVN("LayerZero Labs", 40245, 0xe1a12515F9AB2764b887bF60B923Ca494EBbB2d6); // basesep-testnet
-        _registerDVN("LayerZero Labs", 30234, 0xb21f945e8917c6Cd69FcFE66ac6703B90f7fe004); // bb1-mainnet
         _registerDVN("LayerZero Labs", 40371, 0x88B27057A9e00c5F05DDa29241027afF63f9e6e0); // bepolia-testnet
         _registerDVN("LayerZero Labs", 30362, 0x282b3386571f7f794450d5789911a9804FA346b4); // bera-mainnet
         _registerDVN("LayerZero Labs", 30317, 0x9C061c9A4782294eeF65ef28Cb88233A987F4bdD); // bevm-mainnet
@@ -895,7 +891,6 @@ contract LZWorkers is ILZWorkers {
         _registerDVN("LayerZero Labs", 40439, 0x489fd72653924E25De141e9B1d1c2591A1150602); // tempodev1-testnet
         _registerDVN("LayerZero Labs", 30173, 0x28A5536cA9F36c45A9d2AC8d2B62Fc46Fde024B6); // tenet-mainnet
         _registerDVN("LayerZero Labs", 40173, 0x74582424B8b92BE2eC17c192F6976b2effEFAb7c); // tenet-testnet
-        _registerDVN("LayerZero Labs", 30238, 0xCFc3f9dD0205b76FF04e20243f106465Dd829656); // tiltyard-mainnet
         _registerDVN("LayerZero Labs", 30196, 0x1aCe9DD1BC743aD036eF2D92Af42Ca70A1159df5); // tomo-mainnet
         _registerDVN("LayerZero Labs", 40348, 0x6869b4348Fae6A911FDb5BaE5e0D153b2aA261f6); // treasure-testnet
         _registerDVN("LayerZero Labs", 30320, 0x282b3386571f7f794450d5789911a9804FA346b4); // unichain-mainnet
@@ -1050,7 +1045,6 @@ contract LZWorkers is ILZWorkers {
         _registerDVN("Nethermind", 40106, 0x7883f83eA40a56137a63baf93bfEE5B9b8C1C447); // avalanche-testnet
         _registerDVN("Nethermind", 30184, 0xcd37CA043f8479064e10635020c65FfC005d36f6); // base-mainnet
         _registerDVN("Nethermind", 40245, 0xd9222CC3Ccd1DF7c070d700EA377D4aDA2B86Eb5); // basesep-testnet
-        _registerDVN("Nethermind", 30234, 0xDd7B5E1dB4AaFd5C8EC3b764eFB8ed265Aa5445B); // bb1-mainnet
         _registerDVN("Nethermind", 30362, 0xDd7B5E1dB4AaFd5C8EC3b764eFB8ed265Aa5445B); // bera-mainnet
         _registerDVN("Nethermind", 30314, 0xDd7B5E1dB4AaFd5C8EC3b764eFB8ed265Aa5445B); // bitlayer-mainnet
         _registerDVN("Nethermind", 40320, 0x743178C017952aA88d7F17C1676DCB81d308ACb6); // bitlayer-testnet
@@ -1224,6 +1218,7 @@ contract LZWorkers is ILZWorkers {
         _registerDVN("Ondo Staging", 30102, 0x089E70BC883Ad0b6551e513bF7A71Ffd2059f9F1); // bsc-mainnet
         _registerDVN("Ondo Staging", 30101, 0xF34D1B07c64c4F4d492aE3DdD0AaB0658A2975eb); // ethereum-mainnet
         _registerDVN("Ondo Staging", 30181, 0x377B51593a03B82543c1508fE7e75Aba6acDE008); // mantle-mainnet
+        _registerDVN("Ondo Staging", 30280, 0x75d0f9F7926f41BbBBe37050EE523F37BD398376); // sei-mainnet
 
         // P2P
         _registerDVN("P2P", 30324, 0x52B7E1958F6Ad3E195DC30578dA5Fa7ac5827A2A); // abstract-mainnet
@@ -1519,7 +1514,6 @@ contract LZWorkers is ILZWorkers {
         _registerDVN("TSS", 30106, 0x5a54fe5234E811466D5366846283323c954310B2); // avalanche-mainnet
         _registerDVN("TSS", 40106, 0x92Cfdb3789693C2ae7225fCc2C263de94D630be4); // avalanche-testnet
         _registerDVN("TSS", 30184, 0xAaB5A48CFC03Efa9cC34A2C1aAcCCB84b4b770e4); // base-mainnet
-        _registerDVN("TSS", 30234, 0x3A73033C0b1407574C76BdBAc67f126f6b4a9AA9); // bb1-mainnet
         _registerDVN("TSS", 30362, 0x306B9a8953B9462F8b826e6768a93C8EA7454965); // bera-mainnet
         _registerDVN("TSS", 30317, 0x6c47E59BC0600942146BF37668fc92b369C85ab7); // bevm-mainnet
         _registerDVN("TSS", 30243, 0xcb566e3B6934Fa77258d68ea18E931fa75e1aaAa); // blast-mainnet
@@ -1612,7 +1606,6 @@ contract LZWorkers is ILZWorkers {
         _registerDVN("TSS", 40199, 0x6C7Ab2202C98C4227C5c46f1417D81144DA716Ff); // telos-testnet
         _registerDVN("TSS", 30173, 0x282b3386571f7f794450d5789911a9804FA346b4); // tenet-mainnet
         _registerDVN("TSS", 40173, 0x6C7Ab2202C98C4227C5c46f1417D81144DA716Ff); // tenet-testnet
-        _registerDVN("TSS", 30238, 0xfDfA2330713A8e2EaC6e4f15918F11937fFA4dBE); // tiltyard-mainnet
         _registerDVN("TSS", 30196, 0xcb566e3B6934Fa77258d68ea18E931fa75e1aaAa); // tomo-mainnet
         _registerDVN("TSS", 30320, 0x306B9a8953B9462F8b826e6768a93C8EA7454965); // unichain-mainnet
         _registerDVN("TSS", 30236, 0x4b80F7d25c451D204b1C93D9bdf2aB3B04f3EA4a); // xai-mainnet
