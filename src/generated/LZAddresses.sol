@@ -3,13 +3,13 @@ pragma solidity ^0.8.20;
 
 // Auto-generated from LayerZero metadata - do not edit manually
 // Source: https://metadata.layerzero-api.com/v1/metadata/deployments
-// DATA_HASH: 0x70509270241202549c734008752118f5533e8027c76e1f48397e05b0d88f2f83
+// DATA_HASH: 0xc562b60d1ff482eb2be903713c8d005731d6b94fd5df60df4fad759b3e2ec352
 
 import {ILayerZeroEndpointV2} from "@layerzerolabs/lz-evm-protocol-v2/contracts/interfaces/ILayerZeroEndpointV2.sol";
 import {IMessageLib} from "@layerzerolabs/lz-evm-protocol-v2/contracts/interfaces/IMessageLib.sol";
 
 // DATA_HASH for provenance tracking (LZIP spec requirement)
-bytes32 constant LZ_ADDRESSES_DATA_HASH = 0x70509270241202549c734008752118f5533e8027c76e1f48397e05b0d88f2f83;
+bytes32 constant LZ_ADDRESSES_DATA_HASH = 0xc562b60d1ff482eb2be903713c8d005731d6b94fd5df60df4fad759b3e2ec352;
 
 library LayerZeroV2AavegotchiTestnet {
     // Chain metadata
@@ -1220,17 +1220,17 @@ library LayerZeroV2Bb1Mainnet {
 }
 
 library LayerZeroV2DVNBb1Mainnet {
-    // Canary [canary]
+    // Canary (deprecated) [canary]
     address internal constant DVN_CANARY = 0x2A22804Cfa992D5cb1324863ec4aDa920256B908;
-    // Horizen [horizen-labs]
+    // Horizen (deprecated) [horizen-labs]
     address internal constant DVN_HORIZEN = 0xC9c1B26505bf3f4D6562159a119f6eDe1e245DeB;
     // LZDeadDVN (deprecated) [lz-dead-dvn]
     address internal constant DVN_LZ_DEAD = 0x3aA71d4C322eD650a78BC3A8BAB292e47a214A2c;
-    // LayerZero Labs [layerzero-labs]
+    // LayerZero Labs (deprecated) [layerzero-labs]
     address internal constant DVN_LAYERZERO_LABS = 0xb21f945e8917c6Cd69FcFE66ac6703B90f7fe004;
-    // Nethermind [nethermind]
+    // Nethermind (deprecated) [nethermind]
     address internal constant DVN_NETHERMIND = 0xDd7B5E1dB4AaFd5C8EC3b764eFB8ed265Aa5445B;
-    // TSS [tss]
+    // TSS (deprecated) [tss]
     address internal constant DVN_TSS = 0x3A73033C0b1407574C76BdBAc67f126f6b4a9AA9;
 }
 
@@ -10063,6 +10063,8 @@ library LayerZeroV2DVNSeiMainnet {
     address internal constant DVN_NETHERMIND = 0xA93D4490444eba60839742859cfDE53bf0967dC9;
     // Nethermind [nethermind]
     address internal constant DVN_NETHERMIND_2 = 0xD24972c11F91c1bB9eaEe97ec96bB9c33cF7af24;
+    // Ondo Staging [ondo-staging]
+    address internal constant DVN_ONDO_STAGING = 0x75d0f9F7926f41BbBBe37050EE523F37BD398376;
     // P2P [p2p]
     address internal constant DVN_P2P = 0xA83A87a0bDce466edfBB6794404E1D7F556B8F20;
     // Polyhedra [polyhedra-network]
@@ -11613,13 +11615,13 @@ library LayerZeroV2TiltyardMainnet {
 }
 
 library LayerZeroV2DVNTiltyardMainnet {
-    // Horizen [horizen-labs]
+    // Horizen (deprecated) [horizen-labs]
     address internal constant DVN_HORIZEN = 0x0165C910Ea47964a23DC4FB7c7483F6f3ad462aE;
     // LZDeadDVN (deprecated) [lz-dead-dvn]
     address internal constant DVN_LZ_DEAD = 0xa50d9C4aD49933f7bC0574D8c54427EC42C2B073;
-    // LayerZero Labs [layerzero-labs]
+    // LayerZero Labs (deprecated) [layerzero-labs]
     address internal constant DVN_LAYERZERO_LABS = 0xCFc3f9dD0205b76FF04e20243f106465Dd829656;
-    // TSS [tss]
+    // TSS (deprecated) [tss]
     address internal constant DVN_TSS = 0xfDfA2330713A8e2EaC6e4f15918F11937fFA4dBE;
 }
 
