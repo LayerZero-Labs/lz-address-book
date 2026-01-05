@@ -623,6 +623,28 @@ contract STGProtocol is ISTGProtocol {
             StargateType.OFT
         );
 
+        // gatelayer-mainnet (Stargate: gatelayer)
+        _tokenMessaging["gatelayer-mainnet"] = 0x31EEf89D5215C305304a2fA5376a1f1b6C5dc477;
+        _registerChain("gatelayer-mainnet");
+        _registerAsset(
+            "gatelayer-mainnet",
+            "USDC.e",
+            0x0829F361A05D993d5CEb035cA6DF3446b060970b,
+            0x8a2B28364102Bea189D99A475C494330Ef2bDD0B,
+            6,
+            6,
+            StargateType.OFT
+        );
+        _registerAsset(
+            "gatelayer-mainnet",
+            "WETH",
+            0x783129E4d7bA0Af0C896c239E57C06DF379aAE8c,
+            0x60219C44E146BAf36002eA73767820238Ebc1db6,
+            18,
+            6,
+            StargateType.OFT
+        );
+
         // glue-mainnet (Stargate: glue)
         _tokenMessaging["glue-mainnet"] = 0x45A01E4e04F14f7A4a6702c74187c5F6222033cd;
         _registerChain("glue-mainnet");
@@ -1755,6 +1777,8 @@ contract STGProtocol is ISTGProtocol {
         _chainIdToChainName[747] = "flow-mainnet";
         _eidToChainName[30138] = "fuse-mainnet";
         _chainIdToChainName[122] = "fuse-mainnet";
+        _eidToChainName[30389] = "gatelayer-mainnet";
+        _chainIdToChainName[10088] = "gatelayer-mainnet";
         _eidToChainName[30342] = "glue-mainnet";
         _chainIdToChainName[1300] = "glue-mainnet";
         _eidToChainName[30145] = "gnosis-mainnet";

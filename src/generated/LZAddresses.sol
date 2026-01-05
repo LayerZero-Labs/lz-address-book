@@ -3,13 +3,13 @@ pragma solidity ^0.8.20;
 
 // Auto-generated from LayerZero metadata - do not edit manually
 // Source: https://metadata.layerzero-api.com/v1/metadata/deployments
-// DATA_HASH: 0x70509270241202549c734008752118f5533e8027c76e1f48397e05b0d88f2f83
+// DATA_HASH: 0xbc87d03ba60c570b54ada157f0a10c3a8d1fc772605a17a4d48ffc3571f3507f
 
 import {ILayerZeroEndpointV2} from "@layerzerolabs/lz-evm-protocol-v2/contracts/interfaces/ILayerZeroEndpointV2.sol";
 import {IMessageLib} from "@layerzerolabs/lz-evm-protocol-v2/contracts/interfaces/IMessageLib.sol";
 
 // DATA_HASH for provenance tracking (LZIP spec requirement)
-bytes32 constant LZ_ADDRESSES_DATA_HASH = 0x70509270241202549c734008752118f5533e8027c76e1f48397e05b0d88f2f83;
+bytes32 constant LZ_ADDRESSES_DATA_HASH = 0xbc87d03ba60c570b54ada157f0a10c3a8d1fc772605a17a4d48ffc3571f3507f;
 
 library LayerZeroV2AavegotchiTestnet {
     // Chain metadata
@@ -448,6 +448,8 @@ library LayerZeroV2DVNArbitrumMainnet {
     address internal constant DVN_RESTAKE = 0x969A0bdd86A230345AD87A6a381DE5ED9E6cda85;
     // Shrapnel [mercury]
     address internal constant DVN_SHRAPNEL = 0x7B8a0fD9D6ae5011d5cBD3E85Ed6D5510F98c9Bf;
+    // StablecoinX [stablecoinx]
+    address internal constant DVN_STABLECOINX = 0x790a1946893DF8Cf85412E9b088C66C3Ee1F5747;
     // Stablelab [stablelab]
     address internal constant DVN_STABLELAB = 0xcd37CA043f8479064e10635020c65FfC005d36f6;
     // Stakingcabin [stakingcabin]
@@ -1120,6 +1122,8 @@ library LayerZeroV2DVNBaseMainnet {
     address internal constant DVN_POLYHEDRA = 0xE014fe8c4d5C23EDB7AC4011F226e869ac7Ef5CC;
     // Polyhedra [polyhedra-network]
     address internal constant DVN_POLYHEDRA_2 = 0x8ddF05F9A5c488b4973897E278B58895bF87Cb24;
+    // StablecoinX [stablecoinx]
+    address internal constant DVN_STABLECOINX = 0x8b4874a130D7F1f702d59115f6D31bCC3E0972c3;
     // Stargate [stargate]
     address internal constant DVN_STARGATE = 0xcdF31d62140204C08853b547E64707110fBC6680;
     // Superform [superform]
@@ -1220,17 +1224,17 @@ library LayerZeroV2Bb1Mainnet {
 }
 
 library LayerZeroV2DVNBb1Mainnet {
-    // Canary [canary]
+    // Canary (deprecated) [canary]
     address internal constant DVN_CANARY = 0x2A22804Cfa992D5cb1324863ec4aDa920256B908;
-    // Horizen [horizen-labs]
+    // Horizen (deprecated) [horizen-labs]
     address internal constant DVN_HORIZEN = 0xC9c1B26505bf3f4D6562159a119f6eDe1e245DeB;
     // LZDeadDVN (deprecated) [lz-dead-dvn]
     address internal constant DVN_LZ_DEAD = 0x3aA71d4C322eD650a78BC3A8BAB292e47a214A2c;
-    // LayerZero Labs [layerzero-labs]
+    // LayerZero Labs (deprecated) [layerzero-labs]
     address internal constant DVN_LAYERZERO_LABS = 0xb21f945e8917c6Cd69FcFE66ac6703B90f7fe004;
-    // Nethermind [nethermind]
+    // Nethermind (deprecated) [nethermind]
     address internal constant DVN_NETHERMIND = 0xDd7B5E1dB4AaFd5C8EC3b764eFB8ed265Aa5445B;
-    // TSS [tss]
+    // TSS (deprecated) [tss]
     address internal constant DVN_TSS = 0x3A73033C0b1407574C76BdBAc67f126f6b4a9AA9;
 }
 
@@ -1327,6 +1331,8 @@ library LayerZeroV2DVNBeraMainnet {
     address internal constant DVN_P2P = 0x3b247F1B48F055EbF2DB593672B98C9597E3081E;
     // POPS [p-ops-team]
     address internal constant DVN_POPS = 0x4055fAd06ded1F57A1b4D07455665a9Bbc33C700;
+    // StablecoinX [stablecoinx]
+    address internal constant DVN_STABLECOINX = 0xEEFa0163C1F25A074bfB2A582e9854EC169ADED1;
     // Stargate [stargate]
     address internal constant DVN_STARGATE = 0x6E70FCdc42D3d63748B7d8883399Dcb16BBB5c8c;
     // TSS [tss]
@@ -1702,6 +1708,8 @@ library LayerZeroV2DVNBlastMainnet {
     address internal constant DVN_OMNICAT = 0x25e0e650a78e6304A3983Fc4b7Ffc6544b1bEea6;
     // Polyhedra [polyhedra-network]
     address internal constant DVN_POLYHEDRA = 0x0ff4cc28826356503BB79c00637bec0eE006f237;
+    // StablecoinX [stablecoinx]
+    address internal constant DVN_STABLECOINX = 0x9aCab0F5B6CA4D6c54547B4C8Bf56793b7Fa074a;
     // Superform [superform]
     address internal constant DVN_SUPERFORM = 0x0E95cf21aD9376A26997c97f326C5A0a267bB8FF;
     // TSS [tss]
@@ -2102,6 +2110,8 @@ library LayerZeroV2DVNBscMainnet {
     address internal constant DVN_RESTAKE = 0x4D52f5bc932cf1A854381A85ad9ED79B8497c153;
     // Shrapnel [mercury]
     address internal constant DVN_SHRAPNEL = 0xb4FA7f1C67E5Ec99B556Ec92CbDdBCdd384106F2;
+    // StablecoinX [stablecoinx]
+    address internal constant DVN_STABLECOINX = 0x0Cea5a94F8cd3330c4F84944bF4500F8daCD440C;
     // Stablelab [stablelab]
     address internal constant DVN_STABLELAB = 0xabC9b1819cc4D9846550F928B985993cF6240439;
     // Stakingcabin (deprecated) [stakingcabin]
@@ -2447,10 +2457,14 @@ library LayerZeroV2CitreaMainnet {
 }
 
 library LayerZeroV2DVNCitreaMainnet {
+    // Horizen [horizen-labs]
+    address internal constant DVN_HORIZEN = 0x711d49FE2f96Ee300c3025e6997872E62fdb7519;
     // LZDeadDVN (deprecated) [lz-dead-dvn]
     address internal constant DVN_LZ_DEAD = 0x9C061c9A4782294eeF65ef28Cb88233A987F4bdD;
     // LayerZero Labs [layerzero-labs]
     address internal constant DVN_LAYERZERO_LABS = 0x6788f52439ACA6BFF597d3eeC2DC9a44B8FEE842;
+    // Nethermind [nethermind]
+    address internal constant DVN_NETHERMIND = 0x27a6190176567940812061627864137Bd79e9801;
 }
 
 library LayerZeroV2CitreaTestnet {
@@ -3840,6 +3854,8 @@ library LayerZeroV2DVNEthereumMainnet {
     address internal constant DVN_RESTAKE = 0xE4193136B92bA91402313e95347c8e9FAD8d27d0;
     // Shrapnel [mercury]
     address internal constant DVN_SHRAPNEL = 0xCe97511db880571A7C31821eB026Ef12fCaC892e;
+    // StablecoinX [stablecoinx]
+    address internal constant DVN_STABLECOINX = 0x394fe81886BaF6e2d5BEe37ffA24b07133C320c6;
     // Stablelab [stablelab]
     address internal constant DVN_STABLELAB = 0x5fddD320a1e29bB466Fa635661b125D51D976f92;
     // Stakingcabin (deprecated) [stakingcabin]
@@ -4434,6 +4450,8 @@ library LayerZeroV2DVNFraxtalMainnet {
     address internal constant DVN_LAYERZERO_LABS = 0xcCE466a522984415bC91338c232d98869193D46e;
     // Nethermind [nethermind]
     address internal constant DVN_NETHERMIND = 0xa7b5189bcA84Cd304D8553977c7C614329750d99;
+    // StablecoinX [stablecoinx]
+    address internal constant DVN_STABLECOINX = 0x47FE112E334F5F766db3c44F7C1813468240EdE9;
     // TSS [tss]
     address internal constant DVN_TSS = 0x3A73033C0b1407574C76BdBAc67f126f6b4a9AA9;
 }
@@ -5270,6 +5288,8 @@ library LayerZeroV2HorizenMainnet {
 }
 
 library LayerZeroV2DVNHorizenMainnet {
+    // Horizen [horizen-labs]
+    address internal constant DVN_HORIZEN = 0xDd7B5E1dB4AaFd5C8EC3b764eFB8ed265Aa5445B;
     // LZDeadDVN (deprecated) [lz-dead-dvn]
     address internal constant DVN_LZ_DEAD = 0x6788f52439ACA6BFF597d3eeC2DC9a44B8FEE842;
     // LayerZero Labs [layerzero-labs]
@@ -5299,6 +5319,8 @@ library LayerZeroV2HorizenTestnet {
 }
 
 library LayerZeroV2DVNHorizenTestnet {
+    // Horizen [horizen-labs]
+    address internal constant DVN_HORIZEN = 0x678542Ddd77a71335Ab1088D6A0d877d4b39E768;
     // LZDeadDVN (deprecated) [lz-dead-dvn]
     address internal constant DVN_LZ_DEAD = 0x88B27057A9e00c5F05DDa29241027afF63f9e6e0;
     // LayerZero Labs [layerzero-labs]
@@ -5469,6 +5491,8 @@ library LayerZeroV2DVNHyperliquidMainnet {
     address internal constant DVN_OMNIX = 0x3E3A9bC9149Ddf1D3A3ea51c0A49Eb9fe6347043;
     // P2P [p2p]
     address internal constant DVN_P2P = 0xC7423626016bc40375458bc0277F28681EC91C8e;
+    // StablecoinX [stablecoinx]
+    address internal constant DVN_STABLECOINX = 0x69610f5D788c56b4f313f4a94BC2625F9B5bD8e4;
     // TSS [tss]
     address internal constant DVN_TSS = 0xacFC61640598C25bdB273291D889816B2218CD9B;
     // USDT0 [usdt0]
@@ -5508,6 +5532,8 @@ library LayerZeroV2DVNHyperliquidTestnet {
     address internal constant DVN_LAYERZERO_LABS_2 = 0x91E698871030D0e1b6c9268C20bB57E2720618Dd;
     // Mantle01 [mantle01]
     address internal constant DVN_MANTLE01 = 0x003bD8aDc7ba8A7353B950541904b61011e38DaE;
+    // MantleCross [mantlecross]
+    address internal constant DVN_MANTLECROSS = 0xbFf0ACe8c82522F6959e3a7E45814f1af7a67FCF;
     // P2P [p2p]
     address internal constant DVN_P2P = 0x4c90F152707c6EAB6cd801E326D25b0591E449a2;
 }
@@ -6006,6 +6032,8 @@ library LayerZeroV2DVNKavaMainnet {
     address internal constant DVN_LAYERZERO_LABS = 0x2D40A7B66F776345Cf763c8EBB83199Cd285e7a3;
     // Nethermind [nethermind]
     address internal constant DVN_NETHERMIND = 0x6a4C9096F162f0ab3C0517B0a40dc1CE44785e16;
+    // StablecoinX [stablecoinx]
+    address internal constant DVN_STABLECOINX = 0x66e5205eF0a010a85C1a1b94297F5ea9334C7A0b;
     // Stargate [stargate]
     address internal constant DVN_STARGATE = 0x9CbAF815eD62Ef45C59E9F2Cb05106bAbb4d31d3;
     // TSS [tss]
@@ -6680,6 +6708,8 @@ library LayerZeroV2DVNMantaMainnet {
     address internal constant DVN_NETHERMIND = 0x247624e2143504730aeC22912ed41F092498bEf2;
     // Polyhedra [polyhedra-network]
     address internal constant DVN_POLYHEDRA = 0x8ddF05F9A5c488b4973897E278B58895bF87Cb24;
+    // StablecoinX [stablecoinx]
+    address internal constant DVN_STABLECOINX = 0xfA9bA83C102283958B997Adc8B44ED3A3CdB5dDa;
     // Stargate [stargate]
     address internal constant DVN_STARGATE = 0xca848BcB059e33Adb260d793EE360924B6Aa8E86;
     // TSS [tss]
@@ -6803,6 +6833,8 @@ library LayerZeroV2DVNMantleMainnet {
     address internal constant DVN_POLYHEDRA = 0xE014fe8c4d5C23EDB7AC4011F226e869ac7Ef5CC;
     // Polyhedra [polyhedra-network]
     address internal constant DVN_POLYHEDRA_2 = 0x8ddF05F9A5c488b4973897E278B58895bF87Cb24;
+    // StablecoinX [stablecoinx]
+    address internal constant DVN_STABLECOINX = 0xA450ED8A3582497272f896086f484bc37C87c185;
     // Stargate [stargate]
     address internal constant DVN_STARGATE = 0xfe809470016196573D64A8D17a745bebEA4ecC41;
     // TSS [tss]
@@ -6961,12 +6993,18 @@ library LayerZeroV2MegaethMainnet {
 }
 
 library LayerZeroV2DVNMegaethMainnet {
+    // Canary [canary]
+    address internal constant DVN_CANARY = 0x7DEcC6Df3aF9CFc275E25d2f9703eCF7ad800D5D;
+    // Horizen [horizen-labs]
+    address internal constant DVN_HORIZEN = 0x8Ede21203E062D7D1EAeC11c4c72Ad04cDc15658;
     // LZDeadDVN (deprecated) [lz-dead-dvn]
     address internal constant DVN_LZ_DEAD = 0x6788f52439ACA6BFF597d3eeC2DC9a44B8FEE842;
     // LayerZero Labs [layerzero-labs]
     address internal constant DVN_LAYERZERO_LABS = 0x282b3386571f7f794450d5789911a9804FA346b4;
     // Nethermind [nethermind]
     address internal constant DVN_NETHERMIND = 0xeEdE111103535e473451311e26C3E6660b0F77e1;
+    // USDT0 [usdt0]
+    address internal constant DVN_USDT0 = 0xEfA6237fD9BC99e0cfAEc9BddaC9a2e55Fa336B9;
 }
 
 library LayerZeroV2MegaethTestnet {
@@ -7298,6 +7336,8 @@ library LayerZeroV2DVNMetisMainnet {
     address internal constant DVN_POLYHEDRA = 0x8ddF05F9A5c488b4973897E278B58895bF87Cb24;
     // Polyhedra [polyhedra-network]
     address internal constant DVN_POLYHEDRA_2 = 0xE014fe8c4d5C23EDB7AC4011F226e869ac7Ef5CC;
+    // StablecoinX [stablecoinx]
+    address internal constant DVN_STABLECOINX = 0x8Ede21203E062D7D1EAeC11c4c72Ad04cDc15658;
     // Stargate [stargate]
     address internal constant DVN_STARGATE = 0x61A1B61A1087be03ABeDC04900Cfcc1C14187237;
     // TSS [tss]
@@ -7455,6 +7495,8 @@ library LayerZeroV2DVNModeMainnet {
     address internal constant DVN_NETHERMIND_2 = 0xE4ef857900a0ca59BCB903E7b2cCfB050Be7Dc97;
     // Polyhedra [polyhedra-network]
     address internal constant DVN_POLYHEDRA = 0x8ddF05F9A5c488b4973897E278B58895bF87Cb24;
+    // StablecoinX [stablecoinx]
+    address internal constant DVN_STABLECOINX = 0xC136B1259951d865E7136a00519Fa5f6fb0b45a5;
     // Stargate [stargate]
     address internal constant DVN_STARGATE = 0x06559EE34D85a88317Bf0bfE307444116c631b67;
     // TSS [tss]
@@ -7757,6 +7799,8 @@ library LayerZeroV2DVNMorphMainnet {
     address internal constant DVN_LAYERZERO_LABS = 0x6788f52439ACA6BFF597d3eeC2DC9a44B8FEE842;
     // Nethermind [nethermind]
     address internal constant DVN_NETHERMIND = 0xdf30C9f6A70cE65A152c5Bd09826525D7E97Ba49;
+    // StablecoinX [stablecoinx]
+    address internal constant DVN_STABLECOINX = 0xDD779AAAd20E62275457Af91b123bB13dd5aFd0B;
     // TSS [tss]
     address internal constant DVN_TSS = 0xb250B0b2A9891a035080615Ac30f040d2b7E7FAB;
 }
@@ -8106,6 +8150,8 @@ library LayerZeroV2OgMainnet {
 }
 
 library LayerZeroV2DVNOgMainnet {
+    // Bitgo [bitgo]
+    address internal constant DVN_BITGO = 0x13539215f1EE17BF4cD37d471CB9454935E7E282;
     // Canary [canary]
     address internal constant DVN_CANARY = 0x183940c4855a01da92bc2f96F7e0A8Aecbf797ff;
     // Deutsche Telekom [deutsche-telekom]
@@ -8586,6 +8632,8 @@ library LayerZeroV2DVNOptimismMainnet {
     address internal constant DVN_RESTAKE = 0xcced05c3667877B545285B25f19F794436A1c481;
     // Shrapnel [mercury]
     address internal constant DVN_SHRAPNEL = 0xd36246C322Ee102A2203bCA9cafb84c179D306F6;
+    // StablecoinX [stablecoinx]
+    address internal constant DVN_STABLECOINX = 0x8381C626542b06963eF33DEa9F47E80bf5574480;
     // Stablelab [stablelab]
     address internal constant DVN_STABLELAB = 0xcd37CA043f8479064e10635020c65FfC005d36f6;
     // Stakingcabin [stakingcabin]
@@ -8977,6 +9025,8 @@ library LayerZeroV2DVNPlasmaMainnet {
     address internal constant DVN_NETHERMIND_2 = 0x193204535913df3A3b350fcd2e1C97D047AbB409;
     // P2P [p2p]
     address internal constant DVN_P2P = 0xfD429433af17c5C75E4c8BC84b8F6dCD1b2C051A;
+    // StablecoinX [stablecoinx]
+    address internal constant DVN_STABLECOINX = 0x0ad6c9Eb13e373154bFB303561b979BAc5FA2302;
     // Stargate [stargate]
     address internal constant DVN_STARGATE = 0xabC9b1819cc4D9846550F928B985993cF6240439;
     // USDT0 [usdt0]
@@ -9217,6 +9267,10 @@ library LayerZeroV2DVNPlumephoenixMainnet {
     address internal constant DVN_NETHERMIND = 0x882a1EE8891c7d22310dedf032eF9653785532B8;
     // Nethermind [nethermind]
     address internal constant DVN_NETHERMIND_2 = 0xCBfb74e751052404DcDaB09494e5A502F9bE0438;
+    // Ondo [ondo]
+    address internal constant DVN_ONDO = 0x13a1192f7715C6AFBe31b6baA548CB6bE5F29278;
+    // Ondo Staging [ondo-staging]
+    address internal constant DVN_ONDO_STAGING = 0xA58f3bccE94b3d2db1676B17c13C1A5d61d69580;
     // Predicate [predicate]
     address internal constant DVN_PREDICATE = 0xD7bB44516b476ca805FB9d6fc5b508ef3Ee9448D;
     // Stargate [stargate]
@@ -9565,10 +9619,14 @@ library LayerZeroV2RedbellyMainnet {
 }
 
 library LayerZeroV2DVNRedbellyMainnet {
+    // Horizen [horizen-labs]
+    address internal constant DVN_HORIZEN = 0x31F748a368a893Bdb5aBB67ec95F232507601A73;
     // LZDeadDVN (deprecated) [lz-dead-dvn]
     address internal constant DVN_LZ_DEAD = 0x6788f52439ACA6BFF597d3eeC2DC9a44B8FEE842;
     // LayerZero Labs [layerzero-labs]
     address internal constant DVN_LAYERZERO_LABS = 0x282b3386571f7f794450d5789911a9804FA346b4;
+    // Nethermind [nethermind]
+    address internal constant DVN_NETHERMIND = 0x6D4fc4bD9f9C29086e2Aa67d4C81F32D2E0F285c;
 }
 
 library LayerZeroV2RedbellyTestnet {
@@ -9598,6 +9656,8 @@ library LayerZeroV2DVNRedbellyTestnet {
     address internal constant DVN_LZ_DEAD = 0x88B27057A9e00c5F05DDa29241027afF63f9e6e0;
     // LayerZero Labs [layerzero-labs]
     address internal constant DVN_LAYERZERO_LABS = 0xa78A78a13074eD93aD447a26Ec57121f29E8feC2;
+    // Redbelly [redbelly]
+    address internal constant DVN_REDBELLY = 0x3900bD01ec7D9E4a10c3f30b40D6Be02E91AfD14;
 }
 
 library LayerZeroV2ReyaMainnet {
@@ -9813,10 +9873,14 @@ library LayerZeroV2SagaevmMainnet {
 }
 
 library LayerZeroV2DVNSagaevmMainnet {
+    // Horizen [horizen-labs]
+    address internal constant DVN_HORIZEN = 0xBd00C87850416db0995EF8030b104F875E1bdD15;
     // LZDeadDVN (deprecated) [lz-dead-dvn]
     address internal constant DVN_LZ_DEAD = 0x4bCb6A963a9563C33569D7A512D35754221F3A19;
     // LayerZero Labs [layerzero-labs]
     address internal constant DVN_LAYERZERO_LABS = 0xccCDD23E11F3f47C37fC0a7C3BE505901912C6Cc;
+    // Nethermind [nethermind]
+    address internal constant DVN_NETHERMIND = 0x6D4fc4bD9f9C29086e2Aa67d4C81F32D2E0F285c;
 }
 
 library LayerZeroV2SagaevmTestnet {
@@ -9971,6 +10035,8 @@ library LayerZeroV2DVNScrollMainnet {
     address internal constant DVN_POLYHEDRA = 0x8ddF05F9A5c488b4973897E278B58895bF87Cb24;
     // Polyhedra [polyhedra-network]
     address internal constant DVN_POLYHEDRA_2 = 0xE014fe8c4d5C23EDB7AC4011F226e869ac7Ef5CC;
+    // StablecoinX [stablecoinx]
+    address internal constant DVN_STABLECOINX = 0xCF46153f01355036bF07E5f7Fb1eb262f25dFeDd;
     // Stargate [stargate]
     address internal constant DVN_STARGATE = 0xb87591D8B0b93faE8b631A073577c40e8Dd46A62;
     // TSS [tss]
@@ -10063,6 +10129,10 @@ library LayerZeroV2DVNSeiMainnet {
     address internal constant DVN_NETHERMIND = 0xA93D4490444eba60839742859cfDE53bf0967dC9;
     // Nethermind [nethermind]
     address internal constant DVN_NETHERMIND_2 = 0xD24972c11F91c1bB9eaEe97ec96bB9c33cF7af24;
+    // Ondo [ondo]
+    address internal constant DVN_ONDO = 0x65c41255c7f49A4B728676A0Ede4a1329Ff6911A;
+    // Ondo Staging [ondo-staging]
+    address internal constant DVN_ONDO_STAGING = 0x75d0f9F7926f41BbBBe37050EE523F37BD398376;
     // P2P [p2p]
     address internal constant DVN_P2P = 0xA83A87a0bDce466edfBB6794404E1D7F556B8F20;
     // Polyhedra [polyhedra-network]
@@ -11151,6 +11221,8 @@ library LayerZeroV2DVNSwellMainnet {
     address internal constant DVN_LAYERZERO_LABS = 0x6788f52439ACA6BFF597d3eeC2DC9a44B8FEE842;
     // Nethermind [nethermind]
     address internal constant DVN_NETHERMIND = 0xDd7B5E1dB4AaFd5C8EC3b764eFB8ed265Aa5445B;
+    // StablecoinX [stablecoinx]
+    address internal constant DVN_STABLECOINX = 0xC1b2De93c34bb031590Fc4fBe6eFbc5e2E0B10eF;
     // Stargate [stargate]
     address internal constant DVN_STARGATE = 0x7976b969A8E9560C483229FfBB855E8440898c9D;
     // TSS [tss]
@@ -11613,13 +11685,13 @@ library LayerZeroV2TiltyardMainnet {
 }
 
 library LayerZeroV2DVNTiltyardMainnet {
-    // Horizen [horizen-labs]
+    // Horizen (deprecated) [horizen-labs]
     address internal constant DVN_HORIZEN = 0x0165C910Ea47964a23DC4FB7c7483F6f3ad462aE;
     // LZDeadDVN (deprecated) [lz-dead-dvn]
     address internal constant DVN_LZ_DEAD = 0xa50d9C4aD49933f7bC0574D8c54427EC42C2B073;
-    // LayerZero Labs [layerzero-labs]
+    // LayerZero Labs (deprecated) [layerzero-labs]
     address internal constant DVN_LAYERZERO_LABS = 0xCFc3f9dD0205b76FF04e20243f106465Dd829656;
-    // TSS [tss]
+    // TSS (deprecated) [tss]
     address internal constant DVN_TSS = 0xfDfA2330713A8e2EaC6e4f15918F11937fFA4dBE;
 }
 
@@ -12181,6 +12253,8 @@ library LayerZeroV2DVNXlayerMainnet {
     address internal constant DVN_PAXOS = 0x8bEFB8cd9529e539B095251Ea3a058e710225D30;
     // Polyhedra [polyhedra-network]
     address internal constant DVN_POLYHEDRA = 0x8ddF05F9A5c488b4973897E278B58895bF87Cb24;
+    // StablecoinX [stablecoinx]
+    address internal constant DVN_STABLECOINX = 0x47FE112E334F5F766db3c44F7C1813468240EdE9;
     // TSS [tss]
     address internal constant DVN_TSS = 0x4b80F7d25c451D204b1C93D9bdf2aB3B04f3EA4a;
     // USDT0 [usdt0]
@@ -12414,6 +12488,8 @@ library LayerZeroV2DVNZircuitMainnet {
     address internal constant DVN_LAYERZERO_LABS = 0x6788f52439ACA6BFF597d3eeC2DC9a44B8FEE842;
     // Nethermind [nethermind]
     address internal constant DVN_NETHERMIND = 0xDd7B5E1dB4AaFd5C8EC3b764eFB8ed265Aa5445B;
+    // StablecoinX [stablecoinx]
+    address internal constant DVN_STABLECOINX = 0xA70C51C38D5A9990F3113a403D74EBa01fce4CCb;
     // Stakingcabin [stakingcabin]
     address internal constant DVN_STAKINGCABIN = 0x92ef4381a03372985985E70fb15E9F081E2e8D14;
     // TSS [tss]
@@ -12572,6 +12648,8 @@ library LayerZeroV2DVNZkconsensysMainnet {
     address internal constant DVN_POLYHEDRA = 0x8ddF05F9A5c488b4973897E278B58895bF87Cb24;
     // Polyhedra [polyhedra-network]
     address internal constant DVN_POLYHEDRA_2 = 0xE014fe8c4d5C23EDB7AC4011F226e869ac7Ef5CC;
+    // StablecoinX [stablecoinx]
+    address internal constant DVN_STABLECOINX = 0xbfFc55245174D3a877A448aeB3b979b8d24E19Fb;
     // Stargate [stargate]
     address internal constant DVN_STARGATE = 0xEf269BBaDB81DE86E4b3278fa1DAe1723545268b;
     // Superform [superform]
@@ -12814,6 +12892,8 @@ library LayerZeroV2DVNZksyncMainnet {
     address internal constant DVN_LAYERZERO_LABS = 0x620A9DF73D2F1015eA75aea1067227F9013f5C51;
     // Nethermind [nethermind]
     address internal constant DVN_NETHERMIND = 0xb183c2b91cf76cAd13602b32ADa2Fd273f19009C;
+    // StablecoinX [stablecoinx]
+    address internal constant DVN_STABLECOINX = 0xD45174e7654977e8bc3D0648D06c89401978A65a;
     // Stargate [stargate]
     address internal constant DVN_STARGATE = 0x62aA89bAd332788021F6F4F4Fb196D5Fe59C27a6;
     // TSS [tss]

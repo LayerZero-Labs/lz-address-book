@@ -418,6 +418,23 @@ library StargateFuseMainnet {
     address internal constant WETH_TOKEN = 0x2F6F07CDcf3588944Bf4C42aC74ff24bF56e7590;
 }
 
+library StargateGatelayerMainnet {
+    // Chain metadata
+    uint32 internal constant EID = 30389;
+    uint256 internal constant CHAIN_ID = 10088;
+    string internal constant CHAIN_NAME = "gatelayer-mainnet";
+
+    address internal constant TOKEN_MESSAGING = 0x31EEf89D5215C305304a2fA5376a1f1b6C5dc477;
+
+    // USDC.e (StargateOFT)
+    address internal constant USDC_E_OFT = 0x0829F361A05D993d5CEb035cA6DF3446b060970b;
+    address internal constant USDC_E_TOKEN = 0x8a2B28364102Bea189D99A475C494330Ef2bDD0B;
+
+    // WETH (StargateOFT)
+    address internal constant WETH_OFT = 0x783129E4d7bA0Af0C896c239E57C06DF379aAE8c;
+    address internal constant WETH_TOKEN = 0x60219C44E146BAf36002eA73767820238Ebc1db6;
+}
+
 library StargateGlueMainnet {
     // Chain metadata
     uint32 internal constant EID = 30342;
