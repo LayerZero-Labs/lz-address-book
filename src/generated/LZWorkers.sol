@@ -1001,6 +1001,7 @@ contract LZWorkers is ILZWorkers {
 
         // MantleCross
         _registerDVN("MantleCross", 30101, 0x96A2894042dFEc802a23B1Ad02f0314AC24B6010); // ethereum-mainnet
+        _registerDVN("MantleCross", 30367, 0x96b2ed9aD07eF550148b7E98f35Ad201D993259a); // hyperliquid-mainnet
         _registerDVN("MantleCross", 40362, 0xbFf0ACe8c82522F6959e3a7E45814f1af7a67FCF); // hyperliquid-testnet
         _registerDVN("MantleCross", 30181, 0x7a7A3Bfa6CF44136CD173fc5FcBd00BCD05d7866); // mantle-mainnet
         _registerDVN("MantleCross", 40246, 0xe6cCF6A2bc6671c6E3d862B1148457979F0353c5); // mantlesep-testnet
