@@ -3,13 +3,13 @@ pragma solidity ^0.8.20;
 
 // Auto-generated from LayerZero metadata - do not edit manually
 // Source: https://metadata.layerzero-api.com/v1/metadata/deployments
-// DATA_HASH: 0xbc87d03ba60c570b54ada157f0a10c3a8d1fc772605a17a4d48ffc3571f3507f
+// DATA_HASH: 0x5a0c43fdb84006963333774b715657a75463ebd50765468d4d9655780edc3490
 
 import {ILayerZeroEndpointV2} from "@layerzerolabs/lz-evm-protocol-v2/contracts/interfaces/ILayerZeroEndpointV2.sol";
 import {IMessageLib} from "@layerzerolabs/lz-evm-protocol-v2/contracts/interfaces/IMessageLib.sol";
 
 // DATA_HASH for provenance tracking (LZIP spec requirement)
-bytes32 constant LZ_ADDRESSES_DATA_HASH = 0xbc87d03ba60c570b54ada157f0a10c3a8d1fc772605a17a4d48ffc3571f3507f;
+bytes32 constant LZ_ADDRESSES_DATA_HASH = 0x5a0c43fdb84006963333774b715657a75463ebd50765468d4d9655780edc3490;
 
 library LayerZeroV2AavegotchiTestnet {
     // Chain metadata
@@ -5481,6 +5481,8 @@ library LayerZeroV2DVNHyperliquidMainnet {
     address internal constant DVN_MIM = 0x32B29d6B6cd4A851548A6E888Cc25E39E8a16d86;
     // Mantle03 [mantle03]
     address internal constant DVN_MANTLE03 = 0xbBD228Fa47A8E80FbBfB778Abc56031Fa2C038ce;
+    // MantleCross [mantlecross]
+    address internal constant DVN_MANTLECROSS = 0x96b2ed9aD07eF550148b7E98f35Ad201D993259a;
     // Nansen [nansen]
     address internal constant DVN_NANSEN = 0xcFe987eBFf7612B53D145DD70EE24D00E12d6A1F;
     // Nethermind [nethermind]
