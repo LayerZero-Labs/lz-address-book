@@ -1722,6 +1722,17 @@ contract LZProtocol is ILZProtocol {
             new string[](0)
         );
         _registerChain(
+            LayerZeroV2ArcTestnet.EID,
+            address(LayerZeroV2ArcTestnet.ENDPOINT_V2),
+            address(LayerZeroV2ArcTestnet.SEND_ULN_302),
+            address(LayerZeroV2ArcTestnet.RECEIVE_ULN_302),
+            LayerZeroV2ArcTestnet.BLOCKED_MESSAGE_LIB,
+            LayerZeroV2ArcTestnet.EXECUTOR,
+            LayerZeroV2ArcTestnet.CHAIN_ID,
+            "arc-testnet",
+            new string[](0)
+        );
+        _registerChain(
             LayerZeroV2AstarTestnet.EID,
             address(LayerZeroV2AstarTestnet.ENDPOINT_V2),
             address(LayerZeroV2AstarTestnet.SEND_ULN_302),
@@ -1983,6 +1994,17 @@ contract LZProtocol is ILZProtocol {
             LayerZeroV2CeloTestnet.EXECUTOR,
             LayerZeroV2CeloTestnet.CHAIN_ID,
             "celo-testnet",
+            new string[](0)
+        );
+        _registerChain(
+            LayerZeroV2ChilizspicyTestnet.EID,
+            address(LayerZeroV2ChilizspicyTestnet.ENDPOINT_V2),
+            address(LayerZeroV2ChilizspicyTestnet.SEND_ULN_302),
+            address(LayerZeroV2ChilizspicyTestnet.RECEIVE_ULN_302),
+            LayerZeroV2ChilizspicyTestnet.BLOCKED_MESSAGE_LIB,
+            LayerZeroV2ChilizspicyTestnet.EXECUTOR,
+            LayerZeroV2ChilizspicyTestnet.CHAIN_ID,
+            "chilizspicy-testnet",
             new string[](0)
         );
         _registerChain(
@@ -2797,6 +2819,17 @@ contract LZProtocol is ILZProtocol {
             LayerZeroV2MonadTestnet.EXECUTOR,
             LayerZeroV2MonadTestnet.CHAIN_ID,
             "monad-testnet",
+            new string[](0)
+        );
+        _registerChain(
+            LayerZeroV2Monad2Testnet.EID,
+            address(LayerZeroV2Monad2Testnet.ENDPOINT_V2),
+            address(LayerZeroV2Monad2Testnet.SEND_ULN_302),
+            address(LayerZeroV2Monad2Testnet.RECEIVE_ULN_302),
+            LayerZeroV2Monad2Testnet.BLOCKED_MESSAGE_LIB,
+            LayerZeroV2Monad2Testnet.EXECUTOR,
+            LayerZeroV2Monad2Testnet.CHAIN_ID,
+            "monad2-testnet",
             new string[](0)
         );
         _registerChain(
