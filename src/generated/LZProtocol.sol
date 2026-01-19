@@ -807,6 +807,17 @@ contract LZProtocol is ILZProtocol {
             new string[](0)
         );
         _registerChain(
+            LayerZeroV2KiteMainnet.EID,
+            address(LayerZeroV2KiteMainnet.ENDPOINT_V2),
+            address(LayerZeroV2KiteMainnet.SEND_ULN_302),
+            address(LayerZeroV2KiteMainnet.RECEIVE_ULN_302),
+            LayerZeroV2KiteMainnet.BLOCKED_MESSAGE_LIB,
+            LayerZeroV2KiteMainnet.EXECUTOR,
+            LayerZeroV2KiteMainnet.CHAIN_ID,
+            "kite-mainnet",
+            new string[](0)
+        );
+        _registerChain(
             LayerZeroV2KlaytnMainnet.EID,
             address(LayerZeroV2KlaytnMainnet.ENDPOINT_V2),
             address(LayerZeroV2KlaytnMainnet.SEND_ULN_302),
@@ -958,6 +969,17 @@ contract LZProtocol is ILZProtocol {
             LayerZeroV2MetisMainnet.EXECUTOR,
             LayerZeroV2MetisMainnet.CHAIN_ID,
             "metis-mainnet",
+            new string[](0)
+        );
+        _registerChain(
+            LayerZeroV2MocaMainnet.EID,
+            address(LayerZeroV2MocaMainnet.ENDPOINT_V2),
+            address(LayerZeroV2MocaMainnet.SEND_ULN_302),
+            address(LayerZeroV2MocaMainnet.RECEIVE_ULN_302),
+            LayerZeroV2MocaMainnet.BLOCKED_MESSAGE_LIB,
+            LayerZeroV2MocaMainnet.EXECUTOR,
+            LayerZeroV2MocaMainnet.CHAIN_ID,
+            "moca-mainnet",
             new string[](0)
         );
         _registerChain(
@@ -1137,6 +1159,17 @@ contract LZProtocol is ILZProtocol {
             new string[](0)
         );
         _registerChain(
+            LayerZeroV2PharosMainnet.EID,
+            address(LayerZeroV2PharosMainnet.ENDPOINT_V2),
+            address(LayerZeroV2PharosMainnet.SEND_ULN_302),
+            address(LayerZeroV2PharosMainnet.RECEIVE_ULN_302),
+            LayerZeroV2PharosMainnet.BLOCKED_MESSAGE_LIB,
+            LayerZeroV2PharosMainnet.EXECUTOR,
+            LayerZeroV2PharosMainnet.CHAIN_ID,
+            "pharos-mainnet",
+            new string[](0)
+        );
+        _registerChain(
             LayerZeroV2PlasmaMainnet.EID,
             address(LayerZeroV2PlasmaMainnet.ENDPOINT_V2),
             address(LayerZeroV2PlasmaMainnet.SEND_ULN_302),
@@ -1222,6 +1255,17 @@ contract LZProtocol is ILZProtocol {
             LayerZeroV2ReyaMainnet.EXECUTOR,
             LayerZeroV2ReyaMainnet.CHAIN_ID,
             "reya-mainnet",
+            new string[](0)
+        );
+        _registerChain(
+            LayerZeroV2RiseMainnet.EID,
+            address(LayerZeroV2RiseMainnet.ENDPOINT_V2),
+            address(LayerZeroV2RiseMainnet.SEND_ULN_302),
+            address(LayerZeroV2RiseMainnet.RECEIVE_ULN_302),
+            LayerZeroV2RiseMainnet.BLOCKED_MESSAGE_LIB,
+            LayerZeroV2RiseMainnet.EXECUTOR,
+            LayerZeroV2RiseMainnet.CHAIN_ID,
+            "rise-mainnet",
             new string[](0)
         );
         _registerChain(
@@ -1722,6 +1766,17 @@ contract LZProtocol is ILZProtocol {
             new string[](0)
         );
         _registerChain(
+            LayerZeroV2ArcTestnet.EID,
+            address(LayerZeroV2ArcTestnet.ENDPOINT_V2),
+            address(LayerZeroV2ArcTestnet.SEND_ULN_302),
+            address(LayerZeroV2ArcTestnet.RECEIVE_ULN_302),
+            LayerZeroV2ArcTestnet.BLOCKED_MESSAGE_LIB,
+            LayerZeroV2ArcTestnet.EXECUTOR,
+            LayerZeroV2ArcTestnet.CHAIN_ID,
+            "arc-testnet",
+            new string[](0)
+        );
+        _registerChain(
             LayerZeroV2AstarTestnet.EID,
             address(LayerZeroV2AstarTestnet.ENDPOINT_V2),
             address(LayerZeroV2AstarTestnet.SEND_ULN_302),
@@ -1983,6 +2038,17 @@ contract LZProtocol is ILZProtocol {
             LayerZeroV2CeloTestnet.EXECUTOR,
             LayerZeroV2CeloTestnet.CHAIN_ID,
             "celo-testnet",
+            new string[](0)
+        );
+        _registerChain(
+            LayerZeroV2ChilizspicyTestnet.EID,
+            address(LayerZeroV2ChilizspicyTestnet.ENDPOINT_V2),
+            address(LayerZeroV2ChilizspicyTestnet.SEND_ULN_302),
+            address(LayerZeroV2ChilizspicyTestnet.RECEIVE_ULN_302),
+            LayerZeroV2ChilizspicyTestnet.BLOCKED_MESSAGE_LIB,
+            LayerZeroV2ChilizspicyTestnet.EXECUTOR,
+            LayerZeroV2ChilizspicyTestnet.CHAIN_ID,
+            "chilizspicy-testnet",
             new string[](0)
         );
         _registerChain(
@@ -2797,6 +2863,17 @@ contract LZProtocol is ILZProtocol {
             LayerZeroV2MonadTestnet.EXECUTOR,
             LayerZeroV2MonadTestnet.CHAIN_ID,
             "monad-testnet",
+            new string[](0)
+        );
+        _registerChain(
+            LayerZeroV2Monad2Testnet.EID,
+            address(LayerZeroV2Monad2Testnet.ENDPOINT_V2),
+            address(LayerZeroV2Monad2Testnet.SEND_ULN_302),
+            address(LayerZeroV2Monad2Testnet.RECEIVE_ULN_302),
+            LayerZeroV2Monad2Testnet.BLOCKED_MESSAGE_LIB,
+            LayerZeroV2Monad2Testnet.EXECUTOR,
+            LayerZeroV2Monad2Testnet.CHAIN_ID,
+            "monad2-testnet",
             new string[](0)
         );
         _registerChain(

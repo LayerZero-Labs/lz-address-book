@@ -1378,6 +1378,19 @@ contract STGProtocol is ISTGProtocol {
             StargateType.OFT
         );
 
+        // redbelly-mainnet (Stargate: redbelly)
+        _tokenMessaging["redbelly-mainnet"] = 0xEd4469f9823718419C9cc8bbe24730C1af29002C;
+        _registerChain("redbelly-mainnet");
+        _registerAsset(
+            "redbelly-mainnet",
+            "USDC.e",
+            0xF07De8B1e1983F008Cf9426773Fd442cF21319aC,
+            0xE08DED898D7782B085cD240d7B234063696765aD,
+            6,
+            6,
+            StargateType.OFT
+        );
+
         // rootstock-mainnet (Stargate: rootstock)
         _tokenMessaging["rootstock-mainnet"] = 0x45A01E4e04F14f7A4a6702c74187c5F6222033cd;
         _registerChain("rootstock-mainnet");
@@ -1817,6 +1830,8 @@ contract STGProtocol is ISTGProtocol {
         _chainIdToChainName[137] = "polygon-mainnet";
         _eidToChainName[30235] = "rarible-mainnet";
         _chainIdToChainName[1380012617] = "rarible-mainnet";
+        _eidToChainName[30402] = "redbelly-mainnet";
+        _chainIdToChainName[151] = "redbelly-mainnet";
         _eidToChainName[30333] = "rootstock-mainnet";
         _chainIdToChainName[30] = "rootstock-mainnet";
         _eidToChainName[30214] = "scroll-mainnet";
