@@ -943,6 +943,19 @@ library StargateRaribleMainnet {
     address internal constant USDT_TOKEN = 0x362FAE9A75B27BBc550aAc28a7c1F96C8D483120;
 }
 
+library StargateRedbellyMainnet {
+    // Chain metadata
+    uint32 internal constant EID = 30402;
+    uint256 internal constant CHAIN_ID = 151;
+    string internal constant CHAIN_NAME = "redbelly-mainnet";
+
+    address internal constant TOKEN_MESSAGING = 0xEd4469f9823718419C9cc8bbe24730C1af29002C;
+
+    // USDC.e (StargateOFT)
+    address internal constant USDC_E_OFT = 0xF07De8B1e1983F008Cf9426773Fd442cF21319aC;
+    address internal constant USDC_E_TOKEN = 0xE08DED898D7782B085cD240d7B234063696765aD;
+}
+
 library StargateRootstockMainnet {
     // Chain metadata
     uint32 internal constant EID = 30333;
