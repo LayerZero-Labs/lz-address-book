@@ -3,13 +3,13 @@ pragma solidity ^0.8.20;
 
 // Auto-generated from LayerZero metadata - do not edit manually
 // Source: https://metadata.layerzero-api.com/v1/metadata/deployments
-// DATA_HASH: 0xd999ab84b82b5db1b5093d33162b3a9a03b5674e0de09dc029f6cd52ca773386
+// DATA_HASH: 0x13d9506399a352cef0061f008a2c22ced265df4bb68e5c0373e43b4f77ce3be8
 
 import {ILayerZeroEndpointV2} from "@layerzerolabs/lz-evm-protocol-v2/contracts/interfaces/ILayerZeroEndpointV2.sol";
 import {IMessageLib} from "@layerzerolabs/lz-evm-protocol-v2/contracts/interfaces/IMessageLib.sol";
 
 // DATA_HASH for provenance tracking (LZIP spec requirement)
-bytes32 constant LZ_ADDRESSES_DATA_HASH = 0xd999ab84b82b5db1b5093d33162b3a9a03b5674e0de09dc029f6cd52ca773386;
+bytes32 constant LZ_ADDRESSES_DATA_HASH = 0x13d9506399a352cef0061f008a2c22ced265df4bb68e5c0373e43b4f77ce3be8;
 
 library LayerZeroV2AavegotchiTestnet {
     // Chain metadata
@@ -12507,7 +12507,7 @@ library LayerZeroV2DVNXlayerTestnet {
 library LayerZeroV2Xlayer2Testnet {
     // Chain metadata
     uint32 internal constant EID = 40416;
-    uint256 internal constant CHAIN_ID = 196;
+    uint256 internal constant CHAIN_ID = 1952;
     string internal constant CHAIN_NAME = "xlayer2-testnet";
 
     // Core protocol
