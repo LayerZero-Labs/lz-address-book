@@ -12477,7 +12477,7 @@ library LayerZeroV2DVNXlayerMainnet {
 library LayerZeroV2XlayerTestnet {
     // Chain metadata
     uint32 internal constant EID = 40269;
-    uint256 internal constant CHAIN_ID = 195;
+    uint256 internal constant CHAIN_ID = 1952;
     string internal constant CHAIN_NAME = "xlayer-testnet";
 
     // Core protocol
@@ -12502,37 +12502,6 @@ library LayerZeroV2DVNXlayerTestnet {
     address internal constant DVN_NETHERMIND = 0x4BC3343593c0bB0E70639d5C0fDBc67e05fE4183;
     // Paxos [paxos]
     address internal constant DVN_PAXOS = 0xf0a6f5472b3c643Aa7Fac691f1A1d23fE2D2BCEE;
-}
-
-library LayerZeroV2Xlayer2Testnet {
-    // Chain metadata
-    uint32 internal constant EID = 40416;
-    uint256 internal constant CHAIN_ID = 196;
-    string internal constant CHAIN_NAME = "xlayer2-testnet";
-
-    // Core protocol
-    ILayerZeroEndpointV2 internal constant ENDPOINT_V2 =
-        ILayerZeroEndpointV2(0x3aCAAf60502791D199a5a5F0B173D78229eBFe32);
-
-    // Message libraries
-    IMessageLib internal constant SEND_ULN_302 = IMessageLib(0x45841dd1ca50265Da7614fC43A361e526c0e6160);
-    address internal constant BLOCKED_MESSAGE_LIB = 0xa229B65CC2191BF60bc24eFcDa3487D7b5C0C9f0;
-    IMessageLib internal constant RECEIVE_ULN_302 = IMessageLib(0xd682ECF100f6F4284138AA925348633B0611Ae21);
-
-    // Other contracts
-    address internal constant ENDPOINT_V2_VIEW = 0x6Ac7bdc07A0583A362F1497252872AE6c0A5F5B8;
-    address internal constant EXECUTOR = 0x701f3927871EfcEa1235dB722f9E608aE120d243;
-    address internal constant DEAD_DVN = 0x88B27057A9e00c5F05DDa29241027afF63f9e6e0;
-    address internal constant LZ_EXECUTOR = 0x4Cf1B3Fa61465c2c907f82fC488B43223BA0CF93;
-}
-
-library LayerZeroV2DVNXlayer2Testnet {
-    // LZDeadDVN (deprecated) [lz-dead-dvn]
-    address internal constant DVN_LZ_DEAD = 0x88B27057A9e00c5F05DDa29241027afF63f9e6e0;
-    // LayerZero Labs [layerzero-labs]
-    address internal constant DVN_LAYERZERO_LABS = 0xa78A78a13074eD93aD447a26Ec57121f29E8feC2;
-    // Paxos [paxos]
-    address internal constant DVN_PAXOS = 0x6A507BA8080fB3856d58b540623E4C9Eb98E4070;
 }
 
 library LayerZeroV2XplaMainnet {

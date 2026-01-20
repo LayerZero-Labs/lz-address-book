@@ -924,7 +924,6 @@ contract LZWorkers is ILZWorkers {
         _registerDVN("LayerZero Labs", 30365, 0x6788f52439ACA6BFF597d3eeC2DC9a44B8FEE842); // xdc-mainnet
         _registerDVN("LayerZero Labs", 30274, 0x9C061c9A4782294eeF65ef28Cb88233A987F4bdD); // xlayer-mainnet
         _registerDVN("LayerZero Labs", 40269, 0x55c175DD5b039331dB251424538169D8495C18d1); // xlayer-testnet
-        _registerDVN("LayerZero Labs", 40416, 0xa78A78a13074eD93aD447a26Ec57121f29E8feC2); // xlayer2-testnet
         _registerDVN("LayerZero Labs", 30216, 0x2d24207F9C1F77B2E08F2C3aD430da18e355CF66); // xpla-mainnet
         _registerDVN("LayerZero Labs", 40216, 0x0747D0dabb284E5FBaEEeA427BBa7b2fba507120); // xpla-testnet
         _registerDVN("LayerZero Labs", 30397, 0x282b3386571f7f794450d5789911a9804FA346b4); // zama-mainnet
@@ -1317,7 +1316,6 @@ contract LZWorkers is ILZWorkers {
         _registerDVN("Paxos", 40161, 0x51172653a6a1ebB0D4d716bf2E4f57f41507668C); // sepolia-testnet
         _registerDVN("Paxos", 30274, 0x8bEFB8cd9529e539B095251Ea3a058e710225D30); // xlayer-mainnet
         _registerDVN("Paxos", 40269, 0xf0a6f5472b3c643Aa7Fac691f1A1d23fE2D2BCEE); // xlayer-testnet
-        _registerDVN("Paxos", 40416, 0x6A507BA8080fB3856d58b540623E4C9Eb98E4070); // xlayer2-testnet
 
         // Planetarium
         _registerDVN("Planetarium", 30110, 0xe6CD8c2E46Ef396DF88048449e5B1C75172b40C3); // arbitrum-mainnet
@@ -2458,8 +2456,6 @@ contract LZWorkers is ILZWorkers {
         _eidToChainName[30274] = "xlayer-mainnet";
         _chainNameToEid["xlayer-testnet"] = 40269;
         _eidToChainName[40269] = "xlayer-testnet";
-        _chainNameToEid["xlayer2-testnet"] = 40416;
-        _eidToChainName[40416] = "xlayer2-testnet";
         _chainNameToEid["xpla-mainnet"] = 30216;
         _eidToChainName[30216] = "xpla-mainnet";
         _chainNameToEid["xpla-testnet"] = 40216;

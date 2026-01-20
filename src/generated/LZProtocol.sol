@@ -3570,17 +3570,6 @@ contract LZProtocol is ILZProtocol {
             new string[](0)
         );
         _registerChain(
-            LayerZeroV2Xlayer2Testnet.EID,
-            address(LayerZeroV2Xlayer2Testnet.ENDPOINT_V2),
-            address(LayerZeroV2Xlayer2Testnet.SEND_ULN_302),
-            address(LayerZeroV2Xlayer2Testnet.RECEIVE_ULN_302),
-            LayerZeroV2Xlayer2Testnet.BLOCKED_MESSAGE_LIB,
-            LayerZeroV2Xlayer2Testnet.EXECUTOR,
-            LayerZeroV2Xlayer2Testnet.CHAIN_ID,
-            "xlayer2-testnet",
-            new string[](0)
-        );
-        _registerChain(
             LayerZeroV2XplaTestnet.EID,
             address(LayerZeroV2XplaTestnet.ENDPOINT_V2),
             address(LayerZeroV2XplaTestnet.SEND_ULN_302),
