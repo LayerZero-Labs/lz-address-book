@@ -1390,6 +1390,15 @@ contract STGProtocol is ISTGProtocol {
             6,
             StargateType.OFT
         );
+        _registerAsset(
+            "redbelly-mainnet",
+            "WETH",
+            0xf4512D4946A7F09D2B50D467a02e6B96d5670268,
+            0x5a7e19089909c92ae07a1bd33d3FeF428312DebA,
+            18,
+            6,
+            StargateType.OFT
+        );
 
         // rootstock-mainnet (Stargate: rootstock)
         _tokenMessaging["rootstock-mainnet"] = 0x45A01E4e04F14f7A4a6702c74187c5F6222033cd;

@@ -3,13 +3,13 @@ pragma solidity ^0.8.20;
 
 // Auto-generated from LayerZero metadata - do not edit manually
 // Source: https://metadata.layerzero-api.com/v1/metadata/deployments
-// DATA_HASH: 0x13d9506399a352cef0061f008a2c22ced265df4bb68e5c0373e43b4f77ce3be8
+// DATA_HASH: 0x785d6e0c9f65882bc745ccb20e4dad7011eea9661fb6b46ef3056e6cc0863e6b
 
 import {ILayerZeroEndpointV2} from "@layerzerolabs/lz-evm-protocol-v2/contracts/interfaces/ILayerZeroEndpointV2.sol";
 import {IMessageLib} from "@layerzerolabs/lz-evm-protocol-v2/contracts/interfaces/IMessageLib.sol";
 
 // DATA_HASH for provenance tracking (LZIP spec requirement)
-bytes32 constant LZ_ADDRESSES_DATA_HASH = 0x13d9506399a352cef0061f008a2c22ced265df4bb68e5c0373e43b4f77ce3be8;
+bytes32 constant LZ_ADDRESSES_DATA_HASH = 0x785d6e0c9f65882bc745ccb20e4dad7011eea9661fb6b46ef3056e6cc0863e6b;
 
 library LayerZeroV2AavegotchiTestnet {
     // Chain metadata
