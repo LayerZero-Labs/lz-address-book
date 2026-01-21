@@ -954,6 +954,10 @@ library StargateRedbellyMainnet {
     // USDC.e (StargateOFT)
     address internal constant USDC_E_OFT = 0xF07De8B1e1983F008Cf9426773Fd442cF21319aC;
     address internal constant USDC_E_TOKEN = 0xE08DED898D7782B085cD240d7B234063696765aD;
+
+    // WETH (StargateOFT)
+    address internal constant WETH_OFT = 0xf4512D4946A7F09D2B50D467a02e6B96d5670268;
+    address internal constant WETH_TOKEN = 0x5a7e19089909c92ae07a1bd33d3FeF428312DebA;
 }
 
 library StargateRootstockMainnet {
