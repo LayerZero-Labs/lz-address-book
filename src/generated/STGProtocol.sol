@@ -1848,7 +1848,7 @@ contract STGProtocol is ISTGProtocol {
         _eidToChainName[30280] = "sei-mainnet";
         _chainIdToChainName[1329] = "sei-mainnet";
         _eidToChainName[30380] = "somnia-mainnet";
-        _chainIdToChainName[50312] = "somnia-mainnet";
+        _chainIdToChainName[5031] = "somnia-mainnet";
         _eidToChainName[30340] = "soneium-mainnet";
         _chainIdToChainName[1868] = "soneium-mainnet";
         _eidToChainName[30332] = "sonic-mainnet";

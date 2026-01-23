@@ -2536,6 +2536,17 @@ contract LZProtocol is ILZProtocol {
             new string[](0)
         );
         _registerChain(
+            LayerZeroV2IrysTestnet.EID,
+            address(LayerZeroV2IrysTestnet.ENDPOINT_V2),
+            address(LayerZeroV2IrysTestnet.SEND_ULN_302),
+            address(LayerZeroV2IrysTestnet.RECEIVE_ULN_302),
+            LayerZeroV2IrysTestnet.BLOCKED_MESSAGE_LIB,
+            LayerZeroV2IrysTestnet.EXECUTOR,
+            LayerZeroV2IrysTestnet.CHAIN_ID,
+            "irys-testnet",
+            new string[](0)
+        );
+        _registerChain(
             LayerZeroV2JocTestnet.EID,
             address(LayerZeroV2JocTestnet.ENDPOINT_V2),
             address(LayerZeroV2JocTestnet.SEND_ULN_302),
@@ -2544,6 +2555,17 @@ contract LZProtocol is ILZProtocol {
             LayerZeroV2JocTestnet.EXECUTOR,
             LayerZeroV2JocTestnet.CHAIN_ID,
             "joc-testnet",
+            new string[](0)
+        );
+        _registerChain(
+            LayerZeroV2JovayTestnet.EID,
+            address(LayerZeroV2JovayTestnet.ENDPOINT_V2),
+            address(LayerZeroV2JovayTestnet.SEND_ULN_302),
+            address(LayerZeroV2JovayTestnet.RECEIVE_ULN_302),
+            LayerZeroV2JovayTestnet.BLOCKED_MESSAGE_LIB,
+            LayerZeroV2JovayTestnet.EXECUTOR,
+            LayerZeroV2JovayTestnet.CHAIN_ID,
+            "jovay-testnet",
             new string[](0)
         );
         _registerChain(
@@ -2841,6 +2863,17 @@ contract LZProtocol is ILZProtocol {
             LayerZeroV2ModeTestnet.EXECUTOR,
             LayerZeroV2ModeTestnet.CHAIN_ID,
             "mode-testnet",
+            new string[](0)
+        );
+        _registerChain(
+            LayerZeroV2ModeratoTestnet.EID,
+            address(LayerZeroV2ModeratoTestnet.ENDPOINT_V2),
+            address(LayerZeroV2ModeratoTestnet.SEND_ULN_302),
+            address(LayerZeroV2ModeratoTestnet.RECEIVE_ULN_302),
+            LayerZeroV2ModeratoTestnet.BLOCKED_MESSAGE_LIB,
+            LayerZeroV2ModeratoTestnet.EXECUTOR,
+            LayerZeroV2ModeratoTestnet.CHAIN_ID,
+            "moderato-testnet",
             new string[](0)
         );
         _registerChain(
@@ -3160,6 +3193,17 @@ contract LZProtocol is ILZProtocol {
             LayerZeroV2RaribleTestnet.EXECUTOR,
             LayerZeroV2RaribleTestnet.CHAIN_ID,
             "rarible-testnet",
+            new string[](0)
+        );
+        _registerChain(
+            LayerZeroV2RaylsdevnetTestnet.EID,
+            address(LayerZeroV2RaylsdevnetTestnet.ENDPOINT_V2),
+            address(LayerZeroV2RaylsdevnetTestnet.SEND_ULN_302),
+            address(LayerZeroV2RaylsdevnetTestnet.RECEIVE_ULN_302),
+            LayerZeroV2RaylsdevnetTestnet.BLOCKED_MESSAGE_LIB,
+            LayerZeroV2RaylsdevnetTestnet.EXECUTOR,
+            LayerZeroV2RaylsdevnetTestnet.CHAIN_ID,
+            "raylsdevnet-testnet",
             new string[](0)
         );
         _registerChain(
