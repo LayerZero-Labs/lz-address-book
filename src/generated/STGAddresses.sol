@@ -1038,7 +1038,7 @@ library StargateSepolia {
 library StargateSomniaMainnet {
     // Chain metadata
     uint32 internal constant EID = 30380;
-    uint256 internal constant CHAIN_ID = 50312;
+    uint256 internal constant CHAIN_ID = 5031;
     string internal constant CHAIN_NAME = "somnia-mainnet";
 
     address internal constant TOKEN_MESSAGING = 0x78adD880A697070c1e765Ac44D65323a0DcCE913;

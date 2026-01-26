@@ -3,13 +3,13 @@ pragma solidity ^0.8.20;
 
 // Auto-generated from LayerZero metadata - do not edit manually
 // Source: https://metadata.layerzero-api.com/v1/metadata/deployments
-// DATA_HASH: 0x785d6e0c9f65882bc745ccb20e4dad7011eea9661fb6b46ef3056e6cc0863e6b
+// DATA_HASH: 0xe2da2e37eba61710d24f32dbbee5455089e3a83fc18ebc939275b0656318fdd5
 
 import {ILayerZeroEndpointV2} from "@layerzerolabs/lz-evm-protocol-v2/contracts/interfaces/ILayerZeroEndpointV2.sol";
 import {IMessageLib} from "@layerzerolabs/lz-evm-protocol-v2/contracts/interfaces/IMessageLib.sol";
 
 // DATA_HASH for provenance tracking (LZIP spec requirement)
-bytes32 constant LZ_ADDRESSES_DATA_HASH = 0x785d6e0c9f65882bc745ccb20e4dad7011eea9661fb6b46ef3056e6cc0863e6b;
+bytes32 constant LZ_ADDRESSES_DATA_HASH = 0xe2da2e37eba61710d24f32dbbee5455089e3a83fc18ebc939275b0656318fdd5;
 
 library LayerZeroV2AavegotchiTestnet {
     // Chain metadata
@@ -5889,6 +5889,35 @@ library LayerZeroV2DVNIotaTestnet {
     address internal constant DVN_LAYERZERO_LABS = 0xF49d162484290EAeAd7bb8C2c7E3a6f8f52e32d6;
 }
 
+library LayerZeroV2IrysTestnet {
+    // Chain metadata
+    uint32 internal constant EID = 40447;
+    uint256 internal constant CHAIN_ID = 1270;
+    string internal constant CHAIN_NAME = "irys-testnet";
+
+    // Core protocol
+    ILayerZeroEndpointV2 internal constant ENDPOINT_V2 =
+        ILayerZeroEndpointV2(0x3aCAAf60502791D199a5a5F0B173D78229eBFe32);
+
+    // Message libraries
+    IMessageLib internal constant SEND_ULN_302 = IMessageLib(0x45841dd1ca50265Da7614fC43A361e526c0e6160);
+    address internal constant BLOCKED_MESSAGE_LIB = 0xa229B65CC2191BF60bc24eFcDa3487D7b5C0C9f0;
+    IMessageLib internal constant RECEIVE_ULN_302 = IMessageLib(0xd682ECF100f6F4284138AA925348633B0611Ae21);
+
+    // Other contracts
+    address internal constant ENDPOINT_V2_VIEW = 0x6Ac7bdc07A0583A362F1497252872AE6c0A5F5B8;
+    address internal constant EXECUTOR = 0x701f3927871EfcEa1235dB722f9E608aE120d243;
+    address internal constant DEAD_DVN = 0x88B27057A9e00c5F05DDa29241027afF63f9e6e0;
+    address internal constant LZ_EXECUTOR = 0x4Cf1B3Fa61465c2c907f82fC488B43223BA0CF93;
+}
+
+library LayerZeroV2DVNIrysTestnet {
+    // LZDeadDVN (deprecated) [lz-dead-dvn]
+    address internal constant DVN_LZ_DEAD = 0x88B27057A9e00c5F05DDa29241027afF63f9e6e0;
+    // LayerZero Labs [layerzero-labs]
+    address internal constant DVN_LAYERZERO_LABS = 0xa78A78a13074eD93aD447a26Ec57121f29E8feC2;
+}
+
 library LayerZeroV2IslanderMainnet {
     // Chain metadata
     uint32 internal constant EID = 30330;
@@ -5991,6 +6020,35 @@ library LayerZeroV2DVNJocTestnet {
     address internal constant DVN_LAYERZERO_LABS = 0x9dB9Ca3305B48F196D18082e91cB64663b13d014;
     // TSS [tss]
     address internal constant DVN_TSS = 0x6C7Ab2202C98C4227C5c46f1417D81144DA716Ff;
+}
+
+library LayerZeroV2JovayTestnet {
+    // Chain metadata
+    uint32 internal constant EID = 40445;
+    uint256 internal constant CHAIN_ID = 2019775;
+    string internal constant CHAIN_NAME = "jovay-testnet";
+
+    // Core protocol
+    ILayerZeroEndpointV2 internal constant ENDPOINT_V2 =
+        ILayerZeroEndpointV2(0x3aCAAf60502791D199a5a5F0B173D78229eBFe32);
+
+    // Message libraries
+    IMessageLib internal constant SEND_ULN_302 = IMessageLib(0x45841dd1ca50265Da7614fC43A361e526c0e6160);
+    address internal constant BLOCKED_MESSAGE_LIB = 0xa229B65CC2191BF60bc24eFcDa3487D7b5C0C9f0;
+    IMessageLib internal constant RECEIVE_ULN_302 = IMessageLib(0xd682ECF100f6F4284138AA925348633B0611Ae21);
+
+    // Other contracts
+    address internal constant ENDPOINT_V2_VIEW = 0x6Ac7bdc07A0583A362F1497252872AE6c0A5F5B8;
+    address internal constant EXECUTOR = 0x701f3927871EfcEa1235dB722f9E608aE120d243;
+    address internal constant DEAD_DVN = 0x88B27057A9e00c5F05DDa29241027afF63f9e6e0;
+    address internal constant LZ_EXECUTOR = 0x4Cf1B3Fa61465c2c907f82fC488B43223BA0CF93;
+}
+
+library LayerZeroV2DVNJovayTestnet {
+    // LZDeadDVN (deprecated) [lz-dead-dvn]
+    address internal constant DVN_LZ_DEAD = 0x88B27057A9e00c5F05DDa29241027afF63f9e6e0;
+    // LayerZero Labs [layerzero-labs]
+    address internal constant DVN_LAYERZERO_LABS = 0xa78A78a13074eD93aD447a26Ec57121f29E8feC2;
 }
 
 library LayerZeroV2KatanaMainnet {
@@ -6188,10 +6246,14 @@ library LayerZeroV2KiteMainnet {
 }
 
 library LayerZeroV2DVNKiteMainnet {
+    // Horizen [horizen-labs]
+    address internal constant DVN_HORIZEN = 0x047d9DBe4fC6B5c916F37237F547f9F42809935a;
     // LZDeadDVN (deprecated) [lz-dead-dvn]
     address internal constant DVN_LZ_DEAD = 0x6788f52439ACA6BFF597d3eeC2DC9a44B8FEE842;
     // LayerZero Labs [layerzero-labs]
     address internal constant DVN_LAYERZERO_LABS = 0x282b3386571f7f794450d5789911a9804FA346b4;
+    // Nethermind [nethermind]
+    address internal constant DVN_NETHERMIND = 0xabC9b1819cc4D9846550F928B985993cF6240439;
 }
 
 library LayerZeroV2KiteTestnet {
@@ -7653,6 +7715,36 @@ library LayerZeroV2ModeTestnet {
 library LayerZeroV2DVNModeTestnet {
     // LayerZero Labs [layerzero-labs]
     address internal constant DVN_LAYERZERO_LABS = 0x12523de19dc41c91F7d2093E0CFbB76b17012C8d;
+}
+
+library LayerZeroV2ModeratoTestnet {
+    // Chain metadata
+    uint32 internal constant EID = 40444;
+    uint256 internal constant CHAIN_ID = 42431;
+    string internal constant CHAIN_NAME = "moderato-testnet";
+
+    // Core protocol
+    ILayerZeroEndpointV2 internal constant ENDPOINT_V2 =
+        ILayerZeroEndpointV2(0xFB34352bA2e2D9cB93837bb19D36db5d93BcFC41);
+
+    // Message libraries
+    IMessageLib internal constant SEND_ULN_302 = IMessageLib(0x91ec94dd5E949BdB2ecE3b91B9602EC5F7F59FFD);
+    address internal constant BLOCKED_MESSAGE_LIB = 0x8E5a93E491f4fc3adEAf8F2CBEB5c4236B19862a;
+    IMessageLib internal constant RECEIVE_ULN_302 = IMessageLib(0xfeBE4c839EFA9f506C092a32fD0BB546B76A1d38);
+
+    // Other contracts
+    address internal constant ENDPOINT_V2_VIEW = 0x9BDD19d8cF1cAB4972802bCA09f72d8c8325dBfB;
+    address internal constant LZENDPOINT_DOLLAR = 0x0e81579B25C9c458A2030824B7fdBd0194900803;
+    address internal constant EXECUTOR = 0xE665f5dFD91DFe883D36Cc8552D4Cc385aC23687;
+    address internal constant DEAD_DVN = 0x236B9303d513dDF3f4c4E93A640fB80A178872f1;
+    address internal constant LZ_EXECUTOR = 0x0aea570Ca89C43B1266938e77f52a8102eC29a18;
+}
+
+library LayerZeroV2DVNModeratoTestnet {
+    // LZDeadDVN (deprecated) [lz-dead-dvn]
+    address internal constant DVN_LZ_DEAD = 0x236B9303d513dDF3f4c4E93A640fB80A178872f1;
+    // LayerZero Labs [layerzero-labs]
+    address internal constant DVN_LAYERZERO_LABS = 0x0ac2924460A5b285fd205DeDB46738Ad46971061;
 }
 
 library LayerZeroV2MokshaTestnet {
@@ -9159,10 +9251,14 @@ library LayerZeroV2PharosMainnet {
 }
 
 library LayerZeroV2DVNPharosMainnet {
+    // Horizen [horizen-labs]
+    address internal constant DVN_HORIZEN = 0x7B8a0fD9D6ae5011d5cBD3E85Ed6D5510F98c9Bf;
     // LZDeadDVN (deprecated) [lz-dead-dvn]
     address internal constant DVN_LZ_DEAD = 0x6788f52439ACA6BFF597d3eeC2DC9a44B8FEE842;
     // LayerZero Labs [layerzero-labs]
     address internal constant DVN_LAYERZERO_LABS = 0x282b3386571f7f794450d5789911a9804FA346b4;
+    // Nethermind [nethermind]
+    address internal constant DVN_NETHERMIND = 0xDd7B5E1dB4AaFd5C8EC3b764eFB8ed265Aa5445B;
 }
 
 library LayerZeroV2PlasmaMainnet {
@@ -9731,6 +9827,35 @@ library LayerZeroV2DVNRaribleTestnet {
     address internal constant DVN_NETHERMIND = 0x48cD672a603615c6bEf4598646b33382844d1830;
 }
 
+library LayerZeroV2RaylsdevnetTestnet {
+    // Chain metadata
+    uint32 internal constant EID = 40446;
+    uint256 internal constant CHAIN_ID = 123123;
+    string internal constant CHAIN_NAME = "raylsdevnet-testnet";
+
+    // Core protocol
+    ILayerZeroEndpointV2 internal constant ENDPOINT_V2 =
+        ILayerZeroEndpointV2(0x3aCAAf60502791D199a5a5F0B173D78229eBFe32);
+
+    // Message libraries
+    IMessageLib internal constant SEND_ULN_302 = IMessageLib(0x45841dd1ca50265Da7614fC43A361e526c0e6160);
+    address internal constant BLOCKED_MESSAGE_LIB = 0xa229B65CC2191BF60bc24eFcDa3487D7b5C0C9f0;
+    IMessageLib internal constant RECEIVE_ULN_302 = IMessageLib(0xd682ECF100f6F4284138AA925348633B0611Ae21);
+
+    // Other contracts
+    address internal constant ENDPOINT_V2_VIEW = 0x6Ac7bdc07A0583A362F1497252872AE6c0A5F5B8;
+    address internal constant EXECUTOR = 0x701f3927871EfcEa1235dB722f9E608aE120d243;
+    address internal constant DEAD_DVN = 0x88B27057A9e00c5F05DDa29241027afF63f9e6e0;
+    address internal constant LZ_EXECUTOR = 0x4Cf1B3Fa61465c2c907f82fC488B43223BA0CF93;
+}
+
+library LayerZeroV2DVNRaylsdevnetTestnet {
+    // LZDeadDVN (deprecated) [lz-dead-dvn]
+    address internal constant DVN_LZ_DEAD = 0x88B27057A9e00c5F05DDa29241027afF63f9e6e0;
+    // LayerZero Labs [layerzero-labs]
+    address internal constant DVN_LAYERZERO_LABS = 0xa78A78a13074eD93aD447a26Ec57121f29E8feC2;
+}
+
 library LayerZeroV2Rc1Testnet {
     // Chain metadata
     uint32 internal constant EID = 40238;
@@ -9929,10 +10054,14 @@ library LayerZeroV2RiseMainnet {
 }
 
 library LayerZeroV2DVNRiseMainnet {
+    // Horizen [horizen-labs]
+    address internal constant DVN_HORIZEN = 0x276e6B1138d2d49C0Cda86658765d12Ef84550c1;
     // LZDeadDVN (deprecated) [lz-dead-dvn]
     address internal constant DVN_LZ_DEAD = 0x6788f52439ACA6BFF597d3eeC2DC9a44B8FEE842;
     // LayerZero Labs [layerzero-labs]
     address internal constant DVN_LAYERZERO_LABS = 0x282b3386571f7f794450d5789911a9804FA346b4;
+    // Nethermind [nethermind]
+    address internal constant DVN_NETHERMIND = 0x8D77D35604A9f37f488E41D1d916b2A0088F82Dd;
 }
 
 library LayerZeroV2RiseTestnet {
@@ -10696,7 +10825,7 @@ library LayerZeroV2DVNSkaleTestnet {
 library LayerZeroV2SomniaMainnet {
     // Chain metadata
     uint32 internal constant EID = 30380;
-    uint256 internal constant CHAIN_ID = 50312;
+    uint256 internal constant CHAIN_ID = 5031;
     string internal constant CHAIN_NAME = "somnia-mainnet";
 
     // Core protocol
