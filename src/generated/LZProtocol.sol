@@ -279,6 +279,17 @@ contract LZProtocol is ILZProtocol {
             new string[](0)
         );
         _registerChain(
+            LayerZeroV2ChilizMainnet.EID,
+            address(LayerZeroV2ChilizMainnet.ENDPOINT_V2),
+            address(LayerZeroV2ChilizMainnet.SEND_ULN_302),
+            address(LayerZeroV2ChilizMainnet.RECEIVE_ULN_302),
+            LayerZeroV2ChilizMainnet.BLOCKED_MESSAGE_LIB,
+            LayerZeroV2ChilizMainnet.EXECUTOR,
+            LayerZeroV2ChilizMainnet.CHAIN_ID,
+            "chiliz-mainnet",
+            new string[](0)
+        );
+        _registerChain(
             LayerZeroV2CitreaMainnet.EID,
             address(LayerZeroV2CitreaMainnet.ENDPOINT_V2),
             address(LayerZeroV2CitreaMainnet.SEND_ULN_302),
@@ -760,6 +771,17 @@ contract LZProtocol is ILZProtocol {
             LayerZeroV2IotaMainnet.EXECUTOR,
             LayerZeroV2IotaMainnet.CHAIN_ID,
             "iota-mainnet",
+            new string[](0)
+        );
+        _registerChain(
+            LayerZeroV2IrysMainnet.EID,
+            address(LayerZeroV2IrysMainnet.ENDPOINT_V2),
+            address(LayerZeroV2IrysMainnet.SEND_ULN_302),
+            address(LayerZeroV2IrysMainnet.RECEIVE_ULN_302),
+            LayerZeroV2IrysMainnet.BLOCKED_MESSAGE_LIB,
+            LayerZeroV2IrysMainnet.EXECUTOR,
+            LayerZeroV2IrysMainnet.CHAIN_ID,
+            "irys-mainnet",
             new string[](0)
         );
         _registerChain(

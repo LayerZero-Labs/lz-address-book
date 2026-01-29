@@ -47,20 +47,20 @@ contract LZWorkers is ILZWorkers {
         _registerDVN("01node", 30111, 0x969A0bdd86A230345AD87A6a381DE5ED9E6cda85); // optimism-mainnet
         _registerDVN("01node", 30109, 0xf0809F6e760a5452Ee567975EdA7a28dA4a83D38); // polygon-mainnet
 
-        // ABDB
-        _registerDVN("ABDB", 30110, 0xddaa92ce2d2faC3f7c5eae19136E438902Ab46cc); // arbitrum-mainnet
-        _registerDVN("ABDB", 30106, 0xFfe42DC3927A240f3459e5ec27EAaBD88727173E); // avalanche-mainnet
-        _registerDVN("ABDB", 30362, 0xa2d10677441230C4AeD58030e4EA6Ba7Bfd80393); // bera-mainnet
-        _registerDVN("ABDB", 30102, 0x313328609a9C38459CaE56625FFf7F2AD6dcde3b); // bsc-mainnet
-        _registerDVN("ABDB", 30101, 0x7E65BDd15C8Db8995F80aBf0D6593b57dc8BE437); // ethereum-mainnet
-        _registerDVN("ABDB", 30112, 0x313328609a9C38459CaE56625FFf7F2AD6dcde3b); // fantom-mainnet
-        _registerDVN("ABDB", 30111, 0x7B8a0fD9D6ae5011d5cBD3E85Ed6D5510F98c9Bf); // optimism-mainnet
-        _registerDVN("ABDB", 30109, 0xa6F5DDBF0Bd4D03334523465439D301080574742); // polygon-mainnet
-        _registerDVN("ABDB", 30320, 0x1337834fd822065Af36a13657d2E847616129F3f); // unichain-mainnet
-
         // AltLayer
         _registerDVN("AltLayer", 40231, 0x47cee39389206557f88118A54EFDbCE13b28B6a4); // arbsep-testnet
         _registerDVN("AltLayer", 40161, 0x25f492A35ec1E60eBCF8A3DD52a815C2D167f4C3); // sepolia-testnet
+
+        // Animoca-Blockdaemon
+        _registerDVN("Animoca-Blockdaemon", 30110, 0xddaa92ce2d2faC3f7c5eae19136E438902Ab46cc); // arbitrum-mainnet
+        _registerDVN("Animoca-Blockdaemon", 30106, 0xFfe42DC3927A240f3459e5ec27EAaBD88727173E); // avalanche-mainnet
+        _registerDVN("Animoca-Blockdaemon", 30362, 0xa2d10677441230C4AeD58030e4EA6Ba7Bfd80393); // bera-mainnet
+        _registerDVN("Animoca-Blockdaemon", 30102, 0x313328609a9C38459CaE56625FFf7F2AD6dcde3b); // bsc-mainnet
+        _registerDVN("Animoca-Blockdaemon", 30101, 0x7E65BDd15C8Db8995F80aBf0D6593b57dc8BE437); // ethereum-mainnet
+        _registerDVN("Animoca-Blockdaemon", 30112, 0x313328609a9C38459CaE56625FFf7F2AD6dcde3b); // fantom-mainnet
+        _registerDVN("Animoca-Blockdaemon", 30111, 0x7B8a0fD9D6ae5011d5cBD3E85Ed6D5510F98c9Bf); // optimism-mainnet
+        _registerDVN("Animoca-Blockdaemon", 30109, 0xa6F5DDBF0Bd4D03334523465439D301080574742); // polygon-mainnet
+        _registerDVN("Animoca-Blockdaemon", 30320, 0x1337834fd822065Af36a13657d2E847616129F3f); // unichain-mainnet
 
         // Axelar
         _registerDVN("Axelar", 30110, 0x9D3979c7E3DD26653C52256307709C09f47741e0); // arbitrum-mainnet
@@ -77,47 +77,47 @@ contract LZWorkers is ILZWorkers {
         // B-Harvest
         _registerDVN("B-Harvest", 30101, 0x98b2E2aa4694680ED610d4f0a9Bb78e8f7F1f200); // ethereum-mainnet
 
-        // BCW
-        _registerDVN("BCW", 30110, 0x78203678D264063815Dac114eA810E9837Cd80f7); // arbitrum-mainnet
-        _registerDVN("BCW", 30210, 0x7A7dDC46882220a075934f40380d3A7e1e87d409); // astar-mainnet
-        _registerDVN("BCW", 30211, 0x70BF42C69173d6e33b834f59630DAC592C70b369); // aurora-mainnet
-        _registerDVN("BCW", 30106, 0x7B8a0fD9D6ae5011d5cBD3E85Ed6D5510F98c9Bf); // avalanche-mainnet
-        _registerDVN("BCW", 30184, 0xB3Ce0A5D132Cd9Bf965aBa435E650c55Edce0062); // base-mainnet
-        _registerDVN("BCW", 30102, 0xd36246C322Ee102A2203bCA9cafb84c179D306F6); // bsc-mainnet
-        _registerDVN("BCW", 30159, 0x7fe673201724925B5c477d4E1A4Bd3E954688cF5); // canto-mainnet
-        _registerDVN("BCW", 30212, 0x7fe673201724925B5c477d4E1A4Bd3E954688cF5); // conflux-mainnet
-        _registerDVN("BCW", 30153, 0x7A7dDC46882220a075934f40380d3A7e1e87d409); // coredao-mainnet
-        _registerDVN("BCW", 30118, 0x58DfF8622759eA75910a08DBA5D060579271dcD7); // dexalot-mainnet
-        _registerDVN("BCW", 30115, 0x6A110d94e1baA6984A3d904bab37Ae49b90E6B4f); // dfk-mainnet
-        _registerDVN("BCW", 30149, 0x2AC038606fff3FB00317B8F0CcFB4081694aCDD0); // dos-mainnet
-        _registerDVN("BCW", 30101, 0xe552485d02EDd3067FE7FCbD4dd56BB1D3A998D2); // ethereum-mainnet
-        _registerDVN("BCW", 30138, 0x7fe673201724925B5c477d4E1A4Bd3E954688cF5); // fuse-mainnet
-        _registerDVN("BCW", 30316, 0x97841D4AB18E9A923322A002d5b8Eb42b31Ccdb5); // hedera-mainnet
-        _registerDVN("BCW", 30177, 0x7fe673201724925B5c477d4E1A4Bd3E954688cF5); // kava-mainnet
-        _registerDVN("BCW", 30150, 0x28af4dADbc5066e994986E8bb105240023dC44B6); // klaytn-mainnet
-        _registerDVN("BCW", 30197, 0x7fe673201724925B5c477d4E1A4Bd3E954688cF5); // loot-mainnet
-        _registerDVN("BCW", 30217, 0x809CDE2AfcF8627312E87a6a7bbFFaB3F8F347c7); // manta-mainnet
-        _registerDVN("BCW", 30181, 0x7A7dDC46882220a075934f40380d3A7e1e87d409); // mantle-mainnet
-        _registerDVN("BCW", 30198, 0x7fe673201724925B5c477d4E1A4Bd3E954688cF5); // meritcircle-mainnet
-        _registerDVN("BCW", 30176, 0xC4e1b199C3B24954022FcE7ba85419B3f0669142); // meter-mainnet
-        _registerDVN("BCW", 30151, 0x7A7dDC46882220a075934f40380d3A7e1e87d409); // metis-mainnet
-        _registerDVN("BCW", 30167, 0x7A7dDC46882220a075934f40380d3A7e1e87d409); // moonriver-mainnet
-        _registerDVN("BCW", 30175, 0x34730f2570E6cff8B1C91FaaBF37D0DD917c4367); // nova-mainnet
-        _registerDVN("BCW", 30202, 0x7fe673201724925B5c477d4E1A4Bd3E954688cF5); // opbnb-mainnet
-        _registerDVN("BCW", 30111, 0x73DDc92E39aEdA95FEb8D3E0008016d9F1268c76); // optimism-mainnet
-        _registerDVN("BCW", 30213, 0x7fe673201724925B5c477d4E1A4Bd3E954688cF5); // orderly-mainnet
-        _registerDVN("BCW", 30109, 0xd410dDB726991f372b69A05b006D2ae5A8CedBD6); // polygon-mainnet
-        _registerDVN("BCW", 30214, 0x7A7dDC46882220a075934f40380d3A7e1e87d409); // scroll-mainnet
-        _registerDVN("BCW", 30280, 0x1feB08B1A53A9710AfcE82D380B8c2833C69a37e); // sei-mainnet
-        _registerDVN("BCW", 30230, 0xDd7B5E1dB4AaFd5C8EC3b764eFB8ed265Aa5445B); // shimmer-mainnet
-        _registerDVN("BCW", 30199, 0x7fe673201724925B5c477d4E1A4Bd3E954688cF5); // telos-mainnet
-        _registerDVN("BCW", 30173, 0x7fe673201724925B5c477d4E1A4Bd3E954688cF5); // tenet-mainnet
-        _registerDVN("BCW", 30196, 0x7fe673201724925B5c477d4E1A4Bd3E954688cF5); // tomo-mainnet
-        _registerDVN("BCW", 30236, 0x34730f2570E6cff8B1C91FaaBF37D0DD917c4367); // xai-mainnet
-        _registerDVN("BCW", 30216, 0x7fe673201724925B5c477d4E1A4Bd3E954688cF5); // xpla-mainnet
-        _registerDVN("BCW", 30158, 0x12b4E588BeB7154519c0C6f737bB8cBa1D4E5BC7); // zkpolygon-mainnet
-        _registerDVN("BCW", 30165, 0x0D1bc4Efd08940eB109Ef3040c1386d09B6334E0); // zksync-mainnet
-        _registerDVN("BCW", 30195, 0x7fe673201724925B5c477d4E1A4Bd3E954688cF5); // zora-mainnet
+        // BCW Group
+        _registerDVN("BCW Group", 30110, 0x78203678D264063815Dac114eA810E9837Cd80f7); // arbitrum-mainnet
+        _registerDVN("BCW Group", 30210, 0x7A7dDC46882220a075934f40380d3A7e1e87d409); // astar-mainnet
+        _registerDVN("BCW Group", 30211, 0x70BF42C69173d6e33b834f59630DAC592C70b369); // aurora-mainnet
+        _registerDVN("BCW Group", 30106, 0x7B8a0fD9D6ae5011d5cBD3E85Ed6D5510F98c9Bf); // avalanche-mainnet
+        _registerDVN("BCW Group", 30184, 0xB3Ce0A5D132Cd9Bf965aBa435E650c55Edce0062); // base-mainnet
+        _registerDVN("BCW Group", 30102, 0xd36246C322Ee102A2203bCA9cafb84c179D306F6); // bsc-mainnet
+        _registerDVN("BCW Group", 30159, 0x7fe673201724925B5c477d4E1A4Bd3E954688cF5); // canto-mainnet
+        _registerDVN("BCW Group", 30212, 0x7fe673201724925B5c477d4E1A4Bd3E954688cF5); // conflux-mainnet
+        _registerDVN("BCW Group", 30153, 0x7A7dDC46882220a075934f40380d3A7e1e87d409); // coredao-mainnet
+        _registerDVN("BCW Group", 30118, 0x58DfF8622759eA75910a08DBA5D060579271dcD7); // dexalot-mainnet
+        _registerDVN("BCW Group", 30115, 0x6A110d94e1baA6984A3d904bab37Ae49b90E6B4f); // dfk-mainnet
+        _registerDVN("BCW Group", 30149, 0x2AC038606fff3FB00317B8F0CcFB4081694aCDD0); // dos-mainnet
+        _registerDVN("BCW Group", 30101, 0xe552485d02EDd3067FE7FCbD4dd56BB1D3A998D2); // ethereum-mainnet
+        _registerDVN("BCW Group", 30138, 0x7fe673201724925B5c477d4E1A4Bd3E954688cF5); // fuse-mainnet
+        _registerDVN("BCW Group", 30316, 0x97841D4AB18E9A923322A002d5b8Eb42b31Ccdb5); // hedera-mainnet
+        _registerDVN("BCW Group", 30177, 0x7fe673201724925B5c477d4E1A4Bd3E954688cF5); // kava-mainnet
+        _registerDVN("BCW Group", 30150, 0x28af4dADbc5066e994986E8bb105240023dC44B6); // klaytn-mainnet
+        _registerDVN("BCW Group", 30197, 0x7fe673201724925B5c477d4E1A4Bd3E954688cF5); // loot-mainnet
+        _registerDVN("BCW Group", 30217, 0x809CDE2AfcF8627312E87a6a7bbFFaB3F8F347c7); // manta-mainnet
+        _registerDVN("BCW Group", 30181, 0x7A7dDC46882220a075934f40380d3A7e1e87d409); // mantle-mainnet
+        _registerDVN("BCW Group", 30198, 0x7fe673201724925B5c477d4E1A4Bd3E954688cF5); // meritcircle-mainnet
+        _registerDVN("BCW Group", 30176, 0xC4e1b199C3B24954022FcE7ba85419B3f0669142); // meter-mainnet
+        _registerDVN("BCW Group", 30151, 0x7A7dDC46882220a075934f40380d3A7e1e87d409); // metis-mainnet
+        _registerDVN("BCW Group", 30167, 0x7A7dDC46882220a075934f40380d3A7e1e87d409); // moonriver-mainnet
+        _registerDVN("BCW Group", 30175, 0x34730f2570E6cff8B1C91FaaBF37D0DD917c4367); // nova-mainnet
+        _registerDVN("BCW Group", 30202, 0x7fe673201724925B5c477d4E1A4Bd3E954688cF5); // opbnb-mainnet
+        _registerDVN("BCW Group", 30111, 0x73DDc92E39aEdA95FEb8D3E0008016d9F1268c76); // optimism-mainnet
+        _registerDVN("BCW Group", 30213, 0x7fe673201724925B5c477d4E1A4Bd3E954688cF5); // orderly-mainnet
+        _registerDVN("BCW Group", 30109, 0xd410dDB726991f372b69A05b006D2ae5A8CedBD6); // polygon-mainnet
+        _registerDVN("BCW Group", 30214, 0x7A7dDC46882220a075934f40380d3A7e1e87d409); // scroll-mainnet
+        _registerDVN("BCW Group", 30280, 0x1feB08B1A53A9710AfcE82D380B8c2833C69a37e); // sei-mainnet
+        _registerDVN("BCW Group", 30230, 0xDd7B5E1dB4AaFd5C8EC3b764eFB8ed265Aa5445B); // shimmer-mainnet
+        _registerDVN("BCW Group", 30199, 0x7fe673201724925B5c477d4E1A4Bd3E954688cF5); // telos-mainnet
+        _registerDVN("BCW Group", 30173, 0x7fe673201724925B5c477d4E1A4Bd3E954688cF5); // tenet-mainnet
+        _registerDVN("BCW Group", 30196, 0x7fe673201724925B5c477d4E1A4Bd3E954688cF5); // tomo-mainnet
+        _registerDVN("BCW Group", 30236, 0x34730f2570E6cff8B1C91FaaBF37D0DD917c4367); // xai-mainnet
+        _registerDVN("BCW Group", 30216, 0x7fe673201724925B5c477d4E1A4Bd3E954688cF5); // xpla-mainnet
+        _registerDVN("BCW Group", 30158, 0x12b4E588BeB7154519c0C6f737bB8cBa1D4E5BC7); // zkpolygon-mainnet
+        _registerDVN("BCW Group", 30165, 0x0D1bc4Efd08940eB109Ef3040c1386d09B6334E0); // zksync-mainnet
+        _registerDVN("BCW Group", 30195, 0x7fe673201724925B5c477d4E1A4Bd3E954688cF5); // zora-mainnet
 
         // BWare
         _registerDVN("BWare", 30110, 0x9bCd17A654bffAa6f8fEa38D19661a7210e22196); // arbitrum-mainnet
@@ -171,43 +171,43 @@ contract LZWorkers is ILZWorkers {
         _registerDVN("Bera", 30111, 0x5F5512c760f69A338Cf2758d1E6A957571bB6ee0); // optimism-mainnet
         _registerDVN("Bera", 30109, 0xCF46153f01355036bF07E5f7Fb1eb262f25dFeDd); // polygon-mainnet
 
-        // Bitgo
-        _registerDVN("Bitgo", 40267, 0x3Ed2211f49ce343D70CB8dEd927cA6C4a6198101); // amoy-testnet
-        _registerDVN("Bitgo", 30110, 0x0711dd777AE626ef5E0a4F50e199C7a0E0666857); // arbitrum-mainnet
-        _registerDVN("Bitgo", 40231, 0x500e6064CB1fE164974CC0a4fe9151928c870BbE); // arbsep-testnet
-        _registerDVN("Bitgo", 30106, 0xc18d69d1a83294d0886E1b79f241405F1fA86cB6); // avalanche-mainnet
-        _registerDVN("Bitgo", 40106, 0xA1d84E5576299aCDa9fFed53195EadBE60d48E83); // avalanche-testnet
-        _registerDVN("Bitgo", 30184, 0x133e9fB2D339D8428476A714B1113B024343811E); // base-mainnet
-        _registerDVN("Bitgo", 40245, 0xdf04ABb599c7B37dD5FfC0f8E94f6898120874eF); // basesep-testnet
-        _registerDVN("Bitgo", 30362, 0xdfF3F73C260b3361d4F006B02972c6aF6C5c5417); // bera-mainnet
-        _registerDVN("Bitgo", 30279, 0xaA391622e42aE501371CD745CE0BAD588a8C65fd); // bob-mainnet
-        _registerDVN("Bitgo", 30102, 0xa2CEB887f545400B8247Dfb7E9cCAda7abAbBDE8); // bsc-mainnet
-        _registerDVN("Bitgo", 40102, 0x7BAa95C10Cc99c7687d31fC5b45B6b916362ed22); // bsc-testnet
-        _registerDVN("Bitgo", 30101, 0xc9ca319f6Da263910fd9B037eC3d817A814ef3d8); // ethereum-mainnet
-        _registerDVN("Bitgo", 30112, 0x3b247F1B48F055EbF2DB593672B98C9597E3081E); // fantom-mainnet
-        _registerDVN("Bitgo", 40112, 0xbac63154331081539DBaBB595C21c47879F425e4); // fantom-testnet
-        _registerDVN("Bitgo", 30336, 0xCCdeBdb5aCFD6Ae062859ac66653b10ED77586C2); // flow-mainnet
-        _registerDVN("Bitgo", 30316, 0xA83A87a0bDce466edfBB6794404E1D7F556B8F20); // hedera-mainnet
-        _registerDVN("Bitgo", 40217, 0x7ae0755FBb6f397c4147EDd8aF159B805dE68FCa); // holesky-testnet
-        _registerDVN("Bitgo", 30367, 0xf55E9dAef79eeC17F76e800F059495F198ef8348); // hyperliquid-mainnet
-        _registerDVN("Bitgo", 40334, 0xd351A601Cd3821AE15466c109d807362b10Eee1A); // minato-testnet
-        _registerDVN("Bitgo", 30390, 0xdD107f9B5209670840f9cD58e241F460651C16C4); // monad-mainnet
-        _registerDVN("Bitgo", 30388, 0x13539215f1EE17BF4cD37d471CB9454935E7E282); // og-mainnet
-        _registerDVN("Bitgo", 30111, 0xF24Dc834039a1E39F6b99A51Df05Df9c91e35b2d); // optimism-mainnet
-        _registerDVN("Bitgo", 40232, 0x4Fe728B39d5e19ff3a9702C5E156bBC6cd8c6021); // optsep-testnet
-        _registerDVN("Bitgo", 30109, 0x02152F4624596602dCBB8B8EAD2988Ad44EDc865); // polygon-mainnet
-        _registerDVN("Bitgo", 30280, 0x26cD5aBaDf7eC3f0F02b48314bfcA6b2342cddD4); // sei-mainnet
-        _registerDVN("Bitgo", 40258, 0xB99ea5D9B28ac78d3293aFC75248e7f6225c93f9); // sei-testnet
-        _registerDVN("Bitgo", 30380, 0xdD9B12623ec1C7E744819708B9217b309fDE4080); // somnia-mainnet
-        _registerDVN("Bitgo", 30340, 0x04584d612802A3a26b160E3F90341E6443dDB76A); // soneium-mainnet
-        _registerDVN("Bitgo", 30332, 0xdfBb5C677dB41b5EF3a180509CDe27B5c9784655); // sonic-mainnet
-        _registerDVN("Bitgo", 40349, 0x2E6Be93A9A50EEB5FB0Cbd83323b2509E7Be15ab); // sonic-testnet
-        _registerDVN("Bitgo", 30335, 0x1269D1777bA8cF7498FE741869Ed4B73f2A47e93); // swell-mainnet
-        _registerDVN("Bitgo", 40353, 0x53c50fB014b0c9852b7979e6C722682a6fF62C41); // swell-testnet
-        _registerDVN("Bitgo", 30199, 0x31B8c7CD7226eA79E833FaBDcCbcA0fa38d6E0a1); // telos-mainnet
-        _registerDVN("Bitgo", 40199, 0xfD657D625F929e7CAec08adD967EAD23423F3391); // telos-testnet
-        _registerDVN("Bitgo", 30320, 0x6a4C9096F162f0ab3C0517B0a40dc1CE44785e16); // unichain-mainnet
-        _registerDVN("Bitgo", 40333, 0x14CcB1a6ebb0b6F669fcE087a2DbF664A1F57251); // unichain-testnet
+        // BitGo
+        _registerDVN("BitGo", 40267, 0x3Ed2211f49ce343D70CB8dEd927cA6C4a6198101); // amoy-testnet
+        _registerDVN("BitGo", 30110, 0x0711dd777AE626ef5E0a4F50e199C7a0E0666857); // arbitrum-mainnet
+        _registerDVN("BitGo", 40231, 0x500e6064CB1fE164974CC0a4fe9151928c870BbE); // arbsep-testnet
+        _registerDVN("BitGo", 30106, 0xc18d69d1a83294d0886E1b79f241405F1fA86cB6); // avalanche-mainnet
+        _registerDVN("BitGo", 40106, 0xA1d84E5576299aCDa9fFed53195EadBE60d48E83); // avalanche-testnet
+        _registerDVN("BitGo", 30184, 0x133e9fB2D339D8428476A714B1113B024343811E); // base-mainnet
+        _registerDVN("BitGo", 40245, 0xdf04ABb599c7B37dD5FfC0f8E94f6898120874eF); // basesep-testnet
+        _registerDVN("BitGo", 30362, 0xdfF3F73C260b3361d4F006B02972c6aF6C5c5417); // bera-mainnet
+        _registerDVN("BitGo", 30279, 0xaA391622e42aE501371CD745CE0BAD588a8C65fd); // bob-mainnet
+        _registerDVN("BitGo", 30102, 0xa2CEB887f545400B8247Dfb7E9cCAda7abAbBDE8); // bsc-mainnet
+        _registerDVN("BitGo", 40102, 0x7BAa95C10Cc99c7687d31fC5b45B6b916362ed22); // bsc-testnet
+        _registerDVN("BitGo", 30101, 0xc9ca319f6Da263910fd9B037eC3d817A814ef3d8); // ethereum-mainnet
+        _registerDVN("BitGo", 30112, 0x3b247F1B48F055EbF2DB593672B98C9597E3081E); // fantom-mainnet
+        _registerDVN("BitGo", 40112, 0xbac63154331081539DBaBB595C21c47879F425e4); // fantom-testnet
+        _registerDVN("BitGo", 30336, 0xCCdeBdb5aCFD6Ae062859ac66653b10ED77586C2); // flow-mainnet
+        _registerDVN("BitGo", 30316, 0xA83A87a0bDce466edfBB6794404E1D7F556B8F20); // hedera-mainnet
+        _registerDVN("BitGo", 40217, 0x7ae0755FBb6f397c4147EDd8aF159B805dE68FCa); // holesky-testnet
+        _registerDVN("BitGo", 30367, 0xf55E9dAef79eeC17F76e800F059495F198ef8348); // hyperliquid-mainnet
+        _registerDVN("BitGo", 40334, 0xd351A601Cd3821AE15466c109d807362b10Eee1A); // minato-testnet
+        _registerDVN("BitGo", 30390, 0xdD107f9B5209670840f9cD58e241F460651C16C4); // monad-mainnet
+        _registerDVN("BitGo", 30388, 0x13539215f1EE17BF4cD37d471CB9454935E7E282); // og-mainnet
+        _registerDVN("BitGo", 30111, 0xF24Dc834039a1E39F6b99A51Df05Df9c91e35b2d); // optimism-mainnet
+        _registerDVN("BitGo", 40232, 0x4Fe728B39d5e19ff3a9702C5E156bBC6cd8c6021); // optsep-testnet
+        _registerDVN("BitGo", 30109, 0x02152F4624596602dCBB8B8EAD2988Ad44EDc865); // polygon-mainnet
+        _registerDVN("BitGo", 30280, 0x26cD5aBaDf7eC3f0F02b48314bfcA6b2342cddD4); // sei-mainnet
+        _registerDVN("BitGo", 40258, 0xB99ea5D9B28ac78d3293aFC75248e7f6225c93f9); // sei-testnet
+        _registerDVN("BitGo", 30380, 0xdD9B12623ec1C7E744819708B9217b309fDE4080); // somnia-mainnet
+        _registerDVN("BitGo", 30340, 0x04584d612802A3a26b160E3F90341E6443dDB76A); // soneium-mainnet
+        _registerDVN("BitGo", 30332, 0xdfBb5C677dB41b5EF3a180509CDe27B5c9784655); // sonic-mainnet
+        _registerDVN("BitGo", 40349, 0x2E6Be93A9A50EEB5FB0Cbd83323b2509E7Be15ab); // sonic-testnet
+        _registerDVN("BitGo", 30335, 0x1269D1777bA8cF7498FE741869Ed4B73f2A47e93); // swell-mainnet
+        _registerDVN("BitGo", 40353, 0x53c50fB014b0c9852b7979e6C722682a6fF62C41); // swell-testnet
+        _registerDVN("BitGo", 30199, 0x31B8c7CD7226eA79E833FaBDcCbcA0fa38d6E0a1); // telos-mainnet
+        _registerDVN("BitGo", 40199, 0xfD657D625F929e7CAec08adD967EAD23423F3391); // telos-testnet
+        _registerDVN("BitGo", 30320, 0x6a4C9096F162f0ab3C0517B0a40dc1CE44785e16); // unichain-mainnet
+        _registerDVN("BitGo", 40333, 0x14CcB1a6ebb0b6F669fcE087a2DbF664A1F57251); // unichain-testnet
 
         // Blockdaemon
         _registerDVN("Blockdaemon", 40267, 0xe67Ef84173d024603A844C4AeA6A3a15CccCc32c); // amoy-testnet
@@ -233,11 +233,6 @@ contract LZWorkers is ILZWorkers {
         _registerDVN("Brale", 40112, 0x1d73E5E1f2f2B3a0e327a5bcD62Fe2909508AF85); // fantom-testnet
         _registerDVN("Brale", 30111, 0xd37ADF2200142eC766A519099e7B55cB9198B640); // optimism-mainnet
         _registerDVN("Brale", 30109, 0x8B430DF07cE9666fDFFD99C1Ea0153f6E178bCD6); // polygon-mainnet
-
-        // CCIP
-        _registerDVN("CCIP", 30106, 0xd46270746acBcA85Dab8dE1CE1d71c46C2F2994C); // avalanche-mainnet
-        _registerDVN("CCIP", 30102, 0x53561BcfE6B3F23BC72E5b9919c12322729942e8); // bsc-mainnet
-        _registerDVN("CCIP", 30101, 0x771D10D0C86E26eA8d3b778ad4d31B30533B9Cbf); // ethereum-mainnet
 
         // Canary
         _registerDVN("Canary", 30324, 0xCB773CAf620D2A6703d2cd30C567A6c2906ccfbb); // abstract-mainnet
@@ -356,6 +351,11 @@ contract LZWorkers is ILZWorkers {
         _registerDVN("Chainlink", 30112, 0x150A58e9E6BF69ccEb1DBA5ae97C166DC8792539); // fantom-mainnet
         _registerDVN("Chainlink", 30111, 0x150A58e9E6BF69ccEb1DBA5ae97C166DC8792539); // optimism-mainnet
         _registerDVN("Chainlink", 30109, 0x150A58e9E6BF69ccEb1DBA5ae97C166DC8792539); // polygon-mainnet
+
+        // Chainlink CCIP
+        _registerDVN("Chainlink CCIP", 30106, 0xd46270746acBcA85Dab8dE1CE1d71c46C2F2994C); // avalanche-mainnet
+        _registerDVN("Chainlink CCIP", 30102, 0x53561BcfE6B3F23BC72E5b9919c12322729942e8); // bsc-mainnet
+        _registerDVN("Chainlink CCIP", 30101, 0x771D10D0C86E26eA8d3b778ad4d31B30533B9Cbf); // ethereum-mainnet
 
         // Citrea
         _registerDVN("Citrea", 40267, 0x4f9D2bD7942c3e76CFC7323A56b95B4a6A52FdFd); // amoy-testnet
@@ -696,6 +696,7 @@ contract LZWorkers is ILZWorkers {
         _registerDVN("LayerZero Labs", 40159, 0x032457E2c87376AD1D0AE8BbAda45d178c9968B3); // canto-testnet
         _registerDVN("LayerZero Labs", 30125, 0x75b073994560A5c03Cd970414d9170be0C6e5c36); // celo-mainnet
         _registerDVN("LayerZero Labs", 40125, 0xbef132Bc69C87f52D173d093A3F8B5B98842275F); // celo-testnet
+        _registerDVN("LayerZero Labs", 30409, 0x282b3386571f7f794450d5789911a9804FA346b4); // chiliz-mainnet
         _registerDVN("LayerZero Labs", 40440, 0xa78A78a13074eD93aD447a26Ec57121f29E8feC2); // chilizspicy-testnet
         _registerDVN("LayerZero Labs", 30403, 0x6788f52439ACA6BFF597d3eeC2DC9a44B8FEE842); // citrea-mainnet
         _registerDVN("LayerZero Labs", 40344, 0x88B27057A9e00c5F05DDa29241027afF63f9e6e0); // citrea-testnet
@@ -774,6 +775,7 @@ contract LZWorkers is ILZWorkers {
         _registerDVN("LayerZero Labs", 40358, 0x88B27057A9e00c5F05DDa29241027afF63f9e6e0); // ink-testnet
         _registerDVN("LayerZero Labs", 30284, 0x6788f52439ACA6BFF597d3eeC2DC9a44B8FEE842); // iota-mainnet
         _registerDVN("LayerZero Labs", 40307, 0xF49d162484290EAeAd7bb8C2c7E3a6f8f52e32d6); // iota-testnet
+        _registerDVN("LayerZero Labs", 30408, 0x282b3386571f7f794450d5789911a9804FA346b4); // irys-mainnet
         _registerDVN("LayerZero Labs", 40447, 0xa78A78a13074eD93aD447a26Ec57121f29E8feC2); // irys-testnet
         _registerDVN("LayerZero Labs", 30330, 0x6788f52439ACA6BFF597d3eeC2DC9a44B8FEE842); // islander-mainnet
         _registerDVN("LayerZero Labs", 30285, 0x9C061c9A4782294eeF65ef28Cb88233A987F4bdD); // joc-mainnet
@@ -993,6 +995,7 @@ contract LZWorkers is ILZWorkers {
         _registerDVN("Mantle Bank", 30110, 0x50fF206140CadADA2d9d510F1A184Be9221d86cF); // arbitrum-mainnet
         _registerDVN("Mantle Bank", 30184, 0x761bC869351293c5572Ed5581E23e7D5D9C6D3d1); // base-mainnet
         _registerDVN("Mantle Bank", 30362, 0x88a8b858c7fCB3Fe0052c9b7bcC69183a9cebD76); // bera-mainnet
+        _registerDVN("Mantle Bank", 30102, 0x0A25b9aaa98C26c1cfd0f20ef40dB5ba21369055); // bsc-mainnet
         _registerDVN("Mantle Bank", 30101, 0x868e6393AEa25E8c7e58BC5d4c90a5237C573ff6); // ethereum-mainnet
         _registerDVN("Mantle Bank", 30181, 0xB797053fBA3D41f5067C4BD74dc334328395C4d2); // mantle-mainnet
         _registerDVN("Mantle Bank", 30390, 0xe00Ff3Ebb0CD942D846FB27e4739d2da66989b4F); // monad-mainnet
@@ -1200,17 +1203,17 @@ contract LZWorkers is ILZWorkers {
         _registerDVN("Nethermind", 30386, 0x38179D3BFa6Ef1d69A8A7b0b671BA3D8836B2AE8); // zkverify-mainnet
         _registerDVN("Nethermind", 30195, 0xa7b5189bcA84Cd304D8553977c7C614329750d99); // zora-mainnet
 
-        // Nodesguru
-        _registerDVN("Nodesguru", 30110, 0xD954bF7968eF68875c9100c9ec890f969504d120); // arbitrum-mainnet
-        _registerDVN("Nodesguru", 30106, 0xD251D8a85cDfC84518b9454EE6a8D017E503F56C); // avalanche-mainnet
-        _registerDVN("Nodesguru", 30102, 0x1bab20E7FDc79257729CB596BEF85db76C44915E); // bsc-mainnet
-        _registerDVN("Nodesguru", 30101, 0x9F45834F0C8042e36935781b944443e906886a87); // ethereum-mainnet
-        _registerDVN("Nodesguru", 30112, 0x05AaEfDf9dB6E0f7d27FA3b6EE099EDB33dA029E); // fantom-mainnet
-        _registerDVN("Nodesguru", 30294, 0x4D52f5bc932cf1A854381A85ad9ED79B8497c153); // gravity-mainnet
-        _registerDVN("Nodesguru", 30111, 0xe6CD8c2E46Ef396DF88048449e5B1C75172b40C3); // optimism-mainnet
-        _registerDVN("Nodesguru", 30302, 0xDd7B5E1dB4AaFd5C8EC3b764eFB8ed265Aa5445B); // peaq-mainnet
-        _registerDVN("Nodesguru", 30109, 0xF7DDEE427507cdb6885E53CAAaa1973b1Fe29357); // polygon-mainnet
-        _registerDVN("Nodesguru", 30301, 0x3A5a74f863ec48c1769C4Ee85f6C3d70f5655E2A); // zklink-mainnet
+        // Nodes.Guru
+        _registerDVN("Nodes.Guru", 30110, 0xD954bF7968eF68875c9100c9ec890f969504d120); // arbitrum-mainnet
+        _registerDVN("Nodes.Guru", 30106, 0xD251D8a85cDfC84518b9454EE6a8D017E503F56C); // avalanche-mainnet
+        _registerDVN("Nodes.Guru", 30102, 0x1bab20E7FDc79257729CB596BEF85db76C44915E); // bsc-mainnet
+        _registerDVN("Nodes.Guru", 30101, 0x9F45834F0C8042e36935781b944443e906886a87); // ethereum-mainnet
+        _registerDVN("Nodes.Guru", 30112, 0x05AaEfDf9dB6E0f7d27FA3b6EE099EDB33dA029E); // fantom-mainnet
+        _registerDVN("Nodes.Guru", 30294, 0x4D52f5bc932cf1A854381A85ad9ED79B8497c153); // gravity-mainnet
+        _registerDVN("Nodes.Guru", 30111, 0xe6CD8c2E46Ef396DF88048449e5B1C75172b40C3); // optimism-mainnet
+        _registerDVN("Nodes.Guru", 30302, 0xDd7B5E1dB4AaFd5C8EC3b764eFB8ed265Aa5445B); // peaq-mainnet
+        _registerDVN("Nodes.Guru", 30109, 0xF7DDEE427507cdb6885E53CAAaa1973b1Fe29357); // polygon-mainnet
+        _registerDVN("Nodes.Guru", 30301, 0x3A5a74f863ec48c1769C4Ee85f6C3d70f5655E2A); // zklink-mainnet
 
         // Nodit
         _registerDVN("Nodit", 30110, 0x4c41b4EDf85DEe828C2cFcc80019CB2BbCFb69a5); // arbitrum-mainnet
@@ -1220,6 +1223,18 @@ contract LZWorkers is ILZWorkers {
         _registerDVN("Nodit", 30111, 0x1288cDad593856D7672F82e4cC5fdFE1CF59646d); // optimism-mainnet
         _registerDVN("Nodit", 30109, 0x4c41b4EDf85DEe828C2cFcc80019CB2BbCFb69a5); // polygon-mainnet
 
+        // Omni X
+        _registerDVN("Omni X", 30110, 0xabEa0b6B9237b589e676dC16f6D74Bf7612591f4); // arbitrum-mainnet
+        _registerDVN("Omni X", 30106, 0x21cAF0BCE846AAA78C9f23C5A4eC5988EcBf9988); // avalanche-mainnet
+        _registerDVN("Omni X", 30184, 0xeEdE111103535e473451311e26C3E6660b0F77e1); // base-mainnet
+        _registerDVN("Omni X", 30102, 0x5a4c666E9C7aA86FD4fBFDFbfd04646DcC45C6c5); // bsc-mainnet
+        _registerDVN("Omni X", 30101, 0xAf75bfD402f3d4EE84978179a6c87D16c4Bd1724); // ethereum-mainnet
+        _registerDVN("Omni X", 30112, 0xE0F0FbBDBF9d398eCA0dd8c86d1F308D895b9Eb7); // fantom-mainnet
+        _registerDVN("Omni X", 30367, 0x3E3A9bC9149Ddf1D3A3ea51c0A49Eb9fe6347043); // hyperliquid-mainnet
+        _registerDVN("Omni X", 30111, 0x03d2414476a742Aba715BcC337583C820525E22a); // optimism-mainnet
+        _registerDVN("Omni X", 30109, 0x06b85533967179eD5bC9C754b84aE7d02f7eD830); // polygon-mainnet
+        _registerDVN("Omni X", 30278, 0xDd7B5E1dB4AaFd5C8EC3b764eFB8ed265Aa5445B); // sanko-mainnet
+
         // Omnicat
         _registerDVN("Omnicat", 30110, 0xd1C70192CC0eb9a89e3D9032b9FAcab259A0a1e9); // arbitrum-mainnet
         _registerDVN("Omnicat", 30184, 0xe6CD8c2E46Ef396DF88048449e5B1C75172b40C3); // base-mainnet
@@ -1228,18 +1243,6 @@ contract LZWorkers is ILZWorkers {
         _registerDVN("Omnicat", 30159, 0x25e0e650a78e6304A3983Fc4b7Ffc6544b1bEea6); // canto-mainnet
         _registerDVN("Omnicat", 30101, 0xf10Ea2c0D43bC4973cfBCc94eBAfC39d1D4aF118); // ethereum-mainnet
         _registerDVN("Omnicat", 30109, 0xa2d10677441230C4AeD58030e4EA6Ba7Bfd80393); // polygon-mainnet
-
-        // Omnix
-        _registerDVN("Omnix", 30110, 0xabEa0b6B9237b589e676dC16f6D74Bf7612591f4); // arbitrum-mainnet
-        _registerDVN("Omnix", 30106, 0x21cAF0BCE846AAA78C9f23C5A4eC5988EcBf9988); // avalanche-mainnet
-        _registerDVN("Omnix", 30184, 0xeEdE111103535e473451311e26C3E6660b0F77e1); // base-mainnet
-        _registerDVN("Omnix", 30102, 0x5a4c666E9C7aA86FD4fBFDFbfd04646DcC45C6c5); // bsc-mainnet
-        _registerDVN("Omnix", 30101, 0xAf75bfD402f3d4EE84978179a6c87D16c4Bd1724); // ethereum-mainnet
-        _registerDVN("Omnix", 30112, 0xE0F0FbBDBF9d398eCA0dd8c86d1F308D895b9Eb7); // fantom-mainnet
-        _registerDVN("Omnix", 30367, 0x3E3A9bC9149Ddf1D3A3ea51c0A49Eb9fe6347043); // hyperliquid-mainnet
-        _registerDVN("Omnix", 30111, 0x03d2414476a742Aba715BcC337583C820525E22a); // optimism-mainnet
-        _registerDVN("Omnix", 30109, 0x06b85533967179eD5bC9C754b84aE7d02f7eD830); // polygon-mainnet
-        _registerDVN("Omnix", 30278, 0xDd7B5E1dB4AaFd5C8EC3b764eFB8ed265Aa5445B); // sanko-mainnet
 
         // Ondo
         _registerDVN("Ondo", 30110, 0x4708a19824bfe71262A91cDefA36ce21CBFfafE1); // arbitrum-mainnet
@@ -1256,6 +1259,20 @@ contract LZWorkers is ILZWorkers {
         _registerDVN("Ondo Staging", 30181, 0x377B51593a03B82543c1508fE7e75Aba6acDE008); // mantle-mainnet
         _registerDVN("Ondo Staging", 30370, 0xA58f3bccE94b3d2db1676B17c13C1A5d61d69580); // plumephoenix-mainnet
         _registerDVN("Ondo Staging", 30280, 0x75d0f9F7926f41BbBBe37050EE523F37BD398376); // sei-mainnet
+
+        // P-OPS
+        _registerDVN("P-OPS", 30110, 0x8fa9eEf18c2A1459024f0B44714e5aCc1Ce7f5e8); // arbitrum-mainnet
+        _registerDVN("P-OPS", 30106, 0x2b8CBEa81315130A4C422e875063362640ddFeB0); // avalanche-mainnet
+        _registerDVN("P-OPS", 30184, 0xA9d11632eC5f9502D39afF28d66415F6CCa37544); // base-mainnet
+        _registerDVN("P-OPS", 30362, 0x4055fAd06ded1F57A1b4D07455665a9Bbc33C700); // bera-mainnet
+        _registerDVN("P-OPS", 30102, 0x33E5fcC13D7439cC62d54c41AA966197145b3Cd7); // bsc-mainnet
+        _registerDVN("P-OPS", 30101, 0x94AAfe0A92A8300f0A2100A7f3DE47d6845747A9); // ethereum-mainnet
+        _registerDVN("P-OPS", 30112, 0x78203678D264063815Dac114eA810E9837Cd80f7); // fantom-mainnet
+        _registerDVN("P-OPS", 30145, 0x790d7B1E97a086eb0012393b65a5B32cE58a04Dc); // gnosis-mainnet
+        _registerDVN("P-OPS", 30126, 0x7fe673201724925B5c477d4E1A4Bd3E954688cF5); // moonbeam-mainnet
+        _registerDVN("P-OPS", 30111, 0xe552485d02EDd3067FE7FCbD4dd56BB1D3A998D2); // optimism-mainnet
+        _registerDVN("P-OPS", 30109, 0xa75ABcC0FAB6aE09c8FD808bEc7bE7E88fe31D6B); // polygon-mainnet
+        _registerDVN("P-OPS", 30214, 0x34730f2570E6cff8B1C91FaaBF37D0DD917c4367); // scroll-mainnet
 
         // P2P
         _registerDVN("P2P", 30324, 0x52B7E1958F6Ad3E195DC30578dA5Fa7ac5827A2A); // abstract-mainnet
@@ -1304,20 +1321,6 @@ contract LZWorkers is ILZWorkers {
         _registerDVN("P2P", 30183, 0x0b239476A771834D846Cb505817baC3C391c338A); // zkconsensys-mainnet
         _registerDVN("P2P", 30195, 0xD1b5493e712081A6FBAb73116405590046668F6b); // zora-mainnet
 
-        // POPS
-        _registerDVN("POPS", 30110, 0x8fa9eEf18c2A1459024f0B44714e5aCc1Ce7f5e8); // arbitrum-mainnet
-        _registerDVN("POPS", 30106, 0x2b8CBEa81315130A4C422e875063362640ddFeB0); // avalanche-mainnet
-        _registerDVN("POPS", 30184, 0xA9d11632eC5f9502D39afF28d66415F6CCa37544); // base-mainnet
-        _registerDVN("POPS", 30362, 0x4055fAd06ded1F57A1b4D07455665a9Bbc33C700); // bera-mainnet
-        _registerDVN("POPS", 30102, 0x33E5fcC13D7439cC62d54c41AA966197145b3Cd7); // bsc-mainnet
-        _registerDVN("POPS", 30101, 0x94AAfe0A92A8300f0A2100A7f3DE47d6845747A9); // ethereum-mainnet
-        _registerDVN("POPS", 30112, 0x78203678D264063815Dac114eA810E9837Cd80f7); // fantom-mainnet
-        _registerDVN("POPS", 30145, 0x790d7B1E97a086eb0012393b65a5B32cE58a04Dc); // gnosis-mainnet
-        _registerDVN("POPS", 30126, 0x7fe673201724925B5c477d4E1A4Bd3E954688cF5); // moonbeam-mainnet
-        _registerDVN("POPS", 30111, 0xe552485d02EDd3067FE7FCbD4dd56BB1D3A998D2); // optimism-mainnet
-        _registerDVN("POPS", 30109, 0xa75ABcC0FAB6aE09c8FD808bEc7bE7E88fe31D6B); // polygon-mainnet
-        _registerDVN("POPS", 30214, 0x34730f2570E6cff8B1C91FaaBF37D0DD917c4367); // scroll-mainnet
-
         // Paxos
         _registerDVN("Paxos", 30110, 0x8E5f5825602Bc5db725974Bb9e60677d4adC5fbe); // arbitrum-mainnet
         _registerDVN("Paxos", 40231, 0x9051233c67a93020865CFe156429e0aFAB3e6B60); // arbsep-testnet
@@ -1329,45 +1332,60 @@ contract LZWorkers is ILZWorkers {
         _registerDVN("Paxos", 40269, 0xf0a6f5472b3c643Aa7Fac691f1A1d23fE2D2BCEE); // xlayer-testnet
         _registerDVN("Paxos", 40416, 0x6A507BA8080fB3856d58b540623E4C9Eb98E4070); // xlayer2-testnet
 
-        // Planetarium
-        _registerDVN("Planetarium", 30110, 0xe6CD8c2E46Ef396DF88048449e5B1C75172b40C3); // arbitrum-mainnet
-        _registerDVN("Planetarium", 30106, 0x2AC038606fff3FB00317B8F0CcFB4081694aCDD0); // avalanche-mainnet
-        _registerDVN("Planetarium", 30102, 0x05AaEfDf9dB6E0f7d27FA3b6EE099EDB33dA029E); // bsc-mainnet
-        _registerDVN("Planetarium", 30101, 0x972ED7bd3d42D9C0bea3632992Ebf7e97186ea4A); // ethereum-mainnet
-        _registerDVN("Planetarium", 30112, 0xF7DDEE427507cdb6885E53CAAaa1973b1Fe29357); // fantom-mainnet
-        _registerDVN("Planetarium", 30111, 0x021e401C2a1A60618c5E6353A40524971Eba1E8D); // optimism-mainnet
-        _registerDVN("Planetarium", 30109, 0x2AC038606fff3FB00317B8F0CcFB4081694aCDD0); // polygon-mainnet
+        // Pearlnet
+        _registerDVN("Pearlnet", 30110, 0xabC9b1819cc4D9846550F928B985993cF6240439); // arbitrum-mainnet
+        _registerDVN("Pearlnet", 30106, 0xD24972c11F91c1bB9eaEe97ec96bB9c33cF7af24); // avalanche-mainnet
+        _registerDVN("Pearlnet", 30101, 0xD24972c11F91c1bB9eaEe97ec96bB9c33cF7af24); // ethereum-mainnet
+        _registerDVN("Pearlnet", 30111, 0xabC9b1819cc4D9846550F928B985993cF6240439); // optimism-mainnet
 
-        // Polyhedra
-        _registerDVN("Polyhedra", 30110, 0x8ddF05F9A5c488b4973897E278B58895bF87Cb24); // arbitrum-mainnet
-        _registerDVN("Polyhedra", 30106, 0x8ddF05F9A5c488b4973897E278B58895bF87Cb24); // avalanche-mainnet
-        _registerDVN("Polyhedra", 30184, 0x8ddF05F9A5c488b4973897E278B58895bF87Cb24); // base-mainnet
-        _registerDVN("Polyhedra", 30243, 0x0ff4cc28826356503BB79c00637bec0eE006f237); // blast-mainnet
-        _registerDVN("Polyhedra", 30102, 0x8ddF05F9A5c488b4973897E278B58895bF87Cb24); // bsc-mainnet
-        _registerDVN("Polyhedra", 40102, 0x2dDf08e397541721acD82E5b8a1D0775454a180B); // bsc-testnet
-        _registerDVN("Polyhedra", 30125, 0xE014fe8c4d5C23EDB7AC4011F226e869ac7Ef5CC); // celo-mainnet
-        _registerDVN("Polyhedra", 30153, 0xE014fe8c4d5C23EDB7AC4011F226e869ac7Ef5CC); // coredao-mainnet
-        _registerDVN("Polyhedra", 30283, 0x8ddF05F9A5c488b4973897E278B58895bF87Cb24); // cyber-mainnet
-        _registerDVN("Polyhedra", 30101, 0x8ddF05F9A5c488b4973897E278B58895bF87Cb24); // ethereum-mainnet
-        _registerDVN("Polyhedra", 40121, 0x2dDf08e397541721acD82E5b8a1D0775454a180B); // ethereum-testnet
-        _registerDVN("Polyhedra", 30112, 0x8ddF05F9A5c488b4973897E278B58895bF87Cb24); // fantom-mainnet
-        _registerDVN("Polyhedra", 30295, 0x8ddF05F9A5c488b4973897E278B58895bF87Cb24); // flare-mainnet
-        _registerDVN("Polyhedra", 30145, 0xE014fe8c4d5C23EDB7AC4011F226e869ac7Ef5CC); // gnosis-mainnet
-        _registerDVN("Polyhedra", 30150, 0x8ddF05F9A5c488b4973897E278B58895bF87Cb24); // klaytn-mainnet
-        _registerDVN("Polyhedra", 30217, 0x8ddF05F9A5c488b4973897E278B58895bF87Cb24); // manta-mainnet
-        _registerDVN("Polyhedra", 30181, 0x8ddF05F9A5c488b4973897E278B58895bF87Cb24); // mantle-mainnet
-        _registerDVN("Polyhedra", 30266, 0x8ddF05F9A5c488b4973897E278B58895bF87Cb24); // merlin-mainnet
-        _registerDVN("Polyhedra", 30151, 0xE014fe8c4d5C23EDB7AC4011F226e869ac7Ef5CC); // metis-mainnet
-        _registerDVN("Polyhedra", 30260, 0x8ddF05F9A5c488b4973897E278B58895bF87Cb24); // mode-mainnet
-        _registerDVN("Polyhedra", 30126, 0xE014fe8c4d5C23EDB7AC4011F226e869ac7Ef5CC); // moonbeam-mainnet
-        _registerDVN("Polyhedra", 30175, 0xE014fe8c4d5C23EDB7AC4011F226e869ac7Ef5CC); // nova-mainnet
-        _registerDVN("Polyhedra", 30202, 0xE014fe8c4d5C23EDB7AC4011F226e869ac7Ef5CC); // opbnb-mainnet
-        _registerDVN("Polyhedra", 30111, 0x8ddF05F9A5c488b4973897E278B58895bF87Cb24); // optimism-mainnet
-        _registerDVN("Polyhedra", 30109, 0x8ddF05F9A5c488b4973897E278B58895bF87Cb24); // polygon-mainnet
-        _registerDVN("Polyhedra", 30214, 0xE014fe8c4d5C23EDB7AC4011F226e869ac7Ef5CC); // scroll-mainnet
-        _registerDVN("Polyhedra", 30280, 0x8ddF05F9A5c488b4973897E278B58895bF87Cb24); // sei-mainnet
-        _registerDVN("Polyhedra", 30274, 0x8ddF05F9A5c488b4973897E278B58895bF87Cb24); // xlayer-mainnet
-        _registerDVN("Polyhedra", 30183, 0xE014fe8c4d5C23EDB7AC4011F226e869ac7Ef5CC); // zkconsensys-mainnet
+        // Planetarium Labs
+        _registerDVN("Planetarium Labs", 30110, 0xe6CD8c2E46Ef396DF88048449e5B1C75172b40C3); // arbitrum-mainnet
+        _registerDVN("Planetarium Labs", 30106, 0x2AC038606fff3FB00317B8F0CcFB4081694aCDD0); // avalanche-mainnet
+        _registerDVN("Planetarium Labs", 30102, 0x05AaEfDf9dB6E0f7d27FA3b6EE099EDB33dA029E); // bsc-mainnet
+        _registerDVN("Planetarium Labs", 30101, 0x972ED7bd3d42D9C0bea3632992Ebf7e97186ea4A); // ethereum-mainnet
+        _registerDVN("Planetarium Labs", 30112, 0xF7DDEE427507cdb6885E53CAAaa1973b1Fe29357); // fantom-mainnet
+        _registerDVN("Planetarium Labs", 30111, 0x021e401C2a1A60618c5E6353A40524971Eba1E8D); // optimism-mainnet
+        _registerDVN("Planetarium Labs", 30109, 0x2AC038606fff3FB00317B8F0CcFB4081694aCDD0); // polygon-mainnet
+
+        // Polyhedra zkBridge
+        _registerDVN("Polyhedra zkBridge", 30110, 0x8ddF05F9A5c488b4973897E278B58895bF87Cb24); // arbitrum-mainnet
+        _registerDVN("Polyhedra zkBridge", 30106, 0x8ddF05F9A5c488b4973897E278B58895bF87Cb24); // avalanche-mainnet
+        _registerDVN("Polyhedra zkBridge", 30184, 0x8ddF05F9A5c488b4973897E278B58895bF87Cb24); // base-mainnet
+        _registerDVN("Polyhedra zkBridge", 30243, 0x0ff4cc28826356503BB79c00637bec0eE006f237); // blast-mainnet
+        _registerDVN("Polyhedra zkBridge", 30102, 0x8ddF05F9A5c488b4973897E278B58895bF87Cb24); // bsc-mainnet
+        _registerDVN("Polyhedra zkBridge", 40102, 0x2dDf08e397541721acD82E5b8a1D0775454a180B); // bsc-testnet
+        _registerDVN("Polyhedra zkBridge", 30125, 0xE014fe8c4d5C23EDB7AC4011F226e869ac7Ef5CC); // celo-mainnet
+        _registerDVN("Polyhedra zkBridge", 30153, 0xE014fe8c4d5C23EDB7AC4011F226e869ac7Ef5CC); // coredao-mainnet
+        _registerDVN("Polyhedra zkBridge", 30283, 0x8ddF05F9A5c488b4973897E278B58895bF87Cb24); // cyber-mainnet
+        _registerDVN("Polyhedra zkBridge", 30101, 0x8ddF05F9A5c488b4973897E278B58895bF87Cb24); // ethereum-mainnet
+        _registerDVN("Polyhedra zkBridge", 40121, 0x2dDf08e397541721acD82E5b8a1D0775454a180B); // ethereum-testnet
+        _registerDVN("Polyhedra zkBridge", 30112, 0x8ddF05F9A5c488b4973897E278B58895bF87Cb24); // fantom-mainnet
+        _registerDVN("Polyhedra zkBridge", 30295, 0x8ddF05F9A5c488b4973897E278B58895bF87Cb24); // flare-mainnet
+        _registerDVN("Polyhedra zkBridge", 30145, 0xE014fe8c4d5C23EDB7AC4011F226e869ac7Ef5CC); // gnosis-mainnet
+        _registerDVN("Polyhedra zkBridge", 30150, 0x8ddF05F9A5c488b4973897E278B58895bF87Cb24); // klaytn-mainnet
+        _registerDVN("Polyhedra zkBridge", 30217, 0x8ddF05F9A5c488b4973897E278B58895bF87Cb24); // manta-mainnet
+        _registerDVN("Polyhedra zkBridge", 30181, 0x8ddF05F9A5c488b4973897E278B58895bF87Cb24); // mantle-mainnet
+        _registerDVN("Polyhedra zkBridge", 30266, 0x8ddF05F9A5c488b4973897E278B58895bF87Cb24); // merlin-mainnet
+        _registerDVN("Polyhedra zkBridge", 30151, 0xE014fe8c4d5C23EDB7AC4011F226e869ac7Ef5CC); // metis-mainnet
+        _registerDVN("Polyhedra zkBridge", 30260, 0x8ddF05F9A5c488b4973897E278B58895bF87Cb24); // mode-mainnet
+        _registerDVN("Polyhedra zkBridge", 30126, 0xE014fe8c4d5C23EDB7AC4011F226e869ac7Ef5CC); // moonbeam-mainnet
+        _registerDVN("Polyhedra zkBridge", 30175, 0xE014fe8c4d5C23EDB7AC4011F226e869ac7Ef5CC); // nova-mainnet
+        _registerDVN("Polyhedra zkBridge", 30202, 0xE014fe8c4d5C23EDB7AC4011F226e869ac7Ef5CC); // opbnb-mainnet
+        _registerDVN("Polyhedra zkBridge", 30111, 0x8ddF05F9A5c488b4973897E278B58895bF87Cb24); // optimism-mainnet
+        _registerDVN("Polyhedra zkBridge", 30109, 0x8ddF05F9A5c488b4973897E278B58895bF87Cb24); // polygon-mainnet
+        _registerDVN("Polyhedra zkBridge", 30214, 0xE014fe8c4d5C23EDB7AC4011F226e869ac7Ef5CC); // scroll-mainnet
+        _registerDVN("Polyhedra zkBridge", 30280, 0x8ddF05F9A5c488b4973897E278B58895bF87Cb24); // sei-mainnet
+        _registerDVN("Polyhedra zkBridge", 30274, 0x8ddF05F9A5c488b4973897E278B58895bF87Cb24); // xlayer-mainnet
+        _registerDVN("Polyhedra zkBridge", 30183, 0xE014fe8c4d5C23EDB7AC4011F226e869ac7Ef5CC); // zkconsensys-mainnet
+
+        // Portal
+        _registerDVN("Portal", 30110, 0x539008c98B17803A273eDf98aBA2d4414Ee3f4D7); // arbitrum-mainnet
+        _registerDVN("Portal", 30106, 0x0E95cf21aD9376A26997c97f326C5A0a267bB8FF); // avalanche-mainnet
+        _registerDVN("Portal", 30102, 0xBD40c9047980500C46B8aed4462e2f889299FEbE); // bsc-mainnet
+        _registerDVN("Portal", 30101, 0x92ef4381a03372985985E70fb15E9F081E2e8D14); // ethereum-mainnet
+        _registerDVN("Portal", 30112, 0xBD40c9047980500C46B8aed4462e2f889299FEbE); // fantom-mainnet
+        _registerDVN("Portal", 30111, 0xdf30C9f6A70cE65A152c5Bd09826525D7E97Ba49); // optimism-mainnet
+        _registerDVN("Portal", 30109, 0x8Fc629aa400D4D9c0B118F2685a49316552ABf27); // polygon-mainnet
 
         // Predicate
         _registerDVN("Predicate", 30101, 0x006E1248BE5e40B4A4E7099397719Df7aB872De7); // ethereum-mainnet
@@ -1408,6 +1426,18 @@ contract LZWorkers is ILZWorkers {
         _registerDVN("Shrapnel", 30111, 0xd36246C322Ee102A2203bCA9cafb84c179D306F6); // optimism-mainnet
         _registerDVN("Shrapnel", 30109, 0x54dD79f5cE72b51FCBbcb170Dd01E32034323565); // polygon-mainnet
 
+        // StableLab
+        _registerDVN("StableLab", 30110, 0xcd37CA043f8479064e10635020c65FfC005d36f6); // arbitrum-mainnet
+        _registerDVN("StableLab", 30106, 0x5fddD320a1e29bB466Fa635661b125D51D976f92); // avalanche-mainnet
+        _registerDVN("StableLab", 40106, 0xfDE647565009B33B1Df02689d5873bffFf15D907); // avalanche-testnet
+        _registerDVN("StableLab", 30102, 0xabC9b1819cc4D9846550F928B985993cF6240439); // bsc-mainnet
+        _registerDVN("StableLab", 40102, 0xD05C27f2e47FbBA82adAAC2a5AdB71bA57a5B933); // bsc-testnet
+        _registerDVN("StableLab", 30101, 0x5fddD320a1e29bB466Fa635661b125D51D976f92); // ethereum-mainnet
+        _registerDVN("StableLab", 30112, 0xabC9b1819cc4D9846550F928B985993cF6240439); // fantom-mainnet
+        _registerDVN("StableLab", 40112, 0x134Dc38AE8C853D1aa2103d5047591acDAA16682); // fantom-testnet
+        _registerDVN("StableLab", 30111, 0xcd37CA043f8479064e10635020c65FfC005d36f6); // optimism-mainnet
+        _registerDVN("StableLab", 30109, 0xabC9b1819cc4D9846550F928B985993cF6240439); // polygon-mainnet
+
         // StablecoinX
         _registerDVN("StablecoinX", 30110, 0x790a1946893DF8Cf85412E9b088C66C3Ee1F5747); // arbitrum-mainnet
         _registerDVN("StablecoinX", 30184, 0x8b4874a130D7F1f702d59115f6D31bCC3E0972c3); // base-mainnet
@@ -1432,37 +1462,25 @@ contract LZWorkers is ILZWorkers {
         _registerDVN("StablecoinX", 30183, 0xbfFc55245174D3a877A448aeB3b979b8d24E19Fb); // zkconsensys-mainnet
         _registerDVN("StablecoinX", 30165, 0xD45174e7654977e8bc3D0648D06c89401978A65a); // zksync-mainnet
 
-        // Stablelab
-        _registerDVN("Stablelab", 30110, 0xcd37CA043f8479064e10635020c65FfC005d36f6); // arbitrum-mainnet
-        _registerDVN("Stablelab", 30106, 0x5fddD320a1e29bB466Fa635661b125D51D976f92); // avalanche-mainnet
-        _registerDVN("Stablelab", 40106, 0xfDE647565009B33B1Df02689d5873bffFf15D907); // avalanche-testnet
-        _registerDVN("Stablelab", 30102, 0xabC9b1819cc4D9846550F928B985993cF6240439); // bsc-mainnet
-        _registerDVN("Stablelab", 40102, 0xD05C27f2e47FbBA82adAAC2a5AdB71bA57a5B933); // bsc-testnet
-        _registerDVN("Stablelab", 30101, 0x5fddD320a1e29bB466Fa635661b125D51D976f92); // ethereum-mainnet
-        _registerDVN("Stablelab", 30112, 0xabC9b1819cc4D9846550F928B985993cF6240439); // fantom-mainnet
-        _registerDVN("Stablelab", 40112, 0x134Dc38AE8C853D1aa2103d5047591acDAA16682); // fantom-testnet
-        _registerDVN("Stablelab", 30111, 0xcd37CA043f8479064e10635020c65FfC005d36f6); // optimism-mainnet
-        _registerDVN("Stablelab", 30109, 0xabC9b1819cc4D9846550F928B985993cF6240439); // polygon-mainnet
-
-        // Stakingcabin
-        _registerDVN("Stakingcabin", 30110, 0xb0646Fb9028364aC1f04477271375EF32A8A5e62); // arbitrum-mainnet
-        _registerDVN("Stakingcabin", 30106, 0xb6323Aa5A3FC07d93A3cf0F1044447F2a88B7dAb); // avalanche-mainnet
-        _registerDVN("Stakingcabin", 30102, 0xcCF6ee53aA0B7c7f190D2a7B273e7b04CCE14D21); // bsc-mainnet
-        _registerDVN("Stakingcabin", 30283, 0x2206ceb6809bD39f8707ED5eE618f8CFA57E40F2); // cyber-mainnet
-        _registerDVN("Stakingcabin", 30101, 0xCd0ca0619fc8dB4d47B19A1f04105312952E5F6D); // ethereum-mainnet
-        _registerDVN("Stakingcabin", 30112, 0x193204535913df3A3b350fcd2e1C97D047AbB409); // fantom-mainnet
-        _registerDVN("Stakingcabin", 30295, 0xCe97511db880571A7C31821eB026Ef12fCaC892e); // flare-mainnet
-        _registerDVN("Stakingcabin", 30294, 0x0D155ec1Dfc983E919C318964fD16078408E99CC); // gravity-mainnet
-        _registerDVN("Stakingcabin", 30265, 0x1294E3347ec64Fd63e1d0594Dc1294247cd237C7); // homeverse-mainnet
-        _registerDVN("Stakingcabin", 30285, 0x34730f2570E6cff8B1C91FaaBF37D0DD917c4367); // joc-mainnet
-        _registerDVN("Stakingcabin", 30266, 0xfd4AD9CDBd06FD4D8cA521307BF63a20239208ef); // merlin-mainnet
-        _registerDVN("Stakingcabin", 30111, 0x56D675bFd1574fF170723689223c3A93DeE5fA78); // optimism-mainnet
-        _registerDVN("Stakingcabin", 30302, 0x2EdfE0220A74d9609c79711a65E3A2F2A85Dc83b); // peaq-mainnet
-        _registerDVN("Stakingcabin", 30109, 0xcd19d26710CACf8241583769f353EA7395159007); // polygon-mainnet
-        _registerDVN("Stakingcabin", 30278, 0x1253CA32712171b5D28115A1346F2B22BB9a41D5); // sanko-mainnet
-        _registerDVN("Stakingcabin", 30280, 0x93d2d7AADC9F2Cf5EbC88e9703E06dB09b8Fd85B); // sei-mainnet
-        _registerDVN("Stakingcabin", 30290, 0x2c7185f5B0976397d9eB5c19d639d4005e6708f0); // taiko-mainnet
-        _registerDVN("Stakingcabin", 30303, 0x92ef4381a03372985985E70fb15E9F081E2e8D14); // zircuit-mainnet
+        // StakingCabin
+        _registerDVN("StakingCabin", 30110, 0xb0646Fb9028364aC1f04477271375EF32A8A5e62); // arbitrum-mainnet
+        _registerDVN("StakingCabin", 30106, 0xb6323Aa5A3FC07d93A3cf0F1044447F2a88B7dAb); // avalanche-mainnet
+        _registerDVN("StakingCabin", 30102, 0xcCF6ee53aA0B7c7f190D2a7B273e7b04CCE14D21); // bsc-mainnet
+        _registerDVN("StakingCabin", 30283, 0x2206ceb6809bD39f8707ED5eE618f8CFA57E40F2); // cyber-mainnet
+        _registerDVN("StakingCabin", 30101, 0xCd0ca0619fc8dB4d47B19A1f04105312952E5F6D); // ethereum-mainnet
+        _registerDVN("StakingCabin", 30112, 0x193204535913df3A3b350fcd2e1C97D047AbB409); // fantom-mainnet
+        _registerDVN("StakingCabin", 30295, 0xCe97511db880571A7C31821eB026Ef12fCaC892e); // flare-mainnet
+        _registerDVN("StakingCabin", 30294, 0x0D155ec1Dfc983E919C318964fD16078408E99CC); // gravity-mainnet
+        _registerDVN("StakingCabin", 30265, 0x1294E3347ec64Fd63e1d0594Dc1294247cd237C7); // homeverse-mainnet
+        _registerDVN("StakingCabin", 30285, 0x34730f2570E6cff8B1C91FaaBF37D0DD917c4367); // joc-mainnet
+        _registerDVN("StakingCabin", 30266, 0xfd4AD9CDBd06FD4D8cA521307BF63a20239208ef); // merlin-mainnet
+        _registerDVN("StakingCabin", 30111, 0x56D675bFd1574fF170723689223c3A93DeE5fA78); // optimism-mainnet
+        _registerDVN("StakingCabin", 30302, 0x2EdfE0220A74d9609c79711a65E3A2F2A85Dc83b); // peaq-mainnet
+        _registerDVN("StakingCabin", 30109, 0xcd19d26710CACf8241583769f353EA7395159007); // polygon-mainnet
+        _registerDVN("StakingCabin", 30278, 0x1253CA32712171b5D28115A1346F2B22BB9a41D5); // sanko-mainnet
+        _registerDVN("StakingCabin", 30280, 0x93d2d7AADC9F2Cf5EbC88e9703E06dB09b8Fd85B); // sei-mainnet
+        _registerDVN("StakingCabin", 30290, 0x2c7185f5B0976397d9eB5c19d639d4005e6708f0); // taiko-mainnet
+        _registerDVN("StakingCabin", 30303, 0x92ef4381a03372985985E70fb15E9F081E2e8D14); // zircuit-mainnet
 
         // Stargate
         _registerDVN("Stargate", 30324, 0xCec9f0A49073ac4a1C439D06cb9448512389a64E); // abstract-mainnet
@@ -1533,15 +1551,6 @@ contract LZWorkers is ILZWorkers {
         _registerDVN("Stargate", 30183, 0xEf269BBaDB81DE86E4b3278fa1DAe1723545268b); // zkconsensys-mainnet
         _registerDVN("Stargate", 30165, 0x62aA89bAd332788021F6F4F4Fb196D5Fe59C27a6); // zksync-mainnet
         _registerDVN("Stargate", 30195, 0x376839ad96f4f0CDfFe10AAF987aBaD3AF0A8901); // zora-mainnet
-
-        // Superduper
-        _registerDVN("Superduper", 30110, 0x539008c98B17803A273eDf98aBA2d4414Ee3f4D7); // arbitrum-mainnet
-        _registerDVN("Superduper", 30106, 0x0E95cf21aD9376A26997c97f326C5A0a267bB8FF); // avalanche-mainnet
-        _registerDVN("Superduper", 30102, 0xBD40c9047980500C46B8aed4462e2f889299FEbE); // bsc-mainnet
-        _registerDVN("Superduper", 30101, 0x92ef4381a03372985985E70fb15E9F081E2e8D14); // ethereum-mainnet
-        _registerDVN("Superduper", 30112, 0xBD40c9047980500C46B8aed4462e2f889299FEbE); // fantom-mainnet
-        _registerDVN("Superduper", 30111, 0xdf30C9f6A70cE65A152c5Bd09826525D7E97Ba49); // optimism-mainnet
-        _registerDVN("Superduper", 30109, 0x8Fc629aa400D4D9c0B118F2685a49316552ABf27); // polygon-mainnet
 
         // Superform
         _registerDVN("Superform", 30110, 0x5496d03d9065B08e5677E1c5D1107110Bb05d445); // arbitrum-mainnet
@@ -1683,12 +1692,6 @@ contract LZWorkers is ILZWorkers {
         _registerDVN("TSS", 30165, 0xCB7aD38D45ab5bcF5880B0fa851263C29582c18a); // zksync-mainnet
         _registerDVN("TSS", 30195, 0xcb566e3B6934Fa77258d68ea18E931fa75e1aaAa); // zora-mainnet
 
-        // Tapioca
-        _registerDVN("Tapioca", 30110, 0xabC9b1819cc4D9846550F928B985993cF6240439); // arbitrum-mainnet
-        _registerDVN("Tapioca", 30106, 0xD24972c11F91c1bB9eaEe97ec96bB9c33cF7af24); // avalanche-mainnet
-        _registerDVN("Tapioca", 30101, 0xD24972c11F91c1bB9eaEe97ec96bB9c33cF7af24); // ethereum-mainnet
-        _registerDVN("Tapioca", 30111, 0xabC9b1819cc4D9846550F928B985993cF6240439); // optimism-mainnet
-
         // USDT0
         _registerDVN("USDT0", 30110, 0xa8b8575fA41c305953F519C7D288cd7741727C7b); // arbitrum-mainnet
         _registerDVN("USDT0", 30106, 0x375C76c6E8ec55A358e6A8c72fe233d0D4a96bEE); // avalanche-mainnet
@@ -1704,6 +1707,7 @@ contract LZWorkers is ILZWorkers {
         _registerDVN("USDT0", 30181, 0xb832B06aB57da86AfBD6a1AF9857703D548fb37d); // mantle-mainnet
         _registerDVN("USDT0", 30398, 0xEfA6237fD9BC99e0cfAEc9BddaC9a2e55Fa336B9); // megaeth-mainnet
         _registerDVN("USDT0", 30390, 0x2DCbD79F38D6871232422db88EC29e8D97135Ac7); // monad-mainnet
+        _registerDVN("USDT0", 30322, 0xd6CA869EaE4320429e6355F8B3bf7D97A380279c); // morph-mainnet
         _registerDVN("USDT0", 30331, 0x91f93749e44C7b6510dcD236aeADE39dFc901D49); // mp1-mainnet
         _registerDVN("USDT0", 30111, 0x947Bb89919d1E5996d6C46223626AC2E97BcF8A3); // optimism-mainnet
         _registerDVN("USDT0", 30383, 0xdCdd4628F858b45260C31D6ad076bD2C3D3c2f73); // plasma-mainnet
@@ -1894,6 +1898,8 @@ contract LZWorkers is ILZWorkers {
         _eidToChainName[30125] = "celo-mainnet";
         _chainNameToEid["celo-testnet"] = 40125;
         _eidToChainName[40125] = "celo-testnet";
+        _chainNameToEid["chiliz-mainnet"] = 30409;
+        _eidToChainName[30409] = "chiliz-mainnet";
         _chainNameToEid["chilizspicy-testnet"] = 40440;
         _eidToChainName[40440] = "chilizspicy-testnet";
         _chainNameToEid["citrea-mainnet"] = 30403;
@@ -2088,6 +2094,8 @@ contract LZWorkers is ILZWorkers {
         _eidToChainName[30284] = "iota-mainnet";
         _chainNameToEid["iota-testnet"] = 40307;
         _eidToChainName[40307] = "iota-testnet";
+        _chainNameToEid["irys-mainnet"] = 30408;
+        _eidToChainName[30408] = "irys-mainnet";
         _chainNameToEid["irys-testnet"] = 40447;
         _eidToChainName[40447] = "irys-testnet";
         _chainNameToEid["islander-mainnet"] = 30330;
@@ -2671,6 +2679,7 @@ contract LZWorkers is ILZWorkers {
         _chainIdToEid[2741] = 30324;
         _chainIdToEid[2810] = 40322;
         _chainIdToEid[2818] = 30322;
+        _chainIdToEid[3282] = 30408;
         _chainIdToEid[3338] = 30302;
         _chainIdToEid[3636] = 40281;
         _chainIdToEid[3637] = 30376;
@@ -2797,6 +2806,7 @@ contract LZWorkers is ILZWorkers {
         _chainIdToEid[84531] = 40160;
         _chainIdToEid[84532] = 40245;
         _chainIdToEid[88882] = 40440;
+        _chainIdToEid[88888] = 30409;
         _chainIdToEid[94524] = 30291;
         _chainIdToEid[97476] = 40425;
         _chainIdToEid[97477] = 30393;
