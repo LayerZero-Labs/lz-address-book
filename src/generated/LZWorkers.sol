@@ -2607,7 +2607,6 @@ contract LZWorkers is ILZWorkers {
         _chainIdToEid[988] = 30396;
         _chainIdToEid[998] = 40362;
         _chainIdToEid[999] = 30367;
-        _chainIdToEid[999] = 40195;
         _chainIdToEid[1001] = 40150;
         _chainIdToEid[1030] = 30212;
         _chainIdToEid[1073] = 40203;
@@ -2886,6 +2885,7 @@ contract LZWorkers is ILZWorkers {
         _chainIdToEid[531050204] = 40437;
         _chainIdToEid[666666666] = 30267;
         _chainIdToEid[686669576] = 40224;
+        _chainIdToEid[999999999] = 40195;
         _chainIdToEid[999999999] = 40249;
         _chainIdToEid[1313161554] = 30211;
         _chainIdToEid[1313161555] = 40201;
