@@ -1522,6 +1522,17 @@ contract LZProtocol is ILZProtocol {
             new string[](0)
         );
         _registerChain(
+            LayerZeroV2TempoMainnet.EID,
+            address(LayerZeroV2TempoMainnet.ENDPOINT_V2),
+            address(LayerZeroV2TempoMainnet.SEND_ULN_302),
+            address(LayerZeroV2TempoMainnet.RECEIVE_ULN_302),
+            LayerZeroV2TempoMainnet.BLOCKED_MESSAGE_LIB,
+            LayerZeroV2TempoMainnet.EXECUTOR,
+            LayerZeroV2TempoMainnet.CHAIN_ID,
+            "tempo-mainnet",
+            new string[](0)
+        );
+        _registerChain(
             LayerZeroV2TenetMainnet.EID,
             address(LayerZeroV2TenetMainnet.ENDPOINT_V2),
             address(LayerZeroV2TenetMainnet.SEND_ULN_302),
@@ -1994,6 +2005,17 @@ contract LZProtocol is ILZProtocol {
             LayerZeroV2BobTestnet.EXECUTOR,
             LayerZeroV2BobTestnet.CHAIN_ID,
             "bob-testnet",
+            new string[](0)
+        );
+        _registerChain(
+            LayerZeroV2BokutoTestnet.EID,
+            address(LayerZeroV2BokutoTestnet.ENDPOINT_V2),
+            address(LayerZeroV2BokutoTestnet.SEND_ULN_302),
+            address(LayerZeroV2BokutoTestnet.RECEIVE_ULN_302),
+            LayerZeroV2BokutoTestnet.BLOCKED_MESSAGE_LIB,
+            LayerZeroV2BokutoTestnet.EXECUTOR,
+            LayerZeroV2BokutoTestnet.CHAIN_ID,
+            "bokuto-testnet",
             new string[](0)
         );
         _registerChain(
