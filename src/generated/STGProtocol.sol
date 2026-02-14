@@ -211,15 +211,6 @@ contract STGProtocol is ISTGProtocol {
             6,
             StargateType.POOL
         );
-        _registerAsset(
-            "avalanche-mainnet",
-            "EURC",
-            0x0cEb237E109eE22374a567c6b09F373C73FA4cBb,
-            0xC891EB4cbdEFf6e073e859e987815Ed1505c2ACD,
-            6,
-            6,
-            StargateType.POOL
-        );
 
         // base-mainnet (Stargate: base)
         _tokenMessaging["base-mainnet"] = 0x5634c4a5FEd09819E3c46D86A965Dd9447d86e47;
@@ -241,15 +232,6 @@ contract STGProtocol is ISTGProtocol {
             18,
             6,
             StargateType.OFT
-        );
-        _registerAsset(
-            "base-mainnet",
-            "EURC",
-            0x87Dd5A7481726a53C5Ac6b0D296F5846f95a72f2,
-            0x60a3E35Cc302bFA44Cb288Bc5a4F316Fdb1adb42,
-            6,
-            6,
-            StargateType.POOL
         );
 
         // bera-mainnet (Stargate: bera)
@@ -804,6 +786,19 @@ contract STGProtocol is ISTGProtocol {
             StargateType.OFT
         );
 
+        // horizen-mainnet (Stargate: horizen)
+        _tokenMessaging["horizen-mainnet"] = 0x88853D410299BCBfE5fCC9Eef93c03115E908279;
+        _registerChain("horizen-mainnet");
+        _registerAsset(
+            "horizen-mainnet",
+            "USDC.e",
+            0x3a1293Bdb83bBbDd5Ebf4fAc96605aD2021BbC0f,
+            0xDF7108f8B10F9b9eC1aba01CCa057268cbf86B6c,
+            6,
+            6,
+            StargateType.OFT
+        );
+
         // ink-mainnet (Stargate: ink)
         _tokenMessaging["ink-mainnet"] = 0x45f1A95A4D3f3836523F5c83673c797f4d4d263B;
         _registerChain("ink-mainnet");
@@ -1348,7 +1343,7 @@ contract STGProtocol is ISTGProtocol {
         );
         _registerAsset(
             "polygon-mainnet",
-            "USDT",
+            "USDT0",
             0xd47b03ee6d86Cf251ee7860FB2ACf9f91B9fD4d7,
             0xc2132D05D31c914a87C6611C10748AEb04B58e8F,
             6,
@@ -1458,7 +1453,7 @@ contract STGProtocol is ISTGProtocol {
         _registerChain("sei-mainnet");
         _registerAsset(
             "sei-mainnet",
-            "USDC",
+            "USDC.n",
             0x45d417612e177672958dC0537C45a8f8d754Ac2E,
             0x3894085Ef7Ff0f0aeDf52E2A2704928d1Ec074F1,
             6,
@@ -1713,6 +1708,28 @@ contract STGProtocol is ISTGProtocol {
             StargateType.OFT
         );
 
+        // tempo-mainnet (Stargate: tempo)
+        _tokenMessaging["tempo-mainnet"] = 0xA6F01ccC347f07256BEc0dc7D1A3B62ADc3f1A68;
+        _registerChain("tempo-mainnet");
+        _registerAsset(
+            "tempo-mainnet",
+            "USDC.e",
+            0xA7d119b72F4Ce3315B46C281b9DA5bD0496D8543,
+            0x20C000000000000000000000b9537d11c60E8b50,
+            6,
+            6,
+            StargateType.OFT
+        );
+        _registerAsset(
+            "tempo-mainnet",
+            "EURC.e",
+            0x8ebB731185773Dc7eC7A98cF3b3363d9A5a2D539,
+            0x20c0000000000000000000001621e21F71CF12fb,
+            6,
+            6,
+            StargateType.OFT
+        );
+
         // unichain-mainnet (Stargate: unichain)
         _tokenMessaging["unichain-mainnet"] = 0xB1EeAD6959cb5bB9B20417d6689922523B2B86C3;
         _registerChain("unichain-mainnet");
@@ -1811,6 +1828,8 @@ contract STGProtocol is ISTGProtocol {
         _chainIdToChainName[1625] = "gravity-mainnet";
         _eidToChainName[30329] = "hemi-mainnet";
         _chainIdToChainName[43111] = "hemi-mainnet";
+        _eidToChainName[30399] = "horizen-mainnet";
+        _chainIdToChainName[26514] = "horizen-mainnet";
         _eidToChainName[30339] = "ink-mainnet";
         _chainIdToChainName[57073] = "ink-mainnet";
         _eidToChainName[30284] = "iota-mainnet";
@@ -1863,6 +1882,8 @@ contract STGProtocol is ISTGProtocol {
         _chainIdToChainName[167000] = "taiko-mainnet";
         _eidToChainName[30199] = "telos-mainnet";
         _chainIdToChainName[40] = "telos-mainnet";
+        _eidToChainName[30410] = "tempo-mainnet";
+        _chainIdToChainName[4217] = "tempo-mainnet";
         _eidToChainName[30365] = "xdc-mainnet";
         _chainIdToChainName[50] = "xdc-mainnet";
         _eidToChainName[30177] = "kava-mainnet";
