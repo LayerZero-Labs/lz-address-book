@@ -3,13 +3,13 @@ pragma solidity ^0.8.20;
 
 // Auto-generated from LayerZero metadata - do not edit manually
 // Source: https://metadata.layerzero-api.com/v1/metadata/deployments
-// DATA_HASH: 0xcf90f96b7abcc9041fe2d1ab0cca4adeefda7f8b1d3c7909a2b99b2f7699040a
+// DATA_HASH: 0x7c9dfdf253cf638e0f24a33c77062eddd681bfbe2ead2b7adde524f46e4cbc93
 
 import {ILayerZeroEndpointV2} from "@layerzerolabs/lz-evm-protocol-v2/contracts/interfaces/ILayerZeroEndpointV2.sol";
 import {IMessageLib} from "@layerzerolabs/lz-evm-protocol-v2/contracts/interfaces/IMessageLib.sol";
 
 // DATA_HASH for provenance tracking (LZIP spec requirement)
-bytes32 constant LZ_ADDRESSES_DATA_HASH = 0xcf90f96b7abcc9041fe2d1ab0cca4adeefda7f8b1d3c7909a2b99b2f7699040a;
+bytes32 constant LZ_ADDRESSES_DATA_HASH = 0x7c9dfdf253cf638e0f24a33c77062eddd681bfbe2ead2b7adde524f46e4cbc93;
 
 library LayerZeroV2AavegotchiTestnet {
     // Chain metadata
@@ -474,6 +474,8 @@ library LayerZeroV2DVNArbitrumMainnet {
     address internal constant DVN_UBISOFT = 0x77aAF86B4466A67869667BaBe02c6Ebe7E7791d6;
     // WBTC Canary [canary-wbtc]
     address internal constant DVN_WBTC_CANARY = 0xeCB3ac94976F11a53ae74Af1f36FB89E247FAEEF;
+    // Worldpay [worldpay]
+    address internal constant DVN_WORLDPAY = 0x6eb08810138317Aa2Af560C174c1390DE6C413D4;
     // Wyoming [wyoming]
     address internal constant DVN_WYOMING = 0xcB1b1d524D013a32E976A5963bd541C388Ec0517;
     // Zeeve [zeeve]
@@ -527,6 +529,8 @@ library LayerZeroV2ArbsepTestnet {
 library LayerZeroV2DVNArbsepTestnet {
     // AltLayer [altlayer]
     address internal constant DVN_ALTLAYER = 0x47cee39389206557f88118A54EFDbCE13b28B6a4;
+    // Anchorage [anchorage]
+    address internal constant DVN_ANCHORAGE = 0x73805fd2342dcD7b53349e6bBA7462FefC040910;
     // BWare [bware-labs]
     address internal constant DVN_BWARE = 0x9f529527A6810F1b661Fb2AEea19378Ce5a2C23e;
     // BitGo (deprecated) [bitgo]
@@ -911,6 +915,8 @@ library LayerZeroV2DVNAvalancheMainnet {
     address internal constant DVN_UBISOFT = 0xc86D023C11c5e8aA731F40b65158590624d242aF;
     // WBTC Canary [canary-wbtc]
     address internal constant DVN_WBTC_CANARY = 0x6995acD4AE604f8f334F5309A75232544F78E0c9;
+    // Worldpay [worldpay]
+    address internal constant DVN_WORLDPAY = 0x1455f0DFb52Dd70eB9CE2DfffBf33Ba542757bc6;
     // Wyoming [wyoming]
     address internal constant DVN_WYOMING = 0xDa4428ff0f15B9D92C39aE08c4fc2F1216662c2f;
     // Zeeve [zeeve]
@@ -1165,6 +1171,8 @@ library LayerZeroV2DVNBaseMainnet {
     address internal constant DVN_UBISOFT = 0x505E855810cb243b2f23e95fdbb8F28d22F87a8C;
     // WBTC Canary [canary-wbtc]
     address internal constant DVN_WBTC_CANARY = 0x4873d56816F45eF341a8819d7039E4746Ed77C21;
+    // Worldpay [worldpay]
+    address internal constant DVN_WORLDPAY = 0x3aCC906ca13Fe210c98d8f75edD7DB60E129d7FC;
     // Wyoming [wyoming]
     address internal constant DVN_WYOMING = 0xF80285eFb7518d5c79F4e98E3bAA59dA5eE79621;
     // Zeeve [zeeve]
@@ -4014,6 +4022,8 @@ library LayerZeroV2DVNEthereumMainnet {
     address internal constant DVN_UBISOFT = 0xcc9da5B157eD87e24A9cF562E6A7C05D3C3deCD3;
     // WBTC Canary [canary-wbtc]
     address internal constant DVN_WBTC_CANARY = 0x89CA15937e1033AF26Fe4C5e976216E8C8179408;
+    // Worldpay [worldpay]
+    address internal constant DVN_WORLDPAY = 0x28AbF64947496A34Dcbd1E65983F445E0D6D6e09;
     // Wyoming [wyoming]
     address internal constant DVN_WYOMING = 0x6C70Db9CE65fA37499C1f1A150A6440fC9c7273A;
     // Zeeve [zeeve]
@@ -7397,6 +7407,8 @@ library LayerZeroV2DVNMeritcircleMainnet {
     address internal constant DVN_LZ_DEAD = 0x690b1857EaA8c55850547d7C22148C0B99a71dCd;
     // LayerZero Labs [layerzero-labs]
     address internal constant DVN_LAYERZERO_LABS = 0x5E38c31C28d0F485d6dc3fFAbF8980bBCD882294;
+    // Nethermind [nethermind]
+    address internal constant DVN_NETHERMIND = 0x8bEFB8cd9529e539B095251Ea3a058e710225D30;
     // TSS [tss]
     address internal constant DVN_TSS = 0xcb566e3B6934Fa77258d68ea18E931fa75e1aaAa;
 }
@@ -8755,6 +8767,8 @@ library LayerZeroV2DVNOpbnbMainnet {
     address internal constant DVN_TSS = 0xA658742d33ebd2ce2F0bdFf73515Aa797Fd161D9;
     // WBTC Canary [canary-wbtc]
     address internal constant DVN_WBTC_CANARY = 0xeFdC8b6E2757118dE5990260D2A4eF39d31f9e49;
+    // Worldpay [worldpay]
+    address internal constant DVN_WORLDPAY = 0x795c62387ef3022b61F2C705BfBE5d94a78B971d;
 }
 
 library LayerZeroV2OpbnbTestnet {
@@ -9020,6 +9034,8 @@ library LayerZeroV2DVNOptimismMainnet {
     address internal constant DVN_UBISOFT = 0x51ACCFB59e4BDA0F8324934f9789e9Ea19fBEff4;
     // WBTC Canary [canary-wbtc]
     address internal constant DVN_WBTC_CANARY = 0x6F798D30577c91E8F9291e82e633Dbe4dCe16b93;
+    // Worldpay [worldpay]
+    address internal constant DVN_WORLDPAY = 0xbD78d684d1a0Fc494E8BEbbAbFa6F9226a7aeCF5;
     // Wyoming [wyoming]
     address internal constant DVN_WYOMING = 0x94eC5934Daa761d7597B76fD0fecf8385De143be;
     // Zeeve [zeeve]
@@ -9814,6 +9830,8 @@ library LayerZeroV2DVNPolygonMainnet {
     address internal constant DVN_TSS = 0x5a54fe5234E811466D5366846283323c954310B2;
     // USDT0 [usdt0]
     address internal constant DVN_USDT0 = 0xdD3d71FF05D9206C69c667D22b3a0970009780e4;
+    // Worldpay [worldpay]
+    address internal constant DVN_WORLDPAY = 0x2aC7F400d486F6b81660E7D279072e0C18e16733;
     // Wyoming [wyoming]
     address internal constant DVN_WYOMING = 0xf6cB110b0334825797B9b733060229C68e5D8bef;
     // Zenrock (deprecated) [zenrock]
@@ -12011,36 +12029,36 @@ library LayerZeroV2TempoMainnet {
 
     // Core protocol
     ILayerZeroEndpointV2 internal constant ENDPOINT_V2 =
-        ILayerZeroEndpointV2(0x8bC1e36F015b9902B54b1387A4d733cebc2f5A4e);
+        ILayerZeroEndpointV2(0x20Bb7C2E2f4e5ca2B4c57060d1aE2615245dCc9C);
 
     // Message libraries
-    IMessageLib internal constant SEND_ULN_302 = IMessageLib(0x282b3386571f7f794450d5789911a9804FA346b4);
-    address internal constant BLOCKED_MESSAGE_LIB = 0x9B66f043fF6A9Fe1a96710D23AB9fED57cCE10b4;
-    IMessageLib internal constant RECEIVE_ULN_302 = IMessageLib(0x6788f52439ACA6BFF597d3eeC2DC9a44B8FEE842);
+    IMessageLib internal constant SEND_ULN_302 = IMessageLib(0x572863d9247E52026E0892d9Cd2E519B41EdB73C);
+    address internal constant BLOCKED_MESSAGE_LIB = 0x1f3E00F19664e914351B51757f669ffBf67C0032;
+    IMessageLib internal constant RECEIVE_ULN_302 = IMessageLib(0x0B6F08C2D39421Acb49c99abCe82050e356171e5);
 
     // Other contracts
-    address internal constant ENDPOINT_V2_VIEW = 0xfd76d9CB0Bac839725aB79127E7411fe71b1e3CA;
-    address internal constant LZENDPOINT_DOLLAR = 0x9895D81bB462A195b4922ED7De0e3ACD007c32CB;
-    address internal constant EXECUTOR = 0x81a57678343cA220a9029523477715E00e4024bE;
-    address internal constant DEAD_DVN = 0x2BF2f59d2E318Bb03C8956E7BC4c3E6c28Bd0fC2;
-    address internal constant LZ_EXECUTOR = 0x9375aF50d3Aa53eAB296EE80667cCD0D72a12a5b;
+    address internal constant ENDPOINT_V2_VIEW = 0x6903A4a6F09f8837886928b9494C0635Cf3091ED;
+    address internal constant LZENDPOINT_DOLLAR = 0x0cEb237E109eE22374a567c6b09F373C73FA4cBb;
+    address internal constant EXECUTOR = 0xf851abCa1d0fD1Df8eAba6de466a102996b7d7B2;
+    address internal constant DEAD_DVN = 0x3436d350103a9dfA252a04f102f9f10f58Ff450C;
+    address internal constant LZ_EXECUTOR = 0xB591c17580dbf4e9ee1C0Eaa302694d13cc09Ff3;
 }
 
 library LayerZeroV2DVNTempoMainnet {
     // Frax [frax]
-    address internal constant DVN_FRAX = 0xa9Ff468ad000A4D5729826459197a0dB843F433E;
+    address internal constant DVN_FRAX = 0xf5771acC42f3321D7193748fA0F656470bF737f2;
     // Horizen [horizen-labs]
-    address internal constant DVN_HORIZEN = 0x7E63D64d9E82f791041a45B197B2480bbD5E5f86;
+    address internal constant DVN_HORIZEN = 0x97faa2a9c9bf8B4082B175A5B894Ce6bac6697a8;
     // LZDeadDVN (deprecated) [lz-dead-dvn]
-    address internal constant DVN_LZ_DEAD = 0x2BF2f59d2E318Bb03C8956E7BC4c3E6c28Bd0fC2;
+    address internal constant DVN_LZ_DEAD = 0x3436d350103a9dfA252a04f102f9f10f58Ff450C;
     // LayerZero Labs [layerzero-labs]
-    address internal constant DVN_LAYERZERO_LABS = 0x306B9a8953B9462F8b826e6768a93C8EA7454965;
+    address internal constant DVN_LAYERZERO_LABS = 0x76FaFF60799021B301B45dC1BbEDE53F261F9961;
     // Nethermind [nethermind]
-    address internal constant DVN_NETHERMIND = 0xaCDe1f22EEAb249d3ca6Ba8805C8fEe9f52a16e7;
+    address internal constant DVN_NETHERMIND = 0x0D875bD6c833cEDef7Fca4FE154d023cDB8eb1cb;
     // P2P [p2p]
-    address internal constant DVN_P2P = 0xB51b138a15fbd7433876C825F05882B2C011d097;
+    address internal constant DVN_P2P = 0x71b71Db3639f3b3cf07f447581b9390f31963aD7;
     // USDT0 [usdt0]
-    address internal constant DVN_USDT0 = 0x7E65BDd15C8Db8995F80aBf0D6593b57dc8BE437;
+    address internal constant DVN_USDT0 = 0x7701172A790129fdFdB802b091BEDC4A6bC877de;
 }
 
 library LayerZeroV2TempoTestnet {
