@@ -3218,6 +3218,17 @@ contract LZProtocol is ILZProtocol {
             new string[](0)
         );
         _registerChain(
+            LayerZeroV2Plume4Testnet.EID,
+            address(LayerZeroV2Plume4Testnet.ENDPOINT_V2),
+            address(LayerZeroV2Plume4Testnet.SEND_ULN_302),
+            address(LayerZeroV2Plume4Testnet.RECEIVE_ULN_302),
+            LayerZeroV2Plume4Testnet.BLOCKED_MESSAGE_LIB,
+            LayerZeroV2Plume4Testnet.EXECUTOR,
+            LayerZeroV2Plume4Testnet.CHAIN_ID,
+            "plume4-testnet",
+            new string[](0)
+        );
+        _registerChain(
             LayerZeroV2PolygonTestnet.EID,
             address(LayerZeroV2PolygonTestnet.ENDPOINT_V2),
             address(LayerZeroV2PolygonTestnet.SEND_ULN_302),
@@ -3281,6 +3292,17 @@ contract LZProtocol is ILZProtocol {
             LayerZeroV2RiseTestnet.EXECUTOR,
             LayerZeroV2RiseTestnet.CHAIN_ID,
             "rise-testnet",
+            new string[](0)
+        );
+        _registerChain(
+            LayerZeroV2RobinhoodTestnet.EID,
+            address(LayerZeroV2RobinhoodTestnet.ENDPOINT_V2),
+            address(LayerZeroV2RobinhoodTestnet.SEND_ULN_302),
+            address(LayerZeroV2RobinhoodTestnet.RECEIVE_ULN_302),
+            LayerZeroV2RobinhoodTestnet.BLOCKED_MESSAGE_LIB,
+            LayerZeroV2RobinhoodTestnet.EXECUTOR,
+            LayerZeroV2RobinhoodTestnet.CHAIN_ID,
+            "robinhood-testnet",
             new string[](0)
         );
         _registerChain(
