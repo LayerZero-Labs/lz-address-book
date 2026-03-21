@@ -598,6 +598,17 @@ contract LZProtocol is ILZProtocol {
             new string[](0)
         );
         _registerChain(
+            LayerZeroV2GensynMainnet.EID,
+            address(LayerZeroV2GensynMainnet.ENDPOINT_V2),
+            address(LayerZeroV2GensynMainnet.SEND_ULN_302),
+            address(LayerZeroV2GensynMainnet.RECEIVE_ULN_302),
+            LayerZeroV2GensynMainnet.BLOCKED_MESSAGE_LIB,
+            LayerZeroV2GensynMainnet.EXECUTOR,
+            LayerZeroV2GensynMainnet.CHAIN_ID,
+            "gensyn-mainnet",
+            new string[](0)
+        );
+        _registerChain(
             LayerZeroV2GlueMainnet.EID,
             address(LayerZeroV2GlueMainnet.ENDPOINT_V2),
             address(LayerZeroV2GlueMainnet.SEND_ULN_302),
@@ -3402,6 +3413,28 @@ contract LZProtocol is ILZProtocol {
             LayerZeroV2SeiTestnet.EXECUTOR,
             LayerZeroV2SeiTestnet.CHAIN_ID,
             "sei-testnet",
+            new string[](0)
+        );
+        _registerChain(
+            LayerZeroV2Sei2Testnet.EID,
+            address(LayerZeroV2Sei2Testnet.ENDPOINT_V2),
+            address(LayerZeroV2Sei2Testnet.SEND_ULN_302),
+            address(LayerZeroV2Sei2Testnet.RECEIVE_ULN_302),
+            LayerZeroV2Sei2Testnet.BLOCKED_MESSAGE_LIB,
+            LayerZeroV2Sei2Testnet.EXECUTOR,
+            LayerZeroV2Sei2Testnet.CHAIN_ID,
+            "sei2-testnet",
+            new string[](0)
+        );
+        _registerChain(
+            LayerZeroV2SeismicTestnet.EID,
+            address(LayerZeroV2SeismicTestnet.ENDPOINT_V2),
+            address(LayerZeroV2SeismicTestnet.SEND_ULN_302),
+            address(LayerZeroV2SeismicTestnet.RECEIVE_ULN_302),
+            LayerZeroV2SeismicTestnet.BLOCKED_MESSAGE_LIB,
+            LayerZeroV2SeismicTestnet.EXECUTOR,
+            LayerZeroV2SeismicTestnet.CHAIN_ID,
+            "seismic-testnet",
             new string[](0)
         );
         _registerChain(

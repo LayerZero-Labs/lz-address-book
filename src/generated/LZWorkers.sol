@@ -365,6 +365,7 @@ contract LZWorkers is ILZWorkers {
         // Citrea
         _registerDVN("Citrea", 40267, 0x4f9D2bD7942c3e76CFC7323A56b95B4a6A52FdFd); // amoy-testnet
         _registerDVN("Citrea", 40231, 0x5e352BBdE7376f817566927fB00b58d92d97E145); // arbsep-testnet
+        _registerDVN("Citrea", 30184, 0x99aFc2a3b8F5Cb86a4C4e1320EDe1e8C34273854); // base-mainnet
         _registerDVN("Citrea", 30102, 0xe48A3dd4d207338A8faBE4E929D78d78C38CaDeA); // bsc-mainnet
         _registerDVN("Citrea", 30403, 0xf0a5C5306adbFd4e3dfD5d4B148B451c411d3878); // citrea-mainnet
         _registerDVN("Citrea", 40344, 0xe7e778f704EBc0598902cBF96C6748f3B96BC8d1); // citrea-testnet
@@ -763,6 +764,7 @@ contract LZWorkers is ILZWorkers {
         _registerDVN("LayerZero Labs", 40339, 0x9dB9Ca3305B48F196D18082e91cB64663b13d014); // gameswift-testnet
         _registerDVN("LayerZero Labs", 40421, 0x88B27057A9e00c5F05DDa29241027afF63f9e6e0); // gate-testnet
         _registerDVN("LayerZero Labs", 30389, 0x6788f52439ACA6BFF597d3eeC2DC9a44B8FEE842); // gatelayer-mainnet
+        _registerDVN("LayerZero Labs", 30412, 0x282b3386571f7f794450d5789911a9804FA346b4); // gensyn-mainnet
         _registerDVN("LayerZero Labs", 40454, 0xa78A78a13074eD93aD447a26Ec57121f29E8feC2); // gensyn-testnet
         _registerDVN("LayerZero Labs", 30342, 0xce8358bc28dd8296Ce8cAF1CD2b44787abd65887); // glue-mainnet
         _registerDVN("LayerZero Labs", 40296, 0x88B27057A9e00c5F05DDa29241027afF63f9e6e0); // glue-testnet
@@ -902,6 +904,8 @@ contract LZWorkers is ILZWorkers {
         _registerDVN("LayerZero Labs", 40170, 0xb186F85d0604FE58af2Ea33fE40244f5EEF7351B); // scroll-testnet
         _registerDVN("LayerZero Labs", 30280, 0x6788f52439ACA6BFF597d3eeC2DC9a44B8FEE842); // sei-mainnet
         _registerDVN("LayerZero Labs", 40258, 0xF49d162484290EAeAd7bb8C2c7E3a6f8f52e32d6); // sei-testnet
+        _registerDVN("LayerZero Labs", 40455, 0x88B27057A9e00c5F05DDa29241027afF63f9e6e0); // sei2-testnet
+        _registerDVN("LayerZero Labs", 40456, 0xFEe867ed545F26621Dc701e6164e02Ead9c6B081); // seismic-testnet
         _registerDVN("LayerZero Labs", 40161, 0x8eebf8b423B73bFCa51a1Db4B7354AA0bFCA9193); // sepolia-testnet
         _registerDVN("LayerZero Labs", 30230, 0x9Bdf3aE7E2e3D211811E5e782a808Ca0a75BF1Fc); // shimmer-mainnet
         _registerDVN("LayerZero Labs", 30379, 0x282b3386571f7f794450d5789911a9804FA346b4); // silicon-mainnet
@@ -1283,6 +1287,7 @@ contract LZWorkers is ILZWorkers {
         _registerDVN("Ondo Staging", 30110, 0x2f2F1c6025E8Da125e2Afd73BA17d3cBDfE3d093); // arbitrum-mainnet
         _registerDVN("Ondo Staging", 30102, 0x089E70BC883Ad0b6551e513bF7A71Ffd2059f9F1); // bsc-mainnet
         _registerDVN("Ondo Staging", 30101, 0xF34D1B07c64c4F4d492aE3DdD0AaB0658A2975eb); // ethereum-mainnet
+        _registerDVN("Ondo Staging", 30367, 0x3dD571f159076D5aE006baC1D4326d05DF691Cf1); // hyperliquid-mainnet
         _registerDVN("Ondo Staging", 30181, 0x377B51593a03B82543c1508fE7e75Aba6acDE008); // mantle-mainnet
         _registerDVN("Ondo Staging", 30370, 0xA58f3bccE94b3d2db1676B17c13C1A5d61d69580); // plumephoenix-mainnet
         _registerDVN("Ondo Staging", 30280, 0x75d0f9F7926f41BbBBe37050EE523F37BD398376); // sei-mainnet
@@ -2066,6 +2071,8 @@ contract LZWorkers is ILZWorkers {
         _eidToChainName[40421] = "gate-testnet";
         _chainNameToEid["gatelayer-mainnet"] = 30389;
         _eidToChainName[30389] = "gatelayer-mainnet";
+        _chainNameToEid["gensyn-mainnet"] = 30412;
+        _eidToChainName[30412] = "gensyn-mainnet";
         _chainNameToEid["gensyn-testnet"] = 40454;
         _eidToChainName[40454] = "gensyn-testnet";
         _chainNameToEid["glue-mainnet"] = 30342;
@@ -2412,6 +2419,10 @@ contract LZWorkers is ILZWorkers {
         _eidToChainName[30280] = "sei-mainnet";
         _chainNameToEid["sei-testnet"] = 40258;
         _eidToChainName[40258] = "sei-testnet";
+        _chainNameToEid["sei2-testnet"] = 40455;
+        _eidToChainName[40455] = "sei2-testnet";
+        _chainNameToEid["seismic-testnet"] = 40456;
+        _eidToChainName[40456] = "seismic-testnet";
         _chainNameToEid["sepolia-testnet"] = 40161;
         _eidToChainName[40161] = "sepolia-testnet";
         _chainNameToEid["shimmer-mainnet"] = 30230;
@@ -2678,6 +2689,7 @@ contract LZWorkers is ILZWorkers {
         _chainIdToEid[1300] = 40296;
         _chainIdToEid[1301] = 40328;
         _chainIdToEid[1301] = 40333;
+        _chainIdToEid[1328] = 40455;
         _chainIdToEid[1329] = 30280;
         _chainIdToEid[1337] = 40271;
         _chainIdToEid[1337] = 40288;
@@ -2751,6 +2763,7 @@ contract LZWorkers is ILZWorkers {
         _chainIdToEid[5003] = 40246;
         _chainIdToEid[5031] = 30380;
         _chainIdToEid[5115] = 40344;
+        _chainIdToEid[5124] = 40456;
         _chainIdToEid[5165] = 30363;
         _chainIdToEid[5464] = 30405;
         _chainIdToEid[5611] = 40202;
@@ -2898,6 +2911,7 @@ contract LZWorkers is ILZWorkers {
         _chainIdToEid[657468] = 40407;
         _chainIdToEid[660279] = 30236;
         _chainIdToEid[685685] = 40454;
+        _chainIdToEid[685689] = 30412;
         _chainIdToEid[686868] = 40264;
         _chainIdToEid[688689] = 40436;
         _chainIdToEid[710420] = 30238;
