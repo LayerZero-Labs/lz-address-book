@@ -427,6 +427,19 @@ library StargateGatelayerMainnet {
     address internal constant WETH_TOKEN = 0x60219C44E146BAf36002eA73767820238Ebc1db6;
 }
 
+library StargateGensynMainnet {
+    // Chain metadata
+    uint32 internal constant EID = 30412;
+    uint256 internal constant CHAIN_ID = 685689;
+    string internal constant CHAIN_NAME = "gensyn-mainnet";
+
+    address internal constant TOKEN_MESSAGING = 0x60219C44E146BAf36002eA73767820238Ebc1db6;
+
+    // USDC.e (StargateOFT)
+    address internal constant USDC_E_OFT = 0xc8D5b106fb3dB1140cfa12a94666de02A1d26183;
+    address internal constant USDC_E_TOKEN = 0x5b32c997211621d55a89Cc5abAF1cC21F3A6ddF5;
+}
+
 library StargateGlueMainnet {
     // Chain metadata
     uint32 internal constant EID = 30342;

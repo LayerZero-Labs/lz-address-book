@@ -103,6 +103,17 @@ contract LZProtocol is ILZProtocol {
             new string[](0)
         );
         _registerChain(
+            LayerZeroV2AultMainnet.EID,
+            address(LayerZeroV2AultMainnet.ENDPOINT_V2),
+            address(LayerZeroV2AultMainnet.SEND_ULN_302),
+            address(LayerZeroV2AultMainnet.RECEIVE_ULN_302),
+            LayerZeroV2AultMainnet.BLOCKED_MESSAGE_LIB,
+            LayerZeroV2AultMainnet.EXECUTOR,
+            LayerZeroV2AultMainnet.CHAIN_ID,
+            "ault-mainnet",
+            new string[](0)
+        );
+        _registerChain(
             LayerZeroV2AuroraMainnet.EID,
             address(LayerZeroV2AuroraMainnet.ENDPOINT_V2),
             address(LayerZeroV2AuroraMainnet.SEND_ULN_302),
@@ -595,6 +606,17 @@ contract LZProtocol is ILZProtocol {
             LayerZeroV2GatelayerMainnet.EXECUTOR,
             LayerZeroV2GatelayerMainnet.CHAIN_ID,
             "gatelayer-mainnet",
+            new string[](0)
+        );
+        _registerChain(
+            LayerZeroV2GensynMainnet.EID,
+            address(LayerZeroV2GensynMainnet.ENDPOINT_V2),
+            address(LayerZeroV2GensynMainnet.SEND_ULN_302),
+            address(LayerZeroV2GensynMainnet.RECEIVE_ULN_302),
+            LayerZeroV2GensynMainnet.BLOCKED_MESSAGE_LIB,
+            LayerZeroV2GensynMainnet.EXECUTOR,
+            LayerZeroV2GensynMainnet.CHAIN_ID,
+            "gensyn-mainnet",
             new string[](0)
         );
         _registerChain(
@@ -3020,6 +3042,17 @@ contract LZProtocol is ILZProtocol {
             new string[](0)
         );
         _registerChain(
+            LayerZeroV2NeoxTestnet.EID,
+            address(LayerZeroV2NeoxTestnet.ENDPOINT_V2),
+            address(LayerZeroV2NeoxTestnet.SEND_ULN_302),
+            address(LayerZeroV2NeoxTestnet.RECEIVE_ULN_302),
+            LayerZeroV2NeoxTestnet.BLOCKED_MESSAGE_LIB,
+            LayerZeroV2NeoxTestnet.EXECUTOR,
+            LayerZeroV2NeoxTestnet.CHAIN_ID,
+            "neox-testnet",
+            new string[](0)
+        );
+        _registerChain(
             LayerZeroV2NexeraTestnet.EID,
             address(LayerZeroV2NexeraTestnet.ENDPOINT_V2),
             address(LayerZeroV2NexeraTestnet.SEND_ULN_302),
@@ -3284,6 +3317,17 @@ contract LZProtocol is ILZProtocol {
             new string[](0)
         );
         _registerChain(
+            LayerZeroV2RaylsTestnet.EID,
+            address(LayerZeroV2RaylsTestnet.ENDPOINT_V2),
+            address(LayerZeroV2RaylsTestnet.SEND_ULN_302),
+            address(LayerZeroV2RaylsTestnet.RECEIVE_ULN_302),
+            LayerZeroV2RaylsTestnet.BLOCKED_MESSAGE_LIB,
+            LayerZeroV2RaylsTestnet.EXECUTOR,
+            LayerZeroV2RaylsTestnet.CHAIN_ID,
+            "rayls-testnet",
+            new string[](0)
+        );
+        _registerChain(
             LayerZeroV2RaylsdevnetTestnet.EID,
             address(LayerZeroV2RaylsdevnetTestnet.ENDPOINT_V2),
             address(LayerZeroV2RaylsdevnetTestnet.SEND_ULN_302),
@@ -3402,6 +3446,28 @@ contract LZProtocol is ILZProtocol {
             LayerZeroV2SeiTestnet.EXECUTOR,
             LayerZeroV2SeiTestnet.CHAIN_ID,
             "sei-testnet",
+            new string[](0)
+        );
+        _registerChain(
+            LayerZeroV2Sei2Testnet.EID,
+            address(LayerZeroV2Sei2Testnet.ENDPOINT_V2),
+            address(LayerZeroV2Sei2Testnet.SEND_ULN_302),
+            address(LayerZeroV2Sei2Testnet.RECEIVE_ULN_302),
+            LayerZeroV2Sei2Testnet.BLOCKED_MESSAGE_LIB,
+            LayerZeroV2Sei2Testnet.EXECUTOR,
+            LayerZeroV2Sei2Testnet.CHAIN_ID,
+            "sei2-testnet",
+            new string[](0)
+        );
+        _registerChain(
+            LayerZeroV2SeismicTestnet.EID,
+            address(LayerZeroV2SeismicTestnet.ENDPOINT_V2),
+            address(LayerZeroV2SeismicTestnet.SEND_ULN_302),
+            address(LayerZeroV2SeismicTestnet.RECEIVE_ULN_302),
+            LayerZeroV2SeismicTestnet.BLOCKED_MESSAGE_LIB,
+            LayerZeroV2SeismicTestnet.EXECUTOR,
+            LayerZeroV2SeismicTestnet.CHAIN_ID,
+            "seismic-testnet",
             new string[](0)
         );
         _registerChain(
