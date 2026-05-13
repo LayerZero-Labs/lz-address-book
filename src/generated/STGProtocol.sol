@@ -627,6 +627,19 @@ contract STGProtocol is ISTGProtocol {
             StargateType.OFT
         );
 
+        // gensyn-mainnet (Stargate: gensyn)
+        _tokenMessaging["gensyn-mainnet"] = 0x60219C44E146BAf36002eA73767820238Ebc1db6;
+        _registerChain("gensyn-mainnet");
+        _registerAsset(
+            "gensyn-mainnet",
+            "USDC.e",
+            0xc8D5b106fb3dB1140cfa12a94666de02A1d26183,
+            0x5b32c997211621d55a89Cc5abAF1cC21F3A6ddF5,
+            6,
+            6,
+            StargateType.OFT
+        );
+
         // glue-mainnet (Stargate: glue)
         _tokenMessaging["glue-mainnet"] = 0x45A01E4e04F14f7A4a6702c74187c5F6222033cd;
         _registerChain("glue-mainnet");
@@ -1853,6 +1866,8 @@ contract STGProtocol is ISTGProtocol {
         _chainIdToChainName[122] = "fuse-mainnet";
         _eidToChainName[30389] = "gatelayer-mainnet";
         _chainIdToChainName[10088] = "gatelayer-mainnet";
+        _eidToChainName[30412] = "gensyn-mainnet";
+        _chainIdToChainName[685689] = "gensyn-mainnet";
         _eidToChainName[30342] = "glue-mainnet";
         _chainIdToChainName[1300] = "glue-mainnet";
         _eidToChainName[30145] = "gnosis-mainnet";
