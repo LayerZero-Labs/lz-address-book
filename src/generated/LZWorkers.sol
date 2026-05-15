@@ -948,7 +948,6 @@ contract LZWorkers is ILZWorkers {
         _registerDVN("LayerZero Labs", 30199, 0x3C5575898f59c097681d1Fc239c2c6Ad36B7b41c); // telos-mainnet
         _registerDVN("LayerZero Labs", 40199, 0x5b11f3833393e9be06fA702c68453aD31976866E); // telos-testnet
         _registerDVN("LayerZero Labs", 30410, 0x76FaFF60799021B301B45dC1BbEDE53F261F9961); // tempo-mainnet
-        _registerDVN("LayerZero Labs", 40431, 0xa78A78a13074eD93aD447a26Ec57121f29E8feC2); // tempo-testnet
         _registerDVN("LayerZero Labs", 40439, 0x489fd72653924E25De141e9B1d1c2591A1150602); // tempodev1-testnet
         _registerDVN("LayerZero Labs", 30173, 0x28A5536cA9F36c45A9d2AC8d2B62Fc46Fde024B6); // tenet-mainnet
         _registerDVN("LayerZero Labs", 40173, 0x74582424B8b92BE2eC17c192F6976b2effEFAb7c); // tenet-testnet

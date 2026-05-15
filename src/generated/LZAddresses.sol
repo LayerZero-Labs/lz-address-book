@@ -3,13 +3,13 @@ pragma solidity ^0.8.20;
 
 // Auto-generated from LayerZero metadata - do not edit manually
 // Source: https://metadata.layerzero-api.com/v1/metadata/deployments
-// DATA_HASH: 0xef6bde05fd7d1d24ad8572aaaae9265863112293437658aeec725f8e4922a9e6
+// DATA_HASH: 0x791ea069afd9b57ee041ec7c97b915c5786b4728176c77bc01f8b7471bb45f77
 
 import {ILayerZeroEndpointV2} from "@layerzerolabs/lz-evm-protocol-v2/contracts/interfaces/ILayerZeroEndpointV2.sol";
 import {IMessageLib} from "@layerzerolabs/lz-evm-protocol-v2/contracts/interfaces/IMessageLib.sol";
 
 // DATA_HASH for provenance tracking (LZIP spec requirement)
-bytes32 constant LZ_ADDRESSES_DATA_HASH = 0xef6bde05fd7d1d24ad8572aaaae9265863112293437658aeec725f8e4922a9e6;
+bytes32 constant LZ_ADDRESSES_DATA_HASH = 0x791ea069afd9b57ee041ec7c97b915c5786b4728176c77bc01f8b7471bb45f77;
 
 library LayerZeroV2AavegotchiTestnet {
     // Chain metadata
@@ -12590,7 +12590,7 @@ library LayerZeroV2TempoTestnet {
 library LayerZeroV2DVNTempoTestnet {
     // LZDeadDVN (deprecated) [lz-dead-dvn]
     address internal constant DVN_LZ_DEAD = 0x88B27057A9e00c5F05DDa29241027afF63f9e6e0;
-    // LayerZero Labs [layerzero-labs]
+    // LayerZero Labs (deprecated) [layerzero-labs]
     address internal constant DVN_LAYERZERO_LABS = 0xa78A78a13074eD93aD447a26Ec57121f29E8feC2;
 }
 

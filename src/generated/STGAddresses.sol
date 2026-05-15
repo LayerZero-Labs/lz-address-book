@@ -1172,6 +1172,19 @@ library StargateStoryMainnet {
     address internal constant WETH_TOKEN = 0xBAb93B7ad7fE8692A878B95a8e689423437cc500;
 }
 
+library StargateSubtensorevmMainnet {
+    // Chain metadata
+    uint32 internal constant EID = 30374;
+    uint256 internal constant CHAIN_ID = 964;
+    string internal constant CHAIN_NAME = "subtensorevm-mainnet";
+
+    address internal constant TOKEN_MESSAGING = 0x015fd589F4f1A33ce4487E12714e1B15129c9329;
+
+    // USDC.e (StargateOFT)
+    address internal constant USDC_E_OFT = 0x74c9f2b00581F1B11AA7ff05aa9F608B7389De67;
+    address internal constant USDC_E_TOKEN = 0x9001dbe4D68d36ab87923A2a9Dfb0c745fd25001;
+}
+
 library StargateSuperpositionMainnet {
     // Chain metadata
     uint32 internal constant EID = 30327;

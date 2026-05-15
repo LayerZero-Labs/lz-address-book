@@ -1677,6 +1677,19 @@ contract STGProtocol is ISTGProtocol {
             StargateType.OFT
         );
 
+        // subtensorevm-mainnet (Stargate: subtensorevm)
+        _tokenMessaging["subtensorevm-mainnet"] = 0x015fd589F4f1A33ce4487E12714e1B15129c9329;
+        _registerChain("subtensorevm-mainnet");
+        _registerAsset(
+            "subtensorevm-mainnet",
+            "USDC.e",
+            0x74c9f2b00581F1B11AA7ff05aa9F608B7389De67,
+            0x9001dbe4D68d36ab87923A2a9Dfb0c745fd25001,
+            6,
+            6,
+            StargateType.OFT
+        );
+
         // superposition-mainnet (Stargate: superposition)
         _tokenMessaging["superposition-mainnet"] = 0x06Eb48763f117c7Be887296CDcdfad2E4092739C;
         _registerChain("superposition-mainnet");
@@ -1928,6 +1941,8 @@ contract STGProtocol is ISTGProtocol {
         _chainIdToChainName[988] = "stable-mainnet";
         _eidToChainName[30364] = "story-mainnet";
         _chainIdToChainName[1514] = "story-mainnet";
+        _eidToChainName[30374] = "subtensorevm-mainnet";
+        _chainIdToChainName[964] = "subtensorevm-mainnet";
         _eidToChainName[30327] = "superposition-mainnet";
         _chainIdToChainName[55244] = "superposition-mainnet";
         _eidToChainName[30290] = "taiko-mainnet";
