@@ -92,6 +92,17 @@ contract LZProtocol is ILZProtocol {
             new string[](0)
         );
         _registerChain(
+            LayerZeroV2ArcMainnet.EID,
+            address(LayerZeroV2ArcMainnet.ENDPOINT_V2),
+            address(LayerZeroV2ArcMainnet.SEND_ULN_302),
+            address(LayerZeroV2ArcMainnet.RECEIVE_ULN_302),
+            LayerZeroV2ArcMainnet.BLOCKED_MESSAGE_LIB,
+            LayerZeroV2ArcMainnet.EXECUTOR,
+            LayerZeroV2ArcMainnet.CHAIN_ID,
+            "arc-mainnet",
+            new string[](0)
+        );
+        _registerChain(
             LayerZeroV2AstarMainnet.EID,
             address(LayerZeroV2AstarMainnet.ENDPOINT_V2),
             address(LayerZeroV2AstarMainnet.SEND_ULN_302),
@@ -1093,6 +1104,17 @@ contract LZProtocol is ILZProtocol {
             new string[](0)
         );
         _registerChain(
+            LayerZeroV2NeoxMainnet.EID,
+            address(LayerZeroV2NeoxMainnet.ENDPOINT_V2),
+            address(LayerZeroV2NeoxMainnet.SEND_ULN_302),
+            address(LayerZeroV2NeoxMainnet.RECEIVE_ULN_302),
+            LayerZeroV2NeoxMainnet.BLOCKED_MESSAGE_LIB,
+            LayerZeroV2NeoxMainnet.EXECUTOR,
+            LayerZeroV2NeoxMainnet.CHAIN_ID,
+            "neox-mainnet",
+            new string[](0)
+        );
+        _registerChain(
             LayerZeroV2NexeraMainnet.EID,
             address(LayerZeroV2NexeraMainnet.ENDPOINT_V2),
             address(LayerZeroV2NexeraMainnet.SEND_ULN_302),
@@ -1269,6 +1291,17 @@ contract LZProtocol is ILZProtocol {
             new string[](0)
         );
         _registerChain(
+            LayerZeroV2RaylsMainnet.EID,
+            address(LayerZeroV2RaylsMainnet.ENDPOINT_V2),
+            address(LayerZeroV2RaylsMainnet.SEND_ULN_302),
+            address(LayerZeroV2RaylsMainnet.RECEIVE_ULN_302),
+            LayerZeroV2RaylsMainnet.BLOCKED_MESSAGE_LIB,
+            LayerZeroV2RaylsMainnet.EXECUTOR,
+            LayerZeroV2RaylsMainnet.CHAIN_ID,
+            "rayls-mainnet",
+            new string[](0)
+        );
+        _registerChain(
             LayerZeroV2RealMainnet.EID,
             address(LayerZeroV2RealMainnet.ENDPOINT_V2),
             address(LayerZeroV2RealMainnet.SEND_ULN_302),
@@ -1310,6 +1343,17 @@ contract LZProtocol is ILZProtocol {
             LayerZeroV2RiseMainnet.EXECUTOR,
             LayerZeroV2RiseMainnet.CHAIN_ID,
             "rise-mainnet",
+            new string[](0)
+        );
+        _registerChain(
+            LayerZeroV2RobinhoodMainnet.EID,
+            address(LayerZeroV2RobinhoodMainnet.ENDPOINT_V2),
+            address(LayerZeroV2RobinhoodMainnet.SEND_ULN_302),
+            address(LayerZeroV2RobinhoodMainnet.RECEIVE_ULN_302),
+            LayerZeroV2RobinhoodMainnet.BLOCKED_MESSAGE_LIB,
+            LayerZeroV2RobinhoodMainnet.EXECUTOR,
+            LayerZeroV2RobinhoodMainnet.CHAIN_ID,
+            "robinhood-mainnet",
             new string[](0)
         );
         _registerChain(
@@ -1774,6 +1818,28 @@ contract LZProtocol is ILZProtocol {
             LayerZeroV2AbstractTestnet.EXECUTOR,
             LayerZeroV2AbstractTestnet.CHAIN_ID,
             "abstract-testnet",
+            new string[](0)
+        );
+        _registerChain(
+            LayerZeroV2AdiTestnet.EID,
+            address(LayerZeroV2AdiTestnet.ENDPOINT_V2),
+            address(LayerZeroV2AdiTestnet.SEND_ULN_302),
+            address(LayerZeroV2AdiTestnet.RECEIVE_ULN_302),
+            LayerZeroV2AdiTestnet.BLOCKED_MESSAGE_LIB,
+            LayerZeroV2AdiTestnet.EXECUTOR,
+            LayerZeroV2AdiTestnet.CHAIN_ID,
+            "adi-testnet",
+            new string[](0)
+        );
+        _registerChain(
+            LayerZeroV2AdiriTestnet.EID,
+            address(LayerZeroV2AdiriTestnet.ENDPOINT_V2),
+            address(LayerZeroV2AdiriTestnet.SEND_ULN_302),
+            address(LayerZeroV2AdiriTestnet.RECEIVE_ULN_302),
+            LayerZeroV2AdiriTestnet.BLOCKED_MESSAGE_LIB,
+            LayerZeroV2AdiriTestnet.EXECUTOR,
+            LayerZeroV2AdiriTestnet.CHAIN_ID,
+            "adiri-testnet",
             new string[](0)
         );
         _registerChain(
@@ -3009,6 +3075,17 @@ contract LZProtocol is ILZProtocol {
             new string[](0)
         );
         _registerChain(
+            LayerZeroV2MoninetTestnet.EID,
+            address(LayerZeroV2MoninetTestnet.ENDPOINT_V2),
+            address(LayerZeroV2MoninetTestnet.SEND_ULN_302),
+            address(LayerZeroV2MoninetTestnet.RECEIVE_ULN_302),
+            LayerZeroV2MoninetTestnet.BLOCKED_MESSAGE_LIB,
+            LayerZeroV2MoninetTestnet.EXECUTOR,
+            LayerZeroV2MoninetTestnet.CHAIN_ID,
+            "moninet-testnet",
+            new string[](0)
+        );
+        _registerChain(
             LayerZeroV2MoonbeamTestnet.EID,
             address(LayerZeroV2MoonbeamTestnet.ENDPOINT_V2),
             address(LayerZeroV2MoonbeamTestnet.SEND_ULN_302),
@@ -3138,6 +3215,17 @@ contract LZProtocol is ILZProtocol {
             LayerZeroV2OndoTestnet.EXECUTOR,
             LayerZeroV2OndoTestnet.CHAIN_ID,
             "ondo-testnet",
+            new string[](0)
+        );
+        _registerChain(
+            LayerZeroV2OnemoneyTestnet.EID,
+            address(LayerZeroV2OnemoneyTestnet.ENDPOINT_V2),
+            address(LayerZeroV2OnemoneyTestnet.SEND_ULN_302),
+            address(LayerZeroV2OnemoneyTestnet.RECEIVE_ULN_302),
+            LayerZeroV2OnemoneyTestnet.BLOCKED_MESSAGE_LIB,
+            LayerZeroV2OnemoneyTestnet.EXECUTOR,
+            LayerZeroV2OnemoneyTestnet.CHAIN_ID,
+            "onemoney-testnet",
             new string[](0)
         );
         _registerChain(
@@ -3369,6 +3457,17 @@ contract LZProtocol is ILZProtocol {
             LayerZeroV2RiseTestnet.EXECUTOR,
             LayerZeroV2RiseTestnet.CHAIN_ID,
             "rise-testnet",
+            new string[](0)
+        );
+        _registerChain(
+            LayerZeroV2RitualTestnet.EID,
+            address(LayerZeroV2RitualTestnet.ENDPOINT_V2),
+            address(LayerZeroV2RitualTestnet.SEND_ULN_302),
+            address(LayerZeroV2RitualTestnet.RECEIVE_ULN_302),
+            LayerZeroV2RitualTestnet.BLOCKED_MESSAGE_LIB,
+            LayerZeroV2RitualTestnet.EXECUTOR,
+            LayerZeroV2RitualTestnet.CHAIN_ID,
+            "ritual-testnet",
             new string[](0)
         );
         _registerChain(
