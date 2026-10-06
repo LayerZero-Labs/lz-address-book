@@ -177,6 +177,28 @@ contract STGProtocol is ISTGProtocol {
             StargateType.OFT
         );
 
+        // ault-mainnet (Stargate: ault)
+        _tokenMessaging["ault-mainnet"] = 0xbbA60da06c2c5424f03f7434542280FCAd453d10;
+        _registerChain("ault-mainnet");
+        _registerAsset(
+            "ault-mainnet",
+            "USDC.e",
+            0x88853D410299BCBfE5fCC9Eef93c03115E908279,
+            0x5b58c971AF1EE0Fe5D5f772d68Ab3829262DFD2b,
+            6,
+            6,
+            StargateType.OFT
+        );
+        _registerAsset(
+            "ault-mainnet",
+            "WETH",
+            0x3a1293Bdb83bBbDd5Ebf4fAc96605aD2021BbC0f,
+            0x2086f755A6d9254045C257ea3d382ef854849B0f,
+            18,
+            6,
+            StargateType.OFT
+        );
+
         // aurora-mainnet (Stargate: aurora)
         _tokenMessaging["aurora-mainnet"] = 0x5f688F563Dc16590e570f97b542FA87931AF2feD;
         _registerChain("aurora-mainnet");
@@ -1421,6 +1443,28 @@ contract STGProtocol is ISTGProtocol {
             StargateType.OFT
         );
 
+        // rayls-mainnet (Stargate: rayls)
+        _tokenMessaging["rayls-mainnet"] = 0x015fd589F4f1A33ce4487E12714e1B15129c9329;
+        _registerChain("rayls-mainnet");
+        _registerAsset(
+            "rayls-mainnet",
+            "USDC.e",
+            0x74c9f2b00581F1B11AA7ff05aa9F608B7389De67,
+            0x9001dbe4D68d36ab87923A2a9Dfb0c745fd25001,
+            6,
+            6,
+            StargateType.OFT
+        );
+        _registerAsset(
+            "rayls-mainnet",
+            "WETH",
+            0xad11a8BEb98bbf61dbb1aa0F6d6F2ECD87b35afA,
+            0xd8cF92E9B6Fae6B32f795AcB11Edd50E8dD6Ff4d,
+            18,
+            6,
+            StargateType.OFT
+        );
+
         // redbelly-mainnet (Stargate: redbelly)
         _tokenMessaging["redbelly-mainnet"] = 0xEd4469f9823718419C9cc8bbe24730C1af29002C;
         _registerChain("redbelly-mainnet");
@@ -1845,6 +1889,8 @@ contract STGProtocol is ISTGProtocol {
         _chainIdToChainName[9069] = "apexfusionnexus-mainnet";
         _eidToChainName[30110] = "arbitrum-mainnet";
         _chainIdToChainName[42161] = "arbitrum-mainnet";
+        _eidToChainName[30413] = "ault-mainnet";
+        _chainIdToChainName[904] = "ault-mainnet";
         _eidToChainName[30211] = "aurora-mainnet";
         _chainIdToChainName[1313161554] = "aurora-mainnet";
         _eidToChainName[30106] = "avalanche-mainnet";
@@ -1923,6 +1969,8 @@ contract STGProtocol is ISTGProtocol {
         _chainIdToChainName[137] = "polygon-mainnet";
         _eidToChainName[30235] = "rarible-mainnet";
         _chainIdToChainName[1380012617] = "rarible-mainnet";
+        _eidToChainName[30415] = "rayls-mainnet";
+        _chainIdToChainName[72957] = "rayls-mainnet";
         _eidToChainName[30402] = "redbelly-mainnet";
         _chainIdToChainName[151] = "redbelly-mainnet";
         _eidToChainName[30333] = "rootstock-mainnet";

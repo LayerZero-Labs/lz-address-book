@@ -97,6 +97,23 @@ library StargateArbitrumSepolia {
     address internal constant ETH_TOKEN = 0x0000000000000000000000000000000000000000;
 }
 
+library StargateAultMainnet {
+    // Chain metadata
+    uint32 internal constant EID = 30413;
+    uint256 internal constant CHAIN_ID = 904;
+    string internal constant CHAIN_NAME = "ault-mainnet";
+
+    address internal constant TOKEN_MESSAGING = 0xbbA60da06c2c5424f03f7434542280FCAd453d10;
+
+    // USDC.e (StargateOFT)
+    address internal constant USDC_E_OFT = 0x88853D410299BCBfE5fCC9Eef93c03115E908279;
+    address internal constant USDC_E_TOKEN = 0x5b58c971AF1EE0Fe5D5f772d68Ab3829262DFD2b;
+
+    // WETH (StargateOFT)
+    address internal constant WETH_OFT = 0x3a1293Bdb83bBbDd5Ebf4fAc96605aD2021BbC0f;
+    address internal constant WETH_TOKEN = 0x2086f755A6d9254045C257ea3d382ef854849B0f;
+}
+
 library StargateAuroraMainnet {
     // Chain metadata
     uint32 internal constant EID = 30211;
@@ -989,6 +1006,23 @@ library StargateRaribleMainnet {
     // USDT (StargateOFT)
     address internal constant USDT_OFT = 0x17d65bF79E77B6Ab21d8a0afed3bC8657d8Ee0B2;
     address internal constant USDT_TOKEN = 0x362FAE9A75B27BBc550aAc28a7c1F96C8D483120;
+}
+
+library StargateRaylsMainnet {
+    // Chain metadata
+    uint32 internal constant EID = 30415;
+    uint256 internal constant CHAIN_ID = 72957;
+    string internal constant CHAIN_NAME = "rayls-mainnet";
+
+    address internal constant TOKEN_MESSAGING = 0x015fd589F4f1A33ce4487E12714e1B15129c9329;
+
+    // USDC.e (StargateOFT)
+    address internal constant USDC_E_OFT = 0x74c9f2b00581F1B11AA7ff05aa9F608B7389De67;
+    address internal constant USDC_E_TOKEN = 0x9001dbe4D68d36ab87923A2a9Dfb0c745fd25001;
+
+    // WETH (StargateOFT)
+    address internal constant WETH_OFT = 0xad11a8BEb98bbf61dbb1aa0F6d6F2ECD87b35afA;
+    address internal constant WETH_TOKEN = 0xd8cF92E9B6Fae6B32f795AcB11Edd50E8dD6Ff4d;
 }
 
 library StargateRedbellyMainnet {
